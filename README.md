@@ -1,6 +1,6 @@
 # PythonForDataAnalysis
 資料分析  
- [1.python基礎]()  
+ [1.python基礎](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/1%E5%9F%BA%E7%A4%8Epython)  
 2.python內建的資料結構    
 3.Numpy  
 4.pandas  
