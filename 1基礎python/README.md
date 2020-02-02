@@ -1,4 +1,75 @@
 # python基礎 
+## python 編譯器語言
+python是編譯器語言,由上而下,一次只執行一行程式  
+### 使用command line的視窗方式執行python語言  
+```python
+$ python
+Python 3.6.0 | packaged by conda-forge | (default, Jan 13 2017, 23:17:12) [GCC 4.8.2 20140120 (Red Hat 4.8.2-15)] on linux
+Type "help", "copyright", "credits" or "license" for more information.  
+>>> a = 5  
+>>> print(a)  
+5
+
+使用exit()或按下Ctrl-D來離開python Shell模式
+```
+
+### 使用可以互動的Ipython Shell的方式
+```python
+#檢查pip的版本,驗證是python 3.7版的package管理
+$ pip --version
+pip 20.0.2 from C:\Users\roberthsu2003\Anaconda3\envs\project1\lib\site-packages\pip (python 3.7)
+
+
+#查看目前python環境所有的packages
+$pip list
+Package      Version
+------------ -------------------
+certifi      2019.11.28
+pip          20.0.2
+setuptools   45.1.0.post20200127
+wheel        0.34.1
+wincertstore 0.2
+
+
+#安裝IPpipython
+$pip install ipython
+Installing collected packages: decorator, pygments, wcwidth, prompt-toolkit, colorama, pickleshare, backcall, six, ipython-genutils, traitlets, parso, jedi, ipython
+Successfully installed backcall-0.1.0 colorama-0.4.3 decorator-4.4.1 ipython-7.12.0 ipython-genutils-0.2.0 jedi-0.16.0 parso-0.6.0 pickleshare-0.7.5 prompt-toolkit-3.0.3 pygments-2.
+5.2 six-1.14.0 traitlets-4.3.3 wcwidth-0.1.8
+
+#執行ipython
+$ ipython
+In [1]: a = 5
+
+In [2]: a
+Out[2]: 5
+
+In [3]: a?
+Type:        int
+String form: 5
+Docstring:
+int([x]) -> integer
+int(x, base=10) -> integer
+
+
+使用exit()或按下Ctrl-D來離開python Shell模式
+```
+
+### 使用ipython + jupyter notebook
+```python
+#安裝jupyter notebook
+$pip install notebook
+
+#執行jupyter notebook
+$jupyter notebook
+```
+
+[jupyter notebookt畫面](./images/pic1.png)
+### 使用xxx.py檔執行python
+
+```python
+```
+
 
 ## Python內建資料型別  
 • booleans (True or False)  
