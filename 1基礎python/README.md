@@ -1,4 +1,10 @@
 # python基礎 
+## 安裝Anacoda
+[安裝Anacoda](https://www.anaconda.com/)  
+
+## 安裝pycharm 
+[安裝pycharm community](https://www.jetbrains.com/pycharm/)  
+
 ## python 編譯器語言
 python是編譯器語言,由上而下,一次只執行一行程式  
 ### 使用command line的視窗方式執行python語言  
