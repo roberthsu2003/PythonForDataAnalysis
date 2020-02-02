@@ -10,11 +10,11 @@
 
 [5.物件和類別](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%89%A9%E4%BB%B6%E5%92%8C%E9%A1%9E%E5%88%A5)     
 
-[3.Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/numpy)  
+[6.Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/numpy)  
 
-[4.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas)      
+[7.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas)      
 
-[5.資料載入和儲存和檔案格式](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)  
+[5.資料載入,儲存和檔案格式](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)  
 
 [6.資料清理和使用前準備](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E6%B8%85%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99)     
 
