@@ -145,7 +145,7 @@ Hello! Python.
 ```
 ### question: 請問以下哪一個變數命名是錯的?(選擇題)
 (1) 5well.  
-(2) pcschool
+(2) pcschool  
 (3) 巨匠  
 
 ---
