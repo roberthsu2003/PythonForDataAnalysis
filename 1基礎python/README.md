@@ -70,7 +70,7 @@ $pip install notebook
 $jupyter notebook
 ```
 
-[jupyter notebookt畫面](./images/pic1.png)
+![jupyter notebookt畫面](./images/pic1.png)
 ### 使用xxx.py檔執行python
 
 ```python
