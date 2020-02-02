@@ -1,6 +1,6 @@
 # python資料分析
   
- [1.python基礎](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/1%E5%9F%BA%E7%A4%8Epython)  
+ [1.python基礎](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%9F%BA%E7%A4%8Epython)  
  
 [2.python程式結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/3python%E7%A8%8B%E5%BC%8F%E7%B5%90%E6%A7%8B) 
 
