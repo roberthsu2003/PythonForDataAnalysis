@@ -2,7 +2,9 @@
 資料分析  
  [1.python基礎](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/1%E5%9F%BA%E7%A4%8Epython)  
 [2.python內建的資料結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/2python%E5%85%A7%E5%BB%BA%E7%9A%84%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B)  
-[3.python程式結構]()     
+[3.python程式結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/3python%E7%A8%8B%E5%BC%8F%E7%B5%90%E6%A7%8B)   
+[4.Module, Package, Programs](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/4Module_Packages_Programs)   
+[5.物件和類別](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/5%E7%89%A9%E4%BB%B6%E5%92%8C%E9%A1%9E%E5%88%A5)     
 [3.Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/3numpy)  
 [4.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/4pandas)      
 [5.資料載入和儲存和檔案格式](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/5%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)  
