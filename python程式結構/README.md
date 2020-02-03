@@ -284,7 +284,7 @@ money -= cell
 print("剩餘款為:" + str(money)) 
 ```
 
-###3 Homework(complex.py):
+### Homework(complex.py):
 - 請使用者輸入一個任意數，程式會顯示此數的平方值及立方值  
 
 ```python
