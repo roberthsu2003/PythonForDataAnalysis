@@ -699,7 +699,7 @@ else:
  ```
  [解題](bmi.py)
  
-### Repeat with while
+### 使用while迴圈,重複執行程式區塊
 
 ```python
 >>> count = 1
