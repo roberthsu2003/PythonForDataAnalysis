@@ -1,11 +1,54 @@
-# 迴圈Loop
+## 迴圈Loop
+###  重複執行概念
+- 重覆執行可以讓程式中某一區段流程反覆執行
+- 重複執行可用 while 及 for 兩種方式設計
+
+### while 迴圈的架構如下:
+```python
+設定控制迴圈變數的初始值
+while 條件分析:
+	條件成立下執行迴圈要執行的工作
+	調整控制迴圈變數的內容
+```
+
+### while 迴圈
+- 當 while 迴圈的條件分析成立時，才會進入到迴圈。
+- 若 while 迴圈的條件分析不成立，則跳出迴圈。
+- 若 while 迴圈內條件分析一開始不成立，則迴圈一次都不執行。
+
+#### while 迴圈:請動手操作，並留意輸出結果
+```python
+#while1.py
+
+
+a=6
+while a > 0:
+	print(a)
+	a -= 1 
+print("離開後a為",a)
+
+```
+
+#### Question: 請問執行後最後的輸出哪一個是對的?(選擇題)  
+
+```python
+a = 15 
+while a > 0:
+	print(a) 
+	a -= 2
+```
+(1) 0  
+(2) 1  
+(3) -2  
+
+
 ### 使用while迴圈,重複執行程式區塊
 - 有時我們需要做一件事超過一次，這時就需要迴圈程式
 - python最簡單的迴圈就是while迴圈,範例如下:
 
 ```python
 #簡單列印1~5
-#這樣的使用等同於c語言的for(int count=1;count<=5;count+=1)
+#這樣的使用等同於c語言的的 for(int count=1;count<=5;count+=1)
 #使用時機明確的知道要執行多少次迴圈
 
 >>> count = 1
@@ -83,7 +126,7 @@ Integer, please [q to quit]: q
 No even number found
 ```
 
-### 使用for in迴圈
+## 使用for in迴圈
 - 使用時機,讀取所有集合物件元素1次。(list,tuple,string,dictionaries,sets)
 - 使用時機,明確指定執行次數。
 
@@ -173,6 +216,118 @@ Card person has the contents Col. Mustard
 Card room has the contents ballroom
 ```
 
+### 使用range()產生數值串列
+- 使用range()產一個範圍的數值list
+- range()不會像list,tuple,set,dictionary先佔用大量記憶體空間
+- 語法:range(start, stop, step).
+- 如果省略start,只有stop,start預設為0
+- 如同slice,產生的值並不包含stop
+- step預設值為1
+
+
+```python
+>>> for x in range(0,3): 
+		print(x)
+
+0
+1
+2
+>>> list( range(0, 3) )
+[0, 1, 2]
+
+=================================================
+
+#如果使用-1,則每次-1
+>>> for x in range(2, -1, -1):
+		print(x)
+
+2
+1
+0
+>>> list( range(2, -1, -1) ) 
+[2, 1, 0]
+
+====================================================
+
+#step為2,則每次加2
+>>> list( range(0, 11, 2) )
+[0,2,4,6,8,10]
+```
+
+#### for 迴圈兩個參數:請留意輸出結果
+```python
+#for2.py
+
+print("兩個參數") 
+for i in range(4,8):
+	print(i)
+print("離開後i為",i)
+```
+
+#### Question: 請問執行後跑出哪些整數?(選擇題)
+```python
+for x in range(6,10): 
+	print(x)
+```
+(1) 6 7 8 9
+(2) 6 7 8 9 10
+(3) 7 8 9
+
+#### for 迴圈三個參數 (1):請留意輸出結果
+```python
+#for3-1.py
+
+print("三個參數") 
+for i in range(4,0,-1):
+	print(i) 
+print("離開後i為",i)
+```
+
+#### for 迴圈三個參數 (2):請留意輸出結果
+```python
+#for3-2.py
+
+print("三個參數") 
+for i in range(4,8,2):
+	print(i) 
+print("離開後i為",i)
+
+```
+
+#### Question: 請問執行後跑出哪些整數?(選擇題)
+```python
+for x in range(0,8,2) :
+	print(x)
+```
+(1) 0 2 4 6 8  
+(2) 0 2 4 6  
+(3) 0 2 8  
+
+###  迴圈中斷
+- break 與 continue 都是迴圈中斷語法
+	- break 代表迴圈中斷後跳出迴圈。
+	- continue 代表迴圈中斷後繼續執行迴圈。
+#### 迴圈中斷:請留意輸出結果
+```python
+#break.py
+
+i = ['a', 'b', 'c', 'd'] 
+for j in i:
+	if j == 'c': 
+		break
+	print(j)
+```
+
+#### 迴圈中斷:請留意輸出結果
+```python
+#continue.py
+
+i = ['a', 'b', 'c', 'd'] 
+for j in i:
+	if j == 'c': 
+		continue
+	print(j)
+```
 
 ### for break else語法
 檢查如果沒有使用break跳出迴圈,就執行else區塊
@@ -217,45 +372,49 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ```
 
-### 使用range()產生數值串列
-- 使用range()產一個範圍的數值list
-- range()不會像list,tuple,set,dictionary先佔用大量記憶體空間
-- 語法:range(start, stop, step).
-- 如果省略start,只有stop,start預設為0
-- 如同slice,產生的值並不包含stop
-- step預設值為1
 
 
+
+##  符號與多行字串
+- 一行字串可以用雙引號或者單引號包起來。
+- 單引號或雙引號取決於字串的內容是否有相同的符號，若有則使用另
+外一個符號作業。
+- 如果字串內容有用到單雙引號，但外圍仍用相同符號，請加上跳脫字 元進行轉換。
+- 多行字串使用”””三個雙引號或者’’’三個單引號方式包起來。
+
+###  跳脫字元
 ```python
->>> for x in range(0,3): 
-		print(x)
-
-0
-1
-2
->>> list( range(0, 3) )
-[0, 1, 2]
-
-=================================================
-
-#如果使用-1,則每次-1
->>> for x in range(2, -1, -1):
-		print(x)
-
-2
-1
-0
->>> list( range(2, -1, -1) ) 
-[2, 1, 0]
-
-====================================================
-
-#step為2,則每次加2
->>> list( range(0, 11, 2) )
-[0,2,4,6,8,10]
+- 反斜線作為跳脫字元，可用於引用特殊字元。
+	- \\ 反斜線
+	- \’ 單引號
+	- \” 雙引號
+	- \n 換行
+	- \t 固定間隔
 ```
 
-## 字串
+#### 單雙引號與跳脫字元:請留意輸出結果
+```python
+#string0.py
+
+str = 'This is "Python" !' print(str)
+str = "This is \"Python\" !" print(str)
+str = "test1 \n test2\\test3" print(str)
+``` 
+
+```python
+#string1.py
+
+str3= """
+多行 
+字串
+"""
+str4= '''
+多行 
+字串
+'''
+print("字串1:", str3) 
+print("字串2:", str4)
+```
 
 ```python
 >>> 'Snap'
@@ -266,14 +425,18 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 >>> "'Nay,' said the naysayer."
 "'Nay,' said the naysayer."
+
 >>> 'The rare double quote in captivity: ".'
 'The rare double quote in captivity: ".'
+
 >>> 'A "two by four" is actually 1 1⁄2" × 3 1⁄2".'
 'A "two by four is" actually 1 1⁄2" × 3 1⁄2".'
->>> "'There's the man that shot my paw!' cried the limping hound." "'There's the man that shot my paw!' cried the limping hound."
+
+>>> "'There's the man that shot my paw!' cried the limping hound." 
+"'There's the man that shot my paw!' cried the limping hound."
  
 
-
+#多行文字
 >>> '''Boom!'''
     'Boom'
 >>> """Eek!"""
@@ -392,7 +555,9 @@ Today we honor our friend, the backslash: \.
     
     
 
+```
 
+```python
 
 >>> letters = 'abcdefghijklmnopqrstuvwxyz'
 >>> letters[0]
@@ -570,578 +735,4 @@ False
    'a marmoset goes into a bar...'
 
 ```
-
-# python內建的資料結構
-## Lists, Tuples, Dictionaries, and Sets
-
-## Create with [] or list()
-
-```python
->>> empty_list = [ ]
->>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
->>> big_birds = ['emu', 'ostrich', 'cassowary']
->>> first_names = ['Graham', 'John', 'Terry', 'Terry', 'Michael']
-
-
->>> another_empty_list = list() 
->>> another_empty_list
-[]
-
-
-#使用list()轉換其它型態為list
->>> list('cat')
-    ['c', 'a', 't']
-
-
->>> a_tuple = ('ready', 'fire', 'aim') 
->>> list(a_tuple)
-['ready', 'fire', 'aim']
-
-
->>> birthday = '1/6/1952' 
->>> birthday.split('/') 
-['1', '6', '1952']
-
-
->>> splitme = 'a/b//c/d///e'
->>> splitme.split('/')
-['a', 'b', '', 'c', 'd', '', '', 'e']
-
-
->>> splitme = 'a/b//c/d///e' 
->>> splitme.split('//')
-['a/b', 'c/d', '/e']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[0]
-    'Groucho'
->>> marxes[1]
-	'Chico'
->>> marxes[2]
-	'Harpo'
-
-	
->>> marxes[-1] 
-'Harpo'
->>> marxes[-2] 
-'Chico'
->>> marxes[-3] 
-'Groucho'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes[5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
->>> marxes[-5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
-
-```
-
-```python
->>> small_birds = ['hummingbird', 'finch']
->>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
->>> carol_birds = [3, 'French hens', 2, 'turtledoves']
->>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
-
-
->>> all_birds
-	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
-
-
->>> all_birds[0]
-   ['hummingbird', 'finch']
-
-
->>> all_birds[1]
-['dodo', 'passenger pigeon', 'Norwegian Blue']
-
-
->>> all_birds[1][0] 
-'dodo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[2] = 'Wanda'
->>> marxes
-['Groucho', 'Chico', 'Wanda']
-
-
->>> marxes = ['Groucho', 'Chico,' 'Harpo']
->>> marxes[0:2]
-['Groucho', 'Chico']
-
-
->>> marxes[::2]
-['Groucho', 'Harpo']
-
-
->>> marxes[::-2] 
-['Harpo', 'Groucho']
-
-
->>> marxes[::-1]
-['Harpo', 'Chico', 'Groucho']
-
-
->>> marxes.append('Zeppo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.extend(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
->>> others = ['Gummo', 'Karl']
->>> marxes += others
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.append(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', ['Gummo', 'Karl']]
-
-
->>> marxes.insert(3, 'Gummo') 
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
-
-
->>> marxes.insert(10, 'Karl')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo', 'Karl']
-
-
->>> del marxes[-1]
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes[2]
-'Harpo'
->>> del marxes[2]
->>> marxes
-['Groucho', 'Chico', 'Gummo', 'Zeppo']
->>> marxes[2]
-'Gummo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes.remove('Gummo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.pop()
-'Zeppo'
->>> marxes
-['Groucho', 'Chico', 'Harpo'] >>> marxes.pop(1)
-'Chico'
->>> marxes
-['Groucho', 'Harpo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.index('Chico')
-1
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> 'Groucho' in marxes
-True
->>> 'Bob' in marxes
-False
-
-
->>> words = ['a', 'deer', 'a' 'female', 'deer'] 
->>> 'deer' in words
-True
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes.count('Harpo')
-1
->>> marxes.count('Bob')
-0
->>> snl_skit = ['cheeseburger', 'cheeseburger', 'cheeseburger'] 
->>> snl_skit.count('cheeseburger')
-3
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> ', '.join(marxes)
-'Groucho, Chico, Harpo'
-
-
->>> friends = ['Harry', 'Hermione', 'Ron'] 
->>> separator = ' * '
->>> joined = separator.join(friends)
->>> joined
-'Harry * Hermione * Ron'
->>> separated = joined.split(separator) 
->>> separated
-['Harry', 'Hermione', 'Ron']
->>> separated == friends
-True
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> sorted_marxes = sorted(marxes)
->>> sorted_marxes
-['Chico', 'Groucho', 'Harpo']
-
-
->>> marxes
-['Groucho', 'Chico', 'Harpo']
->>> marxes.sort()
->>> marxes
-['Chico', 'Groucho', 'Harpo']
-
-
->>> numbers = [2, 1, 4.0, 3] 
->>> numbers.sort()
->>> numbers
-[1, 2, 3, 4.0]
-
-
->>> numbers = [2, 1, 4.0, 3] 
->>> numbers.sort(reverse=True) 
->>> numbers
-[4.0, 3, 2, 1]
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> len(marxes)
-3
-
-
->>>a=[1,2,3] 
->>> a
-[1, 2, 3] 
->>>b=a
-
-
->>> b
-[1, 2, 3]
->>> a[0] = 'surprise'
->>> a
-['surprise', 2, 3]
->>> b
-['surprise', 2, 3]
-
-
->>> b
-['surprise', 2, 3]
->>> b[0] = 'I hate surprises'
->>> b
-['I hate surprises', 2, 3]
->>> a
-['I hate surprises', 2, 3]
-
-
->>>a=[1,2,3] 
->>> b = a.copy() 
->>> c = list(a) 
->>>d=a[:]
-
-
->>> a[0] = 'integer lists are boring'
->>> a
-['integer lists are boring', 2, 3]
->>> b
-[1, 2, 3]
->>> c
-[1, 2, 3]
->>> d
-[1, 2, 3]
-
-```
-
-## Tuples
-
-```python
->>> empty_tuple = () 
->>> empty_tuple
-()
-
-
->>> one_marx = 'Groucho', 
->>> one_marx ('Groucho',)
-
-
->>> marx_tuple = 'Groucho', 'Chico', 'Harpo' 
->>> marx_tuple
-('Groucho', 'Chico', 'Harpo')
-
-
->>> marx_tuple = ('Groucho', 'Chico', 'Harpo') 
->>> marx_tuple
-('Groucho', 'Chico', 'Harpo')
-
-
->>> marx_tuple = ('Groucho', 'Chico', 'Harpo') 
->>> a, b, c = marx_tuple
->>> a
-'Groucho'
->>> b
-'Chico'
->>> c
-'Harpo'
-
-
->>> password = 'swordfish'
->>> icecream = 'tuttifrutti'
->>> password, icecream = icecream, password
->>> password
-'tuttifrutti'
->>> icecream
-'swordfish'
-
-
->>> marx_list = ['Groucho', 'Chico', 'Harpo'] 
->>> tuple(marx_list)
-('Groucho', 'Chico', 'Harpo')
-```
-
-## Dictionaries
-
-```python
->>> empty_dict = {} 
->>> empty_dict
-{}
-
-
->>> bierce = {
-... "day": "A period of twenty-four hours, mostly misspent",
-... "positive": "Mistaken at the top of one's voice",
-... "misfortune": "The kind of fortune that never misses",
-... } 
->>>
-
-
->>> bierce
-{'misfortune': 'The kind of fortune that never misses', 'positive': "Mistaken at the top of one's voice", 'day': 'A period of twenty-four hours, mostly misspent'}
-
-
->>> lol = [ ['a', 'b'], ['c', 'd'], ['e', 'f'] ]
->>> dict(lol)
-{'c': 'd', 'a': 'b', 'e': 'f'}
-
-
->>> lot = [ ('a', 'b'), ('c', 'd'), ('e', 'f') ]
->>> dict(lot)
-{'c': 'd', 'a': 'b', 'e': 'f'}
-
-
->>> tol = ( ['a', 'b'], ['c', 'd'], ['e', 'f'] )
->>> dict(tol)
-{'c': 'd', 'a': 'b', 'e': 'f'}
-
-
->>> los = [ 'ab', 'cd', 'ef' ]
->>> dict(los)
-{'c': 'd', 'a': 'b', 'e': 'f'}
-
-
->>> tos = ( 'ab', 'cd', 'ef' )
->>> dict(tos)
-{'c': 'd', 'a': 'b', 'e': 'f'}
-
-
->>> pythons = {
-... 'Chapman': 'Graham',
-... 'Cleese': 'John',
-... 'Idle': 'Eric',
-... 'Jones': 'Terry',
-... 'Palin': 'Michael',
-... }
->>> pythons
-{'Cleese': 'John', 'Jones': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric'}
-
-
->>> pythons['Gilliam'] = 'Gerry'
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Gerry', 'Palin': 'Michael',
-'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
-
-
->>> pythons['Gilliam'] = 'Terry'
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael',
-'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
-
-
->>> some_pythons = {
-... 'Graham': 'Chapman',
-... 'John': 'Cleese',
-... 'Eric': 'Idle',
-... 'Terry': 'Gilliam',
-... 'Michael': 'Palin',
-... 'Terry': 'Jones',
-... }
->>> some_pythons
-{'Terry': 'Jones', 'Eric': 'Idle', 'Graham': 'Chapman', 'John': 'Cleese', 'Michael': 'Palin'}
-
-
->>> pythons = {
-... 'Chapman': 'Graham',
-... 'Cleese': 'John',
-... 'Gilliam': 'Terry',
-... 'Idle': 'Eric',
-... 'Jones': 'Terry',
-... 'Palin': 'Michael'
-... }
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
-
-
->>> others = { 'Marx': 'Groucho', 'Howard': 'Moe' }
->>> pythons.update(others)
->>> pythons
-{'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Marx': 'Groucho', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
-
-
->>> first = {'a': 1, 'b': 2} 
->>> second = {'b': 'platypus'} 
->>> first.update(second)
->>> first
-{'b': 'platypus', 'a': 1}
-
-
->>> del pythons['Marx']
->>> pythons
-{'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
->>> del pythons['Howard']
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
-
-
->>> pythons.clear() 
->>> pythons
-{}
->>> pythons = {}
->>> pythons
-{}
-
-
->>> pythons = {'Chapman': 'Graham', 'Cleese': 'John',
-'Jones': 'Terry', 'Palin': 'Michael'}
->>> 'Chapman' in pythons 
-True
->>> 'Palin' in pythons 
-True
->>> 'Gilliam' in pythons 
-False
-
-
->>> pythons['Cleese']
-'John'
-
-
->>> pythons['Marx']
-    Traceback (most recent call last):
-File "<stdin>", line 1, in <module> KeyError: 'Marx'
-
-
->>> 'Marx' in pythons 
-False
-
-
->>> pythons.get('Cleese') 
-'John'
-
-
->>> pythons.get('Marx', 'Not a Python')
-'Not a Python'
-
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} 
->>> signals.keys()
-dict_keys(['green', 'red', 'yellow'])
-
-
->>> list( signals.values() )
-['go', 'smile for the camera', 'go faster']
-
-
->>> list( signals.items() )
-[('green', 'go'), ('red', 'smile for the camera'), ('yellow', 'go faster')]
-
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} 
->>> save_signals = signals
->>> signals['blue'] = 'confuse everyone'
->>> save_signals
-    {'blue': 'confuse everyone', 'green': 'go',
-    'red': 'smile for the camera', 'yellow': 'go faster'}
-
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} >>> original_signals = signals.copy()
->>> signals['blue'] = 'confuse everyone'
->>> signals
-{'blue': 'confuse everyone', 'green': 'go',
-'red': 'smile for the camera', 'yellow': 'go faster'}
->>> original_signals
-{'green': 'go', 'red': 'smile for the camera', 'yellow': 'go faster'}
-
-
-
-```
-
-## Sets
-
-```python
->>> empty_set = set()
->>> empty_set
-set()
->>> even_numbers = {0, 2, 4, 6, 8} 
->>> even_numbers
-{0,8,2,4,6}
->>> odd_numbers = {1, 3, 5, 7, 9} 
->>> odd_numbers
-{9,3,1,5,7}
-
-
->>> set( 'letters' )
-{'l', 'e', 't', 'r', 's'}
-
-
->>> set( ['Dasher', 'Dancer', 'Prancer', 'Mason-Dixon'] ) 
-{'Dancer', 'Dasher', 'Prancer', 'Mason-Dixon'}
-
-
->>> set( ('Ummagumma', 'Echoes', 'Atom Heart Mother') )
-{'Ummagumma', 'Atom Heart Mother', 'Echoes'}
-
-
->>> set( {'apple': 'red', 'orange': 'orange', 'cherry': 'red'} )
-{'apple', 'cherry', 'orange'}
-
-
->>> drinks = {
-... 'martini': {'vodka', 'vermouth'},
-... 'black russian': {'vodka', 'kahlua'},
-... 'white russian': {'cream', 'kahlua', 'vodka'},
-... 'manhattan': {'rye', 'vermouth', 'bitters'},
-... 'screwdriver': {'orange juice', 'vodka'}
-... }
-
-
-
-```
-
-
-
 
