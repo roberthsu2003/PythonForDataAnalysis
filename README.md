@@ -1,4 +1,6 @@
-#![python for data Aanlysis](./card.png)
+![python for data Aanlysis](./card.png)
+
+===
   
  [1.python基礎與資料輸出入](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E5%9F%BA%E7%A4%8E%E8%88%87%E8%B3%87%E6%96%99%E8%BC%B8%E5%87%BA%E5%85%A5)  
  
