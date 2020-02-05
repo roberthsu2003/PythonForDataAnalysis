@@ -1,8 +1,8 @@
 # python資料分析
   
- [1.python基礎](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%9F%BA%E7%A4%8Epython)  
+ [1.python基礎與資料輸出入](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%9F%BA%E7%A4%8Epython)  
  
-[2.python程式結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E7%A8%8B%E5%BC%8F%E7%B5%90%E6%A7%8B) 
+[2.數值計算與條件分析](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E7%A8%8B%E5%BC%8F%E7%B5%90%E6%A7%8B) 
 
 [3.python內建的資料結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E5%85%A7%E5%BB%BA%E7%9A%84%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B) 
  
