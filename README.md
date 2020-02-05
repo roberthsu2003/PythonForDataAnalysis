@@ -14,9 +14,9 @@
 
 [7.匿名函數與套件使用](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%8C%BF%E5%90%8D%E5%87%BD%E6%95%B8%E8%88%87%E5%A5%97%E4%BB%B6%E4%BD%BF%E7%94%A8)
 
-**python補充教材** 
->> [Module, Package, Programs](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/Module_Packages_Programs)   
->> [物件和類別](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%89%A9%E4%BB%B6%E5%92%8C%E9%A1%9E%E5%88%A5)  
+**python補充教材**  
+- [Module, Package, Programs](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/Module_Packages_Programs)   
+- [物件和類別](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%89%A9%E4%BB%B6%E5%92%8C%E9%A1%9E%E5%88%A5)  
    
 
 [6.Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/numpy)  
