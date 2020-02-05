@@ -10,7 +10,7 @@
 
 [5.函式和comprehension](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%87%BD%E5%BC%8F%E5%92%8Ccomprehension)
 
-[6.數值與函數進階運用](./數值與函式的進階運用)
+[6.數值與函數進階運用](./數值與函式的進階運用/README.md)
  
 [4.Module, Package, Programs](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/Module_Packages_Programs)  
 
