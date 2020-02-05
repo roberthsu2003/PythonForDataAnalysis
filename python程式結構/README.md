@@ -549,6 +549,7 @@ else:
 
 ## 判斷流程控制 if, elif, and else
 ```python
+#雙向選擇
 >>> disaster = True 
 >>> if disaster:
 		print("Woe!") 
@@ -556,8 +557,10 @@ else:
 		print("Whee!")
 Woe!
 
-===============================
+```
 
+```python
+#巢狀選擇
 furry = True 
 small = True 
 if furry:
@@ -573,8 +576,10 @@ else:
 
 It's a cat.
 
-=============================
+```
 
+```python
+#多項選擇
 color = "puce"
 if color == "red":
     print("It's a tomato")
@@ -587,10 +592,6 @@ else:
 
 
 I've never heard of the color puce
-
-================================
-
-
 ```
 
 ##  邏輯運算符號
@@ -700,8 +701,13 @@ else:
  [解題](bmi.py)
  
 ### 使用while迴圈,重複執行程式區塊
+有時我們需要做一件事超過一次，這時就需要迴圈程式,在python最簡單的就是使用while迴圈,範例如下:
 
 ```python
+#簡單列印1~5
+#這樣的使用等同於c語言的for(int count=1;count<=5;count+=1)
+#使用時機明確的知道要執行多少次迴圈
+
 >>> count = 1
 >>> while count <= 5:
 		print(count)
@@ -717,9 +723,13 @@ else:
 
 
 
-### Cancel with break
+### 使用break跳出迴圈
+使用無限迴圈+break的語法
 
 ```python
+#使用時機,不明確知道要執行幾次迴圈
+#配合條件式if,並使用break停止迴圈
+
 >>> while True:
 		stuff = input("String to capitalize [type q to quit]: ")
 			if stuff == "q":
