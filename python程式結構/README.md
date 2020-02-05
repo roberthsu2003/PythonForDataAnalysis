@@ -431,7 +431,7 @@ else:
 	false區塊
 ```
 
-### 雙向選擇 if else:請留意輸出結果
+### 雙向選擇 if else:請留意輸出結果  
 ```python
 # if2.py
 
@@ -701,7 +701,8 @@ else:
  [解題](bmi.py)
  
 ### 使用while迴圈,重複執行程式區塊
-有時我們需要做一件事超過一次，這時就需要迴圈程式,在python最簡單的就是使用while迴圈,範例如下:
+- 有時我們需要做一件事超過一次，這時就需要迴圈程式
+- python最簡單的迴圈就是while迴圈,範例如下:
 
 ```python
 #簡單列印1~5
@@ -724,7 +725,7 @@ else:
 
 
 ### 使用break跳出迴圈
-使用無限迴圈+break的語法
+- 使用無限迴圈+break的語法
 
 ```python
 #使用時機,不明確知道要執行幾次迴圈
@@ -736,6 +737,7 @@ else:
 				break
 		print(stuff.capitalize())
 
+
 String to capitalize [type q to quit]: test
 Test
 String to capitalize [type q to quit]: hey, it works Hey, it works
@@ -743,7 +745,8 @@ String to capitalize [type q to quit]: q
 >>>
 ```
 
-### Skip Ahead with continue
+### 使用continue,中止迴圈,跳至下一輪迴圈,重頭執行
+
 ```python
 >>> while True:
 		value = input("Integer, please [q to quit]: ") 
@@ -753,6 +756,8 @@ String to capitalize [type q to quit]: q
 			if number % 2 == 0: # an even number
 				continue
 		print(number, "squared is", number*number)
+		
+		
 Integer, please [q to quit]: 1 1 squared is 1
 Integer, please [q to quit]: 2 Integer, please [q to quit]: 3 3 squared is 9
 Integer, please [q to quit]: 4 Integer, please [q to quit]: 5 5 squared is 25
@@ -761,7 +766,8 @@ Integer, please [q to quit]: q
 
 ```
 
-### Check break Use with else
+### while break else語法:
+- 在while迴圈內,如果沒有使用到break跳出迴圈,則迴圈結束後要執行else的程式區塊
 
 ```python
 >>> numbers = [1, 3, 5]
@@ -772,14 +778,18 @@ Integer, please [q to quit]: q
 			print('Found even number', number)
 			break
 		position += 1
-		else: # break not called
+	else: # break not called
 			print('No even number')
 			
 No even number found
 ```
 
-### Iterate with for
+### 使用for in迴圈
+- 使用時機,讀取所有集合物件元素1次。(list,tuple,string,dictionaries,sets)
+- 使用時機,明確指定執行次數。
+
 ```python
+#使用傳統的方式,讀取list內的每一個元素
 >>> rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter'] 
 >>> current = 0
 >>> while current < len(rabbits):
@@ -791,7 +801,7 @@ Mopsy
 Cottontail
 Peter
 
-#it's better
+#使用更簡潔方式(for..in)
 >>> for rabbit in rabbits: 
 			print(rabbit)
 			
@@ -803,7 +813,7 @@ Peter
 ```
 
 
-### 
+### 字串每次取出一個字元
 
 ```python
 >>> word = 'cat'
@@ -815,9 +825,15 @@ a
 t
 
 
-====================================
+```
+
+### 使用for in讀取dictionary,取出的元素是key, 也可以使用dictionary.keys()方法.
+- 使用values()方法取出元素的值
+
+```python
 
 >>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+
 >>> for card in accusation: # or, for card in accusation.keys():
 		print(card)
 
@@ -826,6 +842,7 @@ weapon
 person
 
 =====================================
+#使用values()方法取出元素的值
 >>> for value in accusation.values(): 
 		print(value)
 
@@ -834,6 +851,8 @@ lead pipe
 Col. Mustard
 
 ======================================
+
+#使用items()方法,取出包含key和value的tuple, 
 >>> for item in accusation.items(): 
 		print(item)
 
@@ -841,7 +860,9 @@ Col. Mustard
 ('weapon', 'lead pipe') 
 ('person', 'Col. Mustard')
 
+
 =======================================
+#使用拆解法直接同時取出key和value
 >>> for card, contents in accusation.items():
 		print('Card', card, 'has the contents', contents) 
 
@@ -852,21 +873,22 @@ Card room has the contents ballroom
 ```
 
 
-### Check break Use with else
+### for break else語法
+檢查如果沒有使用break跳出迴圈,就執行else區塊
 
 ```python
+#檢查是否cheeses為空list
 >>> cheeses = []
 >>> for cheese in cheeses:
 		print('This shop has some lovely', cheese)
-			break
-		else: # no break means no cheese
-			print('This is not much of a cheese shop, is it?') 
+		break
+	else: # no break means no cheese
+		print('This is not much of a cheese shop, is it?') 
 			
 This is not much of a cheese shop, is it?
 ```
-### Iterate Multiple Sequences with zip()
 
-
+### 使用for in zip()同步平行讀取多個串列物件
 
 ```python
 >>> days = ['Monday', 'Tuesday', 'Wednesday']
@@ -881,7 +903,7 @@ Tuesday : drink tea - eat orange - enjoy ice cream
 Wednesday : drink beer - eat peach - enjoy pie
 
 =============================================
-
+#使用zip()組合每個串列內元素成為tuple
 >>> english = 'Monday', 'Tuesday', 'Wednesday'
 >>> french = 'Lundi', 'Mardi', 'Mercredi'
 >>> list( zip(english, french) )
@@ -892,7 +914,15 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 
 ```
-### Generate Number Sequences with range()
+
+### 使用range()產生數值串列
+- 使用range()產一個範圍的數值list
+- range()不會像list,tuple,set,dictionary先佔用大量記憶體空間
+- 語法:range(start, stop, step).
+- 如果省略start,只有stop,start預設為0
+- 如同slice,產生的值並不包含stop
+- step預設值為1
+
 
 ```python
 >>> for x in range(0,3): 
@@ -905,7 +935,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 [0, 1, 2]
 
 =================================================
-
+#如果使用-1,則每次-1
 >>> for x in range(2, -1, -1):
 		print(x)
 
@@ -916,12 +946,14 @@ Wednesday : drink beer - eat peach - enjoy pie
 [2, 1, 0]
 
 ====================================================
-
+#step為2,則每次加2
 >>> list( range(0, 11, 2) )
 [0,2,4,6,8,10]
 ```
 
-### Comprehensions
+### 使用Comprehensions語法快速簡潔方式建立tuple,list,dictionary,set
+- 塔配迴圈和條件式
+
 ```python
 >>> number_list = []
 >>> number_list.append(1)
@@ -1033,6 +1065,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 {1, 4}
 
 ```
+
 ### Generator Comprehensions
 ```python
 >>> number_thing = (number for number in range(1, 6))
@@ -1059,6 +1092,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 
 ```
+
 ## Functions
 ```python
 >>> def do_nothing(): 
@@ -1114,7 +1148,6 @@ I've never heard of the color blue.
 ```
 
 ### Positional Arguments
-
 ```python
 >>> def menu(wine, entree, dessert):
 		return {'wine': wine, 'entree': entree, 'dessert': dessert} 
