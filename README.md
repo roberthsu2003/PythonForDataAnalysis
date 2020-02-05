@@ -8,7 +8,9 @@
 
 [4.python內建的資料結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E5%85%A7%E5%BB%BA%E7%9A%84%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B)
 
-[5.函式和comprehension]()
+[5.函式和comprehension](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%87%BD%E5%BC%8F%E5%92%8Ccomprehension)
+
+[6.數值與函數進階運用](./數值與函式的進階運用)
  
 [4.Module, Package, Programs](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/Module_Packages_Programs)  
 
