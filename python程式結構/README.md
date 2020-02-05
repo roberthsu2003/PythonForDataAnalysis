@@ -842,6 +842,7 @@ weapon
 person
 
 =====================================
+
 #使用values()方法取出元素的值
 >>> for value in accusation.values(): 
 		print(value)
@@ -862,6 +863,7 @@ Col. Mustard
 
 
 =======================================
+
 #使用拆解法直接同時取出key和value
 >>> for card, contents in accusation.items():
 		print('Card', card, 'has the contents', contents) 
@@ -903,6 +905,7 @@ Tuesday : drink tea - eat orange - enjoy ice cream
 Wednesday : drink beer - eat peach - enjoy pie
 
 =============================================
+
 #使用zip()組合每個串列內元素成為tuple
 >>> english = 'Monday', 'Tuesday', 'Wednesday'
 >>> french = 'Lundi', 'Mardi', 'Mercredi'
@@ -935,6 +938,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 [0, 1, 2]
 
 =================================================
+
 #如果使用-1,則每次-1
 >>> for x in range(2, -1, -1):
 		print(x)
@@ -946,15 +950,20 @@ Wednesday : drink beer - eat peach - enjoy pie
 [2, 1, 0]
 
 ====================================================
+
 #step為2,則每次加2
 >>> list( range(0, 11, 2) )
 [0,2,4,6,8,10]
 ```
 
 ### 使用Comprehensions語法快速簡潔方式建立tuple,list,dictionary,set
-- 塔配迴圈和條件式
+- 搭配迴圈和條件式
+- 語法:[ expression for item in iterable ]
+- 語法:[ expression for item in iterable if condition ]
+- 語法:[expression for item1 in iterable for item2 in iterable]
 
 ```python
+#使用appen()方法建立
 >>> number_list = []
 >>> number_list.append(1)
 >>> number_list.append(2) 
@@ -965,6 +974,8 @@ Wednesday : drink beer - eat peach - enjoy pie
 [1,2,3,4,5]
  
 ===========================================
+
+#使用range()方法加上for in迴圈建立
 >>> number_list = []
 >>> for number in range(1, 6):
 			number_list.append(number) 
@@ -973,11 +984,15 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ============================================
 
+#使用list()和range()建立
+
 >>> number_list = list(range(1, 6)) 
 >>> number_list
 [1,2,3,4,5]
 
 ============================================
+
+#使用list comprehension+for in建立
 [ expression for item in iterable ]
 
 >>> number_list = [number for number in range(1,6)] 
@@ -986,12 +1001,16 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ============================================
 
+#使用list comprehension建立,可以有運算式靈活改變內容值
+
 >>> number_list = [number-1 for number in range(1,6)] 
 >>> number_list
 [0,1,2,3,4]
 
 ===============================================
-[ expression for item in iterable if condition ]
+
+#使用lsit comprehension + for in + if
+#語法:[ expression for item in iterable if condition ]
 
 >>> a_list = [number for number in range(1,6) if number % 2 == 1] 
 >>> a_list
@@ -999,6 +1018,8 @@ Wednesday : drink beer - eat peach - enjoy pie
 [1, 3, 5]
 
 ==================================================
+
+#上面的list comprehension建立的list,相當於基本的python語法如下:
 >>> a_list = []
 >>> for number in range(1,6):
 		if number%2 == 1: 
@@ -1008,6 +1029,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
 
+#使用巢狀迴圈
 >>> rows = range(1,4) 
 >>> cols = range(1,3) 
 >>> for row in rows:
@@ -1023,6 +1045,7 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 =====================================================
 
+#使用list comprehension和巢狀迴圈
 >>> rows = range(1,4)
 >>> cols = range(1,3)
 >>> cells = [(row, col) for row in rows for col in cols] 
@@ -1042,23 +1065,27 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ```
 
-### Dictionary Comprehensions
+### 詞典物件(Dictionary Comprehensions)
+- 語法:{ key_expression : value_expression for expression in iterable }
 
 ```python
-{ key_expression : value_expression for expression in iterable }
-
 >>> word = 'letters'
 >>> letter_counts = {letter: word.count(letter) for letter in word}
->>> letter_counts
+>>> letter_counts #key不會重覆
 {'l': 1, 'e': 2, 't': 2, 'r': 1, 's': 1}
 
 =====================================================
+
+#將word變為set
 >>> word = 'letters'
 >>> letter_counts = {letter: word.count(letter) for letter in set(word)} 
 >>> letter_counts
 {'t': 2, 'l': 1, 'e': 2, 'r': 1, 's': 1}
 ```
+
 ### Set Comprehensions
+- 語法:{expression for expression in iterable }
+
 ```python
 >>> a_set = {number for number in range(1,6) if number % 3 == 1} 
 >>> a_set
@@ -1285,6 +1312,7 @@ echo(anything)
 echo returns its input argument
 
 ```
+
 ### Functions Are First-Class Citizens
 ```python
 >>> def answer(): 
