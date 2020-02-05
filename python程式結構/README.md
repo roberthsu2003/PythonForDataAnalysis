@@ -1094,8 +1094,12 @@ Wednesday : drink beer - eat peach - enjoy pie
 ```
 
 ### Generator Comprehensions
+- tuple沒有Comprehensions,使用括號()產生的是generator comprehension
+
 ```python
 >>> number_thing = (number for number in range(1, 6))
+
+#傳出的是generator物件
 >>> type(number_thing)
 <class 'generator'>
 
@@ -1109,10 +1113,12 @@ Wednesday : drink beer - eat peach - enjoy pie
 5
 
 ===========================================
+
 >>> number_list = list(number_thing) 
 >>> number_list
 [1,2,3,4,5]
 
+#generator只可以使用一次,使用完後就被消滅.
 >>> try_again = list(number_thing) 
 >>> try_again
 []
@@ -1175,6 +1181,7 @@ I've never heard of the color blue.
 ```
 
 ### Positional Arguments
+
 ```python
 >>> def menu(wine, entree, dessert):
 		return {'wine': wine, 'entree': entree, 'dessert': dessert} 
