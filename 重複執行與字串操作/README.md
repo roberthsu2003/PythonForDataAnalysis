@@ -176,15 +176,17 @@ t
 
 >>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
->>> for card in accusation: # or, for card in accusation.keys():
+>>>>>> for card in accusation: # or, for card in accusation.keys():
 		print(card)
 
 room
 weapon
 person
 
-=====================================
+```
 
+```python
+>>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 #使用values()方法取出元素的值
 >>> for value in accusation.values(): 
 		print(value)
@@ -193,8 +195,10 @@ ballroom
 lead pipe 
 Col. Mustard
 
-======================================
+```
 
+```python
+>>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 #使用items()方法,取出包含key和value的tuple, 
 >>> for item in accusation.items(): 
 		print(item)
@@ -204,7 +208,10 @@ Col. Mustard
 ('person', 'Col. Mustard')
 
 
-=======================================
+```
+
+```python
+>>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
 #使用拆解法直接同時取出key和value
 >>> for card, contents in accusation.items():
@@ -235,7 +242,9 @@ Card room has the contents ballroom
 >>> list( range(0, 3) )
 [0, 1, 2]
 
-=================================================
+```
+
+```python
 
 #如果使用-1,則每次-1
 >>> for x in range(2, -1, -1):
@@ -247,7 +256,9 @@ Card room has the contents ballroom
 >>> list( range(2, -1, -1) ) 
 [2, 1, 0]
 
-====================================================
+```
+
+```python
 
 #step為2,則每次加2
 >>> list( range(0, 11, 2) )
@@ -358,7 +369,8 @@ Monday : drink coffee - eat banana - enjoy tiramisu
 Tuesday : drink tea - eat orange - enjoy ice cream 
 Wednesday : drink beer - eat peach - enjoy pie
 
-=============================================
+```
+```python
 
 #使用zip()組合每個串列內元素成為tuple
 >>> english = 'Monday', 'Tuesday', 'Wednesday'
