@@ -1,5 +1,287 @@
 # 函式和Comprehension
-## Functions
+## 自訂函數 Functions
+- 自訂函數名稱與內容的安排:
+	- 函數區塊以 def 開始，後接函數名稱和括號 ( )
+	- 括號 ( ) 接上冒號後下一行縮排就是函數的內容
+- 不支援多個同名的自訂函數:
+	- 如果有同名的自訂函數則支援最後一個函數。
+- 若對函數操作有任何疑問:
+	- 可用 help(函數名稱) 取得說明文件。
+- 自訂函數接收資料:
+	- 傳入函數的參數放在 ( ) 內。
+	- 可以接收多個，以逗點隔開。
+	- 接收參數可以是變數，也可以是 list。
+	- 函數若設定接收參數，呼叫函數時一定要給參數。
+	- 接收參數可設定為不固定數量。
+	- 若不接收則為空白。
+- 自訂函數傳回資料:
+	- 若要傳回資料，則請於函數最後一行執行 return()語法
+	- return( ) 可以傳回一個運算式或者資料
+	- 函數結束時不一定要傳回資料
+	- 不傳回資料方式:
+		- return( ) 內沒有資料
+		- 省略 return( )
+		- 寫成 return
+
+### 自訂函數沒接收沒傳回
+
+```python
+def func_sum():
+	print("呼叫函式")
+	return()
+
+```
+
+#### Question: 請問執行後的結果哪一個是對的?(選擇題)
+```python
+def func_sum( ):
+	print("A") 
+	return( )
+	
+print("B") 
+func_sum( ) 
+print("C")
+```
+(1) A,B,C  
+(2) B,A,C  
+(3) C,B,A  
+(4) A,C,B
+
+####  自訂函數有接收沒傳回
+```python
+def func_sum(a, b):
+	c = a + b
+	print(c)
+	return()
+
+```
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+def func_sum(a, b): 
+	c=a+b
+	print(c)
+	return( ) 
+	
+print("1") 
+func_sum(3, 4) 
+print("2")
+```
+(1) 1,7,2  
+(2) 1,3,4,2  
+(3) 3,4,1,2  
+(4) 7,1,2
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+def func_sum(a, b): 
+	c=a+b
+	print(c)
+	return( ) 
+	
+print("1") 
+func_sum( ) 
+print("2")
+```
+(1) 1,0,2   
+(2) 1,2  
+(3) 0,1,2  
+(4) 錯誤  
+
+## 自訂函數有接收有傳回
+```python
+def func_sum(a, b):
+	c = a + b
+	return(c)
+	
+z = func_sum(10, 15)
+```
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#fun2.py
+
+def func_sum(a, b): 
+	c=a+b
+	return (c)
+z = func_sum(10, 15) 
+print(z)
+``` 
+
+####  請問執行後的結果哪一個是對的?(選擇題)
+```python
+def func_sum(a, b): 
+	c = a + b * 2 
+	return (c)
+	
+print("1")
+z = func_sum(3, 4) 
+print("2")
+print(z)
+
+```
+(1) 1,7,2  
+(2) 1,11,2  
+(3) 1,2,11   
+(4) 1,2,7  
+
+###  函數傳回多值
+- Python 的函數可以傳回多值。
+- 傳回多值的做法是將傳回值轉為 tuple 型態，接收後再一一分配。
+
+#### 操作範例 :請動手操作，並留意輸出結果
+```python
+#fun6.py
+
+def func_a( ): 
+	return 1, 2, 3, 4
+	
+temp = func_a( ) 
+print(type(temp))
+```
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+def manyvalue(a, b): 
+	c=a*b
+	return (a-2, b+3, c)
+	
+x, y, z = manyvalue(3, 5) 
+print(y)
+```
+(1) 8   
+(2) 15   
+(3) 1   
+(4) 20   
+
+---
+###  變數影響範圍
+函數外的變數:
+- 函數內可以顯示該變數內容
+- 不屬於函數的區域內都可以使用
+
+函數內的變數:
+- 只在函數內產生效果，不會影響函數外的變數
+- 若函數內沒有進行變數宣告而進行改變內容動作將會產生錯誤訊息
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#fun3.py
+
+a=5
+def func_sum( ):
+	a=10 
+	print("函數內:",a) 
+	return( )
+	
+	
+print("函數外1:", a) 
+func_sum( ) 
+print(func_sum.__class__) 
+print("函數外2:", a)
+```
+
+#### 操作範例:請動手操作，並留意輸出結果
+
+```python
+#fun3-1.py
+
+a=5
+def func_sum( ):
+	#a=10 
+	print("函數內:",a) 
+	return( )
+	
+print("函數外1:", a) 
+func_sum( ) 
+print("函數外2:", a)
+
+```
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+
+```python
+a=2
+def func_sum( ):
+	print(a)
+	return( ) 
+
+func_sum( )
+```
+(1) 2  
+(2) 5  
+(3) 7  
+(4) 3  
+ 
+---
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#fun3-2.py
+
+a=5
+def func_sum( ):
+	#a=0
+	a=a+1 
+	print("函數內:",a) 
+	return( )
+	
+print("函數外1:", a) 
+func_sum( ) 
+print("函數外2:", a)
+
+```
+
+#### Question: 請問執行後的結果哪一個是對的?(選擇題)
+```python
+a=3
+def func_sum( ):
+	a=7 
+	a=a+6 
+	print(a) 
+	return( )
+	
+a += 6 
+func_sum( )
+```
+(1) 7   
+(2) 3  
+(3) 13  
+(4) 9  
+
+---
+
+####  請問執行後的結果哪一個是對的?(選擇題)
+```python
+a=3
+def func_sum( ):
+	a=7 
+	a=a+6 
+	return( )
+a += 6 
+func_sum( ) 
+print(a)
+```
+(1) 7   
+(2) 3  
+(3) 13  
+(4) 9  
+
+#### HomeWork:支出最大與最小
+- 輸入四個月的支出金額後列出最多與最少的支出金額。
+
+```python
+請輸入第1個月的支出金額:5000
+請輸入第2個月的支出金額:4000
+請輸入第3個月的支出金額:3500
+請輸入第4個月的支出金額:7000
+支出最多的金額為:7000
+支出最少的金額為:3500
+支出的總額為:19500
+支出金額由小到大排序為:[3500, 4000, 5000, 7000]
+```
+
+
 ```python
 >>> def do_nothing(): 
 		pass
@@ -81,6 +363,7 @@ I've never heard of the color blue.
 {'entree': 'fish', 'dessert': 'flan', 'wine': 'frontenac'}
 
 ```
+
 ### Specify Default Parameter Values
 
 ```python
