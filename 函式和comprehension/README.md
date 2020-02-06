@@ -7,7 +7,9 @@
 >>> do_nothing() 
 >>>
 
-========================================
+```
+
+```python
 
 >>> def make_a_sound():
 		print('quack')
@@ -15,7 +17,9 @@
 >>> make_a_sound()
 quack
 
-========================================
+```
+
+```python
 
 >>> def agree(): 
 		return True 
@@ -89,7 +93,9 @@ return {'wine': wine, 'entree': entree, 'dessert': dessert}
 >>> menu('dunkelfelder', 'duck', 'doughnut')
 {'dessert': 'doughnut', 'wine': 'dunkelfelder', 'entree': 'duck'}
 
-========================================
+```
+
+```python
 
 >>> def buggy(arg, result=[]):
 		result.append(arg)
@@ -99,7 +105,9 @@ return {'wine': wine, 'entree': entree, 'dessert': dessert}
 ['a']
 >>> buggy('b') # expect ['b'] ['a', 'b']
 
-========================================
+```
+
+```python
 
 >>> def works(arg):
 		result = []
@@ -111,7 +119,9 @@ return {'wine': wine, 'entree': entree, 'dessert': dessert}
 >>> works('b')
 ['b']
 
-=========================================
+```
+
+```python
 
 >>> def nonbuggy(arg, result=None):
 		if result is None:
@@ -171,7 +181,9 @@ Keyword arguments: {'dessert': 'macaroon', 'wine': 'merlot', 'entree': 'mutton'}
 		'echo returns its input argument'
 		return anything
 
-================================================
+```
+
+```python
 		
 >>> def print_if_true(thing, check): 
 		'''Prints the first argument if a second argument is true. The operation is:
@@ -210,7 +222,9 @@ echo returns its input argument
 >>> number_list 
 [1,2,3,4,5]
  
-===========================================
+```
+
+```python
 
 #使用range()方法加上for in迴圈建立
 >>> number_list = []
@@ -219,7 +233,9 @@ echo returns its input argument
 >>> number_list
 [1,2,3,4,5]
 
-============================================
+```
+
+```python
 
 #使用list()和range()建立
 
@@ -227,7 +243,9 @@ echo returns its input argument
 >>> number_list
 [1,2,3,4,5]
 
-============================================
+```
+
+```python
 
 #使用list comprehension+for in建立
 [ expression for item in iterable ]
@@ -236,7 +254,9 @@ echo returns its input argument
 >>> number_list
 [1,2,3,4,5]
 
-============================================
+```
+
+```python
 
 #使用list comprehension建立,可以有運算式靈活改變內容值
 
@@ -244,7 +264,9 @@ echo returns its input argument
 >>> number_list
 [0,1,2,3,4]
 
-===============================================
+```
+
+```python
 
 #使用lsit comprehension + for in + if
 #語法:[ expression for item in iterable if condition ]
@@ -254,7 +276,9 @@ echo returns its input argument
 
 [1, 3, 5]
 
-==================================================
+```
+
+```python
 
 #上面的list comprehension建立的list,相當於基本的python語法如下:
 >>> a_list = []
@@ -264,7 +288,9 @@ echo returns its input argument
 >>> a_list
 [1, 3, 5]
 
-＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+```
+
+```python
 
 #使用巢狀迴圈
 >>> rows = range(1,4) 
@@ -280,7 +306,9 @@ echo returns its input argument
 3 1 
 3 2
 
-=====================================================
+```
+
+```python
 
 #使用list comprehension和巢狀迴圈
 >>> rows = range(1,4)
@@ -311,7 +339,9 @@ echo returns its input argument
 >>> letter_counts #key不會重覆
 {'l': 1, 'e': 2, 't': 2, 'r': 1, 's': 1}
 
-=====================================================
+```
+
+```python
 
 #將word變為set
 >>> word = 'letters'
@@ -349,7 +379,9 @@ echo returns its input argument
 4 
 5
 
-===========================================
+```
+
+```python
 
 >>> number_list = list(number_thing) 
 >>> number_list
