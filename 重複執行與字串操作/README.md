@@ -280,9 +280,9 @@ print("離開後i為",i)
 for x in range(6,10): 
 	print(x)
 ```
-(1) 6 7 8 9
-(2) 6 7 8 9 10
-(3) 7 8 9
+(1) 6 7 8 9  
+(2) 6 7 8 9 10  
+(3) 7 8 9  
 
 #### for 迴圈三個參數 (1):請留意輸出結果
 ```python
@@ -874,7 +874,6 @@ False
 請輸入一個字串:Python
 上一個字串是Python
 請輸入-n-開始的字串:new
-
 上一個字串是Python-new
 請輸入-w-開始的字串:well
 上一個字串是Python-new-well

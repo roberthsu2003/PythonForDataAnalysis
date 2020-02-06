@@ -1,8 +1,436 @@
 
 # python內建的資料結構
 ## Lists, Tuples, Dictionaries, and Sets
+### tuple 與 list 的差異
+- 括號不同:
+	- tuple 是用小括號將元素包起來。
+	- list 是用中括號將元素包起來。
 
-## Create with [] or list()
+- 元素可否變更:
+	- tuple 決定了元素的內容就不可以變更。
+	- list 可以隨時修改。
+
+### list 介紹
+- list 內資料用逗號隔開，放置於中括號的範圍內。 
+	- list_name = [1,2,3 ]
+- list 可以儲存不同類型的值或項目，如數字和字串。
+	- list_name = [1, 2, ‘Python’, ‘lists’ ]
+- list 內的資料可以進行增加、更新與移除。
+- 可透過.index( )方法取得指定資料的索引。
+
+### list 與 tuple:請留意輸出結果
+```python
+#list0.py
+
+ list1=['H','i'] 
+ tuple1=('H','i') 
+ 
+ print(tuple1) 
+ print(list1) 
+ 
+ tuple1[1]='a' 
+ list1[1]='a' 
+ 
+ print(tuple1) 
+ print(list1)
+```
+
+###  索引標籤
+- 索引編號放在 [ ] 內。
+- 由左向右 ( 由前向後 ) 存取，編號由 0 開始遞增。
+- 由右向左 ( 由後向前 ) 存取，編號由 -1 開始遞減。
+
+| 0 | 1 | 2 | 3 | 4 | 5 |
+|:--|:--|:--|:--|:--|:--|
+| -6 | -5 | -4 | -3 | -2 | -1 |
+
+#### Question: 請問執行後的結果哪一個是對的?(選擇題)
+```python
+tuple1=('1','2') 
+tuple1[1]='0' 
+print(tuple1)
+```
+(1) 02   
+(2) 10   
+(3) 120   
+(4)錯誤  
+
+---
+
+####  請問執行後的結果哪一個是對的?(選擇題)
+```python
+list1=['1','2'] 
+list1[1]='0' 
+print(list1)
+```
+(1) 02   
+(2) 10   
+(3) 120   
+(4) 錯誤  
+
+---
+
+#### 操作範例:請動手操作，並留意輸出結果
+
+```python
+#list1.py
+
+list1=['H','e','l','l','o', 'W','o','r','l','d'] print(list1[0])
+print(list1[1])
+print(list1[-1])
+print(list1[-3])
+```
+
+####  請問執行後的結果哪一個是對的?(選擇題)
+
+```python
+list1=['p','y','t','h','o','n']
+print(list1[-2])
+```
+(1) y   
+(2) n   
+(3) o   
+(4) p  
+
+---
+
+###  部分取值
+- list內部分取值採用[ n:m ]方式，n與m是整數。
+	- n 代表起始位置，第一個為 0。
+	- m 代表結束位置，不可以超過這個位置。
+
+| 0 | 1 | 2 | 3 | 4 | 5 |
+|:--|:--|:--|:--|:--|:--|
+| -6 | -5 | -4 | -3 | -2 | -1 |
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#list2.py
+
+list1=['H','e','l','l','o', 'W','o','r','l','d'] print(list1[2:])
+print(list1[:3])
+print(list1[3:5])
+```
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#list2.py
+
+list1=['H','e','l','l','o', 'W','o','r','l','d'] print(list1[2:])
+print(list1[:3])
+print(list1[3:5])
+```
+| H | e | l | l | o | W | o | r | l | d |
+|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
+| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
+| -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
+
+####  請選出以下程式碼跑出的結果。
+```python
+list1=['H','e','l','l','o', 'W','o','r','l','d']
+print(list1[0])
+```
+(1)'H'  
+(2)'W'  
+(3)'l'  
+(4)'d'  
+
+---
+
+####  請選出以下程式碼跑出的結果。
+```python
+list1=['H','e','l','l','o', 'W','o','r','l','d']
+print(list1[-1])
+```
+(1)'H'  
+(2)'W'  
+(3)'l'  
+(4)'d'  
+
+---
+###  更新資料
+- 指定 list 的索引編號就可以給予新的資料，將這個項目內容更新。
+	- List1[2]=123
+
+####  請問最後輸出結果會是什麼?(選擇題)
+```python
+list1=['a','b','c'] 
+print(list1) 
+list1[2]='dd' 
+print(list1)
+```
+(1) ['a','dd','b','c']   
+(2) ['a','b','dd','c']   
+(3) ['a','b','dd']  
+(4) ['a','dd','c']  
+
+####  請依照下列問題找出正確的答案。(選擇題)
+```python
+你有一個list x:
+x = ["a", "b", "b"]
+請改變第2個"b"成為"c"
+```
+
+(1) x[2] = "c"  
+(2) x[2] = c  
+(3) x[3] = "c"  
+(4) x[3] = c  
+
+---
+
+###  list 項目附加資料
+- append 附加資料:
+	-  你提供的資料就以一筆資料方式加入到 list。
+	-  一次只能加入一個資料。
+- 也可利用 + 的方式於原本的 list 之後附加新的資料。
+
+```python
+#list5.py
+
+ list1= ['a', 'b', 'c'] 
+ print("附加之前:", list1) 
+ print("附加之前長度 = ", len(list1)) list1.append(["def","ghij"]) 
+ print("附加之後:", list1) 
+ print("附加之後長度 = ", len(list1)) print(list1[3])
+```
+
+###  list 項目擴展資料
+- extend 擴展資料
+	- 如果引號括起來的字串有 [ ] 將會拆解成好幾個資料。
+	- 可以把其他 list 加入到這個 list 內，擴展多個欄位。
+#### 操作範例:請動手操作，並留意輸出結果
+
+```python
+#list6.py
+
+list1= ['a', 'b', 'c']
+print("擴展之前:", list1) 
+print("擴展之前長度 = ", len(list1))
+print("擴展之後:", list1) 
+print("擴展之後長度 = ", len(list1)) 
+print(list1[3])
+```
+
+### list 項目插入新資料
+- list 可使用 insert 方式插入新的資料:
+	- list.insert(索引值，插入的資料)。
+	- list.insert(索引值，插入的資料)。
+	- 
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#list7.py
+
+ list1 = ['this', 'is', 'list'] 
+ print(list1) 
+ list1.insert(1, 'item') 
+ print(list1) 
+ list1.insert(88, '88') 
+ print(list1)
+```
+
+#### Question:請問以下的結果會是什麼?(選擇題)
+```python
+ list1 = ['a', 'b', 'c'] 
+ list1.insert(1, 'x') 
+ print(list1)
+```
+(1) ['x','a','b','c']   
+  
+(2) ['a','x','b','c'] 
+    
+(3) ['a','b','x','c'] 
+   
+(4) ['a','b','c','x']   
+
+ ---
+ 
+###  list 移除項目
+- list 可透過以下三種方式移除項目:
+	- list.remove( )
+	- list.pop( )
+	- del list[ ]
+
+###  list.remove
+- list 可透過 remove 方式移除資料
+	- 依據內容進行刪除
+	- list.remove(項目內容)
+
+####  Question:請問以下的結果會是什麼?(選擇題)
+```python
+#1. 有兩個以上的相同資料， 會先移除哪一個呢?
+#2. 如果沒有資料那會如何呢?
+
+list1 = ['1', 'x', '2', 'x', '3'] 
+list1.remove('x') 
+print(list1)
+```
+(1) ['x','1', '2', '3'] 
+
+(2) ['1', '2', '3'] 
+
+(3) ['1', '2', 'x', '3']
+
+(4) ['1','x', '2', '3']
+
+---
+###  list.pop
+- list 可透過 pop 方式移除指定位置資料。
+	- 如果 pop( ) 內沒有參數，則移除最後一筆資料。
+	- pop( ) 內若有參數，則移除指定位置的資料。
+
+####  Question:請問以下的結果會是什麼?(選擇題)
+```python
+list1 = ['1', 'x', '2', 'x', '3']
+list1.pop( ) 
+print(list1)
+```
+(1) ['x','2','x','3']
+   
+(2) ['1','x','2','x'] 
+  
+(3) ['x','2','x']
+
+(4) ['1','2','x','3']
+
+---
+
+#### Question:請問以下的結果會是什麼?(選擇題)
+```python
+
+list1 = ['1', 'x', '2', 'x', '3']
+list1.pop(1) 
+print(list1)
+```
+
+(1) ['x','2','x','3']  
+
+(2) ['1','x','2','x'] 
+
+(3) ['x','2','x']
+
+(4) ['1','2','x','3']
+
+---
+
+###  del list[ ]
+- list 可透過 del 方式移除指定位置資料。
+- del list[ ] 必須指定範圍:
+	- del list[n] 代表移除第 n 位索引值資料。
+	- del list[:n] 代表移除第 n 位索引值之前 ( 不包含 n ) 資料。
+	- del list[m:n] 代表移除第 m 到 n 位索引值之前 ( 不包含 n ) 資料。
+
+####  Question:請問以下的結果會是什麼?(選擇題)
+```python
+list1 = ['1', 'x', '2', 'x', '3']
+del list1[:1] 
+print(list1)
+```
+(1) ['x','2','x','3'] 
+
+(2) ['1','2','x','3'] 
+
+(3) ['1','x','2','x']
+
+(4) ['2','x','3']
+
+---
+
+####  請問以下的結果會是什麼?(選擇題)
+```python
+list1 = ['1', 'x', '2', 'x', '3']
+del list1[2:4] 
+print(list1)
+```
+(1) ['2','x','3'] 
+
+(2) ['1','x','3'] 
+
+(3) ['x','2','x']
+
+(4) ['1','x']
+---
+
+###  list 排序
+- list 進行排序有 sorted( ) 與 sort( ) 兩個動作。
+- 兩者差異:
+	- sorted( )
+		- 不會影響 list 本身結構，且可以輸出結果。
+		- sorted(list項目)。
+		- sorted( ) 可用來排序任何項目。
+	- sort( )
+		-  會影響 list 本身結構，且不可以於操作這個動作時進行輸出。
+		-  list.sort( )
+		-  sort( ) 只能用在list上排序。
+
+###  排序原則與參數
+- 排序原則:
+	- 數字則依照大小排序。
+	- 字串則依照 ASCII 編碼順序進行排序。
+
+###  排序原則與參數
+- 可加入的參數:
+	- reverse=True
+		- 有這個參數由大到小排序
+		- 若沒有這個參數則由小到大排序
+	- key=len
+		- 依照 list 內元素字串長度進行排序
+	- key=str.upper
+		- 將 list 內元素轉換為大寫，再依照 ASCII 編碼順序進行排序
+	- key=str.lower
+		- 將 list 內元素轉換為小寫，再依照 ASCII 編碼順序進行排序
+
+#### 排序的原理:ASCII
+```python
+list2 = ['c','b','a','A']
+list2.sort()
+print(list2)
+print(ord('a'),ord('b'),ord('c'),ord('A'))
+
+
+['A', 'a', 'b', 'c'] 
+97 98 99 65
+```
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+#list8.py
+
+a = [5, 2, 1, 9, 6] 
+print(sorted(a))
+print(a)
+print(sorted(a, reverse=True) ) 
+print(a)
+a.sort(reverse=True) 
+print(a)
+
+```
+
+###  資料反向
+- 可利用 reverse( ) 函數進行反向排序動作。
+- 這函數沒有傳回值，list 執行後就會進行反向排序。
+
+#### Question: 請問以下的結果會是什麼?(選擇題)
+
+```python
+list2 = [12, 'ab', 'Ab', 'aB'] 
+list2.reverse()
+print (list2)
+```
+(1) ['aB', 'Ab', 'ab', 12] 
+(2) ['Ab', 'aB', 'ab', 12] 
+(3) ['ab', 'aB', 'Ab', 12] 
+(4) [12,'ab', 'aB', 'Ab']
+
+####  回家作業:清單中找水果
+```python
+請輸入喜歡的水果(enter 結束):木瓜
+木瓜 不在list清單中!
+請輸入喜歡的水果(enter 結束):西瓜
+西瓜 在list清單中的第5項!
+請輸入喜歡的水果(enter 結束):
+```
+
+### Create with [] or list()
 
 ```python
 >>> empty_list = [ ]
