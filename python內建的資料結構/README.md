@@ -17,8 +17,72 @@
 	- list_name = [1, 2, ‘Python’, ‘lists’ ]
 - list 內的資料可以進行增加、更新與移除。
 - 可透過.index( )方法取得指定資料的索引。
+### Create with [] or list()
+```python
+>>> empty_list = [ ]
+>>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
+>>> big_birds = ['emu', 'ostrich', 'cassowary']
+>>> first_names = ['Graham', 'John', 'Terry', 'Terry', 'Michael']
 
-### list 與 tuple:請留意輸出結果
+
+>>> another_empty_list = list() 
+>>> another_empty_list
+[]
+
+
+#使用list()轉換其它型態為list
+>>> list('cat')
+    ['c', 'a', 't']
+
+
+>>> a_tuple = ('ready', 'fire', 'aim') 
+>>> list(a_tuple)
+['ready', 'fire', 'aim']
+
+
+>>> birthday = '1/6/1952' 
+>>> birthday.split('/') 
+['1', '6', '1952']
+
+
+>>> splitme = 'a/b//c/d///e'
+>>> splitme.split('/')
+['a', 'b', '', 'c', 'd', '', '', 'e']
+
+
+>>> splitme = 'a/b//c/d///e' 
+>>> splitme.split('//')
+['a/b', 'c/d', '/e']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo']
+>>> marxes[0]
+    'Groucho'
+>>> marxes[1]
+	'Chico'
+>>> marxes[2]
+	'Harpo'
+
+>>> marxes[-1] 
+'Harpo'
+>>> marxes[-2] 
+'Chico'
+>>> marxes[-3] 
+'Groucho'
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo'] 
+>>> marxes[5]
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module> IndexError: list index out of range
+>>> marxes[-5]
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module> IndexError: list index out of range
+
+```
+
+### list 與 tuple:請留意輸出結果\
+
 ```python
 #list0.py
 
@@ -93,7 +157,35 @@ print(list1[-2])
 (4) p  
 
 ---
+### 2維List
+```python
+>>> small_birds = ['hummingbird', 'finch']
+>>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
+>>> carol_birds = [3, 'French hens', 2, 'turtledoves']
+>>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
 
+
+>>> all_birds
+	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
+
+
+>>> all_birds[0]
+   ['hummingbird', 'finch']
+
+
+>>> all_birds[1]
+['dodo', 'passenger pigeon', 'Norwegian Blue']
+
+
+>>> all_birds[1][0] 
+'dodo'
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo']
+>>> marxes[2] = 'Wanda'
+>>> marxes
+['Groucho', 'Chico', 'Wanda']
+```
 ###  部分取值
 - list內部分取值採用[ n:m ]方式，n與m是整數。
 	- n 代表起始位置，第一個為 0。
@@ -148,6 +240,27 @@ print(list1[-1])
 (4)'d'  
 
 ---
+
+```python
+>>> marxes = ['Groucho', 'Chico,' 'Harpo']
+>>> marxes[0:2]
+['Groucho', 'Chico']
+
+
+>>> marxes[::2]
+['Groucho', 'Harpo']
+
+
+>>> marxes[::-2] 
+['Harpo', 'Groucho']
+
+
+>>> marxes[::-1]
+['Harpo', 'Chico', 'Groucho']
+
+
+```
+
 ###  更新資料
 - 指定 list 的索引編號就可以給予新的資料，將這個項目內容更新。
 	- List1[2]=123
@@ -198,6 +311,7 @@ x = ["a", "b", "b"]
 - extend 擴展資料
 	- 如果引號括起來的字串有 [ ] 將會拆解成好幾個資料。
 	- 可以把其他 list 加入到這個 list 內，擴展多個欄位。
+
 #### 操作範例:請動手操作，並留意輸出結果
 
 ```python
@@ -209,6 +323,34 @@ print("擴展之前長度 = ", len(list1))
 print("擴展之後:", list1) 
 print("擴展之後長度 = ", len(list1)) 
 print(list1[3])
+```
+
+```python
+>>> marxes.append('Zeppo')
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Zeppo']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
+>>> others = ['Gummo', 'Karl']
+>>> marxes.extend(others)
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
+>>> others = ['Gummo', 'Karl']
+>>> marxes += others
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
+>>> others = ['Gummo', 'Karl']
+>>> marxes.append(others)
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Zeppo', ['Gummo', 'Karl']]
+
 ```
 
 ### list 項目插入新資料
@@ -243,6 +385,18 @@ print(list1[3])
 (4) ['a','b','c','x']   
 
  ---
+ 
+ ```python
+ >>> marxes.insert(3, 'Gummo') 
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
+
+
+>>> marxes.insert(10, 'Karl')
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo', 'Karl']
+
+ ```
  
 ###  list 移除項目
 - list 可透過以下三種方式移除項目:
@@ -351,6 +505,84 @@ print(list1)
 
 ---
 
+```python
+>>> del marxes[-1]
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
+>>> marxes[2]
+'Harpo'
+>>> del marxes[2]
+>>> marxes
+['Groucho', 'Chico', 'Gummo', 'Zeppo']
+>>> marxes[2]
+'Gummo'
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
+>>> marxes.remove('Gummo')
+>>> marxes
+['Groucho', 'Chico', 'Harpo', 'Zeppo']
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
+>>> marxes.pop()
+'Zeppo'
+>>> marxes
+['Groucho', 'Chico', 'Harpo'] 
+>>> marxes.pop(1)
+'Chico'
+>>> marxes
+['Groucho', 'Harpo']
+```
+
+### list index(), in, count()
+```python
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
+>>> marxes.index('Chico')
+1
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
+>>> 'Groucho' in marxes
+True
+>>> 'Bob' in marxes
+False
+
+
+>>> words = ['a', 'deer', 'a' 'female', 'deer'] 
+>>> 'deer' in words
+True
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo'] 
+>>> marxes.count('Harpo')
+1
+>>> marxes.count('Bob')
+0
+>>> snl_skit = ['cheeseburger', 'cheeseburger', 'cheeseburger'] 
+>>> snl_skit.count('cheeseburger')
+3
+
+```
+
+### join(),split()
+```python
+>>> marxes = ['Groucho', 'Chico', 'Harpo'] 
+>>> sorted_marxes = sorted(marxes)
+>>> sorted_marxes
+['Chico', 'Groucho', 'Harpo']
+
+
+>>> marxes
+['Groucho', 'Chico', 'Harpo']
+>>> marxes.sort()
+>>> marxes
+['Chico', 'Groucho', 'Harpo']
+```
+
 ###  list 排序
 - list 進行排序有 sorted( ) 與 sort( ) 兩個動作。
 - 兩者差異:
@@ -406,270 +638,7 @@ print(a)
 
 ```
 
-###  資料反向
-- 可利用 reverse( ) 函數進行反向排序動作。
-- 這函數沒有傳回值，list 執行後就會進行反向排序。
-
-#### Question: 請問以下的結果會是什麼?(選擇題)
-
 ```python
-list2 = [12, 'ab', 'Ab', 'aB'] 
-list2.reverse()
-print (list2)
-```
-(1) ['aB', 'Ab', 'ab', 12] 
-
-(2) ['Ab', 'aB', 'ab', 12] 
-
-(3) ['ab', 'aB', 'Ab', 12] 
-
-(4) [12,'ab', 'aB', 'Ab']
-
-####  回家作業:清單中找水果
-```python
-請輸入喜歡的水果(enter 結束):木瓜
-木瓜 不在list清單中!
-請輸入喜歡的水果(enter 結束):西瓜
-西瓜 在list清單中的第5項!
-請輸入喜歡的水果(enter 結束):
-```
-
-### Create with [] or list()
-
-```python
->>> empty_list = [ ]
->>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
->>> big_birds = ['emu', 'ostrich', 'cassowary']
->>> first_names = ['Graham', 'John', 'Terry', 'Terry', 'Michael']
-
-
->>> another_empty_list = list() 
->>> another_empty_list
-[]
-
-
-#使用list()轉換其它型態為list
->>> list('cat')
-    ['c', 'a', 't']
-
-
->>> a_tuple = ('ready', 'fire', 'aim') 
->>> list(a_tuple)
-['ready', 'fire', 'aim']
-
-
->>> birthday = '1/6/1952' 
->>> birthday.split('/') 
-['1', '6', '1952']
-
-
->>> splitme = 'a/b//c/d///e'
->>> splitme.split('/')
-['a', 'b', '', 'c', 'd', '', '', 'e']
-
-
->>> splitme = 'a/b//c/d///e' 
->>> splitme.split('//')
-['a/b', 'c/d', '/e']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[0]
-    'Groucho'
->>> marxes[1]
-	'Chico'
->>> marxes[2]
-	'Harpo'
-
-	
->>> marxes[-1] 
-'Harpo'
->>> marxes[-2] 
-'Chico'
->>> marxes[-3] 
-'Groucho'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes[5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
->>> marxes[-5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
-
-```
-
-```python
->>> small_birds = ['hummingbird', 'finch']
->>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
->>> carol_birds = [3, 'French hens', 2, 'turtledoves']
->>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
-
-
->>> all_birds
-	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
-
-
->>> all_birds[0]
-   ['hummingbird', 'finch']
-
-
->>> all_birds[1]
-['dodo', 'passenger pigeon', 'Norwegian Blue']
-
-
->>> all_birds[1][0] 
-'dodo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[2] = 'Wanda'
->>> marxes
-['Groucho', 'Chico', 'Wanda']
-
-
->>> marxes = ['Groucho', 'Chico,' 'Harpo']
->>> marxes[0:2]
-['Groucho', 'Chico']
-
-
->>> marxes[::2]
-['Groucho', 'Harpo']
-
-
->>> marxes[::-2] 
-['Harpo', 'Groucho']
-
-
->>> marxes[::-1]
-['Harpo', 'Chico', 'Groucho']
-
-
->>> marxes.append('Zeppo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.extend(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
->>> others = ['Gummo', 'Karl']
->>> marxes += others
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.append(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', ['Gummo', 'Karl']]
-
-
->>> marxes.insert(3, 'Gummo') 
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
-
-
->>> marxes.insert(10, 'Karl')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo', 'Karl']
-
-
->>> del marxes[-1]
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes[2]
-'Harpo'
->>> del marxes[2]
->>> marxes
-['Groucho', 'Chico', 'Gummo', 'Zeppo']
->>> marxes[2]
-'Gummo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes.remove('Gummo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.pop()
-'Zeppo'
->>> marxes
-['Groucho', 'Chico', 'Harpo'] >>> marxes.pop(1)
-'Chico'
->>> marxes
-['Groucho', 'Harpo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.index('Chico')
-1
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> 'Groucho' in marxes
-True
->>> 'Bob' in marxes
-False
-
-
->>> words = ['a', 'deer', 'a' 'female', 'deer'] 
->>> 'deer' in words
-True
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes.count('Harpo')
-1
->>> marxes.count('Bob')
-0
->>> snl_skit = ['cheeseburger', 'cheeseburger', 'cheeseburger'] 
->>> snl_skit.count('cheeseburger')
-3
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> ', '.join(marxes)
-'Groucho, Chico, Harpo'
-
-
->>> friends = ['Harry', 'Hermione', 'Ron'] 
->>> separator = ' * '
->>> joined = separator.join(friends)
->>> joined
-'Harry * Hermione * Ron'
->>> separated = joined.split(separator) 
->>> separated
-['Harry', 'Hermione', 'Ron']
->>> separated == friends
-True
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> sorted_marxes = sorted(marxes)
->>> sorted_marxes
-['Chico', 'Groucho', 'Harpo']
-
-
->>> marxes
-['Groucho', 'Chico', 'Harpo']
->>> marxes.sort()
->>> marxes
-['Chico', 'Groucho', 'Harpo']
-
-
 >>> numbers = [2, 1, 4.0, 3] 
 >>> numbers.sort()
 >>> numbers
@@ -685,8 +654,10 @@ True
 >>> marxes = ['Groucho', 'Chico', 'Harpo']
 >>> len(marxes)
 3
+```
 
-
+### copy()
+```
 >>>a=[1,2,3] 
 >>> a
 [1, 2, 3] 
@@ -726,7 +697,34 @@ True
 [1, 2, 3]
 >>> d
 [1, 2, 3]
+```
 
+###  資料反向
+- 可利用 reverse( ) 函數進行反向排序動作。
+- 這函數沒有傳回值，list 執行後就會進行反向排序。
+
+#### Question: 請問以下的結果會是什麼?(選擇題)
+
+```python
+list2 = [12, 'ab', 'Ab', 'aB'] 
+list2.reverse()
+print (list2)
+```
+(1) ['aB', 'Ab', 'ab', 12] 
+
+(2) ['Ab', 'aB', 'ab', 12] 
+
+(3) ['ab', 'aB', 'Ab', 12] 
+
+(4) [12,'ab', 'aB', 'Ab']
+
+####  回家作業:清單中找水果
+```python
+請輸入喜歡的水果(enter 結束):木瓜
+木瓜 不在list清單中!
+請輸入喜歡的水果(enter 結束):西瓜
+西瓜 在list清單中的第5項!
+請輸入喜歡的水果(enter 結束):
 ```
 
 ## Tuples
@@ -775,7 +773,55 @@ True
 ('Groucho', 'Chico', 'Harpo')
 ```
 
-## Dictionaries
+
+## Dictionaries 介紹
+- 可以想像你現在手上有一本電子英漢字典，當你輸入英文單字的時候，
+就可以查得到它的唯一翻譯。
+
+- 你所關心的英文單字與翻譯之間有著 一對一 的關係:
+	- 你輸入的英文單字，就叫做 Key 
+	- 而得到的翻譯，就叫做 Value 
+- 一個 Dictionary 是一群 Key : Value 配對的集合
+- 資料結構是由 key:value 所組成。
+- key 不能夠重複，否則會被後面的結果蓋過去。
+- 可輸入 key 找尋您要找出來的值。
+- 如果輸入的 key 不存在，那就會出現錯誤訊息。
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+# dict1.py
+dict1={'a':100,'b':200,'c':300} 
+print(dict1) 
+dict1={'a':200,'b':400,'b':300} 
+print(dict1)
+print(dict1['a']) 
+print(dict1['b']) 
+print(dict1['d']) #不存在
+```
+
+#### Question: 請問執行後的結果哪一行是錯的?(選擇題)
+```python
+dict1={'a':100,'b':200, 'b':300} 
+print(dict1)
+print(dict1['a']) 
+print(dict1['d'])
+```
+(1) print(dict1)   
+(2) print(dict1['a'])  
+(3) print(dict1['d'])  
+(4) 沒有錯誤. 
+
+####  請問執行後的結果是哪一個答案呢?(選擇題)
+```python
+dict1={'a':100,'b':200,'b':300}
+print(dict1['b'])
+```
+(1) 100  
+(2) 200   
+(3) 300  
+(4) 0  
+
+### 建立Dictionary
 
 ```python
 >>> empty_dict = {} 
@@ -818,8 +864,74 @@ True
 >>> tos = ( 'ab', 'cd', 'ef' )
 >>> dict(tos)
 {'c': 'd', 'a': 'b', 'e': 'f'}
+``` 
 
+###  key 與 value
+- key 不能於程式內改變:
+	- 可以用數字、字串或者 tuple
+	- 不可以使用 list
 
+- 如何找出所有的 key 與 value?
+	- 您可以透過 dict1.keys( ) 這個方法找出所有的 key
+	- 您可以透過 dict1. values( ) 這個方法找出所有的 value
+
+###  新增與修改
+- 新增一筆資料
+	- 請將 key 與 value 儲存至一個變數內
+	- 透過 dict.update(新增的資料) 這個方法的方式就可以新增
+
+- 元素可否變更:
+	- 以 = 指派方式指派給 key 就可以變更資料
+
+#### 操作範例 1:請動手操作，並留意輸出結果
+```python
+#dict3.py
+
+dict1={'a':100,'b':200, 'c':300} 
+print(dict1)
+add_dic={'d':400} 
+dict1.update(add_dic) 
+print(dict1)
+```
+
+```python
+#dict4.py
+
+dict1={'a':100,'b':200, 'c':300} 
+print(dict1)
+dict1['a']='test'
+print(dict1)
+```
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+dict1={'a':100,'b':200, 'c':300} 
+add_dic={'d':400} 
+dict1.update(add_dic) 
+print(dict1['d'])
+```
+
+(1) 產生錯誤  
+(2) 200  
+(3) 300  
+(4) 400
+
+---
+####  請問執行後的結果哪一個是對的?(選擇題)
+```python
+dict1={'a':100,'b':200, 'c':300} 
+add_dic={'d':400} 
+dict1.update(add_dic) 
+print(dict1['e'])
+``` 
+(1) 產生錯誤  
+(2) 200  
+(3) 300  
+(4) 400   
+
+---
+
+```python
 >>> pythons = {
 ... 'Chapman': 'Graham',
 ... 'Cleese': 'John',
@@ -827,6 +939,7 @@ True
 ... 'Jones': 'Terry',
 ... 'Palin': 'Michael',
 ... }
+
 >>> pythons
 {'Cleese': 'John', 'Jones': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric'}
 
@@ -842,19 +955,9 @@ True
 {'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael',
 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 
+```
 
->>> some_pythons = {
-... 'Graham': 'Chapman',
-... 'John': 'Cleese',
-... 'Eric': 'Idle',
-... 'Terry': 'Gilliam',
-... 'Michael': 'Palin',
-... 'Terry': 'Jones',
-... }
->>> some_pythons
-{'Terry': 'Jones', 'Eric': 'Idle', 'Graham': 'Chapman', 'John': 'Cleese', 'Michael': 'Palin'}
-
-
+```python
 >>> pythons = {
 ... 'Chapman': 'Graham',
 ... 'Cleese': 'John',
@@ -873,16 +976,72 @@ True
 {'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Marx': 'Groucho', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 
 
+```
+
+###  刪除動作
+- 刪除動作可分刪除資料、清除所有項目與刪除字典三種:
+	- del dict[key]  刪除某一個 key 的資料
+	- dict.clear( )  清除所有項目
+	- del dict  刪除字典
+
+###  關於 key 的判斷
+- 請以 (key in dict1.keys( )) 方式進行判斷
+- 存在傳回 true
+- 不存在傳回 false
+
+#### 操作範例 :請動手操作，並留意輸出結果
+```python
+#dict5.py
+
+dict1={'a':100,'b':200, 'c':300} 
+print(dict1)
+del dict1['c']
+print(dict1)
+print('c' in dict1.keys( )) 
+print('a' in dict1.keys( ))
+```
+
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+dict1={'a':100,'b':200, 'c':300} 
+del dict1['b']
+print ('b' in dict1.keys())
+```
+(1) 產生錯誤  
+(2) True  
+(3) 200  
+(4) False  
+
+---
+
+#### Question: 請問執行後的結果哪一個是對的?(選擇題)
+
+```python
+dict1={'a':100,'b':200, 'c':300} 
+dict1.clear( )
+print ('b' in dict1.keys( ))
+```
+(1) 產生錯誤  
+(2) True  
+(3) 200  
+(4) False 
+
+```python
 >>> first = {'a': 1, 'b': 2} 
 >>> second = {'b': 'platypus'} 
 >>> first.update(second)
 >>> first
 {'b': 'platypus', 'a': 1}
 
-
 >>> del pythons['Marx']
->>> pythons
-{'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+
+``` 
+
+```python
+
+
+>>> pythons = {'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+
 >>> del pythons['Howard']
 >>> pythons
 {'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
@@ -895,7 +1054,40 @@ True
 >>> pythons
 {}
 
+```
 
+####  Question:請問執行後的結果哪一個是對的?(選擇題)
+```python
+dict1={'a':100,'b':200, 'c':300} 
+del dict1
+print('b' in dict1.keys( ))
+```
+(1) 產生錯誤   
+(2) True    
+(3) 200     
+(4) False  
+
+#### 操作範例:請動手操作，並留意輸出結果
+```python
+dict1={'a':100,'b':200,'c':300} 
+for c in dict1.keys( ):
+	print(c) 
+print("-----")
+
+for c in dict1.keys( ):
+	print(dict1[c]) 
+print("-----")
+
+for c in dict1: 
+	print(c)
+print("-----")
+
+for c in dict1.values( ):
+	print(c)
+ 
+```
+
+```python
 >>> pythons = {'Chapman': 'Graham', 'Cleese': 'John',
 'Jones': 'Terry', 'Palin': 'Michael'}
 >>> 'Chapman' in pythons 
@@ -926,6 +1118,11 @@ False
 >>> pythons.get('Marx', 'Not a Python')
 'Not a Python'
 
+```
+
+### key(),values(),items(),copy()
+
+```python
 
 >>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} 
 >>> signals.keys()
