@@ -659,5 +659,5 @@ Daily forecast: like yesterday Weekly forecast:
 ## The Python Standard Library
 ```python
 #Python Module of the Week
-#The Python Standard Li‐ brary by Example
+#The Python Standard Library by Example
 ```
