@@ -32,6 +32,25 @@ def func_sum():
 
 ```
 
+```python
+>>> def do_nothing(): 
+		pass
+
+>>> do_nothing() 
+>>>
+
+```
+
+```python
+
+>>> def make_a_sound():
+		print('quack')
+		
+>>> make_a_sound()
+quack
+
+```
+
 #### Question: 請問執行後的結果哪一個是對的?(選擇題)
 ```python
 def func_sum( ):
@@ -95,6 +114,42 @@ def func_sum(a, b):
 	return(c)
 	
 z = func_sum(10, 15)
+```
+
+```python
+
+>>> def agree(): 
+		return True 
+
+>>> if agree():
+		print('Splendid!')
+	else:
+		print('That was unexpected.')
+
+Splendid!
+
+>>> def echo(anything):
+		return anything + ' ' + anything 
+...
+>>>
+
+>>> echo('Rumplestiltskin')
+'Rumplestiltskin Rumplestiltskin'
+
+>>> def commentary(color):
+		if color == 'red':
+			return "It's a tomato."
+		elif color == "green":
+			return "It's a green pepper."
+		elif color == 'bee purple':
+			return "I don't know what it is, but only bees can see it."
+		else:
+			return "I've never heard of the color " + color + "."
+
+>>> comment = commentary('blue')
+>>> print(comment)
+
+I've never heard of the color blue.
 ```
 
 #### 操作範例:請動手操作，並留意輸出結果
@@ -281,64 +336,6 @@ print(a)
 支出金額由小到大排序為:[3500, 4000, 5000, 7000]
 ```
 
-
-```python
->>> def do_nothing(): 
-		pass
-
->>> do_nothing() 
->>>
-
-```
-
-```python
-
->>> def make_a_sound():
-		print('quack')
-		
->>> make_a_sound()
-quack
-
-```
-
-```python
-
->>> def agree(): 
-		return True 
-
->>> if agree():
-		print('Splendid!')
-	else:
-		print('That was unexpected.')
-
-Splendid!
-
->>> def echo(anything):
-		return anything + ' ' + anything 
-...
->>>
-
->>> echo('Rumplestiltskin')
-'Rumplestiltskin Rumplestiltskin'
-
->>> def commentary(color):
-		if color == 'red':
-			return "It's a tomato."
-		elif color == "green":
-			return "It's a green pepper."
-		elif color == 'bee purple':
-			return "I don't know what it is, but only bees can see it."
-		else:
-			return "I've never heard of the color " + color + "."
-
->>> comment = commentary('blue')
->>> print(comment)
-
-I've never heard of the color blue.
-
-
-```
-
 ### Positional Arguments
 
 ```python
@@ -363,6 +360,8 @@ I've never heard of the color blue.
 {'entree': 'fish', 'dessert': 'flan', 'wine': 'frontenac'}
 
 ```
+
+
 
 ### Specify Default Parameter Values
 
@@ -457,6 +456,7 @@ All the rest: ('scarf', 'monocle', 'mustache wax')
 Keyword arguments: {'dessert': 'macaroon', 'wine': 'merlot', 'entree': 'mutton'}
 
 ```
+
 ### Docstrings
 
 ```python
