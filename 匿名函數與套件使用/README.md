@@ -83,7 +83,7 @@ print(try2[0](3))
 #lam-4.py
 
  print("匿名函數可用於條件分析表達上") 
- findmin= (lambda x, y: x if x < y else y) print(findmin(101*99, 102*98)) 
+ findmin= (lambda x, y: x if x < y else y)   print(findmin(101*99, 102*98))  
  print(findmin(102*98, 101*99))
 ```
 
