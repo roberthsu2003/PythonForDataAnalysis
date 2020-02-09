@@ -168,8 +168,9 @@ print(list(list8))
 
 >>> answer()
 42
+```
 
-==========================================
+```python
 
 >>> def run_something(func): 
 		func()
