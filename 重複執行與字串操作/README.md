@@ -166,7 +166,82 @@ Integer, please [q to quit]: q
 ```
 
 ```python
+#continue.py
+#請設計一個程式，讓使用者輸入數值，只有加總正偶數值，不加總正奇數值，如果輸入負數，結束程式。
 
+顯示:========================================
+請輸入第1個數值:456
+請輸入第2個數值:455
+請輸入第3個數值:123
+請輸入第4個數值:-1
+所有輸入的正偶數的加總是:xxxxxxx
+=============================================
+
+num = 0
+sum = 0
+while(True):
+    num += 1
+    inputNum = int(input("請輸入第"+ str(num) + "個數值:"))
+    if(inputNum < 0):
+        break
+    elif (inputNum % 2 == 1):
+        continue
+    else:
+        sum += inputNum
+print("所有輸入的正偶數的加總是:", sum)
+```
+
+```python
+#============================================================================
+# Name        : guess.py
+#猜數字遊戲
+
+===============猜數字遊戲=================:
+
+猜數字範圍1~100:50
+再小一點
+您猜了 1 次
+
+猜數字範圍1~50:25
+再大一點
+您猜了 2 次
+
+猜數字範圍25~50:34
+再大一點
+您猜了 3 次
+
+猜數字範圍34~50:46
+再小一點
+您猜了 4 次
+
+猜數字範圍34~46:40
+賓果!猜對了, 答案是: 40
+您猜了 5 次
+#====================================
+
+import random
+min = 1
+max = 100
+count = 0
+target = random.randint(1, 100)
+print("===============猜數字遊戲=================:\n")
+while(True):
+    count += 1
+    keyin = int(input("猜數字範圍{0}~{1}:".format(min, max)))
+    if(keyin >=min and keyin <= max):
+        if(keyin == target):
+            print("賓果!猜對了, 答案是:", target)
+            print("您猜了",count,"次")
+            break
+        elif (keyin > target):
+            max = keyin
+            print("再小一點")
+        elif (keyin < target):
+            min = keyin
+            print("再大一點")
+        print("您猜了",count,"次\n")
+    else:
+        print("請輸入提示範圍內的數字")
 ```
 ### while break else語法:
 - 在while迴圈內,如果沒有使用到break跳出迴圈,則迴圈結束後要執行else的程式區塊
@@ -525,7 +600,65 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 ```
 
+#### Homework:
+```python
+#various_loop1.py
 
+以for迴圈計算1到100的和
+顯示=================
+1+2+3+~+100的總合是5050
+```
+[解題](various_loop1.py)
+
+#### Homework:
+```python
+*問題 various_loop2.py
+以while迴圈計算1到100的和
+
+顯示============
+1+2+3+~+100的總合是5050
+```
+[解題](various_loop1.py)
+
+#### Homework:
+```python
+*問題 nestedLoop1.py
+試寫出下列數字排列的程式 
+顯示=================================
+
+55555
+4444
+333
+22
+1
+```
+[解題](nestedLoop1.py)
+
+#### Homework:
+```python
+*問題 inputLoop.cpp
+設計一個程式，使用者先入一個M, 再輸入另一個數N,然後程式可以求出M*1 + M*2 + M*3 + M*4 + M*5....... + M*N的值
+
+顯示==========================
+輸入M:5
+輸入N:4
+M*1 + M*2 + M*3 + ......+ M*N = 50
+```
+
+#### Homework:
+```python
+*問題 commonfactor.cpp
+設計一個程式，可以由鍵盤輸入兩個數值，並求出這2個數值的最大公因數和最小公倍數
+
+顯示======================================
+求兩數的最大公因數和最小公倍數
+請輸入第一個整數:XXX
+請輸入第二個整數:XXX
+
+計算結果:
+14 和 35 的最大公因數:7
+14 和 35 的最小倍數是:70
+```
 
 
 ##  符號與多行字串
