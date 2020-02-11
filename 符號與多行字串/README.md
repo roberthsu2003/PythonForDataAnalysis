@@ -599,6 +599,16 @@ print(sobj) #no match found
 ### 使用預編譯的模式
 - 在下面的例子中，被編譯的模式 r"\d" 意思是在字串中的第一個數字。當該模式後續跟 search 一起使用的時候，它搜尋輸入字串中的一個數字；同樣的，你也可以用這個模式跟 match 搭配來找到給定字串中的匹配。
 
+```python
+import re
+compPat = re.compile(r"(\d)")
+sobj = compPat.search("Lalalala 123")
+print(mobj.group())
+
+mobj = compPat.match("234Lalalala 123456789")
+print(mobj.group())
+```
+
 ### 標誌位 flags
 - 你可以使用標誌位 flags 來改變正規表示式的行為。在正則函式中，標誌位是可選項。你可以通過兩種不同的方式來使用標誌，即使用關鍵字 flags 併為其分配標誌值或直接寫入標誌位的值。你可以設定多個標誌位，這可以通過使用按位或運算|符來完成。
 下表列出了正規表示式的一些常用標誌
@@ -755,3 +765,49 @@ print(mobj)
 | \G	 | \G 用於匹配最後一次匹配結束的點 |
 | \b	 | 匹配在開頭或者結尾的空字元 |
 | \B |	匹配不在開頭或者結尾的空字元 |
+
+```python
+#taiwanId.py
+#r'^[A-Z]\d{9}$'
+#驗證身份證字號
+
+
+顯示:
+請輸入身份證字號:A12345678
+A12345678有誤
+
+請輸入身份證字號:A123456789
+A123456789正確
+#===========================
+
+import re
+taiwanId = input('請輸入身份證字號:')
+mobj = re.match(r'^[A-Z]\d{9}$',taiwanId,re.I)
+if(mobj):
+    print(taiwanId,"正確")
+else:
+    print(taiwanId, "有誤")
+
+```
+
+```python
+#email.py
+# r'^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$'
+
+
+顯示:
+請輸入多筆email:bogusemail123@sillymail.com, robert@gmail.com ,,,roberthsu2003@gmail.com
+取出的email有:
+bogusemail123@sillymail.com
+robert@gmail.com
+roberthsu2003@gmail.com
+
+
+import re
+emails = input('請輸入多筆email:')
+print(emails)
+getEmails = re.findall(r'\w+[.|\w]\w+@\w+[.]\w+[.|\w+]\w+',emails)
+print('取出的email有:')
+for email in getEmails:
+    print(email)
+```
