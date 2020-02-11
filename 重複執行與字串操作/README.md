@@ -279,8 +279,16 @@ No even number found
 恭喜! 已經存夠了，存了7個月的總存款為:35292元。
 #============================================================================
 
-while()
+deposit = 0
+num = 0
+while(deposit < 30000):
+    num += 1
+    inputNum = int(input('請輸入第'+str(num)+"個月份的存款:"))
+    deposit += inputNum
+
+print("恭喜!已經存夠了，存了",num,"個月的總存款為:",deposit,"元。")
 ```
+
 ## 使用for in迴圈
 - 使用時機,讀取所有集合物件元素1次。(list,tuple,string,dictionaries,sets)
 - 使用時機,明確指定執行次數。
@@ -636,18 +644,19 @@ Wednesday : drink beer - eat peach - enjoy pie
 
 #### Homework:
 ```python
-*問題 inputLoop.cpp
-設計一個程式，使用者先入一個M, 再輸入另一個數N,然後程式可以求出M*1 + M*2 + M*3 + M*4 + M*5....... + M*N的值
+*問題 inputLoop.py
+設計一個程式，使用者輸入一個M, 再輸入另一個數N,然後程式可以求出M*1 + M*2 + M*3 + M*4 + M*5....... + M*N的值
 
 顯示==========================
 輸入M:5
 輸入N:4
 M*1 + M*2 + M*3 + ......+ M*N = 50
 ```
+[解題](inputLoop.py)
 
 #### Homework:
 ```python
-*問題 commonfactor.cpp
+*問題 commonfactor.py
 設計一個程式，可以由鍵盤輸入兩個數值，並求出這2個數值的最大公因數和最小公倍數
 
 顯示======================================
@@ -659,7 +668,7 @@ M*1 + M*2 + M*3 + ......+ M*N = 50
 14 和 35 的最大公因數:7
 14 和 35 的最小倍數是:70
 ```
-
+[解題](commonfactor.py)
 
 ##  符號與多行字串
 - 一行字串可以用雙引號或者單引號包起來。
