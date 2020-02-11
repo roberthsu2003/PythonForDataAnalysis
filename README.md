@@ -6,7 +6,7 @@
  
 [2.數值計算與條件分析](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%95%B8%E5%80%BC%E8%A8%88%E7%AE%97%E8%88%87%E6%A2%9D%E4%BB%B6%E5%88%86%E6%9E%90) 
 
-[3.重複執行與字串操作](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E9%87%8D%E8%A4%87%E5%9F%B7%E8%A1%8C%E8%88%87%E5%AD%97%E4%B8%B2%E6%93%8D%E4%BD%9C) 
+[3.重複執行](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E9%87%8D%E8%A4%87%E5%9F%B7%E8%A1%8C%E8%88%87%E5%AD%97%E4%B8%B2%E6%93%8D%E4%BD%9C) 
 
 [4.python內建的資料結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E5%85%A7%E5%BB%BA%E7%9A%84%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B)
 
