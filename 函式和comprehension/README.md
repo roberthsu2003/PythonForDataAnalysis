@@ -66,7 +66,16 @@ print("C")
 (3) C,B,A  
 (4) A,C,B
 
-####  自訂函數有接收沒傳回
+#### Homework:
+```python
+#============================================================================
+# Name        : function1.py
+#定義函式，顯示「歡迎光臨」。
+#============================================================================
+```
+[解題](function1.py)
+
+###  自訂函數有接收沒傳回
 ```python
 def func_sum(a, b):
 	c = a + b
@@ -107,7 +116,7 @@ print("2")
 (3) 0,1,2  
 (4) 錯誤  
 
-## 自訂函數有接收有傳回
+### 自訂函數有接收有傳回
 ```python
 def func_sum(a, b):
 	c = a + b
@@ -180,6 +189,46 @@ print(z)
 (3) 1,2,11   
 (4) 1,2,7  
 
+#### Homework:
+```python
+#Name        : function2.py
+#輸入攝氏溫度，求華氏溫度
+#=============================
+
+攝氏10度轉華氏溫度=50
+#==========================
+請輸入攝氏溫度:19
+華氏溫度=66.2
+
+#===============================
+```
+
+#### Homework:
+```python
+#Name        : function3.py
+#輸入攝氏溫度，求華氏溫度
+#function 的原型宣告
+#加上do...while()
+
+#=============================
+
+攝氏10度轉華氏溫度=50
+#==========================
+請輸入攝氏溫度:20
+華氏溫度=68
+程式還要繼續嗎?(輸入N....結束):h
+請輸入攝氏溫度:40
+華氏溫度=104
+程式還要繼續嗎?(輸入N....結束):a
+請輸入攝氏溫度:10
+華氏溫度=50
+程式還要繼續嗎?(輸入N....結束):N
+程式結束
+
+#===============================
+```
+[解題](function3.py)
+
 ###  函數傳回多值
 - Python 的函數可以傳回多值。
 - 傳回多值的做法是將傳回值轉為 tuple 型態，接收後再一一分配。
@@ -210,6 +259,55 @@ print(y)
 (4) 20   
 
 ---
+
+```python
+#Name        : return1.py
+#自鍵盤輸入一個數字n,顯示1...n。
+#=============================
+
+請輸入數字 n:10
+1 2 3 4 5 6 7 8 9 10
+
+#===============================
+```
+[解題](return1.py)
+
+### 傳不可變實體呼叫(call by value)
+```python
+# Name        : callByValue1.py
+#callByValue
+
+def turbo(speed):
+    print('加速前速度:',speed)
+    speed += 10
+    return speed
+
+if __name__ == '__main__':
+    speed = int(input('請輸入初始速度:'))
+    speed = turbo(speed)
+    print('加速後的速度:',speed)
+```
+
+### 傳可變實體呼叫(call by reference)
+```python
+#Name: callByReference.py
+#callByReference
+
+
+def turbo(speed):
+    print(id(speed))
+    print('加速前速度:',speed[0])
+    speed[0] += 10
+
+if __name__ == '__main__':
+    speed = list()
+    print(id(speed))
+    startSpeed = int(input('請輸入初始速度:'))
+    speed.append(startSpeed)
+    turbo(speed)
+    print('加速後的速度:',speed[0])
+```
+
 ###  變數影響範圍
 函數外的變數:
 - 函數內可以顯示該變數內容
@@ -336,159 +434,8 @@ print(a)
 支出金額由小到大排序為:[3500, 4000, 5000, 7000]
 ```
 
-### Positional Arguments
-
-```python
->>> def menu(wine, entree, dessert):
-		return {'wine': wine, 'entree': entree, 'dessert': dessert} 
-...
->>> menu('chardonnay', 'chicken', 'cake')
-{'dessert': 'cake', 'wine': 'chardonnay', 'entree': 'chicken'}
-
->> menu('beef', 'bagel', 'bordeaux')
-{'dessert': 'bordeaux', 'wine': 'beef', 'entree': 'bagel'}
-
-```
-
-### Keyword Arguments
-
-```python
->>> menu(entree='beef', dessert='bagel', wine='bordeaux')
-{'dessert': 'bagel', 'wine': 'bordeaux', 'entree': 'beef'}
-
->>> menu('frontenac', dessert='flan', entree='fish')
-{'entree': 'fish', 'dessert': 'flan', 'wine': 'frontenac'}
-
-```
-
-
-
-### Specify Default Parameter Values
-
-```python
->>> def menu(wine, entree, dessert='pudding'):
-return {'wine': wine, 'entree': entree, 'dessert': dessert}
-
->>> menu('chardonnay', 'chicken')
-{'dessert': 'pudding', 'wine': 'chardonnay', 'entree': 'chicken'}
-
->>> menu('dunkelfelder', 'duck', 'doughnut')
-{'dessert': 'doughnut', 'wine': 'dunkelfelder', 'entree': 'duck'}
-
-```
-
-```python
-
->>> def buggy(arg, result=[]):
-		result.append(arg)
-		print(result) 
-		...
->>> buggy('a')
-['a']
->>> buggy('b') # expect ['b'] ['a', 'b']
-
-```
-
-```python
-
->>> def works(arg):
-		result = []
-		result.append(arg)
-		return result
-...
->>> works('a')
-['a']
->>> works('b')
-['b']
-
-```
-
-```python
-
->>> def nonbuggy(arg, result=None):
-		if result is None:
-			result = []
-		result.append(arg)
-		print(result) 
-...
->>> nonbuggy('a') 
-['a']
->>> nonbuggy('b')
-['b']
-
-```
-
-### Gather Positional Arguments with *
-
-```python
->>> def print_args(*args):
-		print('Positional argument tuple:', args) 
-...
-
->>> print_args()
-Positional argument tuple: ()
-
->>> print_args(3, 2, 1, 'wait!', 'uh...')
-Positional argument tuple: (3, 2, 1, 'wait!', 'uh...')
-
->>> def print_more(required1, required2, *args): 
-		print('Need this one:', required1)
-		print('Need this one too:', required2) 
-		print('All the rest:', args)
-		
->>> print_more('cap', 'gloves', 'scarf', 'monocle', 'mustache wax')	
-
-Need this one: cap
-Need this one too: gloves
-All the rest: ('scarf', 'monocle', 'mustache wax')
-
-
-```
-
-### Gather Keyword Arguments with **
-```python
->>> def print_kwargs(**kwargs):
-		print('Keyword arguments:', kwargs) 
-...
-
->>> print_kwargs(wine='merlot', entree='mutton', dessert='macaroon')
-
-Keyword arguments: {'dessert': 'macaroon', 'wine': 'merlot', 'entree': 'mutton'}
-
-```
-
-### Docstrings
-
-```python
->>> def echo(anything):
-		'echo returns its input argument'
-		return anything
-
-```
-
-```python
-		
->>> def print_if_true(thing, check): 
-		'''Prints the first argument if a second argument is true. The operation is:
-		1. Check whether the *second* argument is true.
-		2. If it is, print the *first* argument. 
-		'''
-		if check: 
-			print(thing)
-			
->>> help(echo)
-Help on function echo in module __main__:
-
-echo(anything)
-	echo returns its input argument
-	
->>> print(echo.__doc__)
-echo returns its input argument
-
-```
-
  
-### 使用Comprehensions語法快速簡潔方式建立tuple,list,dictionary,set
+## 使用Comprehensions語法快速簡潔方式建立tuple,list,dictionary,set
 - 搭配迴圈和條件式
 - 語法:[ expression for item in iterable ]
 - 語法:[ expression for item in iterable if condition ]
@@ -785,7 +732,7 @@ Result: 8
 
 ```
 
-### Namespaces and Scope
+### 命名空間和使用範圍(Namespaces and Scope)
 
 ```python
 >>> animal = 'fruitbat'
@@ -867,7 +814,7 @@ globals: {'animal': 'fruitbat',
 
 ```
 
-### Uses of _ and __ in Names
+### 使用__name__,__doc__
 
 ```python
 
@@ -883,7 +830,7 @@ And its docstring is: This is the amazing function.
 Want to see it again?
 ```
 
-### Handle Errors with try and except
+### 使用try...except處理錯誤
 
 ```python
 >>> short_list = [1, 2, 3]
@@ -935,7 +882,7 @@ Something else broke: invalid literal for int() with base 10: 'two'
 Position [q to quit]? q
 ```
 
-### Make Your Own Exceptions
+### 建立自已的Exception
 
 ```python
 class UppercaseException(Exception): 

@@ -57,6 +57,7 @@ print("3*%-5s*" % (c))
 print("4*%2s*" % (c))
  
 ```
+
 ###  浮點數資料輸出
 %f 的 % 符號與後面代碼之間可以加入兩個整數值，我們以「n.m」 來表示，代表資料輸出位數:
 
@@ -259,6 +260,89 @@ print(z)
 
 
 
+### 做用引數位置
+
+```python
+>>> def menu(wine, entree, dessert):
+		return {'wine': wine, 'entree': entree, 'dessert': dessert} 
+...
+>>> menu('chardonnay', 'chicken', 'cake')
+{'dessert': 'cake', 'wine': 'chardonnay', 'entree': 'chicken'}
+
+>> menu('beef', 'bagel', 'bordeaux')
+{'dessert': 'bordeaux', 'wine': 'beef', 'entree': 'bagel'}
+
+```
+
+### 使用引數名稱
+
+```python
+>>> menu(entree='beef', dessert='bagel', wine='bordeaux')
+{'dessert': 'bagel', 'wine': 'bordeaux', 'entree': 'beef'}
+
+>>> menu('frontenac', dessert='flan', entree='fish')
+{'entree': 'fish', 'dessert': 'flan', 'wine': 'frontenac'}
+
+```
+
+### 指定預設參數名稱
+
+```python
+>>> def menu(wine, entree, dessert='pudding'):
+return {'wine': wine, 'entree': entree, 'dessert': dessert}
+
+>>> menu('chardonnay', 'chicken')
+{'dessert': 'pudding', 'wine': 'chardonnay', 'entree': 'chicken'}
+
+>>> menu('dunkelfelder', 'duck', 'doughnut')
+{'dessert': 'doughnut', 'wine': 'dunkelfelder', 'entree': 'duck'}
+
+```
+
+```python
+
+>>> def buggy(arg, result=[]):
+		result.append(arg)
+		print(result) 
+		...
+>>> buggy('a')
+['a']
+>>> buggy('b') # expect ['b'] 
+['a', 'b']
+
+```
+
+```python
+
+>>> def works(arg):
+		result = []
+		result.append(arg)
+		return result
+...
+>>> works('a')
+['a']
+>>> works('b')
+['b']
+
+```
+
+```python
+
+>>> def nonbuggy(arg, result=None):
+		if result is None:
+			result = []
+		result.append(arg)
+		print(result) 
+...
+>>> nonbuggy('a') 
+['a']
+>>> nonbuggy('b')
+['b']
+
+```
+
+
+
 ###  接收參數設定
 1. 函數若有接收參數，執行時就必須給他參數。
 2. 函數接收資料時參數若有初始值，執行時若沒有給值就會使用那些初始值。
@@ -295,7 +379,47 @@ test2(200)
 (3) may,20  
 (4) may,200  
 
-###  不固定接收數量
+### 使用*參數,可接收不限數量的位置引數
+
+```python
+>>> def print_args(*args):
+		print('Positional argument tuple:', args) 
+...
+
+>>> print_args()
+Positional argument tuple: ()
+
+>>> print_args(3, 2, 1, 'wait!', 'uh...')
+Positional argument tuple: (3, 2, 1, 'wait!', 'uh...')
+
+>>> def print_more(required1, required2, *args): 
+		print('Need this one:', required1)
+		print('Need this one too:', required2) 
+		print('All the rest:', args)
+		
+>>> print_more('cap', 'gloves', 'scarf', 'monocle', 'mustache wax')	
+
+Need this one: cap
+Need this one too: gloves
+All the rest: ('scarf', 'monocle', 'mustache wax')
+
+
+```
+
+### 使用**參數,呼叫使可使用不限數量的引數名稱
+
+```python
+>>> def print_kwargs(**kwargs):
+		print('Keyword arguments:', kwargs) 
+...
+
+>>> print_kwargs(wine='merlot', entree='mutton', dessert='macaroon')
+
+Keyword arguments: {'dessert': 'macaroon', 'wine': 'merlot', 'entree': 'mutton'}
+
+```
+
+### 不固定接收數量
 1. ( ) 內接收資料若是以 * 表示代表可以引入不定數量的參數:
 	- *代表以 tuple 的方式引入
 	- **代表以 dict 的方式引入
@@ -422,3 +546,34 @@ fun3(1, 2, 3,4,5)
 符合回文的字串為:
 ['1221', 'abba']
 ```
+
+### Docstrings
+
+```python
+>>> def echo(anything):
+		'echo returns its input argument'
+		return anything
+
+```
+
+```python
+		
+>>> def print_if_true(thing, check): 
+		'''Prints the first argument if a second argument is true. The operation is:
+		1. Check whether the *second* argument is true.
+		2. If it is, print the *first* argument. 
+		'''
+		if check: 
+			print(thing)
+			
+>>> help(echo)
+Help on function echo in module __main__:
+
+echo(anything)
+	echo returns its input argument
+	
+>>> print(echo.__doc__)
+echo returns its input argument
+
+```
+
