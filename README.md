@@ -22,7 +22,7 @@
 [9.物件和類別](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%89%A9%E4%BB%B6%E5%92%8C%E9%A1%9E%E5%88%A5)  
    
 
-[9.Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/numpy)  
+[9.檔案存取與Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96%E8%88%87numpy/README.ipynb)  
 
 [10.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas)      
 
