@@ -240,6 +240,7 @@ print(x)
 
 
 |-|-|
+|:--|:--|
 | var1=20 |  var1 是整數，也就是 int 型態。|
 | var2=123.45 | var2 是浮點數，也就是 float 型態。 |
 | var3 | var3 是布林值，也就是 True 或者 False。 |
