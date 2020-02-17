@@ -24,7 +24,9 @@
 
 [9.檔案存取與Numpy](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96%E8%88%87numpy/README.ipynb)  
 
-[10.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas)      
+[10.Numpy建立與計算]()
+
+[11.pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas)      
 
 [11.資料載入,儲存和檔案格式](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)  
 
