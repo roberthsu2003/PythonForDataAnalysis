@@ -102,7 +102,7 @@ String to capitalize [type q to quit]: q
 
 ```python
 #while1_s.py
-#小美是一位教師，請你以while迴圈方式為小美設計一個輸入成績的程式，如果輸入負數表示成績輸入結束，在輸#入成績結束後顯示班上總成績及平均成績。
+#小美是一位教師，請你以while迴圈方式為小美設計一個輸入成績的程式，如果輸入負數表示成績輸入結束，在輸入成績結束後顯示班上總成績及平均成績。
 
 #顯示===============
 請輸入第1位學生的成績:89
@@ -148,19 +148,24 @@ Name        : loop2.py
 
 ```python
 >>> while True:
-		value = input("Integer, please [q to quit]: ") 
-			if value == 'q': # quit
-				break
-		number = int(value)
-			if number % 2 == 0: # an even number
-				continue
-		print(number, "squared is", number*number)
+	    value = input("整數, 輸入 [q]離開: ") 
+	    if value == 'q': # quit
+	        break
+	    number = int(value)
+	    if number % 2 == 0: # 一個偶數值
+	        continue
+	    print(number, "平方是", number*number)
 		
 		
-Integer, please [q to quit]: 1 1 squared is 1
-Integer, please [q to quit]: 2 Integer, please [q to quit]: 3 3 squared is 9
-Integer, please [q to quit]: 4 Integer, please [q to quit]: 5 5 squared is 25
-Integer, please [q to quit]: q 
+整數, 輸入 [q]離開: 1
+1 平方是 1
+整數, 輸入 [q]離開: 2
+整數, 輸入 [q]離開: 3
+3 平方是 9
+整數, 輸入 [q]離開: 4
+整數, 輸入 [q]離開: 5
+5 平方是 25
+整數, 輸入 [q]離開: q
 >>>
 
 ```
@@ -247,18 +252,18 @@ while(True):
 - 在while迴圈內,如果沒有使用到break跳出迴圈,則迴圈結束後要執行else的程式區塊
 
 ```python
->>> numbers = [1, 3, 5]
->>> position = 0
->>> while position < len(numbers):
-		number = numbers[position] 
-		if number%2==0:
-			print('Found even number', number)
-			break
-		position += 1
-	else: # break not called
-			print('No even number')
+numbers = [1, 3, 5]
+position = 0
+while position < len(numbers):
+    number = numbers[position] 
+    if number%2==0:
+        print('發現偶數', number)
+        break
+    position += 1
+else: # 沒有執行break
+    print('沒有偶數')
 			
-No even number found
+沒有偶數
 ```
 
 ### 無限定次數的迴圈
@@ -295,21 +300,26 @@ print("恭喜!已經存夠了，存了",num,"個月的總存款為:",deposit,"�
 
 ```python
 #使用傳統的方式,讀取list內的每一個元素
->>> rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter'] 
->>> current = 0
->>> while current < len(rabbits):
-		print(rabbits[current])
-		current += 1 
-...
+rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter'] 
+current = 0
+while current < len(rabbits):
+    print(rabbits[current])
+    current += 1
+    
+結果=======
 Flopsy
 Mopsy
 Cottontail
 Peter
+```
 
+```python
 #使用更簡潔方式(for..in)
->>> for rabbit in rabbits: 
-			print(rabbit)
+rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter']
+for rabbit in rabbits: 
+    print(rabbit)
 			
+結果=======
 Flopsy
 Mopsy
 Cottontail
@@ -321,15 +331,14 @@ Peter
 ### 字串每次取出一個字元
 
 ```python
->>> word = 'cat'
->>> for letter in word:
-		print(letter) 
+word = 'cat'
+for letter in word:
+    print(letter)
 			
+結果=======
 c
 a
 t
-
-
 ```
 
 ### 使用for in讀取dictionary,取出的元素是key, 也可以使用dictionary.keys()方法.
@@ -337,11 +346,12 @@ t
 
 ```python
 
->>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
->>>>>> for card in accusation: # or, for card in accusation.keys():
-		print(card)
+for card in accusation: # 或者使用 accusation.keys():
+    print(card)
 
+結果=======
 room
 weapon
 person
@@ -349,23 +359,26 @@ person
 ```
 
 ```python
->>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-#使用values()方法取出元素的值
->>> for value in accusation.values(): 
-		print(value)
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
+#使用values()方法取出元素的值
+for value in accusation.values(): 
+    print(value)
+
+結果=======
 ballroom
 lead pipe 
 Col. Mustard
-
 ```
 
 ```python
->>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-#使用items()方法,取出包含key和value的tuple, 
->>> for item in accusation.items(): 
-		print(item)
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
+#使用items()方法,取出包含key和value的tuple, 
+for item in accusation.items(): 
+    print(item)
+
+結果=======
 ('room', 'ballroom')
 ('weapon', 'lead pipe') 
 ('person', 'Col. Mustard')
@@ -374,11 +387,11 @@ Col. Mustard
 ```
 
 ```python
->>> accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
 
 #使用拆解法直接同時取出key和value
->>> for card, contents in accusation.items():
-		print('Card', card, 'has the contents', contents) 
+for card, contents in accusation.items():
+    print('Card', card, 'has the contents', contents 
 
 			
 Card weapon has the contents lead pipe
@@ -396,15 +409,20 @@ Card room has the contents ballroom
 
 
 ```python
->>> for x in range(0,3): 
-		print(x)
-
+for x in range(0,3): 
+    print(x)
+    
+結果==========
 0
 1
 2
->>> list( range(0, 3) )
-[0, 1, 2]
+```
 
+```python
+list( range(0, 3))
+
+結果========
+[0, 1, 2]
 ```
 
 #### Homework:小王班上有五位學生，請您為小王設計一個輸入成績的程式，並且在輸入成績後顯示班上總成績及平均成績。
@@ -412,7 +430,7 @@ Card room has the contents ballroom
 #range1.py
 #小王班上有五位學生，請您為小王設計一個輸入成績的程式，並且在輸入成績後顯示班上總成績及平均成績。
 
-顯示:
+結果========
 請輸入第1位學生的成績:89
 請輸入第2位學生的成績:89
 請輸入第3位學生的成績:89
@@ -424,38 +442,47 @@ Card room has the contents ballroom
 [解題](range1.py)
 
 ```python
-
 #如果使用-1,則每次-1
->>> for x in range(2, -1, -1):
-		print(x)
-
+for x in range(2, -1, -1):
+    print(x)
+    
+結果========
 2
 1
 0
->>> list( range(2, -1, -1) ) 
-[2, 1, 0]
+```
 
+```python
+list(range(2, -1, -1)) 
+
+結果========
+[2, 1, 0]
 ```
 
 ```python
-
 #step為2,則每次加2
->>> list( range(0, 11, 2) )
+list( range(0, 11, 2))
+
+結果========
 [0,2,4,6,8,10]
 ```
 
-#### for 迴圈兩個參數:請留意輸出結果
+ 
 ```python
+#for 迴圈兩個參數:請留意輸出結果
 #for2.py
 
 print("兩個參數") 
 for i in range(4,8):
-	print(i)
+    print(i)
 print("離開後i為",i)
 ```
 
-#### Question: 請問執行後跑出哪些整數?(選擇題)
+
+
+
 ```python
+#Question: 請問執行後跑出哪些整數?(選擇題)
 for x in range(6,10): 
 	print(x)
 ```
@@ -463,31 +490,32 @@ for x in range(6,10):
 (2) 6 7 8 9 10  
 (3) 7 8 9  
 
-#### for 迴圈三個參數 (1):請留意輸出結果
 ```python
 #for3-1.py
+#(1)for 迴圈三個參數:請留意輸出結果
 
 print("三個參數") 
 for i in range(4,0,-1):
-	print(i) 
+    print(i) 
 print("離開後i為",i)
 ```
 
-#### for 迴圈三個參數 (2):請留意輸出結果
 ```python
+#(2)for 迴圈三個參數:請留意輸出結果
 #for3-2.py
 
 print("三個參數") 
 for i in range(4,8,2):
-	print(i) 
+    print(i) 
 print("離開後i為",i)
-
 ```
 
-#### Question: 請問執行後跑出哪些整數?(選擇題)
+
 ```python
+#Question: 請問執行後跑出哪些整數?(選擇題)
+
 for x in range(0,8,2) :
-	print(x)
+    print(x)
 ```
 (1) 0 2 4 6 8  
 (2) 0 2 4 6  
@@ -497,26 +525,30 @@ for x in range(0,8,2) :
 - break 與 continue 都是迴圈中斷語法
 	- break 代表迴圈中斷後跳出迴圈。
 	- continue 代表迴圈中斷後繼續執行迴圈。
-#### 迴圈中斷:請留意輸出結果
+
+
 ```python
+#迴圈中斷:請留意輸出結果
 #break.py
 
 i = ['a', 'b', 'c', 'd'] 
 for j in i:
-	if j == 'c': 
-		break
-	print(j)
+    if j == 'c': 
+        break
+    print(j)
+
 ```
 
-#### 迴圈中斷:請留意輸出結果
+
 ```python
+#迴圈中斷:請留意輸出結果
 #continue.py
 
 i = ['a', 'b', 'c', 'd'] 
 for j in i:
-	if j == 'c': 
-		continue
-	print(j)
+    if j == 'c': 
+        continue
+    print(j)
 ```
 
 ### 巢狀迴圈
@@ -569,43 +601,50 @@ for i in range(1,10):
 
 ```python
 #檢查是否cheeses為空list
->>> cheeses = []
->>> for cheese in cheeses:
-		print('This shop has some lovely', cheese)
-		break
-	else: # no break means no cheese
-		print('This is not much of a cheese shop, is it?') 
-			
-This is not much of a cheese shop, is it?
+cheeses = []
+for cheese in cheeses:
+    print('我喜歡的cheese有', cheese)
+    break
+else: # no break means no cheese
+    print('沒有任何cheese') 
+    
+結果:=============			
+沒有任何cheese
 ```
 
 ### 使用for in zip()同步平行讀取多個串列物件
 
 ```python
->>> days = ['Monday', 'Tuesday', 'Wednesday']
->>> fruits = ['banana', 'orange', 'peach']
->>> drinks = ['coffee', 'tea', 'beer']
->>> desserts = ['tiramisu', 'ice cream', 'pie', 'pudding']
->>> for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts): 
-			print(day, ": drink", drink, "- eat", fruit, "- enjoy", dessert)
-			
-Monday : drink coffee - eat banana - enjoy tiramisu 
-Tuesday : drink tea - eat orange - enjoy ice cream 
+days = ['Monday', 'Tuesday', 'Wednesday']
+fruits = ['banana', 'orange', 'peach']
+drinks = ['coffee', 'tea', 'beer']
+desserts = ['tiramisu', 'ice cream', 'pie', 'pudding']
+for day, fruit, drink, dessert in zip(days, fruits, drinks, desserts): 
+    print(day, ": drink", drink, "- eat", fruit, "- enjoy", dessert)
+
+結果:=============
+Monday : drink coffee - eat banana - enjoy tiramisu
+Tuesday : drink tea - eat orange - enjoy ice cream
 Wednesday : drink beer - eat peach - enjoy pie
-
 ```
+
 ```python
-
 #使用zip()組合每個串列內元素成為tuple
->>> english = 'Monday', 'Tuesday', 'Wednesday'
->>> french = 'Lundi', 'Mardi', 'Mercredi'
->>> list( zip(english, french) )
+english = 'Monday', 'Tuesday', 'Wednesday'
+french = 'Lundi', 'Mardi', 'Mercredi'
+list( zip(english, french))
+
+結果:==============
 [('Monday', 'Lundi'), ('Tuesday', 'Mardi'), ('Wednesday', 'Mercredi')]
+```
 
->>> dict( zip(english, french) )
+```python
+english = 'Monday', 'Tuesday', 'Wednesday'
+french = 'Lundi', 'Mardi', 'Mercredi'
+dict(zip(english, french))
+
+結果:=========
 {'Monday': 'Lundi', 'Tuesday': 'Mardi', 'Wednesday': 'Mercredi'}
-
-
 ```
 
 #### Homework:
