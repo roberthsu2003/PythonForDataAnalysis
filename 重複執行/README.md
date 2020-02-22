@@ -649,9 +649,9 @@ dict(zip(english, french))
 
 #### Homework:
 ```python
-#various_loop1.py
-
+#問題various_loop1.py
 以for迴圈計算1到100的和
+
 顯示=================
 1+2+3+~+100的總合是5050
 ```
@@ -659,7 +659,7 @@ dict(zip(english, french))
 
 #### Homework:
 ```python
-*問題 various_loop2.py
+#問題 various_loop2.py
 以while迴圈計算1到100的和
 
 顯示============
@@ -669,7 +669,7 @@ dict(zip(english, french))
 
 #### Homework:
 ```python
-*問題 nestedLoop1.py
+#問題 nestedLoop1.py
 試寫出下列數字排列的程式 
 顯示=================================
 
@@ -683,7 +683,7 @@ dict(zip(english, french))
 
 #### Homework:
 ```python
-*問題 inputLoop.py
+#問題 inputLoop.py
 設計一個程式，使用者輸入一個M, 再輸入另一個數N,然後程式可以求出M*1 + M*2 + M*3 + M*4 + M*5....... + M*N的值
 
 顯示==========================
@@ -695,7 +695,7 @@ M*1 + M*2 + M*3 + ......+ M*N = 50
 
 #### Homework:
 ```python
-*問題 commonfactor.py
+#問題 commonfactor.py
 設計一個程式，可以由鍵盤輸入兩個數值，並求出這2個數值的最大公因數和最小公倍數
 
 顯示======================================
