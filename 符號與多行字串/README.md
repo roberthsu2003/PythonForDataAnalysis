@@ -2,7 +2,7 @@
 - 一行字串可以用雙引號或者單引號包起來。
 - 單引號或雙引號取決於字串的內容是否有相同的符號，若有則使用另
 外一個符號作業。
-- 如果字串內容有用到單雙引號，但外圍仍用相同符號，請加上跳脫字 元進行轉換。
+- 如果字串內容有用到單雙引號，但外圍仍用相同符號，請加上跳脫字元進行轉換。
 - 多行字串使用”””三個雙引號或者’’’三個單引號方式包起來。
 
 ###  跳脫字元
@@ -36,13 +36,17 @@
 
 ```
 
-#### 單雙引號與跳脫字元:請留意輸出結果
+ 
 ```python
+#單雙引號與跳脫字元:請留意輸出結果
 #string0.py
 
-str = 'This is "Python" !' print(str)
-str = "This is \"Python\" !" print(str)
-str = "test1 \n test2\\test3" print(str)
+str = 'This is "Python" !' 
+print(str)
+str = "This is \"Python\" !" 
+print(str)
+str = "test1 \n test2\\test3" 
+print(str)
 ``` 
 
 ```python
@@ -104,16 +108,18 @@ I do not like thee, Doctor Fell.
 >>>
 
 
+```
 
+```python
 
->>> bottles = 99
->>> base = ''
->>> base += 'current inventory: '
->>> base += str(bottles)
->>> base
-    'current inventory: 99'
+bottles = 99
+base = ''
+base += 'current inventory: '
+base = base + str(bottles)
+base
 
-
+結果:==============
+'current inventory: 99'
 ```
 
 ```python
@@ -129,13 +135,16 @@ I do not like thee, Doctor Fell.
 
 ```python
 #脫溢字元 \
->>> palindrome = 'A man,\nA plan,\nA canal:\nPanama.' 
->>> print(palindrome)
+palindrome = 'A man,\nA plan,\nA canal:\nPanama.' 
+print(palindrome)
+
+結果:================
 A man,
 A plan,
 A canal: Panama.
+```
 
-
+```python
 
 >>> print('\tabc') 
     abc
@@ -146,59 +155,66 @@ A canal: Panama.
 >>> print('abc\t') 
     abc
 
+```
 
+```python
+testimony = "\"I did nothing!\" he said. \"Not that either! Or the other thing.\""
+print(testimony)
 
->>> testimony = "\"I did nothing!\" he said. \"Not that either! Or the other thing.\""
->>> print(testimony)
+結果:================
 "I did nothing!" he said. "Not that either! Or the other thing."
->>> fact = "The world's largest rubber duck was 54'2\" by 65'7\" by 105'" 
->>> print(fact)
+```
+
+```python
+fact = "The world's largest rubber duck was 54'2\" by 65'7\" by 105'" 
+print(fact)
+
+結果:================
 The world's largest rubber duck was 54'2" by 65'7" by 105'
+```
 
+```python
+speech = 'Today we honor our friend, the backslash: \\.' 
+print(speech)
 
-
->>> speech = 'Today we honor our friend, the backslash: \\.' 
->>> print(speech)
+結果:================
 Today we honor our friend, the backslash: \.
-
-
 ```
 
 ```python
 #使用+運算子
 >>> 'Release the kraken! ' + 'At once!'
     'Release the kraken! At once!'
+```
 
+```python
+a = 'Duck.' 
+b=a
+c = 'Grey Duck!' 
+print(a+b+c)
+print(a, b, c)
 
-
-
->>> a = 'Duck.' 
-    b=a
->>> c = 'Grey Duck!' 
->>>a+b+c 
-   'Duck.Duck.Grey Duck!'
-
-
-
->>> print(a, b, c) 
-    Duck. Duck. Grey Duck!
-    
-
+結果:=================
+Duck.Duck.Grey Duck!
+Duck. Duck. Grey Duck!
 ```
 
 ```python
 #len()
->>> len(letters)
-    26
->>> empty = ""
->>> len(empty)
-    0
+letters = 'abcdefghijklmnopqrstuvwxyz'
+print(len(letters))
 
+empty = ""
+print(len(empty))
+
+結果:==================================
+26
+0
 ```
 
 ###  索引編號與取值
 - 字元依照順序排序:
-	- 第一個字索引編號為 0，第二個字索引編號為 1
+	- 第一個字索引編號為 0，第二個字索引編號為 1。
 	- 最後一個字索引編號為 -1，倒數第二個字索引編號為 -2。
 
 ###  索引編號與取值
@@ -213,7 +229,7 @@ Today we honor our friend, the backslash: \.
 >>> letters[0]
     'a'
 >>> letters[1]
-'b'
+	'b'
 >>> letters[-1]
     'z'
 >>> letters[-2] 
@@ -223,20 +239,15 @@ Today we honor our friend, the backslash: \.
 >>> letters[5]
     'f'
     
-    
-
 >>> letters[100]
 Traceback (most recent call last):
 File "<stdin>", line 1, in <module> IndexError: string index out of range
-
-
 
 
 >>> name = 'Henny'
 >>> name[0] = 'P'
 Traceback (most recent call last): File "<stdin>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
-
 ```
 
 ###  索引編號與取值
@@ -249,14 +260,23 @@ TypeError: 'str' object does not support item assignment
 ### 索引編號與取值:請留意輸出結果
 ```python
 #string3.py
- mystring1="Hello World"
- print(mystring1[0]) 
- print(mystring1[2]) 
- print(mystring1[-1]) 
- print(mystring1[-2]) 
- print(mystring1[2:]) 
- print(mystring1[:3]) 
- print(mystring1[1:4]) 
+mystring1="Hello World"
+print(mystring1[0]) 
+print(mystring1[2]) 
+print(mystring1[-1]) 
+print(mystring1[-2]) 
+print(mystring1[2:]) 
+print(mystring1[:3]) 
+print(mystring1[1:4])
+
+結果:================
+H
+l
+d
+l
+llo World
+Hel
+ell 
 ```
 
 | H | e | l | l | o |  | W | o | r | l | d |
@@ -265,7 +285,6 @@ TypeError: 'str' object does not support item assignment
 | -11 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 
 ```python
-
 #[ start : end : step ]
 
 >>> letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -305,11 +324,6 @@ TypeError: 'str' object does not support item assignment
 >>> letters[:21:5]
     'afkpu'
 
-
->>> letters[-1::-1] 
-    'zyxwvutsrqponmlkjihgfedcba'
-
-
 >>> letters[::-1] 
     'zyxwvutsrqponmlkjihgfedcba'
 ```
@@ -322,9 +336,18 @@ TypeError: 'str' object does not support item assignment
 	- str.replace(舊字串, 新字串,第幾個位置)
 	- 位置編號由 0 開始
 
-#### 字串取代:請留意輸出結果
 ```python
+>>> name = 'Henny'
+>>> name.replace('H', 'P') 
+   'Penny'
+>>> 'P' + name[1:] 
+    'Penny'
+```
+
+```python
+#字串取代:請留意輸出結果
 #string4.py
+
 str="This is Python,That is Java;This is SQLite,That is MySQL" 
 print("原本的字串:",str)
 print( )
@@ -338,14 +361,6 @@ print("加上參數值2:"+str.replace("is","-",2))
 print( ) 
 ```
 
-```python
->>> name = 'Henny'
->>> name.replace('H', 'P') 
-   'Penny'
->>> 'P' + name[1:] 
-    'Penny'
-```
-
 ###  字串內容搜尋
 - 字串可以搜尋特定內容的位置。
 - 搜尋的字串位置編號由 0 開始。
@@ -355,18 +370,21 @@ print( )
 - 若沒有起始位置，也沒有結束位置，預設由 0 開始。
 - 若沒有結束位置，預設到最後一個字。
 
-#### 字串內容搜尋:請留意輸出結果
 ```python
+#字串內容搜尋:請留意輸出結果
 #string5.py
 
 str1 = "this is Python Tutorial, there"
 search1 = "Python" 
 print(str1.find(search1))
+
 search2= "not" 
 print(str1.find(search2))
+
 search3="t" 
 print(str1.find(search3)) 
-print(str1.find(search3,4)) print(str1.find(search3,11,20))
+print(str1.find(search3,4)) 
+print(str1.find(search3,11,20))
 ```
 
 ####  字串插入與切割
@@ -382,10 +400,13 @@ print(str1.find(search3,4)) print(str1.find(search3,11,20))
 str1 = "-"
 str2 = ("a", "b", "c") 
 print(str1.join(str2))
+
 str2 = ("abc", “xyz", “123") 
-print(str1.join(str2)) 
+print(str1.join(str2))
+ 
 str3=":".join("Python") 
 print(str3)
+
 str4 = "python-java-c++-ruby" 
 print(str4.split('-')) 
 print(str4.split('-',1))
