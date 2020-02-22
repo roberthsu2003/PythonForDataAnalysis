@@ -432,6 +432,7 @@ else:
 ```
 
 ### 雙向選擇 if else:請留意輸出結果  
+
 ```python
 # if2.py
 
@@ -464,7 +465,7 @@ print("執行結束")
 
 (3)  
 等於12 
-不等於12 
+不等於12  
 執行結束
 
 ---
@@ -482,7 +483,7 @@ print("執行結束")
 
 ##  多向選擇:if elif else
 - 條件成立要執行某事情，而條件不成立則要進行另外一個分析，請使 用 if elif 語法。
-- 
+
 ```python
 語法:  
 if [True|False]:
@@ -580,11 +581,11 @@ It's a cat.
 
 ```python
 #多項選擇
-color = "puce"
-if color == "red":
-    print("It's a tomato")
+color = "紫褐色"
+if color == "紅色":
+    print("It's a 蕃茄")
 elif color == "green":
-    print("It's a green pepper")
+    print("It's a 青椒")
 elif color == "bee purple":
     print("I don't know what it is, but only bees can see it")
 else:
@@ -618,10 +619,12 @@ if a>=12 and a<18 :
 	print("ok-1")
 else:
 	print("cancel- 1") 
+	
 if 12<=a<18:
 	print("ok-2") 
 else:
 	print("cancel- 2")
+	
 if not a>18:
 	print("ok-3") 
 else:
