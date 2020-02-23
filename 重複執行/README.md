@@ -128,7 +128,7 @@ while(True):
     sum += score
     
 #已經跳出while    
-print('全班總成績為:', sum, "平均分數為:", sum/(num-1) )
+print('全班總成績為:', sum, "平均分數為:", "%.2f" % (sum/(num-1)) )
 ```
 
 #### Homework:計算固定中的支出，媽媽每天會將家裡的花費記錄下來，並且計算本週的花費總和
