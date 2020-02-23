@@ -20,4 +20,4 @@ for i in range(students):
     studentScore = int(input('請輸入第'+ str(i+1) +'位學生的成績:'))
     sum += studentScore
 
-print("全班總成績為:" + str(studentScore) + "分,平均分數為" + str(sum/students) + "分")
+print("全班總成績為:" + str(sum) + "分,平均分數為" + str(sum/students) + "分")
