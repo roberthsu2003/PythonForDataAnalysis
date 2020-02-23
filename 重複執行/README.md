@@ -152,14 +152,14 @@ Name        : loop2.py
 ### 使用continue,中止迴圈,跳至下一輪迴圈,重頭執行
 
 ```python
->>> while True:
-	    value = input("整數, 輸入 [q]離開: ") 
-	    if value == 'q': # quit
-	        break
-	    number = int(value)
-	    if number % 2 == 0: # 一個偶數值
-	        continue
-	    print(number, "平方是", number*number)
+while True:
+	value = input("整數, 輸入 [q]離開: ") 
+	if value == 'q': # quit
+		break
+	number = int(value)
+	if number % 2 == 0: # 一個偶數值
+		continue
+	print(number, "平方是", number*number)
 		
 		
 整數, 輸入 [q]離開: 1
@@ -253,8 +253,9 @@ while(True):
     else:
         print("請輸入提示範圍內的數字")
 ```
+
 ### while break else語法:
-- 在while迴圈內,如果沒有使用到break跳出迴圈,則迴圈結束後要執行else的程式區塊
+- 在while迴圈內,如果沒有使用到break跳出迴圈,則迴圈結束後要執行else的程式區塊
 
 ```python
 numbers = [1, 3, 5]
@@ -460,7 +461,7 @@ for x in range(2, -1, -1):
 ```python
 list(range(2, -1, -1)) 
 
-結果========
+結果=======
 [2, 1, 0]
 ```
 

@@ -592,7 +592,7 @@ print(sobj.group())
 
 ### 在字串開頭搜尋
 - 果你想在字串的開頭搜尋，那麼可以使用^。來看下例
-- 
+
 ```python
 import re
 str = "Hello Python Programming"
@@ -606,7 +606,8 @@ print(sobj.group()) #matching: Hello
 這裡，^ 的意思是隻在字串的開頭進行搜尋，假如開頭不匹配的話，就返回 None，而不管字串後續中有沒有再匹配到。
 
 ### 在字串結尾搜尋
-- 你也可以在給定字串的末尾搜尋，通過在模式後面加 $ 來限定。來看這個例子，
+- 你也可以在給定字串的末尾搜尋，通過在模式後面加 $ 來限定。
+
 ```python
 import re
 str = "Hello Python Programming"
