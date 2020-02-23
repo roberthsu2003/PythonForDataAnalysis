@@ -461,7 +461,9 @@ False
 >>> poem.count(word)
     3
 
+```
 
+```python
 
 >>> setup = 'a duck goes into a bar...'
 
@@ -487,10 +489,10 @@ False
     '  a duck goes into   '
 
 >>> setup.ljust(30) 
->>> 'a duck goes into a bar... '
+   'a duck goes into a bar... '
 
 >>> setup.rjust(30)
-' a duck goes into a bar...'
+    ' a duck goes into a bar...'
 
 #replace()
 >>> setup.replace('duck', 'marmoset') 
