@@ -4,8 +4,8 @@
 字串文字接龍
 """
 print('失敗就會退出遊戲!')
-inputString = input('請輸入一個字串:')
-sampleString = 'wordlink'
+inputString = input('請輸入一個接龍字串:')
+sampleString = inputString
 for single in sampleString:
     print('上一個字串是:',inputString)
     outputWords = "請輸入-",single,"-開始的字串"
