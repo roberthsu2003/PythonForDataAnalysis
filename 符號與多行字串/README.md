@@ -539,14 +539,16 @@ False
 - 你可以使用 match() 函式將 RE 模式與給定字串來匹配。match() 函式也包含了標誌，標誌定義正規表示式的行為，它可以有不同的值
  
 ```python
-re.match(pattern, string, flags)
+re.match(pattern, string, flags=0)
 
 #它有三個引數:
 pattern 是要匹配的正規表示式模式
 string 是與正規表示式匹配的給定字串
 flags 用於更改正規表示式的行為，這是個可選項
 
-如果匹配成功就返回 Match 物件，否則返回 NONE。匹配物件 Match 還有兩個主要方法，即 group(num) 和 group()。可以使用這些方法來分別返回匹配的特定子序列和所有子序列。
+如果匹配成功就返回 Match 物件，否則返回 NONE。
+返回的匹配物件 Match 還有兩個主要方法，即 group(num=0)。
+可以使用這些方法來分別返回匹配的特定子序列和所有子序列。
 ```
 
 ### 使用 match 函式
@@ -558,25 +560,6 @@ print(mobj.group())
 
 
 #在此示例中，使用字首 r 來表示字串是原始字串。在原始字串中，在使用轉義序列時不需要寫雙斜槓，例如，如果你想要一個反斜槓，那麼你只需要一個\，而不用像普通字串那樣的雙反斜槓\\。
-```
-
-### match 函式與常規字串
-```python
-import re
-str = "\\tHello Python Programming"
-print(str)
-mobj = re.match("\\thello", str, re.I) #no match
-print(mobj)
-
-str = "\tHello Python Programming"
-print(str)
-mobj = re.match("\\thello", str, re.I) #\thello is matching
-print(mobj)
-
-str = "\tHello Python Programming"
-print(str)
-mobj = re.match(r"\thello", str, re.I) #\thello is matching
-print(mobj)
 ```
 
 ### search() 函式
@@ -633,9 +616,9 @@ print(sobj) #no match found
 
 ```python
 import re
-compPat = re.compile(r"(\d)")
+compPat = re.compile(r"\d")
 sobj = compPat.search("Lalalala 123")
-print(mobj.group())
+print(sobj.group())
 
 mobj = compPat.match("234Lalalala 123456789")
 print(mobj.group())
@@ -705,7 +688,7 @@ Working   five   hours   a  day
 ```
 
 ### findall() 函式
-- The findall 函式返回與模式匹配的所有字串組成的列表。search 和 findall 函式之間的區別在於 findall 查詢所有匹配項，而 search 只查詢第一個匹配項。findall 函式查詢出非重疊的匹配並將其組成列表來返回。
+- The findall 函式傳回與模式匹配的所有字串組成的列表。search 和 findall 函式之間的區別在於 findall 查詢所有匹配項，而 search 只查詢第一個匹配項。findall 函式查詢出非重疊的匹配並將其組成列表來返回。
 
 ```python
 findall(pattern, string, flags)
@@ -714,8 +697,8 @@ findall(pattern, string, flags)
 ### 查詢所有的非重疊的匹配
 ```python
 import re
-str = "Working 6 hours a day. Studying 4 hours a day."
-mobj = re.findall(r'[0-9]', str)
+str1 = "Working 6 hours a day. Studying 4 hours a day."
+mobj = re.findall(r'[0-9]', str1)
 print(mobj)
 ```
 
@@ -730,9 +713,9 @@ finditer(pattern, string, flags)
 
 ```pytnon
 import re
-str = "Working 6 hours a day. Studying 4 hours a day."
+str1 = "Working 6 hours a day. Studying 4 hours a day."
 pat = r'[0-9]'
-for mobj in re.finditer(pat, str):
+for mobj in re.finditer(pat, str1):
     print(mobj.__class__)
     s = mobj.start()
     e = mobj.end()
@@ -759,8 +742,8 @@ split(patter, string, maxsplit=0, flags=0)
 
 ```python
 import re
-str = "Birds fly high in the sky for ever"
-mobj = re.split('\s+', str, 5)
+str1 = "Birds fly high in the sky for ever"
+mobj = re.split('\s+', str1, 5)
 print(mobj)
 ```
 
@@ -771,7 +754,9 @@ print(mobj)
 - 本例中，模式 \s 用來匹配所有的空白字元，它等效於各種空白字元的集合，包括空格，製表符，回車等，具體如 [ \t\n\r\f\v]。所以你可以通過它將各個拆分開來。這裡的最大拆分次數是 5，所以結果列表中有 6 個元素，最後一個元素是最後一次拆分後剩下的所有的字串。
 
 ### Basic patterns of re 的基本模式
-- 正規表示式可以指定與給定字串進行比較的模式。以下是正規表示式的基本模式，
+- 正規表示式可以指定與給定字串進行比較的模式。
+- 以下是正規表示式的基本模式
+
 | 模式 |	描述 |
 |:-- | :-- |
 | ^ |	在字串開頭匹配 |
