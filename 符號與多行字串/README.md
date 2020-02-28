@@ -5,6 +5,8 @@
 - 如果字串內容有用到單雙引號，但外圍仍用相同符號，請加上跳脫字元進行轉換。
 - 多行字串使用”””三個雙引號或者’’’三個單引號方式包起來。
 
+---
+
 ###  跳脫字元
 ```python
 - 反斜線作為跳脫字元，可用於引用特殊字元。
@@ -14,6 +16,8 @@
 	- \n 換行
 	- \t 固定間隔
 ```
+
+
 
 ```python
 >>> 'Snap'
@@ -36,6 +40,7 @@
 
 ```
 
+---
  
 ```python
 #單雙引號與跳脫字元:請留意輸出結果
@@ -48,6 +53,7 @@ print(str1)
 str1 = "test1 \n test2\\test3" 
 print(str1)
 ``` 
+---
 
 ```python
 #string1.py
@@ -63,6 +69,7 @@ str4= '''
 print("字串1:", str3) 
 print("字串2:", str4)
 ```
+--- 
 
 ```python
 #多行文字
@@ -90,6 +97,7 @@ I do not like thee, Doctor Fell.
 	I do not like thee, Doctor Fell.
 >>>
 ```
+---
 
 ```python
 >>> print(99, 'bottles', 'would be enough.') 
@@ -109,6 +117,7 @@ I do not like thee, Doctor Fell.
 
 
 ```
+---
 
 ```python
 
@@ -121,6 +130,7 @@ base
 結果:==============
 'current inventory: 99'
 ```
+---
 
 ```python
 #使用str()轉換為字串型別
@@ -132,6 +142,7 @@ base
     'True'
 
 ```
+---
 
 ```python
 #脫溢字元 \
@@ -143,6 +154,8 @@ A man,
 A plan,
 A canal: Panama.
 ```
+
+---
 
 ```python
 
@@ -157,6 +170,8 @@ A canal: Panama.
 
 ```
 
+---
+
 ```python
 testimony = "\"I did nothing!\" he said. \"Not that either! Or the other thing.\""
 print(testimony)
@@ -164,6 +179,8 @@ print(testimony)
 結果:================
 "I did nothing!" he said. "Not that either! Or the other thing."
 ```
+
+---
 
 ```python
 fact = "The world's largest rubber duck was 54'2\" by 65'7\" by 105'" 
@@ -173,6 +190,8 @@ print(fact)
 The world's largest rubber duck was 54'2" by 65'7" by 105'
 ```
 
+---
+
 ```python
 speech = 'Today we honor our friend, the backslash: \\.' 
 print(speech)
@@ -181,11 +200,15 @@ print(speech)
 Today we honor our friend, the backslash: \.
 ```
 
+---
+
 ```python
 #使用+運算子
 >>> 'Release the kraken! ' + 'At once!'
     'Release the kraken! At once!'
 ```
+
+---
 
 ```python
 a = 'Duck.' 
@@ -198,6 +221,8 @@ print(a, b, c)
 Duck.Duck.Grey Duck!
 Duck. Duck. Grey Duck!
 ```
+
+---
 
 ```python
 #len()
@@ -212,17 +237,20 @@ print(len(empty))
 0
 ```
 
+---
 ###  索引編號與取值
 - 字元依照順序排序:
 	- 第一個字索引編號為 0，第二個字索引編號為 1。
 	- 最後一個字索引編號為 -1，倒數第二個字索引編號為 -2。
 
+---
 ###  索引編號與取值
 - [n]
 	- [ ]內可加入一個整數 n。
 	- 代表由字串中取出固定索引欄位 n 的字元。
 	- 由左向右存取，編號由 0 開始遞增。
 	- 由右向左存取，編號由 -1 開始遞減。
+
 
 ```python
 >>> letters = 'abcdefghijklmnopqrstuvwxyz'
@@ -250,6 +278,7 @@ IndexError: string index out of range
 Traceback (most recent call last): File "<stdin>", line 1, in <module>
 TypeError: 'str' object does not support item assignment
 ```
+---
 
 ###  索引編號與取值
 - [n : m]
@@ -258,8 +287,11 @@ TypeError: 'str' object does not support item assignment
 	- n 代表起始位置，第一個為 0。
 	- m 是結束位置，不包含這個位置。
 
-### 索引編號與取值:請留意輸出結果
+
+
+
 ```python
+#索引編號與取值:請留意輸出結果
 #string3.py
 
 myString1="Hello World"
@@ -281,11 +313,13 @@ Hel
 ell 
 ```
 
+
 | H | e | l | l | o |  | W | o | r | l | d |
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7| 8 | 9 | 10 |
 | -11 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 
+---
 ```python
 #[ start : end : step ]
 
@@ -329,7 +363,7 @@ ell
 >>> letters[::-1] 
     'zyxwvutsrqponmlkjihgfedcba'
 ```
-
+---
 ###  字串取代
 - 語法:字串.replace(old, new[, max])
 - replace方法 可以將指定的字串進行更換:
@@ -338,6 +372,7 @@ ell
 	- 字串.replace(舊字串, 新字串,替換不可以超過幾次)
 	- 位置編號由 0 開始
 
+
 ```python
 >>> name = 'Henny'
 >>> name.replace('H', 'P') 
@@ -345,6 +380,7 @@ ell
 >>> 'P' + name[1:] 
     'Penny'
 ```
+
 
 ```python
 #字串取代:請留意輸出結果
@@ -362,6 +398,7 @@ print("原本的字串:", str)
 print()
 print("加上參數值2:" + str1.replace("is", "-", 2))
 ```
+---
 
 ###  字串內容搜尋
 - 語法:字串.find(要搜尋的字串, beg=0, end=len(string))
@@ -372,6 +409,7 @@ print("加上參數值2:" + str1.replace("is", "-", 2))
 - 若搜尋不到則回傳 -1。
 - 若沒有起始位置，也沒有結束位置，預設由 0 開始。
 - 若沒有結束位置，預設到最後一個字。
+
 
 ```python
 #字串內容搜尋:請留意輸出結果
@@ -389,6 +427,8 @@ print(str1.find(search3))
 print(str1.find(search3,4)) 
 print(str1.find(search3,11,20))
 ```
+
+---
 
 ####  字串插入與切割
 - join( ) : 於字串或著字元之間加入指定的文字
@@ -415,6 +455,8 @@ print(str4.split('-'))
 print(str4.split('-',1))
 ```
 
+
+
 ```python
 #split()
 >>> todos = 'get gloves,get mask,give cat vitamins,call ambulance' 
@@ -422,6 +464,8 @@ print(str4.split('-',1))
 ['get gloves', 'get mask', 'give cat vitamins', 'call ambulance']
 
 ```
+
+
 
 ```python
 #join()
@@ -432,6 +476,8 @@ print(str4.split('-',1))
 Found and signing book deals: Yeti, Bigfoot, Loch Ness Monster
 
 ```
+
+---
 
 ```python
 #字串常用的一些操控
@@ -467,6 +513,8 @@ False
     3
 
 ```
+
+---
 
 ```python
 #字串常用的一些操控
@@ -506,6 +554,7 @@ False
 
 ```
 
+---
 
 ### Homewrok:字串文字接龍
 ```python
@@ -525,6 +574,7 @@ False
 [解題](./wordLink.py)
 
 
+---
 
 ## Python 正規表示式模組 (re) 簡介
 - 正規表示式以及 Python re 模組中定義的正規表示式操作。
@@ -534,6 +584,8 @@ False
 - Python 中的正規表示式是一組字元或序列，用於使用正式語法將字串與另一個模式匹配。你可以將正規表示式視為嵌入在 python 中的小型程式語言。
 
 - 你可以使用正規表示式來定義一些規則，然後使用這些規則從你希望與模式匹配的給定字串中建立可能的字串。Python 中的正規表示式被解釋為一組指令。
+
+---
 
 ### match() 函式
 - 你可以使用 match() 函式將 RE 模式與給定字串來匹配。match() 函式也包含了標誌，標誌定義正規表示式的行為，它可以有不同的值
@@ -551,8 +603,10 @@ flags 用於更改正規表示式的行為，這是個可選項
 可以使用這些方法來分別返回匹配的特定子序列和所有子序列。
 ```
 
-### 使用 match 函式
+
 ```python
+#使用 match 函式
+
 import re
 strTest = "Hello Python Programming"
 mobj = re.match(r"hello", strTest, re.I)
@@ -561,6 +615,8 @@ print(mobj.group())
 
 #在此示例中，使用字首 r 來表示字串是原始字串。在原始字串中，在使用轉義序列時不需要寫雙斜槓，例如，如果你想要一個反斜槓，那麼你只需要一個\，而不用像普通字串那樣的雙反斜槓\\。
 ```
+
+---
 
 ### search() 函式
 你可以使用 search() 函式搜尋給定字串中的正規表示式匹配模式。search 有三個輸入引數，匹配模式，給定字串以及可選的匹配行為選項 flags
@@ -579,10 +635,14 @@ print(sobj.group())
 在此程式碼中，我們來搜尋給定字串中是否存在 programming，search 函式搜尋整個字串。
 - 搜尋 search 和匹配 match 之間的區別在於 match 函式只檢查字串的開頭，而 search 在整個字串中搜尋。
 
+---
+
 ### 在字串開頭搜尋
 - 果你想在字串的開頭搜尋，那麼可以使用^。來看下例
 
 ```python
+#在字串開頭搜尋
+
 import re
 str = "Hello Python Programming"
 sobj = re.search(r"^programming", str, re.I)
@@ -594,10 +654,13 @@ print(sobj.group()) #matching: Hello
 
 這裡，^ 的意思是隻在字串的開頭進行搜尋，假如開頭不匹配的話，就返回 None，而不管字串後續中有沒有再匹配到。
 
+---
+
 ### 在字串結尾搜尋
 - 你也可以在給定字串的末尾搜尋，通過在模式後面加 $ 來限定。
 
 ```python
+#在字串結尾搜尋
 import re
 str = "Hello Python Programming"
 sobj = re.search(r"programming$", str, re.I)
@@ -607,14 +670,21 @@ sobj = re.search(r"hello$", str, re.I)
 print(sobj) #no match found
 ```
 
+---
+
 ### 編譯正規表示式
 - Python 中的正規表示式在編譯時將轉換為模式，這些模式實際上是包含不同功能的模式物件，以執行不同的任務，包括搜尋，匹配和替換等。
 
 - 編譯模式後，你可以稍後在程式中使用該模式。 
+
+
+
 ### 使用預編譯的模式
 - 在下面的例子中，被編譯的模式 r"\d" 意思是在字串中的第一個數字。當該模式後續跟 search 一起使用的時候，它搜尋輸入字串中的一個數字；同樣的，你也可以用這個模式跟 match 搭配來找到給定字串中的匹配。
 
 ```python
+#使用預編譯的模式
+
 import re
 compPat = re.compile(r"\d")
 sobj = compPat.search("Lalalala 123")
@@ -623,6 +693,7 @@ print(sobj.group())
 mobj = compPat.match("234Lalalala 123456789")
 print(mobj.group())
 ```
+--- 
 
 ### 標誌位 flags
 - 你可以使用標誌位 flags 來改變正規表示式的行為。在正則函式中，標誌位是可選項。你可以通過兩種不同的方式來使用標誌，即使用關鍵字 flags 併為其分配標誌值或直接寫入標誌位的值。你可以設定多個標誌位，這可以通過使用按位或運算|符來完成。
@@ -647,6 +718,7 @@ print(s)		#Output: 1
 s = re.search("^L", "Hello", re.I)
 print(s)
 ```
+---
 
 ### 搜尋和替換
 - re 模組提供了一個 sub 函式來替換給定字串 string 中出現的所有符合 pattern 匹配模式的情況，用來替換的字串是 repl。你可以通過 count 關鍵字引數指定最大的替換次數，假如 count 沒有給定的話，那就沒有最大替換次數限制。
@@ -656,8 +728,10 @@ print(s)
 re.sub(pattern, repl, string, count = 0)
 ```
 
-### sub 函式舉例
+
+
 ```python
+#sub 函式舉例
 #下面的例子中，sub 函式將整個字串用新的字串替換掉了
 
 import re
@@ -667,8 +741,10 @@ print(obj)
 ```
 - 這裡，模式 r'^.*$ 中，^和 $ 意思是從開頭到結尾，.*意思是匹配字串中的任意字元，它們結合起來就是匹配從開頭到結尾的任意字元。 "Working"將來替換整個字串 s.
 
-### 使用 sub 函式來刪除字串中的所有數字
+
+
 ```python
+#使用 sub 函式來刪除字串中的所有數字
 #下面的例子中，使用 sub 函式來刪除給定字串中的數字，你需要用\d 來匹配數字。
 
 import re
@@ -686,6 +762,7 @@ Working   five   hours   a  day
 ```
 76823437892346563244646345
 ```
+---
 
 ### findall() 函式
 - The findall 函式傳回與模式匹配的所有字串組成的列表。search 和 findall 函式之間的區別在於 findall 查詢所有匹配項，而 search 只查詢第一個匹配項。findall 函式查詢出非重疊的匹配並將其組成列表來返回。
@@ -694,24 +771,35 @@ Working   five   hours   a  day
 findall(pattern, string, flags)
 ```
 
-### 查詢所有的非重疊的匹配
+--- 
+
+ 
 ```python
+#查詢所有的非重疊的匹配
+
+
 import re
 str1 = "Working 6 hours a day. Studying 4 hours a day."
 mobj = re.findall(r'[0-9]', str1)
 print(mobj)
 ```
+---
 
 ### finditer() 函式
 - finditer 函式可用於在字串中查詢正規表示式模式並將匹配的字串以及字串的位置返回。
+
 ```python
 finditer(pattern, string, flags)
 ```
 
-### 遍歷所有的匹配
-- findall 和 finditer 之間唯一的區別是 finditer 返回索引以及匹配的字串。在下面的程式碼中，finditer 用於查詢匹配字串的位置，而後通過 for 迴圈來在遍歷所有的匹配（匹配字串）。
+
+- 遍歷所有的匹配
+	- findall 和 finditer 之間唯一的區別是 finditer 返回索引以及匹配的字串。在下面的程式碼中，finditer 用於查詢匹配字串的位置，而後通過 for 迴圈來在遍歷所有的匹配（匹配字串）。
+
 
 ```pytnon
+#遍歷所有的匹配
+
 import re
 str1 = "Working 6 hours a day. Studying 4 hours a day."
 pat = r'[0-9]'
@@ -728,6 +816,7 @@ for mobj in re.finditer(pat, str1):
 <class 're.Match'>
 4 found at location [32,33]
 ```
+---
 
 ### split() 函式
 - split 函式用於拆分字串
@@ -735,8 +824,10 @@ for mobj in re.finditer(pat, str1):
 ```python
 split(patter, string, maxsplit=0, flags=0)
 ```
+
 - 這裡 maxsplit 是最多的拆分次數，假如能夠拆分的次數大於 maxsplit 那麼剩餘的字串將作為列表中的最後一個元素。maxsplit 的預設值是 0，意思是可以無限拆分。
 
+---
 ### 拆分一個字串
 - 我們可以通過 split 來拆分字串，下面的例子中，字串根據給定的模式以及最大拆分的數量來拆分。
 
@@ -753,6 +844,8 @@ print(mobj)
 
 - 本例中，模式 \s 用來匹配所有的空白字元，它等效於各種空白字元的集合，包括空格，製表符，回車等，具體如 [ \t\n\r\f\v]。所以你可以通過它將各個拆分開來。這裡的最大拆分次數是 5，所以結果列表中有 6 個元素，最後一個元素是最後一次拆分後剩下的所有的字串。
 
+---
+
 ### Basic patterns of re 的基本模式
 - 正規表示式可以指定與給定字串進行比較的模式。
 - 以下是正規表示式的基本模式
@@ -763,7 +856,6 @@ print(mobj)
 |$	| 在字串的結尾處匹配|
 |.|	匹配任意一個字元（不包括換行符）|
 |[...]|	匹配括號內的單個字元|
-|[^...]|	匹配不在括號中的單個字元|
 | *	| 給定字串中出現 0 次或更多次 |
 | +	| 給定字串中出現 1 次或多次前面的 |
 | ?	| 給定字串中出現 0 次或 1 次 |
@@ -782,6 +874,9 @@ print(mobj)
 | \G	 | \G 用於匹配最後一次匹配結束的點 |
 | \b	 | 匹配在開頭或者結尾的空字元 |
 | \B |	匹配不在開頭或者結尾的空字元 |
+
+
+---
 
 ```python
 #taiwanId.py
@@ -807,6 +902,7 @@ else:
 
 ```
 
+---
 ```python
 #email.py
 # r'\w+[.|\w]\w+@\w+[.]\w+[.|\w+]\w+'
