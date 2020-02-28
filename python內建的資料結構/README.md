@@ -163,7 +163,8 @@ print(list1)
 #操作範例:請動手操作，並留意輸出結果
 #list1.py
 
-list1=['H','e','l','l','o', 'W','o','r','l','d'] print(list1[0])
+list1=['H','e','l','l','o', 'W','o','r','l','d']
+print(list1[0])
 print(list1[1])
 print(list1[-1])
 print(list1[-3])
