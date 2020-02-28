@@ -3,8 +3,8 @@
 ## Lists, Tuples, Dictionaries, and Sets
 ### tuple 與 list 的差異
 - 括號不同:
-	- tuple 是用小括號將元素包起來。
-	- list 是用中括號將元素包起來。
+	- tuple 是用小括號()將元素包起來。
+	- list 是用中括號[]將元素包起來。
 
 - 元素可否變更:
 	- tuple 決定了元素的內容就不可以變更。
