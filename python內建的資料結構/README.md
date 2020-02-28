@@ -35,7 +35,7 @@
 ```python
 #使用list()轉換其它型態為list
 >>> list('cat')
-    ['c', 'a', 't']
+['c', 'a', 't']
 
 
 >>> a_tuple = ('ready', 'fire', 'aim') 
@@ -57,7 +57,10 @@
 >>> splitme.split('//')
 ['a/b', 'c/d', '/e']
 
+```
 
+```python
+#使用索引編號取出內容
 >>> marxes = ['Groucho', 'Chico', 'Harpo']
 >>> marxes[0]
     'Groucho'
@@ -77,11 +80,12 @@
 >>> marxes = ['Groucho', 'Chico', 'Harpo'] 
 >>> marxes[5]
 Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
+File "<stdin>", line 1, in <module> 
+IndexError: list index out of range
 >>> marxes[-5]
 Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: list index out of range
-
+File "<stdin>", line 1, in <module> 
+IndexError: list index out of range
 ```
 
 ### list 與 tuple:請留意輸出結果
