@@ -41,12 +41,12 @@
 #單雙引號與跳脫字元:請留意輸出結果
 #string0.py
 
-str = 'This is "Python" !' 
-print(str)
-str = "This is \"Python\" !" 
-print(str)
-str = "test1 \n test2\\test3" 
-print(str)
+str1 = 'This is "Python" !' 
+print(str1)
+str1 = "This is \"Python\" !" 
+print(str1)
+str1 = "test1 \n test2\\test3" 
+print(str1)
 ``` 
 
 ```python
@@ -227,7 +227,7 @@ print(len(empty))
 ```python
 >>> letters = 'abcdefghijklmnopqrstuvwxyz'
 >>> letters[0]
-    'a'
+	'a'
 >>> letters[1]
 	'b'
 >>> letters[-1]
@@ -241,7 +241,8 @@ print(len(empty))
     
 >>> letters[100]
 Traceback (most recent call last):
-File "<stdin>", line 1, in <module> IndexError: string index out of range
+File "<stdin>", line 1, in <module> 
+IndexError: string index out of range
 
 
 >>> name = 'Henny'
@@ -255,19 +256,20 @@ TypeError: 'str' object does not support item assignment
 	- 在一個範圍內找資料
 	- n 與 m 均是一個整數
 	- n 代表起始位置，第一個為 0。
-	- m 是結束位置，不可以超過這個位置。
+	- m 是結束位置，不包含這個位置。
 
 ### 索引編號與取值:請留意輸出結果
 ```python
 #string3.py
-mystring1="Hello World"
-print(mystring1[0]) 
-print(mystring1[2]) 
-print(mystring1[-1]) 
-print(mystring1[-2]) 
-print(mystring1[2:]) 
-print(mystring1[:3]) 
-print(mystring1[1:4])
+
+myString1="Hello World"
+print(myString1[0]) 
+print(myString1[2]) 
+print(myString1[-1]) 
+print(myString1[-2]) 
+print(myString1[2:]) 
+print(myString1[:3]) 
+print(myString1[1:4])
 
 結果:================
 H
@@ -329,11 +331,11 @@ ell
 ```
 
 ###  字串取代
-
-- replace 可以將指定的字串進行更換:
-	- str.replace(舊字串, 新字串)
-- replace 可以指定您要第幾個位置*後*不進行更換:
-	- str.replace(舊字串, 新字串,第幾個位置)
+- 語法:字串.replace(old, new[, max])
+- replace方法 可以將指定的字串進行更換:
+	- 字串.replace(舊字串, 新字串)
+- replace方法 可以指定您要第幾個位置*後*不進行更換:
+	- 字串.replace(舊字串, 新字串,替換不可以超過幾次)
 	- 位置編號由 0 開始
 
 ```python
@@ -348,20 +350,21 @@ ell
 #字串取代:請留意輸出結果
 #string4.py
 
-str="This is Python,That is Java;This is SQLite,That is MySQL" 
-print("原本的字串:",str)
-print( )
-print("is 替換為-:"+str.replace("is","-"))
-print( )
 
-str="This is Python,That is Java;This is SQLite,That is MySQL"
-print("原本的字串:",str)
-print( )
-print("加上參數值2:"+str.replace("is","-",2))
-print( ) 
+str1 = "This is Python, That is Java; This is SQLite, That is MySQL"
+print("原本的字串:", str1)
+print()
+print("is 替換為 - :" + str1.replace("is", "-"))
+print()
+
+str1 = "This is Python, That is Java; This is SQLite, That is MySQL"
+print("原本的字串:", str)
+print()
+print("加上參數值2:" + str1.replace("is", "-", 2))
 ```
 
 ###  字串內容搜尋
+- 語法:字串.find(要搜尋的字串, beg=0, end=len(string))
 - 字串可以搜尋特定內容的位置。
 - 搜尋的字串位置編號由 0 開始。
 - 字串.find(搜尋字串,起始位置,結束位置)
@@ -376,10 +379,10 @@ print( )
 
 str1 = "this is Python Tutorial, there"
 search1 = "Python" 
-print(str1.find(search1))
+print(str1.find(search1)) #使用slice範例
 
 search2= "not" 
-print(str1.find(search2))
+print(str1.find(search2)) #使用判斷範例
 
 search3="t" 
 print(str1.find(search3)) 
@@ -389,10 +392,10 @@ print(str1.find(search3,11,20))
 
 ####  字串插入與切割
 - join( ) : 於字串或著字元之間加入指定的文字
-	- 指定文字.join(串列)
+	- 連接符號字串.join(串列)
 - split( ) : 將字串進行切割
-	- str.split(分割符號)
-	- str.split(分割符號,分割次數)
+	- 字串.split(分割符號)
+	- 字串.split(分割符號,分割次數)
 
 ```python
 #string6.py
@@ -424,7 +427,9 @@ print(str4.split('-',1))
 #join()
 >>> crypto_list = ['Yeti', 'Bigfoot', 'Loch Ness Monster'] 
 >>> crypto_string = ', '.join(crypto_list)
->>> print('Found and signing book deals:', crypto_string) Found and signing book deals: Yeti, Bigfoot, Loch Ness Monster
+>>> print('Found and signing book deals:', crypto_string)
+
+Found and signing book deals: Yeti, Bigfoot, Loch Ness Monster
 
 ```
 
