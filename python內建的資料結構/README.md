@@ -18,19 +18,21 @@
 - list 內的資料可以進行增加、更新與移除。
 - 可透過.index( )方法取得指定資料的索引。
 - 
-### Create with [] or list()
+###  使用中括號 [] or list()
 ```python
->>> empty_list = [ ]
+>>> empty_list = [] #使用[]建立list
 >>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
 >>> big_birds = ['emu', 'ostrich', 'cassowary']
 >>> first_names = ['Graham', 'John', 'Terry', 'Terry', 'Michael']
 
 
->>> another_empty_list = list() 
+>>> another_empty_list = list() #使用list()建立空字串 
 >>> another_empty_list
 []
 
+```
 
+```python
 #使用list()轉換其它型態為list
 >>> list('cat')
     ['c', 'a', 't']
