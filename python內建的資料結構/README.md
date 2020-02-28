@@ -17,9 +17,11 @@
 	- list_name = [1, 2, ‘Python’, ‘lists’ ]
 - list 內的資料可以進行增加、更新與移除。
 - 可透過.index( )方法取得指定資料的索引。
-- 
-###  使用中括號 [] or list()
+
+ 
 ```python
+# 使用中括號 [] or list()
+
 >>> empty_list = [] #使用[]建立list
 >>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
 >>> big_birds = ['emu', 'ostrich', 'cassowary']
@@ -31,6 +33,8 @@
 []
 
 ```
+
+
 
 ```python
 #使用list()轉換其它型態為list
@@ -59,6 +63,8 @@
 
 ```
 
+---
+
 ###  索引標籤
 - 索引編號放在 [ ] 內。
 - 由左向右 ( 由前向後 ) 存取，編號由 0 開始遞增。
@@ -70,6 +76,7 @@
 
 ```python
 #使用索引編號取出內容
+
 >>> marxes = ['Groucho', 'Chico', 'Harpo']
 >>> marxes[0]
     'Groucho'
@@ -97,10 +104,11 @@ File "<stdin>", line 1, in <module>
 IndexError: list index out of range
 ```
 
-### list 與 tuple,請留意輸出結果
+---
 
 ```python
 #list0.py
+#list 與 tuple,請留意輸出結果
 
  list1=['H','i'] 
  tuple1=('H','i') 
@@ -115,36 +123,44 @@ IndexError: list index out of range
  print(list1)
 ```
 
+---
 
-#### Question: 請問執行後的結果哪一個是對的?(選擇題)
 ```python
+#Question: 請問執行後的結果哪一個是對的?(選擇題)
+
 tuple1=('1','2') 
 tuple1[1]='0' 
 print(tuple1)
-```
+
 (1) 02   
 (2) 10   
 (3) 120   
 (4)錯誤  
+```
+
 
 ---
 
-####  請問執行後的結果哪一個是對的?(選擇題)
+  
 ```python
+#請問執行後的結果哪一個是對的?(選擇題)
+
 list1=['1','2'] 
 list1[1]='0' 
 print(list1)
-```
+
 (1) 02   
 (2) 10   
 (3) 120   
-(4) 錯誤  
+(4) 錯誤
+```
+  
 
 ---
 
-#### 操作範例:請動手操作，並留意輸出結果
 
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list1.py
 
 list1=['H','e','l','l','o', 'W','o','r','l','d'] print(list1[0])
@@ -155,16 +171,21 @@ print(list1[-3])
 
 ---
 
-####  請問執行後的結果哪一個是對的?(選擇題)
+
 
 ```python
+#請問執行後的結果哪一個是對的?(選擇題)
+
 list1=['p','y','t','h','o','n']
 print(list1[-2])
-```
+
+
 (1) y   
 (2) n   
 (3) o   
-(4) p  
+(4) p 
+```
+ 
 
 ---
 
@@ -207,6 +228,8 @@ print(list1[-2])
 ['Groucho', 'Chico', 'Wanda']
 ```
 
+---
+
 ###  部分取值
 - list內部分取值採用[ n:m ]方式，n與m是整數。
 	- n 代表起始位置，第一個為 0。
@@ -216,8 +239,9 @@ print(list1[-2])
 |:--|:--|:--|:--|:--|:--|
 | -6 | -5 | -4 | -3 | -2 | -1 |
 
-#### 操作範例:請動手操作，並留意輸出結果
+ 
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list2.py
 
 list1=['H','e','l','l','o', 'W','o','r','l','d']
@@ -226,8 +250,10 @@ print(list1[:3])
 print(list1[3:5])
 ```
 
-#### 操作範例:請動手操作，並留意輸出結果
+---
+
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list2.py
 
 list1=['H','e','l','l','o', 'W','o','r','l','d']
@@ -235,36 +261,47 @@ print(list1[2:])
 print(list1[:3])
 print(list1[3:5])
 ```
+---
+
 | H | e | l | l | o | W | o | r | l | d |
 |:--|:--|:--|:--|:--|:--|:--|:--|:--|:--|
 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 | -10 | -9 | -8 | -7 | -6 | -5 | -4 | -3 | -2 | -1 |
 
-####  請選出以下程式碼跑出的結果。
+ 
 ```python
+#請選出以下程式碼跑出的結果。
+
 list1=['H','e','l','l','o', 'W','o','r','l','d']
 print(list1[0])
-```
+
+
 (1)'H'  
 (2)'W'  
 (3)'l'  
-(4)'d'  
+(4)'d'
+```
+  
 
 ---
 
-####  請選出以下程式碼跑出的結果。
 ```python
+#請選出以下程式碼跑出的結果。
 list1=['H','e','l','l','o', 'W','o','r','l','d']
 print(list1[-1])
-```
+
+
 (1)'H'  
 (2)'W'  
 (3)'l'  
-(4)'d'  
+(4)'d'
+```
+  
 
 ---
 
 ```python
+#slice
 >>> marxes = ['Groucho', 'Chico,' 'Harpo']
 >>> marxes[0:2]
 ['Groucho', 'Chico']
@@ -281,40 +318,47 @@ print(list1[-1])
 >>> marxes[::-1]
 ['Harpo', 'Chico', 'Groucho']
 
-
 ```
 
 ###  更新資料
 - 指定 list 的索引編號就可以給予新的資料，將這個項目內容更新。
 	- List1[2]=123
----
 
-####  請問最後輸出結果會是什麼?(選擇題)
+
+
 ```python
+#請問最後輸出結果會是什麼?(選擇題)
 list1=['a','b','c'] 
 print(list1) 
 list1[2]='dd' 
 print(list1)
+
+
+(1) ['a','dd','b','c']    
+(2) ['a','b','dd','c']    
+(3) ['a','b','dd']   
+(4) ['a','dd','c']
 ```
 
-1 ['a','dd','b','c']    
-2 ['a','b','dd','c']    
-3 ['a','b','dd']   
-4 ['a','dd','c']  
+  
  
---- 
 
-####  請依照下列問題找出正確的答案。(選擇題)
+
+
 ```python
+#請依照下列問題找出正確的答案。(選擇題)
 你有一個list x:
 x = ["a", "b", "b"]
 請改變第2個"b"成為"c"
+
+
+(1) x[2] = "c"  
+(2) x[2] = c  
+(3) x[3] = "c"  
+(4) x[3] = c 
 ```
 
-1 x[2] = "c"  
-2 x[2] = c  
-3 x[3] = "c"  
-4 x[3] = c  
+ 
 
 ---
 
@@ -374,11 +418,12 @@ x = ["a", "b", "b"]
 	- 如果引號括起來的字串有 [ ] 將會拆解成好幾個資料。
 	- 可以把其他 list 加入到這個 list 內，擴展多個欄位。
 
---- 
 
-#### 操作範例:請動手操作，並留意輸出結果
+
+
 
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list6.py
 
 list1= ['a', 'b', 'c']
@@ -389,8 +434,10 @@ print("擴展之後:", list1)
 print("擴展之後長度 = ", len(list1)) 
 print(list1[3])
 ```
----
+
+
 ```python
+#擴展
 >>> marxes.append('Zeppo')
 >>> marxes
 ['Groucho', 'Chico', 'Harpo', 'Zeppo']
@@ -423,10 +470,10 @@ print(list1[3])
 - list 可使用 insert 方式插入新的資料:
 	- list.insert(索引值，插入的資料)。
 
---- 
 
-#### 操作範例:請動手操作，並留意輸出結果
+
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list7.py
 
  list1 = ['this', 'is', 'list'] 
@@ -436,25 +483,26 @@ print(list1[3])
  list1.insert(88, '88') 
  print(list1)
 ```
----
-#### Question:請問以下的結果會是什麼?(選擇題)
+
+
 ```python
+#Question:請問以下的結果會是什麼?(選擇題)
+
  list1 = ['a', 'b', 'c'] 
  list1.insert(1, 'x') 
  print(list1)
-```
+ 
 (1) ['x','a','b','c']   
+(2) ['a','x','b','c']    
+(3) ['a','b','x','c']   
+(4) ['a','b','c','x'] 
+```
   
-(2) ['a','x','b','c'] 
-    
-(3) ['a','b','x','c'] 
-   
-(4) ['a','b','c','x']   
-
- ---
+ 
  
  ```python
- >>> marxes.insert(3, 'Gummo') 
+ #insert
+>>>marxes.insert(3, 'Gummo') 
 >>> marxes
 ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
 
@@ -465,35 +513,37 @@ print(list1[3])
 
  ```
  ---
+ 
 ###  list 移除項目
 - list 可透過以下三種方式移除項目:
 	- list.remove( )
 	- list.pop( )
 	- del list[ ]
 
----
+
 
 ###  list.remove
 - list 可透過 remove 方式移除資料
 	- 依據內容進行刪除
 	- list.remove(項目內容)
 --- 
-####  Question:請問以下的結果會是什麼?(選擇題)
+ 
 ```python
+#Question:請問以下的結果會是什麼?(選擇題)
 #1. 有兩個以上的相同資料， 會先移除哪一個呢?
 #2. 如果沒有資料那會如何呢?
 
 list1 = ['1', 'x', '2', 'x', '3'] 
 list1.remove('x') 
 print(list1)
-```
-(1) ['x','1', '2', '3'] 
 
+
+(1) ['x','1', '2', '3']
 (2) ['1', '2', '3'] 
-
 (3) ['1', '2', 'x', '3']
-
 (4) ['1','x', '2', '3']
+```
+
 
 ---
 ###  list.pop
@@ -501,38 +551,40 @@ print(list1)
 	- 如果 pop( ) 內沒有參數，則移除最後一筆資料。
 	- pop( ) 內若有參數，則移除指定位置的資料。
 
----
-####  Question:請問以下的結果會是什麼?(選擇題)
+
 ```python
+#Question:請問以下的結果會是什麼?(選擇題)
+
+
 list1 = ['1', 'x', '2', 'x', '3']
 list1.pop( ) 
 print(list1)
-```
-(1) ['x','2','x','3']
-   
-(2) ['1','x','2','x'] 
-  
-(3) ['x','2','x']
 
+
+(1) ['x','2','x','3']   
+(2) ['1','x','2','x']   
+(3) ['x','2','x']
 (4) ['1','2','x','3']
+```
+
 
 ---
 
-#### Question:請問以下的結果會是什麼?(選擇題)
 ```python
+#Question:請問以下的結果會是什麼?(選擇題)
+
 
 list1 = ['1', 'x', '2', 'x', '3']
 list1.pop(1) 
 print(list1)
+
+(1) ['x','2','x','3'] 
+(2) ['1','x','2','x'] 
+(3) ['x','2','x']
+(4) ['1','2','x','3']
 ```
 
-(1) ['x','2','x','3']  
 
-(2) ['1','x','2','x'] 
-
-(3) ['x','2','x']
-
-(4) ['1','2','x','3']
 
 ---
 
@@ -543,40 +595,44 @@ print(list1)
 	- del list[:n] 代表移除第 n 位索引值之前 ( 不包含 n ) 資料。
 	- del list[m:n] 代表移除第 m 到 n 位索引值之前 ( 不包含 n ) 資料。
 
----
-####  Question:請問以下的結果會是什麼?(選擇題)
+
+ 
 ```python
+#Question:請問以下的結果會是什麼?(選擇題)
+
 list1 = ['1', 'x', '2', 'x', '3']
 del list1[:1] 
 print(list1)
-```
+
 (1) ['x','2','x','3'] 
-
 (2) ['1','2','x','3'] 
-
 (3) ['1','x','2','x']
-
 (4) ['2','x','3']
+```
 
----
 
-####  請問以下的結果會是什麼?(選擇題)
+
+
+ 
 ```python
+#請問以下的結果會是什麼?(選擇題)
+
+
 list1 = ['1', 'x', '2', 'x', '3']
 del list1[2:4] 
 print(list1)
-```
-(1) ['2','x','3'] 
 
-(2) ['1','x','3'] 
-
-(3) ['x','2','x']  
-
+(1) ['2','x','3']
+(2) ['1','x','3']
+(3) ['x','2','x']
 (4) ['1','x']
+```
 
----
+
 
 ```python
+#del
+#pop()
 >>> del marxes[-1]
 >>> marxes
 ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
@@ -608,9 +664,14 @@ print(list1)
 >>> marxes
 ['Groucho', 'Harpo']
 ```
+
 ---
+
 ### list index(), in, count()
+
 ```python
+#index(), in , count()
+
 >>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
 >>> marxes.index('Chico')
 1
@@ -640,21 +701,6 @@ True
 ```
 ---
 
-### sort(),sorted()
-```python
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> sorted_marxes = sorted(marxes)
->>> sorted_marxes
-['Chico', 'Groucho', 'Harpo']
-
-
->>> marxes
-['Groucho', 'Chico', 'Harpo']
->>> marxes.sort()
->>> marxes
-['Chico', 'Groucho', 'Harpo']
-```
---- 
 ###  list 排序
 - list 進行排序有 sorted( ) 與 sort( ) 兩個動作。
 - 兩者差異:
@@ -667,13 +713,13 @@ True
 		-  list.sort( )
 		-  sort( ) 只能用在list上排序。
 
----
+
 ###  排序原則與參數
 - 排序原則:
 	- 數字則依照大小排序。
 	- 字串則依照 ASCII 編碼順序進行排序。
 
----
+
 ###  排序原則與參數
 - 可加入的參數:
 	- reverse=True
@@ -686,9 +732,28 @@ True
 	- key=str.lower
 		- 將 list 內元素轉換為小寫，再依照 ASCII 編碼順序進行排序
 
----
-#### 排序的原理:ASCII
+
+
+
 ```python
+#sort(),sorted()
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo'] 
+>>> sorted_marxes = sorted(marxes)
+>>> sorted_marxes
+['Chico', 'Groucho', 'Harpo']
+
+
+>>> marxes
+['Groucho', 'Chico', 'Harpo']
+>>> marxes.sort()
+>>> marxes
+['Chico', 'Groucho', 'Harpo']
+```
+
+
+```python
+#排序的原理:ASCII
 list2 = ['c','b','a','A']
 list2.sort()
 print(list2)
@@ -700,8 +765,9 @@ print(ord('a'),ord('b'),ord('c'),ord('A'))
 ```
 ---
 
-#### 操作範例:請動手操作，並留意輸出結果
+
 ```python
+#操作範例:請動手操作，並留意輸出結果
 #list8.py
 
 a = [5, 2, 1, 9, 6] 
@@ -714,9 +780,10 @@ print(a)
 
 ```
 
----
+
 
 ```python
+#sort(), len()
 >>> numbers = [2, 1, 4.0, 3] 
 >>> numbers.sort()
 >>> numbers
@@ -753,7 +820,11 @@ print(a)
 ---
 
 ### copy()
+
 ```
+#list copy()
+
+
 >>>a=[1,2,3] 
 >>> a
 [1, 2, 3] 
@@ -825,22 +896,24 @@ print(a)
 - 可利用 reverse( ) 函數進行反向排序動作。
 - 這函數沒有傳回值，list 執行後就會進行反向排序。
 
----
 
-#### Question: 請問以下的結果會是什麼?(選擇題)
+
+
 
 ```python
+#Question: 請問以下的結果會是什麼?(選擇題)
+
 list2 = [12, 'ab', 'Ab', 'aB'] 
 list2.reverse()
 print (list2)
-```
+
+
 (1) ['aB', 'Ab', 'ab', 12] 
-
 (2) ['Ab', 'aB', 'ab', 12] 
-
 (3) ['ab', 'aB', 'Ab', 12] 
-
 (4) [12,'ab', 'aB', 'Ab']
+```
+
 
 ---
 
@@ -848,6 +921,7 @@ print (list2)
 ## Tuples
 
 ```python
+#tuple
 >>> empty_tuple = () 
 >>> empty_tuple
 ()
@@ -964,10 +1038,10 @@ print (list2)
 - 可輸入 key 找尋您要找出來的值。
 - 如果輸入的 key 不存在，那就會出現錯誤訊息。
 
----
 
-#### 操作範例:請動手操作，並留意輸出結果
+
 ```python
+#操作範例:請動手操作，並留意輸出結果
 # dict1.py
 dict1={'a':100,'b':200,'c':300} 
 print(dict1) 
@@ -977,37 +1051,48 @@ print(dict1['a'])
 print(dict1['b']) 
 print(dict1['d']) #不存在
 ```
----
 
-#### Question: 請問執行後的結果哪一行是錯的?(選擇題)
+
 ```python
+#Question: 請問執行後的結果哪一行是錯的?(選擇題)
+
+
 dict1={'a':100,'b':200, 'b':300} 
 print(dict1)
 print(dict1['a']) 
 print(dict1['d'])
-```
+
+
 (1) print(dict1)   
 (2) print(dict1['a'])  
 (3) print(dict1['d'])  
-(4) 沒有錯誤. 
+(4) 沒有錯誤.
+```
+ 
 
----
 
-####  請問執行後的結果是哪一個答案呢?(選擇題)
+
+
 ```python
+#請問執行後的結果是哪一個答案呢?(選擇題)
+
 dict1={'a':100,'b':200,'b':300}
 print(dict1['b'])
-```
+
 (1) 100  
 (2) 200   
 (3) 300  
 (4) 0  
+```
+
 
 ---
 
 ### 建立Dictionary
 
 ```python
+#建立Dictionary
+
 >>> empty_dict = {} 
 >>> empty_dict
 {}
@@ -1061,7 +1146,7 @@ print(dict1['b'])
 	- 您可以透過 dict1.keys( ) 這個方法找出所有的 key
 	- 您可以透過 dict1. values( ) 這個方法找出所有的 value
 
----
+
 ###  新增與修改
 - 新增一筆資料
 	- 請將 key 與 value 儲存至一個變數內
@@ -1070,10 +1155,11 @@ print(dict1['b'])
 - 元素可否變更:
 	- 以 = 指派方式指派給 key 就可以變更資料
 
----
 
-#### 操作範例 1:請動手操作，並留意輸出結果
+
+
 ```python
+#操作範例 1:請動手操作，並留意輸出結果
 #dict3.py
 
 dict1={'a':100,'b':200, 'c':300} 
@@ -1081,8 +1167,9 @@ print(dict1)
 add_dic={'d':400} 
 dict1.update(add_dic) 
 print(dict1)
+
 ```
----
+
 ```python
 #dict4.py
 
@@ -1091,37 +1178,44 @@ print(dict1)
 dict1['a']='test'
 print(dict1)
 ```
----
 
-####  Question:請問執行後的結果哪一個是對的?(選擇題)
+
+
 ```python
+#Question:請問執行後的結果哪一個是對的?(選擇題)
+
 dict1={'a':100,'b':200, 'c':300} 
 add_dic={'d':400} 
 dict1.update(add_dic) 
 print(dict1['d'])
-```
 
 (1) 產生錯誤  
 (2) 200  
 (3) 300  
 (4) 400
+```
 
----
-####  請問執行後的結果哪一個是對的?(選擇題)
+
+
 ```python
+#請問執行後的結果哪一個是對的?(選擇題)
 dict1={'a':100,'b':200, 'c':300} 
 add_dic={'d':400} 
 dict1.update(add_dic) 
 print(dict1['e'])
-``` 
+
 (1) 產生錯誤  
 (2) 200  
 (3) 300  
 (4) 400   
+``` 
 
----
+
+
 
 ```python
+#{}
+
 >>> pythons = {
 ... 'Chapman': 'Graham',
 ... 'Cleese': 'John',
@@ -1166,6 +1260,7 @@ print(dict1['e'])
 >>> pythons
 {'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Marx': 'Groucho', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 ```
+---
 
 #### Homework:
 ```python
@@ -1202,16 +1297,17 @@ names[3]:梁朝為
 	- dict.clear( )  清除所有項目
 	- del dict  刪除字典
 
---- 
+-
 ###  關於 key 的判斷
 - 請以 (key in dict1.keys( )) 方式進行判斷
 - 存在傳回 true
 - 不存在傳回 false
 
----
 
-#### 操作範例 :請動手操作，並留意輸出結果
+
+
 ```python
+#操作範例 :請動手操作，並留意輸出結果
 #dict5.py
 
 dict1={'a':100,'b':200, 'c':300} 
@@ -1221,36 +1317,43 @@ print(dict1)
 print('c' in dict1.keys( )) 
 print('a' in dict1.keys( ))
 ```
----
 
-####  Question:請問執行後的結果哪一個是對的?(選擇題)
+
 ```python
+#Question:請問執行後的結果哪一個是對的?(選擇題)
+
 dict1={'a':100,'b':200, 'c':300} 
 del dict1['b']
 print ('b' in dict1.keys())
-```
+
+
+
 (1) 產生錯誤  
 (2) True  
 (3) 200  
 (4) False  
+```
 
----
 
-#### Question: 請問執行後的結果哪一個是對的?(選擇題)
 
 ```python
+#Question: 請問執行後的結果哪一個是對的?(選擇題)
 dict1={'a':100,'b':200, 'c':300} 
 dict1.clear( )
 print ('b' in dict1.keys( ))
-```
+
+
 (1) 產生錯誤  
 (2) True  
 (3) 200  
 (4) False 
 
+```
+
 ---
 
 ```python
+#update()
 >>> first = {'a': 1, 'b': 2} 
 >>> second = {'b': 'platypus'} 
 >>> first.update(second)
@@ -1258,13 +1361,12 @@ print ('b' in dict1.keys( ))
 {'b': 'platypus', 'a': 1}
 
 >>> del pythons['Marx']
-
 ``` 
 
 ---
 
 ```python
-
+#clear()
 
 >>> pythons = {'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 
@@ -1283,20 +1385,49 @@ print ('b' in dict1.keys( ))
 ```
 ---
 
-####  Question:請問執行後的結果哪一個是對的?(選擇題)
+
 ```python
+#Question:請問執行後的結果哪一個是對的?(選擇題)
 dict1={'a':100,'b':200, 'c':300} 
 del dict1
 print('b' in dict1.keys( ))
-```
+
 (1) 產生錯誤   
 (2) True    
 (3) 200     
-(4) False  
+(4) False 
+```
+ 
 
 ---
 
+### in
+
 ```python
+#操作範例:請動手操作，並留意輸出結果
+dict1={'a':100,'b':200,'c':300} 
+for c in dict1.keys( ):
+	print(c) 
+print("-----")
+
+for c in dict1.keys( ):
+	print(dict1[c]) 
+print("-----")
+
+for c in dict1: 
+	print(c)
+print("-----")
+
+for c in dict1.values( ):
+	print(c)
+ 
+```
+
+
+```python
+#in
+
+
 >>> pythons = {'Chapman': 'Graham', 'Cleese': 'John',
 'Jones': 'Terry', 'Palin': 'Michael'}
 >>> 'Chapman' in pythons 
@@ -1330,6 +1461,7 @@ False
 ```
 
 ---
+
 #### Homework:
 ```python
 // Name        : sequential1.py
@@ -1346,7 +1478,7 @@ False
 
 ---
 
-### key(),values(),items(),copy()
+### keys(),values(),items(),copy()
 
 ```python
 
@@ -1382,30 +1514,12 @@ dict_keys(['green', 'red', 'yellow'])
 
 ---
 
-#### 操作範例:請動手操作，並留意輸出結果
-```python
-dict1={'a':100,'b':200,'c':300} 
-for c in dict1.keys( ):
-	print(c) 
-print("-----")
-
-for c in dict1.keys( ):
-	print(dict1[c]) 
-print("-----")
-
-for c in dict1: 
-	print(c)
-print("-----")
-
-for c in dict1.values( ):
-	print(c)
- 
-```
----
 
 ## Sets
 
 ```python
+#set()
+
 >>> empty_set = set()
 >>> empty_set
 set()
