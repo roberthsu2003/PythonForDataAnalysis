@@ -199,39 +199,8 @@ print(list1[-2])
 
 ---
 
-### 2維List
-```python
->>> small_birds = ['hummingbird', 'finch']
->>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
->>> carol_birds = [3, 'French hens', 2, 'turtledoves']
->>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
 
-
->>> all_birds
-	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
-
-
->>> all_birds[0]
-   ['hummingbird', 'finch']
-
-
->>> all_birds[1]
-['dodo', 'passenger pigeon', 'Norwegian Blue']
-
-
->>> all_birds[1][0] 
-'dodo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[2] = 'Wanda'
->>> marxes
-['Groucho', 'Chico', 'Wanda']
-```
-
----
-
-###  部分取值
+###  使用切割語法,取出部份值
 - list內部分取值採用[ n:m ]方式，n與m是整數。
 	- n 代表起始位置，第一個為 0。
 	- m 代表結束位置，不包含這個位置。
@@ -364,6 +333,39 @@ x = ["a", "b", "b"]
 
 ---
 
+### 2維List
+```python
+>>> small_birds = ['hummingbird', 'finch']
+>>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
+>>> carol_birds = [3, 'French hens', 2, 'turtledoves']
+>>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
+
+
+>>> all_birds
+	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
+
+
+>>> all_birds[0]
+   ['hummingbird', 'finch']
+
+
+>>> all_birds[1]
+['dodo', 'passenger pigeon', 'Norwegian Blue']
+
+
+>>> all_birds[1][0] 
+'dodo'
+
+
+>>> marxes = ['Groucho', 'Chico', 'Harpo']
+>>> marxes[2] = 'Wanda'
+>>> marxes
+['Groucho', 'Chico', 'Wanda']
+```
+
+---
+
+
 ###  list 項目附加資料
 - append 附加資料:
 	-  你提供的資料就以一筆資料方式加入到 list。
@@ -422,8 +424,6 @@ x = ["a", "b", "b"]
 
 
 
-
-
 ```python
 #操作範例:請動手操作，並留意輸出結果
 #list6.py
@@ -439,7 +439,7 @@ print(list1[3])
 
 
 ```python
-#擴展
+#使用extend()或+=
 >>> marxes.append('Zeppo')
 >>> marxes
 ['Groucho', 'Chico', 'Harpo', 'Zeppo']
@@ -471,8 +471,6 @@ print(list1[3])
 ### list 項目插入新資料
 - list 可使用 insert 方式插入新的資料:
 	- list.insert(索引值，插入的資料)。
-
-
 
 ```python
 #操作範例:請動手操作，並留意輸出結果
@@ -672,7 +670,9 @@ print(list1)
 ### list index(), in, count()
 
 ```python
-#index(), in , count()
+#index(value)- 取出value索引編號
+#in - 測試是否有值
+#count(value) - value的數量
 
 >>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
 >>> marxes.index('Chico')
@@ -785,7 +785,8 @@ print(a)
 
 
 ```python
-#sort(), len()
+#sort()-排序
+#len()-數量
 >>> numbers = [2, 1, 4.0, 3] 
 >>> numbers.sort()
 >>> numbers
@@ -844,17 +845,18 @@ print(a)
 
 >>> b
 ['surprise', 2, 3]
+
 >>> b[0] = 'I hate surprises'
 >>> b
 ['I hate surprises', 2, 3]
 >>> a
 ['I hate surprises', 2, 3]
 
-
+#3種copy方式
 >>>a=[1,2,3] 
 >>> b = a.copy() 
 >>> c = list(a) 
->>>d=a[:]
+>>> d=a[:]
 
 
 >>> a[0] = 'integer lists are boring'
@@ -897,10 +899,6 @@ print(a)
 ###  資料反向
 - 可利用 reverse( ) 函數進行反向排序動作。
 - 這函數沒有傳回值，list 執行後就會進行反向排序。
-
-
-
-
 
 ```python
 #Question: 請問以下的結果會是什麼?(選擇題)
@@ -1030,7 +1028,6 @@ print (list2)
 ## Dictionaries 介紹
 - 可以想像你現在手上有一本電子英漢字典，當你輸入英文單字的時候，
 就可以查得到它的唯一翻譯。
-
 - 你所關心的英文單字與翻譯之間有著 一對一 的關係:
 	- 你輸入的英文單字，就叫做 Key 
 	- 而得到的翻譯，就叫做 Value 
@@ -1040,13 +1037,9 @@ print (list2)
 - 可輸入 key 找尋您要找出來的值。
 - 如果輸入的 key 不存在，那就會出現錯誤訊息。
 
-
-
 ```python
 #操作範例:請動手操作，並留意輸出結果
 # dict1.py
-dict1={'a':100,'b':200,'c':300} 
-print(dict1) 
 dict1={'a':200,'b':400,'b':300} 
 print(dict1)
 print(dict1['a']) 
@@ -1054,16 +1047,13 @@ print(dict1['b'])
 print(dict1['d']) #不存在
 ```
 
-
 ```python
 #Question: 請問執行後的結果哪一行是錯的?(選擇題)
-
 
 dict1={'a':100,'b':200, 'b':300} 
 print(dict1)
 print(dict1['a']) 
 print(dict1['d'])
-
 
 (1) print(dict1)   
 (2) print(dict1['a'])  
@@ -1071,10 +1061,6 @@ print(dict1['d'])
 (4) 沒有錯誤.
 ```
  
-
-
-
-
 ```python
 #請問執行後的結果是哪一個答案呢?(選擇題)
 
@@ -1101,16 +1087,15 @@ print(dict1['b'])
 
 
 >>> bierce = {
-... "day": "A period of twenty-four hours, mostly misspent",
-... "positive": "Mistaken at the top of one's voice",
-... "misfortune": "The kind of fortune that never misses",
-... } 
->>>
+"day": "A period of twenty-four hours, mostly misspent",
+"positive": "Mistaken at the top of one's voice",
+"misfortune": "The kind of fortune that never misses"
+ } 
+
 
 
 >>> bierce
 {'misfortune': 'The kind of fortune that never misses', 'positive': "Mistaken at the top of one's voice", 'day': 'A period of twenty-four hours, mostly misspent'}
-
 
 >>> lol = [ ['a', 'b'], ['c', 'd'], ['e', 'f'] ]
 >>> dict(lol)
@@ -1144,9 +1129,9 @@ print(dict1['b'])
 	- 可以用數字、字串或者 tuple
 	- 不可以使用 list
 
-- 如何找出所有的 key 與 value?
+- 如何找出所有的 key 與 value
 	- 您可以透過 dict1.keys( ) 這個方法找出所有的 key
-	- 您可以透過 dict1. values( ) 這個方法找出所有的 value
+	- 您可以透過 dict1.values( ) 這個方法找出所有的 value
 
 
 ###  新增與修改
@@ -1169,7 +1154,6 @@ print(dict1)
 add_dic={'d':400} 
 dict1.update(add_dic) 
 print(dict1)
-
 ```
 
 ```python
@@ -1212,30 +1196,26 @@ print(dict1['e'])
 (4) 400   
 ``` 
 
-
-
-
 ```python
 #{}
-
 >>> pythons = {
-... 'Chapman': 'Graham',
-... 'Cleese': 'John',
-... 'Idle': 'Eric',
-... 'Jones': 'Terry',
-... 'Palin': 'Michael',
-... }
+'Chapman': 'Graham',
+'Cleese': 'John',
+'Idle': 'Eric',
+'Jones': 'Terry',
+'Palin': 'Michael',
+}
 
 >>> pythons
 {'Cleese': 'John', 'Jones': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric'}
 
-
+#沒有key就新增
 >>> pythons['Gilliam'] = 'Gerry'
 >>> pythons
 {'Cleese': 'John', 'Gilliam': 'Gerry', 'Palin': 'Michael',
 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 
-
+#有key就更新
 >>> pythons['Gilliam'] = 'Terry'
 >>> pythons
 {'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael',
@@ -1246,17 +1226,18 @@ print(dict1['e'])
 
 ```python
 >>> pythons = {
-... 'Chapman': 'Graham',
-... 'Cleese': 'John',
-... 'Gilliam': 'Terry',
-... 'Idle': 'Eric',
-... 'Jones': 'Terry',
-... 'Palin': 'Michael'
-... }
+'Chapman': 'Graham',
+'Cleese': 'John',
+'Gilliam': 'Terry',
+'Idle': 'Eric',
+'Jones': 'Terry',
+'Palin': 'Michael'
+}
+
 >>> pythons
 {'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
 
-
+#利用update(dictionary), 一次增加多個key,value
 >>> others = { 'Marx': 'Groucho', 'Howard': 'Moe' }
 >>> pythons.update(others)
 >>> pythons
@@ -1403,7 +1384,7 @@ print('b' in dict1.keys( ))
 
 ---
 
-### in
+### for in
 
 ```python
 #操作範例:請動手操作，並留意輸出結果
@@ -1424,8 +1405,8 @@ for c in dict1.values( ):
 	print(c)
  
 ```
-
-
+---
+###  in
 ```python
 #in
 
@@ -1456,7 +1437,7 @@ False
 >>> pythons.get('Cleese') 
 'John'
 
-
+#get()方法，可以加入第2個參數, 以表示如何沒有這個key時,將輸出的錯誤
 >>> pythons.get('Marx', 'Not a Python')
 'Not a Python'
 
