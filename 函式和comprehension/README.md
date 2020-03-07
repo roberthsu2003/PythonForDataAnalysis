@@ -30,6 +30,8 @@ def func_sum():
 	print("呼叫函式")
 	return()
 
+func_sum()
+
 ```
 
 ```python
@@ -82,6 +84,7 @@ def func_sum(a, b):
 	print(c)
 	return()
 
+func_sum(3, 5)
 ```
 
 ####  Question:請問執行後的結果哪一個是對的?(選擇題)
@@ -193,6 +196,7 @@ print(z)
 ```python
 #Name        : function2.py
 #輸入攝氏溫度，求華氏溫度
+#使用function
 #=============================
 
 攝氏10度轉華氏溫度=50
@@ -263,6 +267,7 @@ print(y)
 ```python
 #Name        : return1.py
 #自鍵盤輸入一個數字n,顯示1...n。
+#使用function()
 #=============================
 
 請輸入數字 n:10
