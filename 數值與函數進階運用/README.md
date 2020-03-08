@@ -260,7 +260,7 @@ print(z)
 
 
 
-### 做用引數位置
+### 引數位置呼叫
 
 ```python
 >>> def menu(wine, entree, dessert):
@@ -274,7 +274,7 @@ print(z)
 
 ```
 
-### 使用引數名稱
+### 引數名稱名稱呼叫
 
 ```python
 >>> menu(entree='beef', dessert='bagel', wine='bordeaux')
