@@ -138,7 +138,7 @@ print(mz('Wolfgang', ' Amadeus'))
 ```
 
 ### 匿名函數說明
-1. 匿名函數可用於 list 內，可以快速的處理各種數值計算結果，傳入資料與得 到回應。
+1. 匿名函數可用於 list 內，可以快速的處理各種數值計算結果，傳入資料與得到回應。
 2. 匿名函數可用於條件分析表達上。
 
 #### 操作範例 1-1:請動手操作，並留意輸出結果
@@ -310,7 +310,7 @@ print(list(list8))
 #modu.py
 class test1:
 	def __init__(self):
-	print("create") 
+		print("create") 
 	
 def fun1( ):
 	print("function")
@@ -325,9 +325,7 @@ if __name__ == '__main__':
 import modu
 ob1=modu.test1( ) #create object 
 modu.fun1( )
-''' 
-因權限因素不能呼叫使用主程式 
-''' 
+ 
 ```
 
 ####  請問以下這一行語法解釋哪一個錯誤?(選擇題)
