@@ -55,7 +55,7 @@ def run_with_positional_args(func, *args):
 ```python
 def outer(a, b):
 	def inner(c, d): 
-		returnc+d
+		return c+d
 	return inner(a, b)
 
 
