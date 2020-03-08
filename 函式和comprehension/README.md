@@ -482,7 +482,7 @@ print(a)
 
 ```python
 
-#使用list comprehension+for in建立
+#使用list comprehension + for in建立
 [ expression for item in iterable ]
 
 >>> number_list = [number for number in range(1,6)] 
