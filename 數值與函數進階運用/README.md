@@ -285,7 +285,7 @@ print(z)
 
 ```
 
-### 指定預設參數名稱
+### 指定預設參數的值
 
 ```python
 >>> def menu(wine, entree, dessert='pudding'):
