@@ -3,7 +3,7 @@
 
 ```python
 >>> def answer(): 
-		print(42)
+        print(42)
 
 >>> answer()
 42
@@ -12,7 +12,7 @@
 ```python
 
 >>> def run_something(func): 
-		func()
+        func()
 
 >>> run_something(answer) 
 42
@@ -21,8 +21,8 @@
 
 ```python
 def add_args(arg1, arg2): 
-	print(arg1 + arg2)
-	
+    print(arg1 + arg2)
+    
 
 >>> type(add_args)
 <class 'function'>
@@ -294,7 +294,6 @@ print(list(list8))
 
 ##  使用模組
 1. 可透過 import 引用其他檔案，就可以使用其他檔案內的類別與函數進行功能擴充。
-
 2. Python 檔案命名時不要與其他已知模組名稱相同，名稱相同時預設 呼叫自己的檔案。
 
 ###  使用模組
