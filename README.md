@@ -31,7 +31,7 @@
 
 [14.pandas的基礎功能](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/README.ipynb)
 
-[15.pandas 資料載入,儲存和檔案格式](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)       
+[15.pandas檔案存取](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%BC%89%E5%85%A5%E5%92%8C%E5%84%B2%E5%AD%98%E5%92%8C%E6%AA%94%E6%A1%88%E6%A0%BC%E5%BC%8F)       
 
 [16.資料清理和使用前準備](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E6%B8%85%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99)     
 
