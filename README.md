@@ -35,7 +35,7 @@
 
 [16.資料整理和使用前準備](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/README.ipynb)     
 
-[17.資料處理:join,combine,and Reshape](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%99%95%E7%90%86)    
+[17.數據整理:連接,合併和重塑](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E8%99%95%E7%90%86)    
  
 [18.群組資料和群組運算](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97)   
 
