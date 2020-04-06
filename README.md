@@ -37,7 +37,7 @@
 
 [17.數據整理:連接,合併和重塑](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/README.ipynb)    
  
-[18.群組資料和群組運算](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97)   
+[18.群組資料和群組運算](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/README.ipynb)   
 
 [19.日期和時間](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93)  
 
