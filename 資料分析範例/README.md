@@ -16,7 +16,7 @@
  
  [8.pandas_datareader股票分析](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/pandas_datareader%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90.ipynb)
  
- [9.Data from Bitly-1](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Data%20from%20Bitly-1.ipynb)
+ [9.統計各區域的筆數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E7%9A%84%E7%AD%86%E6%95%B8.ipynb)
  
  [10.Data from bitly-2](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Data%20from%20bitly-2.ipynb)
  
