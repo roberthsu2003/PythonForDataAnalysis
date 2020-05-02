@@ -18,9 +18,9 @@
  
  [9.統計各區域的筆數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E7%9A%84%E7%AD%86%E6%95%B8.ipynb)
  
- [10.Data from bitly-2](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Data%20from%20bitly-2.ipynb)
+ [10.統計各區域使用windows作業系統數量](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E4%BD%BF%E7%94%A8windows%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E6%95%B8%E9%87%8F.ipynb)
  
- [11.Hierarchical Indexing](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Hierarchical%20Indexing.ipynb)
+ [11.階層式索引轉樞紐分析](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Hierarchical%20Indexing.ipynb)
  
  [12.MovieLens1MDataset](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/MovieLens1MDataset.ipynb)
  
