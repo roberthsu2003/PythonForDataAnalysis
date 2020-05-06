@@ -589,6 +589,7 @@ False
 
 ### match() 函式
 - 你可以使用 match() 函式將 RE 模式與給定字串來匹配。match() 函式也包含了標誌，標誌定義正規表示式的行為，它可以有不同的值
+- re.match 字符的起始位置匹配一个模式，如果不是起始位置匹配成功的话，match()就返回none
  
 ```python
 re.match(pattern, string, flags=0)
