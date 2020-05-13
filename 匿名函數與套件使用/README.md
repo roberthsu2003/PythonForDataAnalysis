@@ -265,13 +265,15 @@ print(type(dict1))
 list3=map(lambda x : x['name'], dict1)
 print(list(list3))
 
-list4=map(lambda x : x['points']*10, dict1) print(list(list4))
+list4=map(lambda x : x['points']*10, dict1) 
+print(list(list4))
 
 list5=map(lambda x : x['name'] == "python", dict1) print(list(list5))
 
 list6a = [1, 2, 3]
 list6b = [10, 20, 30]
-list6=map(lambda x, y: x + y, list6a, list6b) print(list(list6))
+list6=map(lambda x, y: x + y, list6a, list6b) 
+print(list(list6))
 ```
 
 #### 操作範例 3:請動手操作，並留意輸出結果
