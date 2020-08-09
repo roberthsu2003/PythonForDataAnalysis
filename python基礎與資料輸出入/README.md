@@ -1,10 +1,16 @@
 # python基礎 
-## 安裝Anacoda
-[安裝Anacoda](https://www.anaconda.com/)  
 
+## Microsoft Azure noteboot(雲端編輯器)
+[Azure notebook](https://notebooks.azure.com/)
 
-## 安裝pycharm 
+## Google Colab(雲端編輯器)
+[Google Colab](https://colab.research.google.com/notebooks/intro.ipynb)
+
+## 安裝pycharm (本地端編輯器)
 [安裝pycharm community](https://www.jetbrains.com/pycharm/)  
+
+## anaConda(本地虛擬環境編輯器)
+[本地編輯器](https://www.anaconda.com/)
 
 ## python 編譯器語言
 python是編譯器語言,由上而下,一次只執行一行程式  
@@ -73,6 +79,7 @@ $jupyter notebook
 ```
 
 ![jupyter notebookt畫面](./images/pic1.png)
+
 ### 使用pycharm建立並執行xxx.py檔執行python
 
 ```python
@@ -112,10 +119,10 @@ openedx=100
 
 7. 可以在同一列中指定多個變數，變數之間以「,」分隔，而內容之間 也以「,」分隔。
 
-8. 例如建立變數 pcschool 內容為巨匠，years 內容為 2018
+8. 例如建立變數 pcschool 內容為台灣，years 內容為 2018
 
 ```python
-pcschool, years = '巨匠’, 2018
+taiwan, years = '台灣’, 2018
 ```
 
 9. 如果不使用變數可以選擇以 del 語法將變數刪除以節省記憶體。
@@ -286,10 +293,8 @@ var1=20
 print(type(var1))
 var2=123.45
 print(type(var2))
-var3=True 
-print(type(var3)) 
-var4='string1' 
-print(type(var4)) 
+var3=True print(type(var3)) 
+var4='string1' print(type(var4)) 
 ```
 
 ### 資料型態:請動手操作，並留意輸出結果(type2.py)
