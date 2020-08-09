@@ -20,11 +20,11 @@
 
  
 ```python
-# 使用中括號 [] or list()
+# 使用中括號 [] or list() 建立空的list
 
->>> empty_list = [] #使用[]建立list
->>> weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'] 
->>> big_birds = ['emu', 'ostrich', 'cassowary']
+>>> empty_list = [] #使用[]建立空的list
+>>> weekdays = ['星期一', '星期二', '星期三', '星期四', '星期五', '星期六', '星期日'] 
+>>> big_birds = ['emu', 'ostrich', 'cassowary'] 
 >>> first_names = ['Graham', 'John', 'Terry', 'Terry', 'Michael']
 
 
@@ -77,31 +77,39 @@
 ```python
 #使用索引編號取出內容
 
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[0]
-    'Groucho'
->>> marxes[1]
-	'Chico'
->>> marxes[2]
-	'Harpo'
+>>> citys = ['台北', '台中', '高雄']
+>>> citys[0]
+    '台北'
+>>> citys[1]
+	'台中'
+>>> citys[2]
+	'高雄'
 
->>> marxes[-1] 
-'Harpo'
->>> marxes[-2] 
-'Chico'
->>> marxes[-3] 
-'Groucho'
+>>> citys[-1] 
+'高雄'
+>>> citys[-2] 
+'台中'
+>>> citys[-3] 
+'台北'
 
 
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes[5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> 
+>>> citys = ['台北', '台中', '高雄'] 
+>>> citys[3]
+
+IndexError                               
+Traceback (most recent call last)
+<ipython-input-5-73d59aebae96> in <module>
+----> 1 citys[3]
+
 IndexError: list index out of range
->>> marxes[-5]
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> 
+>>> citys[-5]
+IndexError                               
+Traceback (most recent call last)
+<ipython-input-5-73d59aebae96> in <module>
+----> 1 citys[-5]
+
 IndexError: list index out of range
+
 ```
 
 ---
@@ -149,9 +157,9 @@ list1=['1','2']
 list1[1]='0' 
 print(list1)
 
-(1) 02   
-(2) 10   
-(3) 120   
+(1) ['0','2']   
+(2) ['1', '0']   
+(3) ['1', '20']   
 (4) 錯誤
 ```
   
@@ -271,21 +279,21 @@ print(list1[-1])
 
 ```python
 #slice
->>> marxes = ['Groucho', 'Chico,' 'Harpo']
->>> marxes[0:2]
-['Groucho', 'Chico']
+>>> citys = ['台北', '台中', '高雄']
+>>> citys[0:2]
+['台北', '台中']
 
 
->>> marxes[::2]
-['Groucho', 'Harpo']
+>>> citys[::2]
+['台北', '高雄']
 
 
->>> marxes[::-2] 
-['Harpo', 'Groucho']
+>>> citys[::-2] 
+['高雄', '台北']
 
 
->>> marxes[::-1]
-['Harpo', 'Chico', 'Groucho']
+>>> citys[::-1]
+['高雄', '台中', '台北']
 
 ```
 
@@ -299,8 +307,7 @@ print(list1[-1])
 
 ```python
 #請問最後輸出結果會是什麼?(選擇題)
-list1=['a','b','c'] 
-print(list1) 
+list1=['a','b','c']  
 list1[2]='dd' 
 print(list1)
 
@@ -335,32 +342,27 @@ x = ["a", "b", "b"]
 
 ### 2維List
 ```python
->>> small_birds = ['hummingbird', 'finch']
->>> extinct_birds = ['dodo', 'passenger pigeon', 'Norwegian Blue'] 
->>> carol_birds = [3, 'French hens', 2, 'turtledoves']
->>> all_birds = [small_birds, extinct_birds, 'macaw', carol_birds]
+>>> nb = ['筆記電腦', '商用筆電']
+>>> mobile = ['APPLE', 'ASUS', 'HTC'] 
+>>> home = [3, '冰箱', 2, '洗衣機']
+>>> all3c = [nb, mobile, home]
 
 
->>> all_birds
-	[['hummingbird', 'finch'], ['dodo', 'passenger pigeon', 'Norwegian Blue'], 'macaw', [3, 'French hens', 2, 'turtledoves']]
+>>> all3c
+[['筆記電腦', '商用筆電'], ['APPLE', 'ASUS', 'HTC'], [3, '冰箱', 2, '洗衣機']]
 
 
->>> all_birds[0]
-   ['hummingbird', 'finch']
+>>> all3c[0]
+['筆記電腦', '商用筆電']
 
 
->>> all_birds[1]
-['dodo', 'passenger pigeon', 'Norwegian Blue']
+>>> all3c[1]
+['APPLE', 'ASUS', 'HTC']
 
 
->>> all_birds[1][0] 
-'dodo'
+>>> all3c[2][1] 
+'冰箱'
 
-
->>> marxes = ['Groucho', 'Chico', 'Harpo']
->>> marxes[2] = 'Wanda'
->>> marxes
-['Groucho', 'Chico', 'Wanda']
 ```
 
 ---
@@ -370,7 +372,7 @@ x = ["a", "b", "b"]
 - append 附加資料:
 	-  你提供的資料就以一筆資料方式加入到 list。
 	-  一次只能加入一個資料。
-- 也可利用 + 的方式於原本的 list 之後附加新的資料。
+- 也可利用 + list 的方式於原本的 list 之後附加新的資料。
 
 ```python
 #list5.py
@@ -442,37 +444,37 @@ print(list1[3])
 
 ```python
 #使用extend()或+=
->>> marxes.append('Zeppo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
+>>> citys = ['台北', '台中', '高雄']
+>>> citys.append('台南')
+>>> citys
+['台北', '台中', '高雄', '台南']
 
 
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.extend(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+>>> citys = ['台北', '台中', '高雄', '台南'] 
+>>> others = ['花蓮', '台東']
+>>> citys.extend(others)
+>>> citys
+['台北', '台中', '高雄', '台南', '花蓮']
 
 
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo']
->>> others = ['Gummo', 'Karl']
->>> marxes += others
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', 'Gummo', 'Karl']
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮']
+>>> others = ['宜蘭', '新竹']
+>>> citys += others
+>>> citys
+['台北', '台中', '高雄', '台南', '花蓮', '台東', '宜蘭', '新竹']
 
 
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> others = ['Gummo', 'Karl']
->>> marxes.append(others)
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo', ['Gummo', 'Karl']]
-
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮'] 
+>>> others = ['宜蘭', '新竹']
+>>> citys.append(others)
+>>> citys
+['台北', '台中', '高雄', '台南', '花蓮', ['宜蘭', '新竹']]
 ```
 ---
 
 ### list 項目插入新資料
 - list 可使用 insert 方式插入新的資料:
-	- list.insert(索引值，插入的資料)。
+	- list.insert(索引值,插入的資料)。
 
 ```python
 #操作範例:請動手操作，並留意輸出結果
@@ -504,14 +506,15 @@ print(list1[3])
  
  ```python
  #insert
->>>marxes.insert(3, 'Gummo') 
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
+>>> citys = ['台北', '台中', '高雄']
+>>> citys.insert(3, '台南') 
+>>> citys
+['台北', '台中', '高雄', '台南']
 
 
->>> marxes.insert(10, 'Karl')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo', 'Karl']
+>>> citys.insert(10, '花蓮')
+>>> citys
+['台北', '台中', '高雄', '台南', '花蓮']
 
  ```
  ---
@@ -522,7 +525,42 @@ print(list1[3])
 	- list.pop( )
 	- del list[ ]
 
+```python
+#del
+#pop()
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮']
+>>> del citys[-1]
+>>> citys
+['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
 
+
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮'] 
+>>> citys[2]
+'高雄'
+>>> del citys[2]
+>>> citys
+['台北', '台中', '台南', '花蓮']
+>>>citys[2]
+'台南'
+
+
+>>> all3c = ['筆記電腦', '商用筆電', 'APPLE', 'ASUS', 'HTC'] 
+>>> all3c.remove('APPLE')
+>>> all3c
+['筆記電腦', '商用筆電', 'ASUS', 'HTC']
+
+
+>>> all3c = ['筆記電腦', '商用筆電', 'APPLE', 'ASUS', 'HTC'] 
+>>> all3c.pop()
+'HTC'
+>>> all3c
+['筆記電腦', '商用筆電', 'APPLE', 'ASUS']
+>>> all3c.pop(1)
+'商用筆電'
+>>> all3c
+['筆記電腦', 'APPLE', 'ASUS']
+```
+--- 
 
 ###  list.remove
 - list 可透過 remove 方式移除資料
@@ -630,43 +668,6 @@ print(list1)
 (4) ['1','x']
 ```
 
-
-
-```python
-#del
-#pop()
->>> del marxes[-1]
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes[2]
-'Harpo'
->>> del marxes[2]
->>> marxes
-['Groucho', 'Chico', 'Gummo', 'Zeppo']
->>> marxes[2]
-'Gummo'
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Gummo', 'Zeppo'] 
->>> marxes.remove('Gummo')
->>> marxes
-['Groucho', 'Chico', 'Harpo', 'Zeppo']
-
-
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.pop()
-'Zeppo'
->>> marxes
-['Groucho', 'Chico', 'Harpo'] 
->>> marxes.pop(1)
-'Chico'
->>> marxes
-['Groucho', 'Harpo']
-```
-
 ---
 
 ### list index(), in, count()
@@ -676,15 +677,27 @@ print(list1)
 #in - 測試是否有值
 #count(value) - value的數量
 
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> marxes.index('Chico')
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮'] 
+>>> citys.index('台中')
 1
 
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮'] 
+>>> citys.index('台中1')
+ValueError                                
+Traceback (most recent call last)
+<ipython-input-78-e4644962e59d> in <module>
+      1 #檢查
+      2 citys = ['台北', '台中', '高雄', '台南', '花蓮']
+----> 3 citys.index('台中1')
 
->>> marxes = ['Groucho', 'Chico', 'Harpo', 'Zeppo'] 
->>> 'Groucho' in marxes
+ValueError: '台中1' is not in list
+
+
+
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮']  
+>>> '高雄' in citys
 True
->>> 'Bob' in marxes
+>>> '新竹' in citys
 False
 
 
@@ -693,13 +706,13 @@ False
 True
 
 
->>> marxes = ['Groucho', 'Chico', 'Harpo'] 
->>> marxes.count('Harpo')
+>>> citys = ['台北', '台中', '高雄', '台南', '花蓮']
+>>> citys.count('台北')
 1
->>> marxes.count('Bob')
+>>> citys.count('新竹')
 0
->>> snl_skit = ['cheeseburger', 'cheeseburger', 'cheeseburger'] 
->>> snl_skit.count('cheeseburger')
+>>> snack = ['蛋糕', '蛋糕', '蛋糕'] 
+>>> snack.count('蛋糕')
 3
 
 ```
@@ -725,7 +738,7 @@ True
 
 
 ###  排序原則與參數
-- 可加入的參數:
+- 可加入的引數名稱:
 	- reverse=True
 		- 有這個參數由大到小排序
 		- 若沒有這個參數則由小到大排序
@@ -807,7 +820,8 @@ print(a)
 ```
 ---
 
-#### Homework:試使用陣列配合for迴圈，找尋陣列中最小值的程式，程式執行時會要求連續輸入5個數值，輸入完畢會顯示所輸入5個數值中的最小值
+#### Homework:  
+試使用陣列配合for迴圈，找尋陣列中最小值的程式，程式執行時會要求連續輸入5個數值，輸入完畢會顯示所輸入5個數值中的最小值
 ```python
 #問題 min.py
 #試使用陣列配合for迴圈，找尋陣列中最小值的程式，程式執行時會要求將輸入數值的數量，輸入完畢會顯示所輸入數值中的最小值
@@ -830,10 +844,10 @@ print(a)
 #list copy()
 
 
->>>a=[1,2,3] 
+>>> a=[1,2,3] 
 >>> a
 [1, 2, 3] 
->>>b=a
+>>> b=a
 
 
 >>> b
@@ -855,7 +869,7 @@ print(a)
 ['I hate surprises', 2, 3]
 
 #3種copy方式
->>>a=[1,2,3] 
+>>> a=[1,2,3] 
 >>> b = a.copy() 
 >>> c = list(a) 
 >>> d=a[:]
@@ -929,30 +943,31 @@ print (list2)
 ()
 
 
->>> one_marx = 'Groucho', 
->>> one_marx ('Groucho',)
+>>> one_city = '台北', 
+>>> one_city 
+('台北',)
 
 
->>> marx_tuple = 'Groucho', 'Chico', 'Harpo' 
->>> marx_tuple
-('Groucho', 'Chico', 'Harpo')
+>>> citys = '台北', '台中', '高雄', '台南', '花蓮' 
+>>> citys
+('台北', '台中', '高雄', '台南', '花蓮')
 
 
->>> marx_tuple = ('Groucho', 'Chico', 'Harpo') 
->>> marx_tuple
-('Groucho', 'Chico', 'Harpo')
+>>> citys = ('台北', '台中', '高雄', '台南', '花蓮') 
+>>> citys
+('台北', '台中', '高雄', '台南', '花蓮')
 
 
->>> marx_tuple = ('Groucho', 'Chico', 'Harpo') 
->>> a, b, c = marx_tuple
+>>> citys = ('台北', '台中', '高雄') 
+>>> a, b, c = citys
 >>> a
-'Groucho'
+'台北'
 >>> b
-'Chico'
+'台中'
 >>> c
-'Harpo'
+'高雄'
 
-
+#內容交換
 >>> password = 'swordfish'
 >>> icecream = 'tuttifrutti'
 >>> password, icecream = icecream, password
@@ -1039,45 +1054,6 @@ print (list2)
 - 可輸入 key 找尋您要找出來的值。
 - 如果輸入的 key 不存在，那就會出現錯誤訊息。
 
-```python
-#操作範例:請動手操作，並留意輸出結果
-# dict1.py
-dict1={'a':200,'b':400,'b':300} 
-print(dict1)
-print(dict1['a']) 
-print(dict1['b']) 
-print(dict1['d']) #不存在
-```
-
-```python
-#Question: 請問執行後的結果哪一行是錯的?(選擇題)
-
-dict1={'a':100,'b':200, 'b':300} 
-print(dict1)
-print(dict1['a']) 
-print(dict1['d'])
-
-(1) print(dict1)   
-(2) print(dict1['a'])  
-(3) print(dict1['d'])  
-(4) 沒有錯誤.
-```
- 
-```python
-#請問執行後的結果是哪一個答案呢?(選擇題)
-
-dict1={'a':100,'b':200,'b':300}
-print(dict1['b'])
-
-(1) 100  
-(2) 200   
-(3) 300  
-(4) 0  
-```
-
-
----
-
 ### 建立Dictionary
 
 ```python
@@ -1088,16 +1064,19 @@ print(dict1['b'])
 {}
 
 
->>> bierce = {
-"day": "A period of twenty-four hours, mostly misspent",
-"positive": "Mistaken at the top of one's voice",
-"misfortune": "The kind of fortune that never misses"
+>>> codes = {
+"tw": "Taiwan",
+"jp": "japan",
+"hk": "Hong Kong"
  } 
 
 
 
->>> bierce
-{'misfortune': 'The kind of fortune that never misses', 'positive': "Mistaken at the top of one's voice", 'day': 'A period of twenty-four hours, mostly misspent'}
+>>> codes
+{"tw": "Taiwan","jp": "japan","hk": "Hong Kong" } 
+
+>>> codes['tw']
+'taiwan'
 
 >>> lol = [ ['a', 'b'], ['c', 'd'], ['e', 'f'] ]
 >>> dict(lol)
@@ -1143,6 +1122,47 @@ print(dict1['b'])
 
 - 元素可否變更:
 	- 以 = 指派方式指派給 key 就可以變更資料
+
+---
+
+```python
+#操作範例:請動手操作，並留意輸出結果
+# dict1.py
+dict1={'a':200,'b':400,'b':300} 
+print(dict1)
+print(dict1['a']) 
+print(dict1['b']) 
+print(dict1['d']) #不存在
+```
+
+```python
+#Question: 請問執行後的結果哪一行是錯的?(選擇題)
+
+dict1={'a':100,'b':200, 'b':300} 
+print(dict1)
+print(dict1['a']) 
+print(dict1['d'])
+
+(1) print(dict1)   
+(2) print(dict1['a'])  
+(3) print(dict1['d'])  
+(4) 沒有錯誤.
+```
+ 
+```python
+#請問執行後的結果是哪一個答案呢?(選擇題)
+
+dict1={'a':100,'b':200,'b':300}
+print(dict1['b'])
+
+(1) 100  
+(2) 200   
+(3) 300  
+(4) 0  
+```
+
+
+---
 
 
 
@@ -1200,50 +1220,47 @@ print(dict1['e'])
 
 ```python
 #{}
->>> pythons = {
-'Chapman': 'Graham',
-'Cleese': 'John',
-'Idle': 'Eric',
-'Jones': 'Terry',
-'Palin': 'Michael',
+>>> nums = {
+1: 'one',
+2: 'two',
+3: 'three',
+4: 'four',
+5: 'five',
 }
 
->>> pythons
-{'Cleese': 'John', 'Jones': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric'}
+>>> nums
+{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}
 
 #沒有key就新增
->>> pythons['Gilliam'] = 'Gerry'
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Gerry', 'Palin': 'Michael',
-'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> nums[6] = 'six'
+>>> nums
+{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six'}
 
 #有key就更新
->>> pythons['Gilliam'] = 'Terry'
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael',
-'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> nums[6] = 'SIX'
+>>> nums
+{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'SIX'}
 
 ```
 ---
 
 ```python
->>> pythons = {
-'Chapman': 'Graham',
-'Cleese': 'John',
-'Gilliam': 'Terry',
-'Idle': 'Eric',
-'Jones': 'Terry',
-'Palin': 'Michael'
+>>> nums = {
+1: 'one',
+2: 'two',
+3: 'three',
+4: 'four',
+5: 'five',
 }
 
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> nums
+{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five'}
 
 #利用update(dictionary), 一次增加多個key,value
->>> others = { 'Marx': 'Groucho', 'Howard': 'Moe' }
->>> pythons.update(others)
->>> pythons
-{'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Marx': 'Groucho', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> others = {6:'six', 7:'seven'}
+>>> nums.update(others)
+>>> nums
+{1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven'}
 ```
 ---
 
@@ -1299,8 +1316,8 @@ dict1={'a':100,'b':200, 'c':300}
 print(dict1)
 del dict1['c']
 print(dict1)
-print('c' in dict1.keys( )) 
-print('a' in dict1.keys( ))
+print('c' in dict1) 
+print('a' in dict1)
 ```
 
 
@@ -1309,7 +1326,7 @@ print('a' in dict1.keys( ))
 
 dict1={'a':100,'b':200, 'c':300} 
 del dict1['b']
-print ('b' in dict1.keys())
+print ('b' in dict1)
 
 
 
@@ -1325,7 +1342,7 @@ print ('b' in dict1.keys())
 #Question: 請問執行後的結果哪一個是對的?(選擇題)
 dict1={'a':100,'b':200, 'c':300} 
 dict1.clear( )
-print ('b' in dict1.keys( ))
+print ('b' in dict1)
 
 
 (1) 產生錯誤  
@@ -1353,20 +1370,35 @@ print ('b' in dict1.keys( ))
 ```python
 #clear()
 
->>> pythons = {'Cleese': 'John', 'Howard': 'Moe', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> nums = {
+1: 'one',
+2: 'two',
+3: 'three',
+4: 'four',
+5: 'five',
+}
 
->>> del pythons['Howard']
->>> pythons
-{'Cleese': 'John', 'Gilliam': 'Terry', 'Palin': 'Michael', 'Chapman': 'Graham', 'Idle': 'Eric', 'Jones': 'Terry'}
+>>> del nums[1]
+>>> nums
+{2: 'two', 3: 'three', 4: 'four', 5: 'five'}
 
 
->>> pythons.clear() 
->>> pythons
+>>> nums.clear() 
+>>> nums
 {}
->>> pythons = {}
->>> pythons
+>>> nums = {}
+>>> nums
 {}
 
+>>> del nums
+>>> nums
+NameError                                 
+Traceback (most recent call last)
+<ipython-input-119-55a5412c7eee> in <module>
+----> 1 del nums
+      2 nums
+
+NameError: name 'nums' is not defined
 ```
 ---
 
@@ -1385,6 +1417,43 @@ print('b' in dict1.keys( ))
  
 
 ---
+### keys(),values(),items(),copy()
+
+```python
+
+>>> signals = {'綠燈': '走', '黃燈': '走快些', '紅燈': '停等'} 
+>>> signals.keys()
+dict_keys(['綠燈', '黃燈', '紅燈'])
+
+
+>>> list( signals.values() )
+['走', '走快些', '停等']
+
+
+>>> list( signals.items() )
+[('綠燈', '走'), ('黃燈', '走快些'), ('紅燈', '停等')]
+
+
+>>> signals = {'綠燈': '走', '黃燈': '走快些', '紅燈': '停等'} 
+>>> save_signals = signals
+>>> signals['blue'] = 'confuse everyone'
+>>> save_signals
+    {'blue': 'confuse everyone', '綠燈': '走', '黃燈': '走快些', '紅燈': '停等'}
+
+
+>>> signals = {'綠燈': '走', '黃燈': '走快些', '紅燈': '停等'}
+
+>>> original_signals = signals.copy()
+>>> signals['blue'] = 'confuse everyone'
+>>> signals
+{'blue': 'confuse everyone','綠燈': '走', '黃燈': '走快些', '紅燈': '停等'}
+>>> original_signals
+{'綠燈': '走', '黃燈': '走快些', '紅燈': '停等'}
+
+```
+
+---
+
 
 ### for in
 
@@ -1460,42 +1529,6 @@ False
 //============================================================
 ```
 [解題](sequential1.py)
-
----
-
-### keys(),values(),items(),copy()
-
-```python
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} 
->>> signals.keys()
-dict_keys(['green', 'red', 'yellow'])
-
-
->>> list( signals.values() )
-['go', 'smile for the camera', 'go faster']
-
-
->>> list( signals.items() )
-[('green', 'go'), ('red', 'smile for the camera'), ('yellow', 'go faster')]
-
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} 
->>> save_signals = signals
->>> signals['blue'] = 'confuse everyone'
->>> save_signals
-    {'blue': 'confuse everyone', 'green': 'go',
-    'red': 'smile for the camera', 'yellow': 'go faster'}
-
-
->>> signals = {'green': 'go', 'yellow': 'go faster', 'red': 'smile for the camera'} >>> original_signals = signals.copy()
->>> signals['blue'] = 'confuse everyone'
->>> signals
-{'blue': 'confuse everyone', 'green': 'go',
-'red': 'smile for the camera', 'yellow': 'go faster'}
->>> original_signals
-{'green': 'go', 'red': 'smile for the camera', 'yellow': 'go faster'}
-```
 
 ---
 

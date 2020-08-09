@@ -510,7 +510,7 @@ else:
 
 ```python
 # if3-2.py
-
+#有問題的設計
 a=21
 if a>12:
 	print("大於12")
@@ -537,7 +537,8 @@ else:
 ---
 
 ### Homework(discount.py):
-- 輸入顧客購買金額，若金額在100000元打8折
+輸入顧客購買金額，若金額在
+- 100000元打8折
 - 50000打85折
 - 30000打9折
 - 10000打95折
@@ -566,14 +567,14 @@ furry = True
 small = True 
 if furry:
 	if small:
-		print("It's a cat.")
+		print("它是貓!")
 	else:
-		print("It's a bear!")
+		print("它是熊!")
 else:
 	if small:
-		print("It's a skink!")
+		print("它是小蜥蜴")
 	else:
-		print("It's a human. Or a hairless bear.")
+		print("它是人類或是沒毛的熊")
 
 It's a cat.
 
@@ -586,10 +587,10 @@ if color == "紅色":
     print("It's a 蕃茄")
 elif color == "green":
     print("It's a 青椒")
-elif color == "bee purple":
-    print("I don't know what it is, but only bees can see it")
+elif color == "蜂密青":
+    print("我不知道蜂密青, 我只知道蜂密")
 else:
-    print("I've never heard of the color", color)
+    print("我沒有聽過這個顏色", color)
 
 
 I've never heard of the color puce

@@ -23,7 +23,7 @@
 		- 省略 return( )
 		- 寫成 return
 
-### 自訂函數沒接收沒傳回
+### 自訂函數沒有參數也沒有傳回值
 
 ```python
 def func_sum():
@@ -211,8 +211,8 @@ print(z)
 ```python
 #Name        : function3.py
 #輸入攝氏溫度，求華氏溫度
-#function 的原型宣告
-#加上do...while()
+#建立自訂的function
+#while()
 
 #=============================
 
@@ -235,20 +235,9 @@ print(z)
 
 ###  函數傳回多值
 - Python 的函數可以傳回多值。
-- 傳回多值的做法是將傳回值轉為 tuple 型態，接收後再一一分配。
+- 傳回多值的做法是將傳回值轉為 tuple 型態，接收後再拆解給變數。
 
-#### 操作範例 :請動手操作，並留意輸出結果
-```python
-#fun6.py
-
-def func_a( ): 
-	return 1, 2, 3, 4
-	
-temp = func_a( ) 
-print(type(temp))
-```
-
-####  Question:請問執行後的結果哪一個是對的?(選擇題)
+#### Question:請問執行後的結果哪一個是對的?(選擇題)
 ```python
 def manyvalue(a, b): 
 	c=a*b
@@ -261,6 +250,18 @@ print(y)
 (2) 15   
 (3) 1   
 (4) 20   
+
+#### 操作範例 :請動手操作，並留意輸出結果
+
+```python
+#fun6.py
+
+def func_a( ): 
+	return 1, 2, 3, 4
+	
+temp = func_a( ) 
+print(type(temp))
+```
 
 ---
 
@@ -299,18 +300,14 @@ if __name__ == '__main__':
 #callByReference
 
 
-def turbo(speed):
-    print(id(speed))
-    print('加速前速度:',speed[0])
-    speed[0] += 10
+def turbo(listSpeed):
+    print('加速前速度',listSpeed[0])
+    listSpeed[0] += 10
 
-if __name__ == '__main__':
-    speed = list()
-    print(id(speed))
-    startSpeed = int(input('請輸入初始速度:'))
-    speed.append(startSpeed)
-    turbo(speed)
-    print('加速後的速度:',speed[0])
+s = int(input('請輸入初始速度:'))
+listS = [s]
+turbo(listS)
+print('加速後速度',listS[0])
 ```
 
 ###  變數影響範圍
@@ -819,7 +816,7 @@ globals: {'animal': 'fruitbat',
 
 ```
 
-### 使用__name__,__doc__
+### 使用__name__, __doc__
 
 ```python
 

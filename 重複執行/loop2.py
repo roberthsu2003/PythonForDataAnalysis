@@ -18,7 +18,6 @@ i = 1;
 while(True):
     if(i==7):
         n = int(input('請輸入星期日的支出:'))
-        sum += n
         break
     else:
         output = "請輸入星期" + str(i) + "的支出:"

@@ -264,39 +264,51 @@ print(z)
 
 ```python
 >>> def menu(wine, entree, dessert):
-		return {'wine': wine, 'entree': entree, 'dessert': dessert} 
-...
->>> menu('chardonnay', 'chicken', 'cake')
-{'dessert': 'cake', 'wine': 'chardonnay', 'entree': 'chicken'}
+    return {'wine': wine, 'entree':entree, 'dessert': dessert}
 
->> menu('beef', 'bagel', 'bordeaux')
-{'dessert': 'bordeaux', 'wine': 'beef', 'entree': 'bagel'}
+>>> menu('白酒', '牛排', '蛋糕')
+{'wine': '白酒', 'entree': '牛排', 'dessert': '蛋糕'}
+
+>> menu('紅酒', '雞排', '冰淇淋')
+{'wine': '紅酒', 'entree': '雞排', 'dessert': '冰淇淋'}
 
 ```
 
 ### 引數名稱名稱呼叫
 
 ```python
->>> menu(entree='beef', dessert='bagel', wine='bordeaux')
+#引數名稱呼叫
+#可以不依照順序
+>>> menu(entree='牛排', dessert='冰淇淋', wine='白酒')
 {'dessert': 'bagel', 'wine': 'bordeaux', 'entree': 'beef'}
+```
 
->>> menu('frontenac', dessert='flan', entree='fish')
-{'entree': 'fish', 'dessert': 'flan', 'wine': 'frontenac'}
+### 引數位置和引數名稱混合呼叫  
+```
+#前面一定先用引數位置,後面使用引數名稱
+#使用引數名稱後,就不可以再使用引數位置
+
+>>> menu('紅酒', dessert='蛋糕', entree='雞排')
+{'wine': '紅酒', 'entree': '雞排', 'dessert': '蛋糕'}
 
 ```
 
 ### 指定預設參數的值
 
 ```python
->>> def menu(wine, entree, dessert='pudding'):
-return {'wine': wine, 'entree': entree, 'dessert': dessert}
+>>> def menu(wine, entree, dessert='奶昔'):
+	    return {'wine': wine, 'entree':entree, 'dessert': dessert}
 
->>> menu('chardonnay', 'chicken')
-{'dessert': 'pudding', 'wine': 'chardonnay', 'entree': 'chicken'}
+#呼叫時,可省略有預設參數的值
+>>> menu('紅酒','雞排')
+{'wine': '紅酒', 'entree': '雞排', 'dessert': '奶昔'}
 
->>> menu('dunkelfelder', 'duck', 'doughnut')
-{'dessert': 'doughnut', 'wine': 'dunkelfelder', 'entree': 'duck'}
+#呼叫時,不省略預設的參數值
+>>> menu('紅酒','雞排','蛋糕')
+{'wine': '紅酒', 'entree': '雞排', 'dessert': '蛋糕'}
 
+>>> menu('紅酒','雞排',dessert='蛋糕')
+{'wine': '紅酒', 'entree': '雞排', 'dessert': '蛋糕'}
 ```
 
 ```python

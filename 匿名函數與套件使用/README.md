@@ -1,18 +1,19 @@
 # 暱名函數與套件的使用
-### Functions Are First-Class Citizens
+### 函數 Are First-Class Citizens
 
 ```python
+#定義和呼叫function
 >>> def answer(): 
-        print(42)
+		print(42)
 
 >>> answer()
 42
 ```
 
 ```python
-
+#將function當作參數
 >>> def run_something(func): 
-        func()
+		func()
 
 >>> run_something(answer) 
 42
@@ -20,9 +21,10 @@
 
 
 ```python
+#有引數的參數
 def add_args(arg1, arg2): 
-    print(arg1 + arg2)
-    
+	print(arg1 + arg2)
+	
 
 >>> type(add_args)
 <class 'function'>
@@ -38,6 +40,7 @@ def run_something_with_args(func, arg1, arg2):
 ```
 
 ```python
+#沒有限定參數的數量
 def sum_args(*args): 
 	return sum(args)
 	
@@ -98,7 +101,7 @@ def knights2(saying):
 ```
 
 ##  匿名函數
-1. 不需要定義函數名稱，只需要用運算式或表達分析語法。
+1. 不需要定義函數名稱的，只需要用運算式或表達分析語法。
 2. Python 使用 lambda 語法定義匿名函數。
 3. 匿名函數是一個表達式/計算式，並不是一個執行流程區塊。
 4. 匿名函數可以出現在一般函數不允許的地方，例如像 list 內部或函數 呼叫參數的位置。
@@ -265,15 +268,13 @@ print(type(dict1))
 list3=map(lambda x : x['name'], dict1)
 print(list(list3))
 
-list4=map(lambda x : x['points']*10, dict1) 
-print(list(list4))
+list4=map(lambda x : x['points']*10, dict1) print(list(list4))
 
 list5=map(lambda x : x['name'] == "python", dict1) print(list(list5))
 
 list6a = [1, 2, 3]
 list6b = [10, 20, 30]
-list6=map(lambda x, y: x + y, list6a, list6b) 
-print(list(list6))
+list6=map(lambda x, y: x + y, list6a, list6b) print(list(list6))
 ```
 
 #### 操作範例 3:請動手操作，並留意輸出結果
@@ -296,6 +297,7 @@ print(list(list8))
 
 ##  使用模組
 1. 可透過 import 引用其他檔案，就可以使用其他檔案內的類別與函數進行功能擴充。
+
 2. Python 檔案命名時不要與其他已知模組名稱相同，名稱相同時預設 呼叫自己的檔案。
 
 ###  使用模組
