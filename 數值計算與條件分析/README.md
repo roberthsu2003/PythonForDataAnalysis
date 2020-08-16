@@ -136,10 +136,10 @@ Type: builtin_function_or_method
 >>> alphabet += 'wxyz'
 
 #連結字串
->>> alphabet = 'abcdefg' + \
-... 'hijklmnop' + \
-... 'qrstuv' + \
-... 'wxyz'
+>>> alphabet = 'abcdefg\
+... hijklmnop\
+... qrstuv\
+... wxyz'
 
 
 >>> 1+2+
@@ -152,7 +152,7 @@ SyntaxError: invalid syntax
 ```
 
 ## 資料輸入
-- input 代表資料輸入
+- input() 代表資料輸入
 - 輸入資料後可利用變數 .__class__ 方式查詢變數的資料型態。
 - 預設輸入的資料型態為字串
 	- 若是整數資料您必須加入 int( ) 轉換。
