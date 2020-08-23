@@ -385,7 +385,7 @@ flags 用於更改正規表示式的行為，這是個可選項
 
 import re
 strTest = "Hello Python Programming"
-mobj = re.match(r"hello", strTest, re.I)
+matchObject = re.match(r"hello", strTest, re.I)
 print(mobj.group())
 
 
