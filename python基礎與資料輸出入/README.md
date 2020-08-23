@@ -115,7 +115,7 @@ openedx=100
 
 5. Python 的變數為何沒有型態的限制?
 
-6. Python 的變數其實也是物件的一種，只是這些物件就跟其他程式語言一樣只操作指定型態的資料。
+6. Python 的變數其實也是物件的一種，只是這些物件就跟其他程式語 言一樣只操作指定型態的資料。
 
 7. 可以在同一列中指定多個變數，變數之間以「,」分隔，而內容之間 也以「,」分隔。
 
@@ -194,10 +194,28 @@ del years
 ## 變數給值與輸出  
 - 如何給值?
 	- 請使用「=」這個符號，「=」代表右邊丟給左邊，而左邊得接受這個資料。
-
 - 在建立變數之前，也就是給變數內容之前，嘗試存取某個變數會發生變 數未定義的錯誤。
 - print 代表資料輸出，也是存取內容的動作，基本語法為 print(變數) 或者 print(內容)。
-- 內容會被雙引號或者單引號包夾起來。
+- 內容會被雙引號或者單引號包夾起來。  
+
+```python
+#一個參數
+print(3)
+print(3.12)
+print("Hello! World!")
+print(3+2)
+```
+
+```python
+#多個參數
+a = 100
+print('a=',a)
+b = 50
+print('b=', b)
+print("a+b=", a+b)
+```
+
+
 
 ###  question:關於輸出語法哪一個是對的?(選擇題)
 (1) print 3 + 4   
@@ -260,6 +278,20 @@ print(x)
 - 變數內容變更後會儲存於不同的記憶體位址。那要如何查詢位址呢?
 	- 可使用 id( ) 指令顯示。
 
+```python
+a = 100
+print(type(a))
+
+a = 100.0
+print(type(a))
+
+a = '100.0'
+print(type(a))
+
+a = True
+print(type(a))
+```
+
 
 ```python
 #下面2行，將7給變數a, 並且輸出變數a的內容
@@ -294,10 +326,8 @@ var1=20
 print(type(var1))
 var2=123.45
 print(type(var2))
-var3=True 
-print(type(var3)) 
-var4='string1' 
-print(type(var4)) 
+var3=True print(type(var3)) 
+var4='string1' print(type(var4)) 
 ```
 
 ### 資料型態:請動手操作，並留意輸出結果(type2.py)
@@ -319,423 +349,90 @@ a=20.3
 
 ---
 
-## python數學運算子
+### 字串輸出格式化
+舊的語法:  
+字串 % (變數,變數)
 
-運算子 | 描述  | 範例
------| ------- | ----
-| + | 加法 | 5+8=13
-| - | 減法 | 90-10=80  
-| * | 乘法 | 4*7=28
-| / | 浮點數除法 | 7 / 2=3.5
-| // | 整數除法 | 7 // 2 = 3
-| % | 餘數  | 7 % 3 = 1
-| ** | 次方 |  3 ** 4 = 81
+| 符號 |  說明 |
+|:--|:--|
+|%%  | 	在字串 中顯示% |
+| %d | 	以10 進位整數方式輸出 |
+| %f | 	將浮點 數以10進位方式輸出 |
+| %e, %E | 	將浮點 數以10進位方式輸出，並使用科學記號 |
+| %o | 	以8進 位整數方式輸出 |
+| %x, %X | 	將整數以16進位方式輸出 |
+| %s | 	使用str()將字串輸出 |
+| %c | 	以字元方式輸出 |
 
---- 
-## python的整數
-
-```python
->>> 5
-5
-
->>> 0
-0
-
-#數字前不可以加0
->>> 05
-      File "<stdin>", line 1
-05
-^
-SyntaxError: invalid token #python的語法錯誤
-
-
-#正整數
->>> 123
-    123
->>> +123
-    123
-    
-#負整數
->>> -123 
--123
-
-#整數運算
->>>5+9 
-   14 
->>>100-7 
-   93 
->>>4-10 
-   -6
-   
-#多個數值運算
->>>5+9+3
-17 
->>>4+3-2-1+6 
-	 10
-	 
-#乘法運算
->>>6*7
-42
->>>7*6
-42 
->>>6*7*2*3 
-   252
-   
-#浮點數除法
->>>9/5 
-   1.8
-
-#整數除法
->>>9//5 
-   1
-#除數不可以為零
->>>5/0
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> ZeroDivisionError: division by zero >>>7//0
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module> ZeroDivisionError: integer division or modulo by z
-
-
-#變數可以運算
->>>a=95 
->>> a
-95 
->>>a-3 
-   92
-
-#將變數自已的內容減3   
->>>a=a-3 
->>> a
-92
-
->>>a=95 
->>>temp=a-3 
->>>a=temp
-
-#上面敘述式，可以使用下面這行替代
->>>a=a-3
-
-#餘數
->>>9%5 
-   4
-   
->>> divmod(9,5)
-    (1, 4)
-
->>> 9//5 
-   1 
->>> 9%5 
-   4
-
-
-
-```
-
-## 優先運算子
-
-```python
->>>2+3*4 
-   14
-   
->>>(2+3)*4
-   20
-   
-```
-
-## 2,8,16進位
-表示 | 進位
---- | ---
-0b 0B | 2進位
-0o 0O | 8進位
-0x 0X | 16進位
-
-```python
-#10進位
->>> 10 
-10
-
-#2進位
->>> 0b10
-2
-
-#8進位
->>> 0o10
-8
-
-#16進位
->>> 0x10
-16
-
-```
-
-## 類型轉換
-
-```python
->>> int(True)
-    1
->>> int(False)
-    0
- 
- 
-    
->>> int(98.6) 
-    98
->>> int(1.0e4) 
-    10000
- 
-  
-    
->>> int('99') 
-    99
->>> int('-23') 
-    -23
->>> int('+12')
-    12
-
-
->>> int(12345)
-    12345
-
-
-
->>> int('99 bottles of beer on the wall')
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
-ValueError: invalid literal for int() with base 10: '99 bottles of beer on the wall' >>> int('')
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
-ValueError: invalid literal for int() with base 10: ''
-
-
-
->>> int('98.6')
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
-ValueError: invalid literal for int() with base 10: '98.6' >>> int('1.0e4')
-Traceback (most recent call last):
-File "<stdin>", line 1, in <module>
-ValueError: invalid literal for int() with base 10: '1.0e4'
-
-
-
->>>4+7.0 
-   11.0
-   
-
->>>True+2
-    3
->>> False + 5.0 
-    5.0
-```
-
-## int的範圍
-
-```kotlin
->>>
->>> googol = 10**100
->>> googol
-   100000000000000000000000000000000000000000000000000000000000000000000000000000
-00000000000000000000000
-
->>> googol * googol
-    100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-
-
-    
-```
-
-## float浮點數
-
-```python
->>> float(True) 
-    1.0
->>> float(False)
-    0.0
-
->>> float(98) 
-    98.0
->>> float('99') 
-    99.0
-
-    
-
->>> float('98.6')
-    98.6
->>> float('-1.5')
-    -1.5
->>> float('1.0e4')
-    10000.0
-
-
-```
-
-## 字串
-
-```python
->>> 'Snap'
-    'Snap'
->>> "Crackle"
-    'Crackle'
-
-
->>> "'Nay,' said the naysayer."
-"'Nay,' said the naysayer."
->>> 'The rare double quote in captivity: ".'
-'The rare double quote in captivity: ".'
->>> 'A "two by four" is actually 1 1⁄2" × 3 1⁄2".'
-'A "two by four is" actually 1 1⁄2" × 3 1⁄2".'
->>> "'There's the man that shot my paw!' cried the limping hound." "'There's the man that shot my paw!' cried the limping hound."
  
 
+```python
+#可以在輸出浮點數時指定精度 
+>>> 'example:%.2f' % 19.234
+'example:19.23'
 
->>> '''Boom!'''
-    'Boom'
->>> """Eek!"""
-    'Eek!'
-    
->>> poem = '''There was a Young Lady of Norway, ... Who casually sat in a doorway;
-... When the door squeezed her flat,
-... She exclaimed, "What of that?"
-... This courageous Young Lady of Norway.'''
-
-
-
->>> poem2 = '''I do not like thee, Doctor Fell.
-... The reason why, I cannot tell.
-... But this I know, and know full well:
-... I do not like thee, Doctor Fell.
-... '''
->>> print(poem2)
-I do not like thee, Doctor Fell.
-	The reason why, I cannot tell.
-	But this I know, and know full well: 
-	I do not like thee, Doctor Fell.
+#也可以指定輸出時，至少要預留的字元寬度
+#由於預留了6個字元寬度，不足的部份要由空白字元補上。使用%運算子來格式化字串，會產生新的字串物件。
+>>> "example:%6.2f" % 19.234
+'example: 19.23'
 >>>
 
-
->>> print(99, 'bottles', 'would be enough.') 
-    99 bottles would be enough.
-    
-    
-
->>> ''
-    ''
->>> ""
-    ''
->>> ''''''
-    ''
->>> """"""
-    ''
+#在格式化時，也可以使用關鍵字來指定
+>>> '%(real)s is %(nick)s!!' % ({'real' : 'Justin', 'nick' : 'caterpillar'})
+'Justin is caterpillar!!'
 >>>
-
-
-
-
->>> bottles = 99
->>> base = ''
->>> base += 'current inventory: '
->>> base += str(bottles)
->>> base
-    'current inventory: 99'
-
-
-
-#使用str()轉換為字串型別
->>> str(98.6) 
-    '98.6'
->>> str(1.0e4) 
-    '10000.0'
->>> str(True)
-    'True'
-
-
-
-
-#脫溢字元 \
->>> palindrome = 'A man,\nA plan,\nA canal:\nPanama.' 
->>> print(palindrome)
-A man,
-A plan,
-A canal: Panama.
-
-
-
->>> print('\tabc') 
-    abc
->>> print('a\tbc') 
-    a bc
->>> print('ab\tc') 
-    ab c
->>> print('abc\t') 
-    abc
-
-
-
->>> testimony = "\"I did nothing!\" he said. \"Not that either! Or the other thing.\""
->>> print(testimony)
-"I did nothing!" he said. "Not that either! Or the other thing."
->>> fact = "The world's largest rubber duck was 54'2\" by 65'7\" by 105'" 
->>> print(fact)
-The world's largest rubber duck was 54'2" by 65'7" by 105'
-
-
-
->>> speech = 'Today we honor our friend, the backslash: \\.' 
->>> print(speech)
-Today we honor our friend, the backslash: \.
-
-
-
-# 使用+運算子
->>> 'Release the kraken! ' + 'At once!'
-    'Release the kraken! At once!'
-
-
-
-
->>> a = 'Duck.' 
-    b=a
->>> c = 'Grey Duck!' 
->>>a+b+c 
-   'Duck.Duck.Grey Duck!'
-
-
-
->>> print(a, b, c) 
-    Duck. Duck. Grey Duck!
-    
 ```
 
+新的語法:  
 
+```python
+#不指定位置，依序輸出
+>>> "{} {} {}".format("A", "B", "C")
+A B C
 
+#用數字指定位置
+"{2} {0} {1}".format("A", "B", "C") 
+C A B
 
-### question:以下的資料輸出哪一個是錯的?(選擇題)
-(1) "I can add integers, like " + str(5) + " to strings."  
-(2) "Isaid"+("Hey"*2)+"Hey!"  
-(3) "The correct answer to this multiple choice exercise is answer number" + 2  
-(4) True + False  
+#用名稱指定位置
+"{a} {c} {b}".format(a="A", b="B", c="C")
+A C B
+```
 
----
+### 數值格式化及對齊
+```python
+格式化的方式是在後方加上”:“及”格式符”，可用的格式符如下
+{:d}        : 整數
+{:f}        : 浮點數
+{:e} {:E}   : 科學記號，例如 1.020000e+01，大小寫就代表 "e" 顯示的大小寫
+{:x} {:X}   : 十六進位，大小寫分別表示 A ~ F 要顯示的大小寫
+{:o}        : 八進位
+{:b}        : 二進位
+{:>}}        : 以百分比的方式輸出
+```
+
+```python
+另外可以使用 > ^ < 這三種符號以及數值來搭配佔位及對齊。注意: 數值型別預設是靠右對齊，字串型別預設是靠左對齊
+
+{:>8d}      : 整數靠右對齊，寬度為 8
+{:^8d}      : 整數置中對齊，寬度為 8
+{:<8d}      : 整數靠右對齊，寬度為 8
+{:8.3f}     : 小數點後保留 3 位，總寬度為 8 (含小數點)
+{:+8.3f}    : 小數點後保留 3 位，帶正負號，總寬度為 8 (含小數點及正負號)
+```
+
+```python
+#‘:’ 前方的數值如基本操作，代表後方參數的位置
+print "|{0:8d}||{1:<8d}|".format(123, 456)
+ |     123||456     |
+print("|{0:+8.2f}|".format(4.32))
+ |   +4.32|
+print("|{0:8.2>}}|".format(0.8))
+ |  80.00%|
  
-### question:請問執行後的說明哪一個是對的?(選擇題)
-```python
-a,b,c="pcschool",2016,3.41
-print(b)
+字串與數值輸出預設對齊方式的比較
+print("|{0:8}|".format(123))
+ |     123|
+print("|{0:8}|".format("abc"))
+ |abc     | 
 ```
-(1) 2016  
-(2) 3.41  
-(3) pcschool  
-
----
-
-
-###  請問執行後的說明哪一個是對的?(選擇題)
-```python
-test=("abc"+"!")*2
-print(test)
-```
-(1) abc!2  
-(2) abc! abc!
-(3) abc+!*2
-
----

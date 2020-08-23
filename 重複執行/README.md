@@ -77,6 +77,23 @@ while a > 0:
 ```
 [解題](loop1.py)
 
+### Homework:計算固定中的支出，媽媽每天會將家裡的花費記錄下來，並且計算本週的花費總和
+```python
+Name        : loop2.py
+計算固定中的支出，媽媽每天會將家裡的花費記錄下來，並且計算本週的花費總和
+
+顯示:
+請輸入星期1 的支出567
+請輸入星期2 的支出456
+請輸入星期3 的支出567
+請輸入星期4 的支出890
+請輸入星期5 的支出345
+請輸入星期6 的支出534
+請輸入星期日 的支出678
+本星期的支出為:4037元
+```
+
+[解題](loop2.py)
 
 
 ### 使用break跳出迴圈
@@ -129,23 +146,6 @@ while(True):
 print('全班總成績為:', sum, "平均分數為:", "%.2f" % (sum/(num-1)) )
 ```
 
-#### Homework:計算固定中的支出，媽媽每天會將家裡的花費記錄下來，並且計算本週的花費總和
-```python
-Name        : loop2.py
-計算固定中的支出，媽媽每天會將家裡的花費記錄下來，並且計算本週的花費總和
-
-顯示:
-請輸入星期1 的支出567
-請輸入星期2 的支出456
-請輸入星期3 的支出567
-請輸入星期4 的支出890
-請輸入星期5 的支出345
-請輸入星期6 的支出534
-請輸入星期日 的支出678
-本星期的支出為:4037元
-```
-
-[解題](loop2.py)
 
 ### 使用continue,中止現在迴圈,跳至下一輪迴圈,重頭執行
 
@@ -200,6 +200,35 @@ while(True):
     else:
         sum += inputNum
 print("所有輸入的正偶數的加總是:", sum)
+```
+
+### 無限定次數的迴圈
+
+```python
+#============================================================================
+# Name        : while2.py
+#小明想要存錢買一輛機車,機車每輛30000元，他將每月存的錢輸入，當存款足夠買機車時，就顯示提示訊息告知。
+#============================================================================
+
+顯示:
+請輸入第1個月份的存款:4567
+請輸入第2個月份的存款:3456
+請輸入第3個月份的存款:4567
+請輸入第4個月份的存款:4567
+請輸入第5個月份的存款:4567
+請輸入第6個月份的存款:5678
+請輸入第7個月份的存款:7890
+恭喜! 已經存夠了，存了7個月的總存款為:35292元。
+#============================================================================
+
+deposit = 0
+num = 0
+while(deposit < 30000):
+    num += 1
+    inputNum = int(input('請輸入第'+str(num)+"個月份的存款:"))
+    deposit += inputNum
+
+print("恭喜!已經存夠了，存了",num,"個月的總存款為:",deposit,"元。")
 ```
 
 ```python
@@ -271,139 +300,6 @@ else: # 沒有執行break
     print('沒有偶數')
 			
 沒有偶數
-```
-
-### 無限定次數的迴圈
-```python
-#============================================================================
-# Name        : while2.py
-#小明想要存錢買一輛機車,機車每輛30000元，他將每月存的錢輸入，當存款足夠買機車時，就顯示提示訊息告知。
-#============================================================================
-
-顯示:
-請輸入第1個月份的存款:4567
-請輸入第2個月份的存款:3456
-請輸入第3個月份的存款:4567
-請輸入第4個月份的存款:4567
-請輸入第5個月份的存款:4567
-請輸入第6個月份的存款:5678
-請輸入第7個月份的存款:7890
-恭喜! 已經存夠了，存了7個月的總存款為:35292元。
-#============================================================================
-
-deposit = 0
-num = 0
-while(deposit < 30000):
-    num += 1
-    inputNum = int(input('請輸入第'+str(num)+"個月份的存款:"))
-    deposit += inputNum
-
-print("恭喜!已經存夠了，存了",num,"個月的總存款為:",deposit,"元。")
-```
-
-## 使用for in迴圈
-- 使用時機,讀取所有集合物件元素1次。(list,tuple,string,dictionaries,sets)
-- 使用時機,明確指定執行次數。
-
-```python
-#使用傳統的方式,讀取list內的每一個元素
-rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter'] 
-current = 0
-while current < len(rabbits):
-    print(rabbits[current])
-    current += 1
-    
-結果=======
-Flopsy
-Mopsy
-Cottontail
-Peter
-```
-
-```python
-#使用更簡潔方式(for..in)
-rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter']
-for rabbit in rabbits: 
-    print(rabbit)
-			
-結果=======
-Flopsy
-Mopsy
-Cottontail
-Peter
-
-```
-
-
-### 字串每次取出一個字元
-
-```python
-word = 'cat'
-for letter in word:
-    print(letter)
-			
-結果=======
-c
-a
-t
-```
-
-### 使用for in讀取dictionary,取出的元素是key, 也可以使用dictionary.keys()方法.
-- 使用values()方法取出元素的值
-
-```python
-
-accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-
-for card in accusation: # 或者使用 accusation.keys():
-    print(card)
-
-結果=======
-room
-weapon
-person
-
-```
-
-```python
-accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-
-#使用values()方法取出元素的值
-for value in accusation.values(): 
-    print(value)
-
-結果=======
-ballroom
-lead pipe 
-Col. Mustard
-```
-
-```python
-accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-
-#使用items()方法,取出包含key和value的tuple, 
-for item in accusation.items(): 
-    print(item)
-
-結果=======
-('room', 'ballroom')
-('weapon', 'lead pipe') 
-('person', 'Col. Mustard')
-
-
-```
-
-```python
-accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
-
-#使用拆解法直接同時取出key和value
-for card, contents in accusation.items():
-    print('Card', card, 'has the contents', contents 
-
-			
-Card weapon has the contents lead pipe
-Card person has the contents Col. Mustard
-Card room has the contents ballroom
 ```
 
 ### 使用range()產生數值串列
@@ -527,6 +423,112 @@ for x in range(0,8,2) :
 (1) 0 2 4 6 8  
 (2) 0 2 4 6  
 (3) 0 2 8  
+
+
+## 使用for in迴圈
+- 使用時機,讀取所有集合物件元素1次。(list,tuple,string,dictionaries,sets)
+- 使用時機,明確指定執行次數。
+
+```python
+#使用傳統的方式,讀取list內的每一個元素
+rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter'] 
+current = 0
+while current < len(rabbits):
+    print(rabbits[current])
+    current += 1
+    
+結果=======
+Flopsy
+Mopsy
+Cottontail
+Peter
+```
+
+```python
+#使用更簡潔方式(for..in)
+rabbits = ['Flopsy', 'Mopsy', 'Cottontail', 'Peter']
+for rabbit in rabbits: 
+    print(rabbit)
+			
+結果=======
+Flopsy
+Mopsy
+Cottontail
+Peter
+
+```
+
+
+### 字串每次取出一個字元
+
+```python
+word = 'cat'
+for letter in word:
+    print(letter)
+			
+結果=======
+c
+a
+t
+```
+
+### 使用for in讀取dictionary,取出的元素是key, 也可以使用dictionary.keys()方法.
+- 使用values()方法取出元素的值
+
+```python
+
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+
+for card in accusation: # 或者使用 accusation.keys():
+    print(card)
+
+結果=======
+room
+weapon
+person
+
+```
+
+```python
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+
+#使用values()方法取出元素的值
+for value in accusation.values(): 
+    print(value)
+
+結果=======
+ballroom
+lead pipe 
+Col. Mustard
+```
+
+```python
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+
+#使用items()方法,取出包含key和value的tuple, 
+for item in accusation.items(): 
+    print(item)
+
+結果=======
+('room', 'ballroom')
+('weapon', 'lead pipe') 
+('person', 'Col. Mustard')
+
+
+```
+
+```python
+accusation = {'room': 'ballroom', 'weapon': 'lead pipe', 'person': 'Col. Mustard'}
+
+#使用拆解法直接同時取出key和value
+for card, contents in accusation.items():
+    print('Card', card, 'has the contents', contents 
+
+			
+Card weapon has the contents lead pipe
+Card person has the contents Col. Mustard
+Card room has the contents ballroom
+```
 
 ###  迴圈中斷
 - break 與 continue 都是迴圈中斷語法
