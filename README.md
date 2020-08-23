@@ -10,7 +10,7 @@
 
 [4.重複執行](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E9%87%8D%E8%A4%87%E5%9F%B7%E8%A1%8C) 
 
-[5.文字處理](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%AC%A6%E8%99%9F%E8%88%87%E5%A4%9A%E8%A1%8C%E5%AD%97%E4%B8%B2)
+[5.文字處理](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%96%87%E5%AD%97%E8%99%95%E7%90%86)
 
 [6.python內建的資料結構](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/python%E5%85%A7%E5%BB%BA%E7%9A%84%E8%B3%87%E6%96%99%E7%B5%90%E6%A7%8B)
 
