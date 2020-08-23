@@ -1,7 +1,7 @@
-# Objects and Classes
-## Define a Class with class
-- variables, called attributes
-- functions, called methods
+# 物件和類別
+## 使用class定義類別
+- 變數稱為屬性
+- 函式稱為方法
 
 ```python
 class Person():
