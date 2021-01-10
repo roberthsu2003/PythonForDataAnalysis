@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/上課內容/1206_星期日/.ipynb_checkpoints/lesson11-1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/上課內容/1206_星期日/.ipynb_checkpoints/lesson11-1-checkpoint.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/上課內容/1206_星期日/lesson11-1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/上課內容/1206_星期日/lesson11-1.ipynb" afterDir="false" />
     </list>
@@ -47,7 +46,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610245803551</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modify">
+      <created>1610246736011</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1610246736011</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
