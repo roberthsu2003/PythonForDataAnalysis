@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="" />
+    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/上課內容/1206_星期日/.ipynb_checkpoints/lesson13-1-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/上課內容/1206_星期日/.ipynb_checkpoints/lesson13-1-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/上課內容/1206_星期日/lesson13-1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/上課內容/1206_星期日/lesson13-1.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -239,7 +243,21 @@
       <option name="project" value="LOCAL" />
       <updated>1610852911389</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="modify">
+      <created>1610854327233</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1610854327233</updated>
+    </task>
+    <task id="LOCAL-00032" summary="modify">
+      <created>1610855320964</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1610855320964</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
