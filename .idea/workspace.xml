@@ -30,27 +30,6 @@
       <option name="presentableId" value="Default" />
       <updated>1610242745436</updated>
     </task>
-    <task id="LOCAL-00051" summary="modify">
-      <created>1611457187647</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1611457187647</updated>
-    </task>
-    <task id="LOCAL-00052" summary="modify">
-      <created>1611457772045</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1611457772045</updated>
-    </task>
-    <task id="LOCAL-00053" summary="modify">
-      <created>1611459010103</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1611459010103</updated>
-    </task>
     <task id="LOCAL-00054" summary="modify">
       <created>1611459075233</created>
       <option name="number" value="00054" />
@@ -373,7 +352,28 @@
       <option name="project" value="LOCAL" />
       <updated>1612081502143</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="modify">
+      <created>1612082016735</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1612082016735</updated>
+    </task>
+    <task id="LOCAL-00101" summary="modify">
+      <created>1612082062793</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1612082062793</updated>
+    </task>
+    <task id="LOCAL-00102" summary="modify">
+      <created>1612083163158</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1612083163158</updated>
+    </task>
+    <option name="localTasksCounter" value="103" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
