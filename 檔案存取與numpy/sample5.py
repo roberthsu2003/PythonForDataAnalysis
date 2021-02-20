@@ -1,6 +1,5 @@
 from tkinter import *
-import urllib3
-import certifi
+import requests
 import csv
 
 def main(w):
@@ -35,20 +34,16 @@ def aqi():
     global rows
     print("下載資料")
     CSV_URL = "https://data.epa.gov.tw/api/v1/aqx_p_432?limit=1000&api_key=9be7b239-557b-4c10-9775-78cadfc555e9&format=csv"
-    http = urllib3.PoolManager(cert_reqs='CERT_REQUIRED',ca_certs=certifi.where())
-    try:
-        response = http.request('GET', CSV_URL)
-    except:
-        print("主機忙線中")
-        return
+    response = requests.get(CSV_URL, stream=True)
+    response.encoding = 'utf-8'
 
-    if response.status == 200:
-        print("下載成功")
-        #儲存檔案
-        file = open("空氣品質指標.csv","wb")
-        file.write(response.data)
-        file.close()
-        print("存檔成功")
+    if response.status_code == 200:
+        print('下載成功')
+
+        with open('空氣品質指標.csv', 'wb') as fd:
+            for chunk in response.iter_content(chunk_size=128):
+                fd.write(chunk)
+            fd.close()
 
         with open("空氣品質指標.csv","r",encoding='UTF-8') as file:
             #content = file.read()
