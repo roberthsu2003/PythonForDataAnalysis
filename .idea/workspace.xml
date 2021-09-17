@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify">
-      <change beforePath="$PROJECT_DIR$/.idea/PythonForDataAnalysis.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PythonForDataAnalysis.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Numpy建立與計算/README.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Numpy建立與計算/README.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/繪圖和視覺展示/.ipynb_checkpoints/visualization-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/繪圖和視覺展示/.ipynb_checkpoints/visualization-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/繪圖和視覺展示/visualization.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/繪圖和視覺展示/visualization.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/初見pandas/README.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/初見pandas/README.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/資料整理和使用前準備/.ipynb_checkpoints/README-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/資料整理和使用前準備/.ipynb_checkpoints/README-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/資料整理和使用前準備/README.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/資料整理和使用前準備/README.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
