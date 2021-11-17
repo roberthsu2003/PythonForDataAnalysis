@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify" />
+    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify">
+      <change beforePath="$PROJECT_DIR$/pandas的檔案存取/.ipynb_checkpoints/download政府資料平台解決方案_json-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pandas的檔案存取/.ipynb_checkpoints/download政府資料平台解決方案_json-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pandas的檔案存取/download政府資料平台解決方案_json.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pandas的檔案存取/download政府資料平台解決方案_json.ipynb" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
