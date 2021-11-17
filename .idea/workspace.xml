@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify">
-      <change beforePath="$PROJECT_DIR$/pandas的檔案存取/.ipynb_checkpoints/download政府資料平台解決方案_json-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pandas的檔案存取/.ipynb_checkpoints/download政府資料平台解決方案_json-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pandas的檔案存取/download政府資料平台解決方案_json.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/pandas的檔案存取/download政府資料平台解決方案_json.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -93,20 +90,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610242745436</updated>
-    </task>
-    <task id="LOCAL-00132" summary="modify">
-      <created>1612687130399</created>
-      <option name="number" value="00132" />
-      <option name="presentableId" value="LOCAL-00132" />
-      <option name="project" value="LOCAL" />
-      <updated>1612687130399</updated>
-    </task>
-    <task id="LOCAL-00133" summary="modify">
-      <created>1612687217548</created>
-      <option name="number" value="00133" />
-      <option name="presentableId" value="LOCAL-00133" />
-      <option name="project" value="LOCAL" />
-      <updated>1612687217548</updated>
     </task>
     <task id="LOCAL-00134" summary="modify">
       <created>1612688053639</created>
@@ -437,7 +420,21 @@
       <option name="project" value="LOCAL" />
       <updated>1636539055249</updated>
     </task>
-    <option name="localTasksCounter" value="181" />
+    <task id="LOCAL-00181" summary="modify">
+      <created>1637144168643</created>
+      <option name="number" value="00181" />
+      <option name="presentableId" value="LOCAL-00181" />
+      <option name="project" value="LOCAL" />
+      <updated>1637144168643</updated>
+    </task>
+    <task id="LOCAL-00182" summary="modify">
+      <created>1637144887447</created>
+      <option name="number" value="00182" />
+      <option name="presentableId" value="LOCAL-00182" />
+      <option name="project" value="LOCAL" />
+      <updated>1637144887447</updated>
+    </task>
+    <option name="localTasksCounter" value="183" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
