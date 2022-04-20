@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="修改日期和時間" />
+    <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="空氣品質指標">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/星期13/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/星期13/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/星期13/.ipynb_checkpoints/test-checkpoint.ipynb" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -20,18 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1mrDJPultNWj9oNeTpFjzQ1rJvB" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/日期和時間" />
@@ -95,48 +102,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610242745436</updated>
-    </task>
-    <task id="LOCAL-00140" summary="modify">
-      <created>1613878622356</created>
-      <option name="number" value="00140" />
-      <option name="presentableId" value="LOCAL-00140" />
-      <option name="project" value="LOCAL" />
-      <updated>1613878622356</updated>
-    </task>
-    <task id="LOCAL-00141" summary="modify">
-      <created>1613879344725</created>
-      <option name="number" value="00141" />
-      <option name="presentableId" value="LOCAL-00141" />
-      <option name="project" value="LOCAL" />
-      <updated>1613879344725</updated>
-    </task>
-    <task id="LOCAL-00142" summary="modify">
-      <created>1613880042359</created>
-      <option name="number" value="00142" />
-      <option name="presentableId" value="LOCAL-00142" />
-      <option name="project" value="LOCAL" />
-      <updated>1613880042359</updated>
-    </task>
-    <task id="LOCAL-00143" summary="modify">
-      <created>1613880670596</created>
-      <option name="number" value="00143" />
-      <option name="presentableId" value="LOCAL-00143" />
-      <option name="project" value="LOCAL" />
-      <updated>1613880670596</updated>
-    </task>
-    <task id="LOCAL-00144" summary="modify">
-      <created>1613881225719</created>
-      <option name="number" value="00144" />
-      <option name="presentableId" value="LOCAL-00144" />
-      <option name="project" value="LOCAL" />
-      <updated>1613881225719</updated>
-    </task>
-    <task id="LOCAL-00145" summary="modify">
-      <created>1613881790968</created>
-      <option name="number" value="00145" />
-      <option name="presentableId" value="LOCAL-00145" />
-      <option name="project" value="LOCAL" />
-      <updated>1613881790968</updated>
     </task>
     <task id="LOCAL-00146" summary="modify">
       <created>1613888133171</created>
@@ -439,7 +404,49 @@
       <option name="project" value="LOCAL" />
       <updated>1637652286236</updated>
     </task>
-    <option name="localTasksCounter" value="189" />
+    <task id="LOCAL-00189" summary="檢查null">
+      <created>1650425658666</created>
+      <option name="number" value="00189" />
+      <option name="presentableId" value="LOCAL-00189" />
+      <option name="project" value="LOCAL" />
+      <updated>1650425658666</updated>
+    </task>
+    <task id="LOCAL-00190" summary="檢查null">
+      <created>1650427439875</created>
+      <option name="number" value="00190" />
+      <option name="presentableId" value="LOCAL-00190" />
+      <option name="project" value="LOCAL" />
+      <updated>1650427439875</updated>
+    </task>
+    <task id="LOCAL-00191" summary="使用figure.add_subplot()">
+      <created>1650427887976</created>
+      <option name="number" value="00191" />
+      <option name="presentableId" value="LOCAL-00191" />
+      <option name="project" value="LOCAL" />
+      <updated>1650427887976</updated>
+    </task>
+    <task id="LOCAL-00192" summary="使用figure.add_subplot()">
+      <created>1650428439663</created>
+      <option name="number" value="00192" />
+      <option name="presentableId" value="LOCAL-00192" />
+      <option name="project" value="LOCAL" />
+      <updated>1650428439663</updated>
+    </task>
+    <task id="LOCAL-00193" summary="空氣品質指標">
+      <created>1650431377410</created>
+      <option name="number" value="00193" />
+      <option name="presentableId" value="LOCAL-00193" />
+      <option name="project" value="LOCAL" />
+      <updated>1650431377410</updated>
+    </task>
+    <task id="LOCAL-00194" summary="空氣品質指標">
+      <created>1650432255167</created>
+      <option name="number" value="00194" />
+      <option name="presentableId" value="LOCAL-00194" />
+      <option name="project" value="LOCAL" />
+      <updated>1650432255167</updated>
+    </task>
+    <option name="localTasksCounter" value="195" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -456,6 +463,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="modify" />
     <MESSAGE value="修改日期和時間" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改日期和時間" />
+    <MESSAGE value="檢查null" />
+    <MESSAGE value="使用figure.add_subplot()" />
+    <MESSAGE value="空氣品質指標" />
+    <option name="LAST_COMMIT_MESSAGE" value="空氣品質指標" />
   </component>
 </project>
