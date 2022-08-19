@@ -14,7 +14,9 @@
  
  [7.股票漲跌比率和相關係數與共變異數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E8%82%A1%E7%A5%A8%E6%BC%B2%E8%B7%8C%E6%AF%94%E7%8E%87%E5%92%8C%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E8%88%87%E5%85%B1%E8%AE%8A%E7%95%B0%E6%95%B8.ipynb)
  
- [8.pandas_datareader股票分析](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/pandas_datareader%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90.ipynb)
+ [8.pandas_datareader股票分析_(台塑,南亞,台聚,華夏)](./pandas_datareader股票分析.ipynb)
+ 
+ [8-1.pandas_datareader股票分析_rolling()](./pandas_datareader股票分析_使用rolling.ipynb)
  
  [9.統計各區域的筆數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E7%9A%84%E7%AD%86%E6%95%B8.ipynb)
  
