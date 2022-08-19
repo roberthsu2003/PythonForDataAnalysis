@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="ee88b9fd-891b-4d4f-8bac-a8a551a22745" name="Default Changelist" comment="modify">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/資料分析範例/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/資料分析範例/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Numpy建立與計算/README.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Numpy建立與計算/README.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -101,13 +101,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1610242745436</updated>
-    </task>
-    <task id="LOCAL-00155" summary="modify">
-      <created>1613893163966</created>
-      <option name="number" value="00155" />
-      <option name="presentableId" value="LOCAL-00155" />
-      <option name="project" value="LOCAL" />
-      <updated>1613893163966</updated>
     </task>
     <task id="LOCAL-00156" summary="modify">
       <created>1613893389038</created>
@@ -445,7 +438,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660889515806</updated>
     </task>
-    <option name="localTasksCounter" value="204" />
+    <task id="LOCAL-00204" summary="modify">
+      <created>1660890135973</created>
+      <option name="number" value="00204" />
+      <option name="presentableId" value="LOCAL-00204" />
+      <option name="project" value="LOCAL" />
+      <updated>1660890135973</updated>
+    </task>
+    <option name="localTasksCounter" value="205" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
