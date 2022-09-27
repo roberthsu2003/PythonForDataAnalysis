@@ -9,20 +9,20 @@
 
 [4.Numpy建立與計算](./Numpy建立與計算/README.ipynb)
 
-[5.初見pandas](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/README.ipynb)
+[5.初見pandas](初見pandas/README.ipynb)
 
-[6.pandas的基礎功能](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/README.ipynb)
+[6.pandas的基礎功能](pandas的基礎功能/README.ipynb)
 
-[7.pandas檔案存取](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb)       
+[7.pandas檔案存取](pandas的檔案存取/README.ipynb)       
 
-[8.資料整理和使用前準備](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/README.ipynb)     
+[8.資料整理和使用前準備](資料整理和使用前準備/README.ipynb)     
 
-[9.數據整理:連接,合併和重塑](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/README.ipynb)    
+[9.數據整理:連接,合併和重塑](數據整理_連接_合併_重塑/README.ipynb)    
  
-[10.群組資料和群組運算](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/README.ipynb)   
+[10.群組資料和群組運算](群組資料和群組運算/README.ipynb)   
 
 [11.直接使用pandas繪制圖表](./直接使用pandas繪制圖表/README.ipynb)
 
 [12.日期和時間](./日期和時間/README.ipynb) 
 
-[13.資料分析範例](https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B)  
+[13.資料分析範例](資料分析範例/README.ipynb)  
