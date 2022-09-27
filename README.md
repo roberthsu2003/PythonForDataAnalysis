@@ -5,7 +5,7 @@
 
 [2.檔案存取](./檔案存取/README.ipynb)
    
-[3.繪圖和視覺展示](./繪圖和視覺展示/README.ipynb)  
+[3.繪圖和視覺展示](./繪圖和視覺展示/visualization.ipynb)  
 
 [4.Numpy建立與計算](./Numpy建立與計算/README.ipynb)
 
