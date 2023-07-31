@@ -17,12 +17,14 @@
 
 [8.資料整理和使用前準備](資料整理和使用前準備/README.ipynb)     
 
-[9.數據整理:連接,合併和重塑](數據整理_連接_合併_重塑/README.ipynb)    
+[9.數據整理:連接,合併和重塑](數據整理_連接_合併_重塑/README.ipynb)  
+
+[10.視覺化表格](./視覺化表格/README.ipynb)  
  
-[10.群組資料和群組運算](群組資料和群組運算/README.ipynb)   
+[11.群組資料和群組運算](群組資料和群組運算/README.ipynb)   
 
-[11.直接使用pandas繪制圖表](./直接使用pandas繪制圖表/README.ipynb)
+[12.直接使用pandas繪制圖表](./直接使用pandas繪制圖表/README.ipynb)
 
-[12.日期和時間](./日期和時間/README.ipynb) 
+[13.日期和時間](./日期和時間/README.ipynb) 
 
-[13.資料分析範例](資料分析範例/README.md)  
+[14.資料分析範例](資料分析範例/README.md)  
