@@ -1,0 +1,6 @@
+requests
+numpy
+pandas
+matplotlib
+Jinja2
+seaborn
