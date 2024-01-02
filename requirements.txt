@@ -4,3 +4,5 @@ pandas
 matplotlib
 Jinja2
 seaborn
+pyinputplus
+openpyxl
