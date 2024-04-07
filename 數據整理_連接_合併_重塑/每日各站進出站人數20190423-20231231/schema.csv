@@ -1,0 +1,5 @@
+﻿name,title
+trnOpDate,乘車日期
+staCode,站碼
+gateInComingCnt,進站人數
+gateOutGoingCnt,出站人數
