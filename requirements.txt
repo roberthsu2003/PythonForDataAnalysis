@@ -6,3 +6,5 @@ Jinja2
 seaborn
 pyinputplus
 openpyxl
+seaborn
+scipy
