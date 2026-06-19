@@ -1,5 +1,7 @@
 ![python for data Aanlysis](./card.png)
 
+[Pandas、NumPy、Matplotlib 最適合搭配的介面工具比較表](./最適合搭配的介面工具比較表.md)
+
 ---
 [1.python](https://github.com/roberthsu2003/python)
 
@@ -30,3 +32,5 @@
 [14.全方面分析](全方面分析/站點2023年進出分析.ipynb)
 
 [15.資料分析範例](資料分析範例/README.md)  
+
+
