@@ -26,3 +26,9 @@
 
 **完成範例**
 [[source,python]](trig_wave_plotter_streamlit.py)
+
+**執行指令**
+在終端機中輸入以下指令來執行程式：
+```bash
+streamlit run interactive_wave.py
+```
