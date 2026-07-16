@@ -1,31 +1,45 @@
 # 資料分析範例
-[1.全球Covid19-最新統計表(介面和儲存為excel檔)](./全球Covid19-最新統計表/main.py)
-![](./images/pic1.png)
 
- [2.階層式索引轉樞紐分析](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Hierarchical%20Indexing.ipynb)
+本資料夾收錄使用 Python 進行資料分析的完整範例，內容涵蓋資料取得、清理、合併、分組統計、資料重塑、時間序列與視覺化。主要使用 pandas、NumPy、Matplotlib、Seaborn 及 pandas-datareader。
 
- [3.交通流量](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F.ipynb)
- 
- [4.空氣品質指標](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E6%8C%87%E6%A8%99.ipynb)  
- 
- [5.火車站進出站總人數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%81%AB%E8%BB%8A%E7%AB%99%E9%80%B2%E5%87%BA%E7%AB%99%E7%B8%BD%E4%BA%BA%E6%95%B8.ipynb)
- 
- [6.2016總統大選](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B8%BD%E7%B5%B1.ipynb)
- 
- [7.幽浮報告](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E5%B9%BD%E6%B5%AE%E5%A0%B1%E5%91%8A.ipynb)
- 
- [8.股票漲跌比率和相關係數與共變異數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E8%82%A1%E7%A5%A8%E6%BC%B2%E8%B7%8C%E6%AF%94%E7%8E%87%E5%92%8C%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E8%88%87%E5%85%B1%E8%AE%8A%E7%95%B0%E6%95%B8.ipynb)
- 
- [9.pandas_datareader股票分析_(台塑,南亞,台聚,華夏)](./pandas_datareader股票分析.ipynb)
- 
- [9-1.pandas_datareader股票分析_rolling()](./pandas_datareader股票分析_使用rolling.ipynb)
- 
- [10.統計各區域的筆數](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E7%9A%84%E7%AD%86%E6%95%B8.ipynb)
- 
- [11.統計各區域使用windows作業系統數量](https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E4%BD%BF%E7%94%A8windows%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E6%95%B8%E9%87%8F.ipynb)
+點選範例名稱即可查看程式與分析流程。部分範例需要網路連線或搭配 `datasets`、`examples` 目錄中的資料檔案。
 
-[12.每20秒收集比特幣資料](./收集比特幣資料/README.ipynb)
- 
-  
-  
- 
+## 政府與公共資料
+
+| 範例 | 簡短說明 | 分析重點 |
+| --- | --- | --- |
+| [全球 COVID-19 最新統計表](./全球Covid19-最新統計表/main.py) | 建立 COVID-19 最新統計資料的查詢介面，並將結果儲存成 Excel。 | 網路資料、圖形介面、Excel 匯出 |
+| [農業體驗戶外教育休閒農場](./農業體驗戶外教育休閒農場.ipynb) | 統計各縣市的戶外教育休閒農場數量，並比較地區分布。 | CSV 下載、類別統計、長條圖 |
+| [週末交通流量](./交通流量.ipynb) | 整理週六與週日車流量，找出單日流量達 20 萬以上的路線。 | 資料清理、分組加總、門檻篩選 |
+| [空氣品質指標（AQI）](./空氣品質指標.ipynb) | 整理各監測站的 AQI 與 PM2.5，建立空氣品質分級並統計各狀況的站點數。 | API、資料分級、分組統計 |
+| [火車站進出站總人數](./火車站進出站總人數.ipynb) | 合併車站與進出站資料，找出進站及出站人數都超過 500 萬的車站。 | 資料合併、彙總、條件過濾 |
+| [第 14 任總統選舉](./總統.ipynb) | 分析候選人的全國及各縣市得票數、得票率與地區勝負結果。 | Excel、比例分析、地區比較 |
+
+### COVID-19 統計表畫面
+
+![全球 COVID-19 最新統計表畫面](./images/pic1.png)
+
+## 網路紀錄與公開資料集
+
+| 範例 | 簡短說明 | 分析重點 |
+| --- | --- | --- |
+| [Bitly 瀏覽器與作業系統分析](./Data%20from%20bitly-2.ipynb) | 統計常見瀏覽器識別資訊，並比較各時區的 Windows 與非 Windows 使用情形。 | JSON、字串處理、分組比較 |
+| [各時區紀錄數量](./統計各區域的筆數.ipynb) | 清理 Bitly 紀錄中的缺失時區，找出紀錄數最高的前 10 個地區。 | 缺失值、次數排名、圖表比較 |
+| [各時區 Windows 使用比例](./統計各區域使用windows作業系統數量.ipynb) | 將使用者分類為 Windows 與非 Windows，比較各時區的數量及比例。 | 條件分類、交叉統計、比例標準化 |
+| [MovieLens 電影評分](./MovieLens1MDataset.ipynb) | 合併使用者、電影與評分資料，分析男女評分差異及熱門電影偏好。 | 多表合併、樞紐分析、群體比較 |
+| [美國幽浮目擊報告](./幽浮報告.ipynb) | 統計美國各州的幽浮目擊次數，並進一步分析阿拉斯加各城市的分布。 | MultiIndex、階層分組、地區統計 |
+
+## 股票與加密貨幣
+
+| 範例 | 簡短說明 | 分析重點 |
+| --- | --- | --- |
+| [台灣塑化類股分析](./pandas_datareader股票分析.ipynb) | 比較台塑、南亞、台聚及華夏的股價、成交量與每日變化比例。 | 金融資料、差分、時間序列 |
+| [股票價格與移動平均](./pandas_datareader股票分析_使用rolling.ipynb) | 比較多檔股票價格，利用 100 日移動平均觀察長期趨勢。 | `rolling()`、趨勢平滑、折線圖 |
+| [美股漲跌比例、相關係數與共變異數](./股票漲跌比率和相關係數與共變異數.ipynb) | 分析多檔美股的報酬率、漲跌比例及股票之間的共同變動程度。 | 報酬率、相關係數、共變異數 |
+| [加密貨幣網頁資料擷取](./收集比特幣資料/README.ipynb) | 擷取加密貨幣排行榜，清理價格與漲跌幅，取得 Bitcoin 的主要市場指標。 | 網頁表格、字串清理、型別轉換 |
+
+## pandas 資料整理
+
+| 範例 | 簡短說明 | 分析重點 |
+| --- | --- | --- |
+| [階層式索引與城市人口](./Hierarchical%20Indexing.ipynb) | 使用城市與年份建立階層式索引，比較總人口及未滿 18 歲人口。 | MultiIndex、`stack()`、`unstack()` |
