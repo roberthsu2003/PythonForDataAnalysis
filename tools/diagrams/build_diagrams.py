@@ -479,6 +479,84 @@ def d_tra(c):
     c.text(24, y + 100 + h2 + 58, '分析結果：各星期平均運量、每月趨勢、7 日移動平均、運量前 5 名車站（附站名）', 14, C['muted'])
 
 
+# ───────────────────────── 看懂資料與選對圖表 ─────────────────────────
+def mini_chart(c, kind, x, y, w=120, h=70):
+    """畫一個迷你圖示：bar / stack / hist / scatter / line。"""
+    c.rect(x, y, w, h, fill='#FAFAF9', stroke=C['line'], rx=8)
+    bx, by = x + 12, y + h - 10
+    if kind == 'bar':                                    # 排序長條
+        for i, v in enumerate([46, 36, 28, 20]):
+            c.rect(bx, y + 10 + i * 13, v * 2.1, 9, fill=C['brown'], stroke='none', rx=2)
+    elif kind == 'stack':                                # 百分比長條
+        for i, parts in enumerate([[50, 30, 20], [35, 40, 25]]):
+            cx = bx
+            for v, col in zip(parts, [C['brown'], '#C8A27C', '#E8D5B7']):
+                c.rect(cx, y + 16 + i * 24, v * 0.96, 16, fill=col, stroke='none', rx=1)
+                cx += v * 0.96
+    elif kind == 'hist':                                 # 直方圖（右偏）
+        for i, v in enumerate([18, 42, 50, 36, 24, 14, 8, 5]):
+            c.rect(bx + i * 12, by - v, 11, v, fill='#C8A27C', stroke='none', rx=1)
+        c.line(bx + 30, y + 8, bx + 30, by, C['red'], 1.4, '3 2')
+    elif kind == 'scatter':                              # 正相關散佈
+        import random
+        r = random.Random(3)
+        for i in range(22):
+            px = r.uniform(0, 1)
+            c.circle(bx + px * 94, by - (px * 40 + r.uniform(0, 14)), 2.6, C['blue'])
+    elif kind == 'line':                                 # 趨勢折線
+        pts = [(0, 10), (16, 16), (32, 30), (48, 42), (64, 36), (80, 46), (96, 50)]
+        c.el.append('<polyline points="' + ' '.join(f'{bx + a:.0f},{by - b:.0f}' for a, b in pts) +
+                    f'" fill="none" stroke="{C["blue"]}" stroke-width="2.4"/>')
+    c.line(bx - 4, by + 2, x + w - 8, by + 2, C['muted'], 1)
+
+
+@diagram('看懂資料與選對圖表', 1, '問題類型對應圖表', '五類問題對應五種圖表')
+def d_choose(c):
+    heads = [('問題類型', 24), ('老闆會怎麼問', 150), ('分析方法', 360), ('建議圖表', 640), ('避免', 900)]
+    for t, x in heads:
+        c.text(x, 34, t, 14, C['muted'], 'bold')
+    rows = [('比較', 'blue', '哪家店賣最多？', 'groupby().sum() + 排序', 'bar', '排序長條圖', '沒排序、Y 軸不從 0'),
+            ('組成', 'brown', '各付款方式佔幾成？', 'value_counts(normalize=True)', 'stack', '百分比長條', '10 塊的圓餅圖'),
+            ('分布', 'amber', '客人通常花多少？', 'describe()、中位數', 'hist', '直方圖／盒鬚圖', '只報平均數'),
+            ('關係', 'green', '越熱賣越多嗎？', 'corr()', 'scatter', '散佈圖', '把相關說成因果'),
+            ('趨勢', 'blue', '營收在成長嗎？', 'resample()、rolling()', 'line', '折線圖', '用折線連接類別')]
+    for i, (kind, tone, q, how, icon, chart, avoid) in enumerate(rows):
+        y = 52 + i * 92
+        if i:
+            c.line(24, y - 6, 1110, y - 6, '#EEF2F7', 1)
+        c.tag(24, y + 26, kind, tone, size=16)
+        c.text(150, y + 46, q, 15, C['ink'], 'bold')
+        c.text(360, y + 46, how, 13, C['blue'], mono=True)
+        mini_chart(c, icon, 640, y + 6)
+        c.text(772, y + 46, chart, 14, C['green'], 'bold')
+        c.text(900, y + 46, '✖ ' + avoid, 13, C['red'], 'bold')
+
+
+@diagram('看懂資料與選對圖表', 2, 'AI協作流程', '與 AI 協作分析資料的五個步驟')
+def d_ai_flow(c):
+    steps = [('1', ['資料健檢'], '認識資料(df)', '每一欄是什麼型態？', C['brown']),
+             ('2', ['問 AI：', '可以回答哪些問題？'], '資料說明給AI(df)', '貼上欄位說明與前 5 列', C['blue']),
+             ('3', ['畫圖並存成圖檔'], 'plt.savefig(...)', '依問題類型選圖表', C['brown']),
+             ('4', ['把圖交給 AI'], '解讀・診斷・改良', '右鍵複製圖片，貼給 AI', C['blue']),
+             ('5', ['用 pandas 驗證'], '核對 AI 說的每個數字', 'AI 會看錯圖！', C['green'])]
+    w, gap = 186, 30
+    for i, (n, title, sub, note, col) in enumerate(steps):
+        x = 24 + i * (w + gap)
+        c.rect(x, 40, w, 120, fill=C['bg'], stroke=col, rx=12, sw=2)
+        c.badge(x + 22, 62, n, col)
+        for k, t in enumerate(title):                     # 標題可以分兩行
+            c.text(x + 40, 67 + k * 20, t, 14, C['ink'], 'bold')
+        c.text(x + 14, 118, sub, 12, col, 'bold', mono=sub.startswith(('認識', '資料說明', 'plt')))
+        c.text(x + 14, 144, note, 12, C['muted'])
+        if i < len(steps) - 1:
+            c.arrow(x + w + 3, 100, x + w + gap - 3, 100, C['muted'], 2)
+    x4, x3 = 24 + 3 * (w + gap) + w / 2, 24 + 2 * (w + gap) + w / 2
+    c.path(f'M{x4:.0f},160 C{x4:.0f},215 {x3:.0f},215 {x3:.0f},166', C['blue'], 2)
+    c.text((x3 + x4) / 2, 222, 'AI 建議改良 → 重畫一次', 13, C['blue'], 'bold', 'middle')
+    c.tag(24, 196, '人負責：問對問題、判斷建議、對結論負責', 'amber')
+    c.tag(24 + 4 * (w + gap) - 60, 196, 'AI 負責：建議、解讀、寫程式', 'blue')
+
+
 if __name__ == '__main__':
     import sys
     only = sys.argv[1:]

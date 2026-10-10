@@ -39,6 +39,7 @@ CHAPTERS = {
     '群組資料和群組運算': ('ch11_groupby', ['tips.csv', '各鄉鎮市區人口密度.csv']),
     '直接使用pandas繪制圖表': ('ch12_pandas_plot', ['tips.csv', 'spx.csv']),
     '日期和時間': ('ch13_datetime', ['stock_px_2.csv']),
+    '看懂資料與選對圖表': ('ch15_choose_chart', []),
     '全方面分析': ('ch14_capstone', ['每日各站進出站人數2023.csv', '站點2023年進出分析.ipynb']),
 }
 
@@ -72,6 +73,8 @@ def build(chapter):
     material_dir.mkdir()
     module = importlib.import_module(module_name)
     notebook, files, cells = module.build(material_dir)
+    if hasattr(module, 'build_lesson'):              # 有些章節也一併產生課堂 Notebook（README.ipynb）
+        module.build_lesson(chapter_dir)
     save_notebook(cells, material_dir / notebook)
     def exists(f):                                   # 素材在「學生素材」或「課程原始資料」（章節資料夾）中
         if f.startswith('課程原始資料/'):
