@@ -17,6 +17,25 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **🏆 茶語時光：店員排行榜與天氣分析**
+>
+> 第一季結束，人資要發績效獎金，請你做一份「店員排行榜」並幫每個人打績效等級；營運長則想知道：「天氣真的會影響生意嗎？要不要看氣象預報排班？」
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb)　｜　[⬇️ 下載本章素材 pandas的基礎功能_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `店員業績_2024Q1.csv` | 25 位店員第一季的出勤、銷售杯數、加購率、顧客評分、客訴數 |
+| `信義店每日天氣與銷量_2024.csv` | 信義店 2024 年每天的氣溫、降雨量、杯數、營收 |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **`loc` 與 `iloc` 就像「找座位」的兩種方式**：`loc` 是「按名牌找人」（找『台北』那一列），`iloc` 是「按座位號碼找人」（找第 0 列）。

@@ -19,6 +19,27 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **🧋 茶語時光：用 Python 讀懂顧客評論與菜單檔案**
+>
+> 你是「茶語時光」總部新來的資料小幫手。店長丟給你一堆檔案：一份顧客評論文字檔、一份菜單 CSV、一份門市資訊 JSON，還有一份從舊電腦匯出、打開全是亂碼的會員名單。今天的任務是：**不用 Excel，用 Python 把這些檔案讀懂、整理好、再存成店長要的檔案。**
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb)　｜　[⬇️ 下載本章素材 檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `菜單.csv` | 10 個品項的價格與成本 |
+| `門市資訊.json` | 5 家門市的營業時間、外送、熱銷品項（巢狀 JSON） |
+| `顧客評論.txt` | 3 月份 120 則顧客評論 |
+| `舊系統會員_big5.csv` | 舊 POS 系統匯出的會員檔（Big5 編碼，會亂碼！） |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **開檔就像「借閱圖書館的書」**：先 `open()`（借書）、讀完或寫完之後一定要 `close()`（還書）。沒還書，別人（其他程式）就借不到，寫到一半的內容也可能沒存進去。用 `with` 寫法就像「自動還書機」，離開區塊就自動歸還。

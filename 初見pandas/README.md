@@ -17,6 +17,27 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **🐼 茶語時光：新品上市週的第一份 pandas 報表**
+>
+> 2024 年 4 月 1 日，新品「芋頭鮮奶」上市！行銷部想知道：新品賣得怎樣？有沒有搶走其他飲料的生意？每杯賺多少？你第一次用 pandas，把菜單、門市資料與兩週的銷量做成表格來回答。
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb)　｜　[⬇️ 下載本章素材 初見pandas_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `菜單.csv` | 10 個品項的價格與成本 |
+| `門市.csv` | 5 家門市的基本資料 |
+| `兩週品項銷量.json` | 芋頭鮮奶上市前一週與上市當週，全品牌各品項杯數 |
+| `信義店日報_新品週.json` | 信義店新品週每天的杯數、營收、來客數 |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **NumPy 陣列像「蛋盒」**：只能放同一種東西、格子只有編號。**pandas DataFrame 像「Excel 工作表」**：每一欄可以放不同型態（姓名是文字、分數是數字、是否及格是 True/False），而且欄有欄名、列有列名。

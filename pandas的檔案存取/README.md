@@ -17,6 +17,28 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **📥 茶語時光：搞定五種難搞的資料檔**
+>
+> 月初結帳日，各部門丟來五種格式的檔案：POS 系統匯出的「髒」CSV、每家店一個工作表的 Excel、外送平台的巢狀 JSON、IT 部門的會員資料庫，還有一個 10 萬筆、用 Excel 打開會卡住的交易檔。你要用 pandas 一一讀進來，最後整理成一份多工作表的 Excel 交給主管。
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb)　｜　[⬇️ 下載本章素材 pandas的檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `POS匯出_信義店_2024-03.csv` | POS 匯出的日報：有註解行、千分位逗號、`--` 缺值、最後一列是合計 |
+| `各店月報_2024.xlsx` | 5 個工作表（每店一張），前兩列是標題 |
+| `外送平台訂單_2024-03.json` | 外送平台的巢狀 JSON：一筆訂單裡有多個品項 |
+| `會員資料庫.db` | SQLite 資料庫，內有「會員」資料表（800 位） |
+| `全年交易紀錄_2024.csv` | 10 萬筆交易紀錄（用來練習分批讀取） |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **上一章用 `csv` / `json` 模組讀檔，就像「手工拆包裹」**：要自己一層一層打開、一筆一筆整理。**pandas 的 `read_csv()` 就像「自動拆箱機」**：丟進去，出來就是整理好的表格。

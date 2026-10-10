@@ -17,6 +17,28 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **📈 茶語時光：做出老闆最愛的五張圖**
+>
+> 年終檢討會議就在明天，老闆說：「我不要看密密麻麻的表格，給我幾張圖，一眼就知道今年哪家店最好、什麼最好賣、客人是誰、天氣對生意有沒有影響。」你決定用 Matplotlib 做出五張圖，再組成一頁儀表板。
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb)　｜　[⬇️ 下載本章素材 繪圖和視覺展示_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `門市月營收_2024.csv` | 5 家門市 2024 年每月營收（萬元） |
+| `品項年銷量_2024.csv` | 10 個品項全年銷量 |
+| `西門店每日氣溫與銷量_2024.csv` | 西門店每天的最高溫與芒果冰沙、熱可可杯數 |
+| `會員年齡.csv` | 700 位會員的年齡 |
+| `甜度偏好_2024.csv` | 一年來各甜度的杯數（抽樣） |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **Matplotlib 就像「畫室」**：`Figure` 是整張**畫布**，`Axes` 是畫布上的**畫框**（一張畫布可以掛好幾個畫框），線條、標題、座標軸則是畫框裡的**顏料與標籤**。

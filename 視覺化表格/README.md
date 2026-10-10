@@ -15,6 +15,24 @@
 
 ---
 
+## 📦 學生素材下載
+
+> [!TIP]
+> **🎨 茶語時光：做一份「會發亮」的 KPI 報表**
+>
+> 每季的營運會議，區經理都要盯著一張密密麻麻的數字表找問題。老闆說：「能不能讓沒達標的自動變紅、表現最好的自動亮起來？我要一眼就看到重點。」你決定用 pandas 的 Styler 幫表格「化妝」，最後匯出成帶顏色的 Excel。
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb)　｜　[⬇️ 下載本章素材 視覺化表格_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+
+| 素材檔案 | 內容 |
+| --- | --- |
+| `門市KPI_2024Q2.csv` | 第二季各門市的營收目標、實際營收、去年同期、來客數、評分、客訴、新會員 |
+| `品項月銷量_2024.csv` | 10 個品項 × 12 個月的杯數 |
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例最後附有練習題與參考解答。
+
+---
+
 ## 💡 1. 為什麼需要這個觀念？（生活化比喻）
 
 - **DataFrame 是「素顏的表格」，Styler 是「化妝師」**：化妝不會改變一個人（資料本身不變），只改變外觀（顯示方式）。所以 `df.style` 之後的表格是用來「看」與「匯出」的，不是拿來再計算的。

@@ -2,6 +2,8 @@
 
 [Pandas、NumPy、Matplotlib 最適合搭配的介面工具比較表](./最適合搭配的介面工具比較表.md)
 
+📦 **每個章節都附有「茶語時光」情境範例 Notebook 與可下載的學生素材壓縮檔**，請見各章 README 的「學生素材下載」區塊（素材由 [`tools/build_student_materials.py`](./tools/build_student_materials.py) 產生）。
+
 ---
 [1.python](https://github.com/roberthsu2003/python)
 
