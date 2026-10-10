@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="698" height="254" viewBox="0 0 698 254" role="img" aria-label="loc 按名牌、iloc 按位置取資料">
+<title>loc 按名牌、iloc 按位置取資料</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="696" height="252" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<text x="30.0" y="74.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#B45309" font-weight="bold" text-anchor="start" xml:space="preserve">位置</text>
+<rect x="70.0" y="50.0" width="270.5" height="180.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="70.0" y="50.0" width="270.5" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="70.0" y1="86.0" x2="340.5" y2="86.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="122.0" y1="50.0" x2="122.0" y2="230.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="96.0" y="73.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">名牌</text>
+<text x="146.1" y="73.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">one</text>
+<text x="194.1" y="73.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">two</text>
+<text x="250.9" y="73.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">three</text>
+<text x="312.1" y="73.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">four</text>
+<text x="96.0" y="109.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">台北</text>
+<text x="146.1" y="109.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">0</text>
+<text x="194.1" y="109.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<text x="250.9" y="109.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<text x="312.1" y="109.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">3</text>
+<line x1="76.0" y1="122.0" x2="334.5" y2="122.0" stroke="#EEF2F7" stroke-width="1"/>
+<rect x="73.0" y="125.0" width="46.0" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="96.0" y="145.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">台中</text>
+<text x="146.1" y="145.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">4</text>
+<rect x="173.1" y="125.0" width="42.1" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="194.1" y="145.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">5</text>
+<rect x="221.2" y="125.0" width="59.5" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="250.9" y="145.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">6</text>
+<text x="312.1" y="145.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">7</text>
+<line x1="76.0" y1="158.0" x2="334.5" y2="158.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="96.0" y="181.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">台南</text>
+<text x="146.1" y="181.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">8</text>
+<text x="194.1" y="181.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">9</text>
+<text x="250.9" y="181.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">10</text>
+<text x="312.1" y="181.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">11</text>
+<line x1="76.0" y1="194.0" x2="334.5" y2="194.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="96.0" y="217.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">高雄</text>
+<text x="146.1" y="217.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">12</text>
+<text x="194.1" y="217.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">13</text>
+<text x="250.9" y="217.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">14</text>
+<text x="312.1" y="217.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">15</text>
+<text x="44.0" y="109.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[0]</text>
+<text x="44.0" y="145.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[1]</text>
+<text x="44.0" y="181.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[2]</text>
+<text x="44.0" y="217.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[3]</text>
+<text x="146.1" y="40.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[0]</text>
+<text x="194.1" y="40.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[1]</text>
+<text x="250.9" y="40.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[2]</text>
+<text x="312.1" y="40.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#B45309" font-weight="bold" text-anchor="middle" xml:space="preserve">[3]</text>
+<rect x="376.5" y="70.0" width="296.0" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="387.5" y="87.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">data.loc[&#x27;台中&#x27;, [&#x27;two&#x27;, &#x27;three&#x27;]]</text>
+<text x="380.5" y="120.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#2563EB" font-weight="bold" text-anchor="start" xml:space="preserve">用名牌（列名、欄名）→ 5, 6</text>
+<rect x="376.5" y="150.0" width="186.7" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="387.5" y="167.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">data.iloc[1, [1, 2]]</text>
+<text x="380.5" y="200.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#B45309" font-weight="bold" text-anchor="start" xml:space="preserve">用位置（第幾列、第幾欄，從 0 開始）→ 5, 6</text>
+</svg>

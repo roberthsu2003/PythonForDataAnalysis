@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="552" height="540" viewBox="0 0 552 540" role="img" aria-label="有雜訊的 CSV 用參數讀成乾淨表格">
+<title>有雜訊的 CSV 用參數讀成乾淨表格</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="550" height="538" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="186.1" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="117.1" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：ex4.csv（原始檔）</text>
+<rect x="24.0" y="58.0" width="243.5" height="200.0" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="38.0" y="89.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve"># hey!</text>
+<text x="281.5" y="89.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="294.5" y="89.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">第 0 行：註解 → 跳過</text>
+<text x="38.0" y="115.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">a,b,c,d,message</text>
+<text x="281.5" y="115.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="294.5" y="115.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">第 1 行：標題</text>
+<text x="38.0" y="141.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve"># just wanted to make ...</text>
+<text x="281.5" y="141.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="294.5" y="141.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">第 2 行：註解 → 跳過</text>
+<text x="38.0" y="167.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve"># who reads CSV files ...</text>
+<text x="281.5" y="167.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="294.5" y="167.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">第 3 行：註解 → 跳過</text>
+<text x="38.0" y="193.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">1,2,3,4,hello</text>
+<text x="38.0" y="219.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">5,6,7,8,world</text>
+<text x="38.0" y="245.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">9,10,11,12,foo</text>
+<line x1="140.0" y1="278.0" x2="140.0" y2="328.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<rect x="160.0" y="288.0" width="367.9" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="171.0" y="305.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">pd.read_csv(&#x27;ex4.csv&#x27;, skiprows=[0, 2, 3])</text>
+<rect x="24.0" y="344.0" width="139.9" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="93.9" y="360.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：DataFrame</text>
+<rect x="24.0" y="380.0" width="312.9" height="136.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="24.0" y="380.0" width="312.9" height="34.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="24.0" y1="414.0" x2="336.9" y2="414.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="70.0" y1="380.0" x2="70.0" y2="516.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="47.0" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="93.0" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">a</text>
+<text x="139.0" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">b</text>
+<text x="185.0" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">c</text>
+<text x="231.0" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">d</text>
+<text x="295.4" y="402.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">message</text>
+<text x="47.0" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">0</text>
+<text x="93.0" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<text x="139.0" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<text x="185.0" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">3</text>
+<text x="231.0" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">4</text>
+<text x="295.4" y="436.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">hello</text>
+<line x1="30.0" y1="448.0" x2="330.9" y2="448.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="47.0" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<text x="93.0" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">5</text>
+<text x="139.0" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">6</text>
+<text x="185.0" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">7</text>
+<text x="231.0" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">8</text>
+<text x="295.4" y="470.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">world</text>
+<line x1="30.0" y1="482.0" x2="330.9" y2="482.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="47.0" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<text x="93.0" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">9</text>
+<text x="139.0" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">10</text>
+<text x="185.0" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">11</text>
+<text x="231.0" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">12</text>
+<text x="295.4" y="504.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">foo</text>
+</svg>

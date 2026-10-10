@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="812" height="298" viewBox="0 0 812 298" role="img" aria-label="兩串數字畫成折線圖">
+<title>兩串數字畫成折線圖</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="810" height="296" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="124.0" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="86.0" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：兩串數字</text>
+<text x="24.0" y="86.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">X（日期） = [1,  2,  3,  4,  5]</text>
+<text x="24.0" y="120.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">Y（營收） = [12, 22, 25, 20, 18]</text>
+<text x="24.0" y="160.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="37.0" y="160.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">兩串的筆數必須一樣多</text>
+<line x1="330.0" y1="100.0" x2="420.0" y2="100.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="375.0" y="91.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="middle" xml:space="preserve">plt.plot(X, Y)</text>
+<rect x="440.0" y="22.0" width="111.0" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="495.5" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：折線圖</text>
+<line x1="480.0" y1="250.0" x2="770.0" y2="250.0" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="480.0" y1="60.0" x2="480.0" y2="250.0" stroke="#1E293B" stroke-width="1.5"/>
+<polyline points="532,201 584,131 636,110 688,145 740,159" fill="none" stroke="#2563EB" stroke-width="2.5"/>
+<circle cx="532.0" cy="201.0" r="5" fill="#2563EB" stroke="none"/>
+<text x="532.0" y="189.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">12</text>
+<text x="532.0" y="270.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<circle cx="584.0" cy="131.0" r="5" fill="#2563EB" stroke="none"/>
+<text x="584.0" y="119.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">22</text>
+<text x="584.0" y="270.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<circle cx="636.0" cy="110.0" r="5" fill="#2563EB" stroke="none"/>
+<text x="636.0" y="98.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">25</text>
+<text x="636.0" y="270.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">3</text>
+<circle cx="688.0" cy="145.0" r="5" fill="#2563EB" stroke="none"/>
+<text x="688.0" y="133.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">20</text>
+<text x="688.0" y="270.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">4</text>
+<circle cx="740.0" cy="159.0" r="5" fill="#2563EB" stroke="none"/>
+<text x="740.0" y="147.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">18</text>
+<text x="740.0" y="270.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">5</text>
+<text x="780.0" y="255.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve">X</text>
+<text x="474.0" y="55.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="normal" text-anchor="end" xml:space="preserve">Y</text>
+</svg>

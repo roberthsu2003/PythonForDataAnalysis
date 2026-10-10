@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="784" height="212" viewBox="0 0 784 212" role="img" aria-label="CSV 純文字讀成二維清單">
+<title>CSV 純文字讀成二維清單</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="782" height="210" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="236.8" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="142.4" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：students.csv（純文字檔）</text>
+<rect x="24.0" y="58.0" width="177.4" height="102.0" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="38.0" y="91.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">編號,國文,英文,數學</text>
+<text x="38.0" y="119.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">01,87,90,56</text>
+<text x="38.0" y="147.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">02,98,56,78</text>
+<text x="32.0" y="184.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve">▲</text>
+<text x="45.0" y="184.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="start" xml:space="preserve">第一列是標題列</text>
+<line x1="217.4" y1="109.0" x2="317.4" y2="109.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="267.4" y="100.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="middle" xml:space="preserve">csv.reader</text>
+<rect x="335.4" y="22.0" width="238.7" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="454.8" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：Python 的二維清單（list）</text>
+<rect x="335.4" y="58.0" width="287.2" height="102.0" rx="8" fill="#DBEAFE" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="349.4" y="91.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">[[&#x27;編號&#x27;,&#x27;國文&#x27;,&#x27;英文&#x27;,&#x27;數學&#x27;],</text>
+<text x="349.4" y="119.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve"> [&#x27;01&#x27;,&#x27;87&#x27;,&#x27;90&#x27;,&#x27;56&#x27;],</text>
+<text x="349.4" y="147.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve"> [&#x27;02&#x27;,&#x27;98&#x27;,&#x27;56&#x27;,&#x27;78&#x27;]]</text>
+<text x="343.4" y="184.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="356.4" y="184.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">注意：&#x27;87&#x27; 有引號——讀進來的全部都是文字，計算前要先轉成數字！</text>
+</svg>

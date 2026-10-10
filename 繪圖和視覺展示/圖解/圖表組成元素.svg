@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="848" height="448" viewBox="0 0 848 448" role="img" aria-label="Matplotlib 圖表的組成：Figure、Axes 與元素">
+<title>Matplotlib 圖表的組成：Figure、Axes 與元素</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="846" height="446" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="24.0" width="800.0" height="400.0" rx="12" fill="#FAFAF9" stroke="#8B5E3C" stroke-width="2"/>
+<rect x="40.0" y="36.0" width="139.6" height="25.0" rx="12.5" fill="#F5EBDD" stroke="none" stroke-width="1.2"/>
+<text x="109.8" y="52.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">Figure（整張畫布）</text>
+<rect x="60.0" y="78.0" width="480.0" height="326.0" rx="10" fill="#FFFFFF" stroke="#2563EB" stroke-width="2"/>
+<rect x="76.0" y="90.0" width="102.2" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="127.1" y="106.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">Axes（畫框）</text>
+<text x="300.0" y="140.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="17" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">Fruit Sales</text>
+<line x1="140.0" y1="345.0" x2="510.0" y2="345.0" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="140.0" y1="175.0" x2="140.0" y2="345.0" stroke="#1E293B" stroke-width="1.5"/>
+<line x1="135.0" y1="295.0" x2="140.0" y2="295.0" stroke="#1E293B" stroke-width="1.2"/>
+<text x="131.0" y="300.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="end" xml:space="preserve">3000</text>
+<line x1="135.0" y1="245.0" x2="140.0" y2="245.0" stroke="#1E293B" stroke-width="1.2"/>
+<text x="131.0" y="250.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="end" xml:space="preserve">6000</text>
+<line x1="135.0" y1="195.0" x2="140.0" y2="195.0" stroke="#1E293B" stroke-width="1.2"/>
+<text x="131.0" y="200.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#64748B" font-weight="normal" text-anchor="end" xml:space="preserve">9000</text>
+<rect x="175.0" y="295.0" width="30.0" height="50.0" rx="2" fill="#8B5E3C" stroke="none" stroke-width="1.2"/>
+<rect x="209.0" y="278.3" width="30.0" height="66.7" rx="2" fill="#D6B48C" stroke="none" stroke-width="1.2"/>
+<text x="207.0" y="367.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">apple</text>
+<rect x="285.0" y="245.0" width="30.0" height="100.0" rx="2" fill="#8B5E3C" stroke="none" stroke-width="1.2"/>
+<rect x="319.0" y="228.3" width="30.0" height="116.7" rx="2" fill="#D6B48C" stroke="none" stroke-width="1.2"/>
+<text x="317.0" y="367.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">banana</text>
+<rect x="395.0" y="278.3" width="30.0" height="66.7" rx="2" fill="#8B5E3C" stroke="none" stroke-width="1.2"/>
+<rect x="429.0" y="203.3" width="30.0" height="141.7" rx="2" fill="#D6B48C" stroke="none" stroke-width="1.2"/>
+<text x="427.0" y="367.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">orange</text>
+<rect x="400.0" y="160.0" width="14.0" height="14.0" rx="2" fill="#8B5E3C" stroke="none" stroke-width="1.2"/>
+<text x="420.0" y="172.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">2024</text>
+<rect x="460.0" y="160.0" width="14.0" height="14.0" rx="2" fill="#D6B48C" stroke="none" stroke-width="1.2"/>
+<text x="480.0" y="172.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="12" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">2025</text>
+<circle cx="375.0" cy="135.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="375.0" y="139.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">1</text>
+<circle cx="432.0" cy="145.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="432.0" y="149.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">2</text>
+<circle cx="86.0" cy="250.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="86.0" y="254.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">3</text>
+<circle cx="222.0" cy="262.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="222.0" y="266.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">4</text>
+<circle cx="300.0" cy="392.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="300.0" y="396.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">5</text>
+<circle cx="575.0" cy="125.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="575.0" y="129.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">1</text>
+<text x="596.0" y="130.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="start" xml:space="preserve">標題</text>
+<text x="700.0" y="130.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">set_title()</text>
+<circle cx="575.0" cy="173.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="575.0" y="177.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">2</text>
+<text x="596.0" y="178.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="start" xml:space="preserve">圖例</text>
+<text x="700.0" y="178.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">legend()</text>
+<circle cx="575.0" cy="221.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="575.0" y="225.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">3</text>
+<text x="596.0" y="226.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="start" xml:space="preserve">Y 軸刻度</text>
+<text x="700.0" y="226.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">set_yticks()</text>
+<circle cx="575.0" cy="269.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="575.0" y="273.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">4</text>
+<text x="596.0" y="274.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="start" xml:space="preserve">資料（長條）</text>
+<text x="700.0" y="274.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">bar()</text>
+<circle cx="575.0" cy="317.0" r="11" fill="#DC2626" stroke="none"/>
+<text x="575.0" y="321.5" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">5</text>
+<text x="596.0" y="322.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="start" xml:space="preserve">X 軸標籤</text>
+<text x="700.0" y="322.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">set_xticks()</text>
+<text x="565.0" y="385.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve">一張 Figure 可以放好幾個 Axes</text>
+</svg>

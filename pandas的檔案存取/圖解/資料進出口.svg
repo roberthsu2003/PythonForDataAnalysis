@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="794" height="300" viewBox="0 0 794 300" role="img" aria-label="pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出">
+<title>pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="792" height="298" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="30.0" width="110.0" height="38.0" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="79.0" y="55.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">CSV</text>
+<path d="M134,49 C190,49 190,155 236,155" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#ab)"/>
+<rect x="24.0" y="82.0" width="110.0" height="38.0" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="79.0" y="107.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">Excel</text>
+<path d="M134,101 C190,101 190,155 236,155" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#ab)"/>
+<rect x="24.0" y="134.0" width="110.0" height="38.0" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="79.0" y="159.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">JSON</text>
+<path d="M134,153 C190,153 190,155 236,155" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#ab)"/>
+<rect x="24.0" y="186.0" width="110.0" height="38.0" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="79.0" y="211.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">Web API</text>
+<path d="M134,205 C190,205 190,155 236,155" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#ab)"/>
+<rect x="24.0" y="238.0" width="110.0" height="38.0" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="79.0" y="263.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">SQLite</text>
+<path d="M134,257 C190,257 190,155 236,155" stroke="#2563EB" stroke-width="1.8" fill="none" marker-end="url(#ab)"/>
+<rect x="246.0" y="112.0" width="200.0" height="86.0" rx="14" fill="#2563EB" stroke="none" stroke-width="1.2"/>
+<rect x="250.0" y="70.0" width="104.4" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="261.0" y="87.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">read_xxx()</text>
+<rect x="360.0" y="70.0" width="87.9" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="371.0" y="87.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">to_xxx()</text>
+<text x="346.0" y="150.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="20" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">DataFrame</text>
+<text x="346.0" y="178.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#DBEAFE" font-weight="normal" text-anchor="middle" xml:space="preserve">篩選、統計、清理</text>
+<path d="M446,155 C500,155 500,75 556,75" stroke="#15803D" stroke-width="1.8" fill="none"/>
+<line x1="556.0" y1="75.0" x2="566.0" y2="75.0" stroke="#15803D" stroke-width="1.8"/>
+<rect x="570.0" y="56.0" width="200.0" height="38.0" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="1.2"/>
+<text x="584.0" y="81.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">CSV</text>
+<text x="760.0" y="81.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#15803D" font-weight="normal" text-anchor="end" xml:space="preserve">to_csv()</text>
+<path d="M446,155 C500,155 500,127 556,127" stroke="#15803D" stroke-width="1.8" fill="none"/>
+<line x1="556.0" y1="127.0" x2="566.0" y2="127.0" stroke="#15803D" stroke-width="1.8"/>
+<rect x="570.0" y="108.0" width="200.0" height="38.0" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="1.2"/>
+<text x="584.0" y="133.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">Excel</text>
+<text x="760.0" y="133.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#15803D" font-weight="normal" text-anchor="end" xml:space="preserve">to_excel()</text>
+<path d="M446,155 C500,155 500,179 556,179" stroke="#15803D" stroke-width="1.8" fill="none"/>
+<line x1="556.0" y1="179.0" x2="566.0" y2="179.0" stroke="#15803D" stroke-width="1.8"/>
+<rect x="570.0" y="160.0" width="200.0" height="38.0" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="1.2"/>
+<text x="584.0" y="185.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">JSON</text>
+<text x="760.0" y="185.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#15803D" font-weight="normal" text-anchor="end" xml:space="preserve">to_json()</text>
+<path d="M446,155 C500,155 500,231 556,231" stroke="#15803D" stroke-width="1.8" fill="none"/>
+<line x1="556.0" y1="231.0" x2="566.0" y2="231.0" stroke="#15803D" stroke-width="1.8"/>
+<rect x="570.0" y="212.0" width="200.0" height="38.0" rx="8" fill="#DCFCE7" stroke="#15803D" stroke-width="1.2"/>
+<text x="584.0" y="237.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">SQLite</text>
+<text x="760.0" y="237.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#15803D" font-weight="normal" text-anchor="end" xml:space="preserve">to_sql()</text>
+</svg>

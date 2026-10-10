@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="690" height="272" viewBox="0 0 690 272" role="img" aria-label="axis=0 直著算、axis=1 橫著算">
+<title>axis=0 直著算、axis=1 橫著算</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="688" height="270" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="60.0" y="30.0" width="304.0" height="120.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="60.0" y="30.0" width="304.0" height="40.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="60.0" y1="70.0" x2="364.0" y2="70.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="130.0" y1="30.0" x2="130.0" y2="150.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="95.0" y="55.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="169.0" y="55.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">國文</text>
+<text x="247.0" y="55.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">英文</text>
+<text x="325.0" y="55.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">數學</text>
+<text x="95.0" y="95.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小明</text>
+<text x="169.0" y="95.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">80</text>
+<text x="247.0" y="95.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">90</text>
+<text x="325.0" y="95.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">70</text>
+<line x1="66.0" y1="110.0" x2="358.0" y2="110.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="95.0" y="135.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小華</text>
+<text x="169.0" y="135.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">60</text>
+<text x="247.0" y="135.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">75</text>
+<text x="325.0" y="135.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">95</text>
+<line x1="374.0" y1="90.0" x2="454.0" y2="90.0" stroke="#15803D" stroke-width="2.2" marker-end="url(#ag)"/>
+<text x="466.0" y="96.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">小明總分 240</text>
+<line x1="374.0" y1="130.0" x2="454.0" y2="130.0" stroke="#15803D" stroke-width="2.2" marker-end="url(#ag)"/>
+<text x="466.0" y="136.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">小華總分 230</text>
+<line x1="169.0" y1="158.0" x2="169.0" y2="208.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<rect x="137.0" y="214.0" width="64.0" height="34.0" rx="6" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="169.0" y="237.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">140</text>
+<line x1="247.0" y1="158.0" x2="247.0" y2="208.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<rect x="215.0" y="214.0" width="64.0" height="34.0" rx="6" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="247.0" y="237.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">165</text>
+<line x1="325.0" y1="158.0" x2="325.0" y2="208.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<rect x="293.0" y="214.0" width="64.0" height="34.0" rx="6" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="325.0" y="237.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">165</text>
+<rect x="377.0" y="216.0" width="227.2" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="490.6" y="232.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">axis=0：直著算 → 每一科一個答案</text>
+<rect x="374.0" y="12.0" width="292.2" height="25.0" rx="12.5" fill="#DCFCE7" stroke="none" stroke-width="1.2"/>
+<text x="520.1" y="28.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="middle" xml:space="preserve">axis=1：橫著算 → 每一列（每個人）一個答案</text>
+</svg>

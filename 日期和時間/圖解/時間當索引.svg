@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="813" height="226" viewBox="0 0 813 226" role="img" aria-label="文字日期轉成時間索引">
+<title>文字日期轉成時間索引</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="811" height="224" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="215.0" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="131.5" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：日期是一般欄位（文字）</text>
+<rect x="24.0" y="58.0" width="229.8" height="144.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="24.0" y="58.0" width="229.8" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="24.0" y1="94.0" x2="253.8" y2="94.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="70.0" y1="58.0" x2="70.0" y2="202.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="47.0" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="135.9" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">日期</text>
+<text x="227.8" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">營收</text>
+<text x="47.0" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">0</text>
+<text x="135.9" y="117.4" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">&#x27;2021-01-02&#x27;</text>
+<text x="227.8" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">120</text>
+<line x1="30.0" y1="130.0" x2="247.8" y2="130.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="47.0" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<text x="135.9" y="153.4" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">&#x27;2021-01-05&#x27;</text>
+<text x="227.8" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">135</text>
+<line x1="30.0" y1="166.0" x2="247.8" y2="166.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="47.0" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<text x="135.9" y="189.4" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">&#x27;2021-02-09&#x27;</text>
+<text x="227.8" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">160</text>
+<line x1="269.8" y1="122.0" x2="403.8" y2="122.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="336.8" y="113.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="middle" xml:space="preserve">to_datetime</text>
+<text x="336.8" y="152.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="middle" xml:space="preserve">+ set_index</text>
+<rect x="421.8" y="22.0" width="296.4" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="570.0" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：日期變成時間索引（DatetimeIndex）</text>
+<rect x="421.8" y="58.0" width="164.0" height="144.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="421.8" y="58.0" width="164.0" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="421.8" y1="94.0" x2="585.8" y2="94.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="533.8" y1="58.0" x2="533.8" y2="202.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="477.8" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">日期（索引）</text>
+<text x="559.8" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">營收</text>
+<rect x="424.8" y="97.0" width="106.0" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="477.8" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">2021-01-02</text>
+<text x="559.8" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">120</text>
+<line x1="427.8" y1="130.0" x2="579.8" y2="130.0" stroke="#EEF2F7" stroke-width="1"/>
+<rect x="424.8" y="133.0" width="106.0" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="477.8" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">2021-01-05</text>
+<text x="559.8" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">135</text>
+<line x1="427.8" y1="166.0" x2="579.8" y2="166.0" stroke="#EEF2F7" stroke-width="1"/>
+<rect x="424.8" y="169.0" width="106.0" height="30.0" rx="5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="477.8" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">2021-02-09</text>
+<text x="559.8" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">160</text>
+<text x="601.8" y="117.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="614.8" y="117.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">ts[&#x27;2021-01&#x27;] 取出整個月</text>
+<text x="601.8" y="153.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="614.8" y="153.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">算「星期幾」、「第幾季」</text>
+<text x="601.8" y="189.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="614.8" y="189.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">resample(&#x27;ME&#x27;) 彙總成每月</text>
+</svg>

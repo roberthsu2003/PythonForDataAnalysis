@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="596" height="432" viewBox="0 0 596 432" role="img" aria-label="reshape：一維陣列重排成 3 列 × 4 欄">
+<title>reshape：一維陣列重排成 3 列 × 4 欄</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="594" height="430" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="276.6" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="162.3" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：一維陣列（12 個數字排成一長條）</text>
+<rect x="370.0" y="20.0" width="129.1" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="381.0" y="37.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">shape = (12,)</text>
+<rect x="24.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="45.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">0</text>
+<rect x="70.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="91.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">1</text>
+<rect x="116.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="137.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">2</text>
+<rect x="162.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="183.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">3</text>
+<rect x="208.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="229.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">4</text>
+<rect x="254.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="275.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">5</text>
+<rect x="300.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="321.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">6</text>
+<rect x="346.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="367.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">7</text>
+<rect x="392.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="413.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">8</text>
+<rect x="438.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="459.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">9</text>
+<rect x="484.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="505.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">10</text>
+<rect x="530.0" y="62.0" width="42.0" height="42.0" rx="6" fill="#F5EBDD" stroke="#8B5E3C" stroke-width="1.2"/>
+<text x="551.0" y="89.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#8B5E3C" font-weight="bold" text-anchor="middle" xml:space="preserve">11</text>
+<line x1="160.0" y1="120.0" x2="160.0" y2="180.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="172.0" y="155.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="start" xml:space="preserve">reshape((3, 4))：重新排成 3 列 × 4 欄</text>
+<rect x="24.0" y="196.0" width="251.1" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="149.6" y="212.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：二維陣列（像一張 Excel 表）</text>
+<rect x="330.0" y="194.0" width="137.3" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="341.0" y="211.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">shape = (3, 4)</text>
+<text x="110.0" y="254.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">欄0</text>
+<text x="166.0" y="254.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">欄1</text>
+<text x="222.0" y="254.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">欄2</text>
+<text x="278.0" y="254.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">欄3</text>
+<text x="56.0" y="290.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="end" xml:space="preserve">列0</text>
+<rect x="86.0" y="266.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="110.0" y="293.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">0</text>
+<rect x="142.0" y="266.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="166.0" y="293.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">1</text>
+<rect x="198.0" y="266.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="222.0" y="293.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">2</text>
+<rect x="254.0" y="266.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="278.0" y="293.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">3</text>
+<text x="56.0" y="340.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="end" xml:space="preserve">列1</text>
+<rect x="86.0" y="316.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="110.0" y="343.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">4</text>
+<rect x="142.0" y="316.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="166.0" y="343.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">5</text>
+<rect x="198.0" y="316.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="222.0" y="343.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">6</text>
+<rect x="254.0" y="316.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="278.0" y="343.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">7</text>
+<text x="56.0" y="390.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="end" xml:space="preserve">列2</text>
+<rect x="86.0" y="366.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="110.0" y="393.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">8</text>
+<rect x="142.0" y="366.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="166.0" y="393.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">9</text>
+<rect x="198.0" y="366.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="222.0" y="393.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">10</text>
+<rect x="254.0" y="366.0" width="48.0" height="42.0" rx="6" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="278.0" y="393.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="16" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">11</text>
+<text x="330.0" y="300.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="343.0" y="300.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">總數不變：12 = 3 × 4</text>
+<text x="330.0" y="330.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="343.0" y="330.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">形狀對不上（例如 5 × 3）就會出錯</text>
+</svg>

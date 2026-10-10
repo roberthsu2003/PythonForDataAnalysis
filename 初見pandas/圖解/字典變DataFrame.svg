@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="582" height="470" viewBox="0 0 582 470" role="img" aria-label="Python 字典轉成 DataFrame 並新增欄位">
+<title>Python 字典轉成 DataFrame 並新增欄位</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="580" height="468" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="279.5" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="163.7" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：Python 字典（每個 key 是一欄）</text>
+<rect x="24.0" y="58.0" width="287.2" height="90.0" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="38.0" y="88.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">{ &#x27;縣市&#x27;: [&#x27;台北&#x27;,&#x27;台北&#x27;,&#x27;新竹&#x27;],</text>
+<text x="38.0" y="112.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">  &#x27;年份&#x27;: [2000, 2001, 2001],</text>
+<text x="38.0" y="136.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">  &#x27;人口&#x27;: [2.2, 2.5, 1.1] }</text>
+<line x1="200.0" y1="166.0" x2="200.0" y2="216.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<rect x="216.0" y="178.0" width="170.2" height="27.5" rx="7" fill="#0F172A" stroke="none" stroke-width="1.2"/>
+<text x="227.0" y="195.5" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13.5" fill="#E2E8F0" font-weight="normal" text-anchor="start" xml:space="preserve">pd.DataFrame(data)</text>
+<text x="410.0" y="197.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">＋ 新增「新開發區」欄</text>
+<rect x="24.0" y="230.0" width="267.0" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="157.5" y="246.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：DataFrame（像 Excel 工作表）</text>
+<rect x="60.0" y="268.0" width="288.8" height="144.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="60.0" y="268.0" width="288.8" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="60.0" y1="304.0" x2="348.8" y2="304.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="106.0" y1="268.0" x2="106.0" y2="412.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="83.0" y="291.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="132.0" y="291.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">縣市</text>
+<text x="186.4" y="291.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">年份</text>
+<text x="240.8" y="291.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">人口</text>
+<text x="307.8" y="291.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">新開發區</text>
+<text x="83.0" y="327.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">0</text>
+<text x="132.0" y="327.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">台北</text>
+<text x="186.4" y="327.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2000</text>
+<text x="240.8" y="327.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2.2</text>
+<rect x="269.8" y="307.0" width="76.0" height="30.0" rx="5" fill="#DCFCE7" stroke="none" stroke-width="1.2"/>
+<text x="307.8" y="327.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="middle" xml:space="preserve">False</text>
+<line x1="66.0" y1="340.0" x2="342.8" y2="340.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="83.0" y="363.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">1</text>
+<text x="132.0" y="363.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">台北</text>
+<text x="186.4" y="363.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2001</text>
+<text x="240.8" y="363.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2.5</text>
+<rect x="269.8" y="343.0" width="76.0" height="30.0" rx="5" fill="#DCFCE7" stroke="none" stroke-width="1.2"/>
+<text x="307.8" y="363.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="middle" xml:space="preserve">False</text>
+<line x1="66.0" y1="376.0" x2="342.8" y2="376.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="83.0" y="399.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">2</text>
+<text x="132.0" y="399.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">新竹</text>
+<text x="186.4" y="399.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">2001</text>
+<text x="240.8" y="399.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">1.1</text>
+<rect x="269.8" y="379.0" width="76.0" height="30.0" rx="5" fill="#DCFCE7" stroke="none" stroke-width="1.2"/>
+<text x="307.8" y="399.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#15803D" font-weight="bold" text-anchor="middle" xml:space="preserve">True</text>
+<text x="368.8" y="291.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#2563EB" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="381.8" y="291.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="start" xml:space="preserve">← columns（欄名）</text>
+<text x="368.8" y="399.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="381.8" y="399.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">新欄位：縣市 == 新竹</text>
+<text x="24.0" y="442.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve">▲</text>
+<text x="37.0" y="442.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="start" xml:space="preserve">index（列名牌）：沒指定時自動從 0 開始編號</text>
+</svg>

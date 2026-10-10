@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="643" height="487" viewBox="0 0 643 487" role="img" aria-label="JSON 一層一層取出資料">
+<title>JSON 一層一層取出資料</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="641" height="485" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="171.1" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="109.5" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">新北市食品工廠清冊.json</text>
+<rect x="24.0" y="58.0" width="339.1" height="243.0" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="38.0" y="88.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">{</text>
+<text x="38.0" y="113.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">  &quot;success&quot;: true,</text>
+<text x="377.1" y="113.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#64748B" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="390.1" y="113.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="start" xml:space="preserve">第 1 層：下載狀態</text>
+<text x="38.0" y="138.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">  &quot;result&quot;: {</text>
+<text x="377.1" y="138.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#B45309" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="390.1" y="138.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#B45309" font-weight="bold" text-anchor="start" xml:space="preserve">第 1 層：結果資料夾</text>
+<text x="38.0" y="163.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">    &quot;records&quot;: [</text>
+<text x="377.1" y="163.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="390.1" y="163.8" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">第 2 層：真正的資料在這裡！</text>
+<text x="38.0" y="188.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">      {&quot;Name_Ins&quot;: &quot;鴻輝食品廠&quot;, ...},</text>
+<text x="38.0" y="213.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">      {&quot;Name_Ins&quot;: &quot;廣達香食品…&quot;, ...}</text>
+<text x="38.0" y="238.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">    ]</text>
+<text x="38.0" y="263.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">  }</text>
+<text x="38.0" y="288.8" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="14" fill="#1E293B" font-weight="normal" text-anchor="start" xml:space="preserve">}</text>
+<rect x="34.0" y="168.0" width="319.1" height="54.0" rx="6" fill="none" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="5 4"/>
+<line x1="160.0" y1="319.0" x2="160.0" y2="369.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="172.0" y="349.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="start" xml:space="preserve">data[&#x27;result&#x27;][&#x27;records&#x27;]</text>
+<rect x="24.0" y="385.0" width="215.0" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="131.5" y="401.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">取出的結果：一筆一個字典的清單</text>
+<rect x="24.0" y="423.0" width="92.0" height="40.0" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="70.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">{工廠 1}</text>
+<rect x="128.0" y="423.0" width="92.0" height="40.0" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="174.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">{工廠 2}</text>
+<rect x="232.0" y="423.0" width="92.0" height="40.0" rx="8" fill="#DBEAFE" stroke="#2563EB" stroke-width="1.2"/>
+<text x="278.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">{工廠 3}</text>
+<rect x="336.0" y="423.0" width="92.0" height="40.0" rx="8" fill="none" stroke="none" stroke-width="1.2"/>
+<text x="382.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="14" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">…</text>
+<text x="450.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="463.0" y="449.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">一列一筆，可以開始分析了</text>
+</svg>

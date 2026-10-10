@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="776" height="316" viewBox="0 0 776 316" role="img" aria-label="Styler：同一份資料，化妝前後的差別">
+<title>Styler：同一份資料，化妝前後的差別</title>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2563EB"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#DC2626"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#15803D"/></marker><marker id="am" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#64748B"/></marker><marker id="an" viewBox="0 0 10 10" refX="8.5" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#8B5E3C"/></marker></defs>
+<rect x="1" y="1" width="774" height="314" rx="16" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.5"/>
+<rect x="24.0" y="22.0" width="186.4" height="25.0" rx="12.5" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<text x="117.2" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve">處理前：素顏的 DataFrame</text>
+<rect x="24.0" y="58.0" width="304.1" height="144.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="24.0" y="58.0" width="304.1" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="24.0" y1="94.0" x2="328.1" y2="94.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="76.0" y1="58.0" x2="76.0" y2="202.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="50.0" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="102.0" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">國文</text>
+<text x="154.0" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">英文</text>
+<text x="206.0" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">數學</text>
+<text x="280.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">營收</text>
+<text x="50.0" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小明</text>
+<text x="102.0" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">85</text>
+<text x="154.0" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">45</text>
+<text x="206.0" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">92</text>
+<text x="280.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">1234567.8</text>
+<line x1="30.0" y1="130.0" x2="322.1" y2="130.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="50.0" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小華</text>
+<text x="102.0" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">58</text>
+<text x="154.0" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">88</text>
+<text x="206.0" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">60</text>
+<text x="280.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">987654.3</text>
+<line x1="30.0" y1="166.0" x2="322.1" y2="166.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="50.0" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小美</text>
+<text x="102.0" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">90</text>
+<text x="154.0" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">72</text>
+<text x="206.0" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">55</text>
+<text x="280.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">456789.1</text>
+<line x1="344.1" y1="130.0" x2="434.1" y2="130.0" stroke="#2563EB" stroke-width="2.2" marker-end="url(#ab)"/>
+<text x="389.1" y="121.0" font-family="'SFMono-Regular','Consolas','Menlo','Noto Sans Mono CJK TC',monospace" font-size="13" fill="#2563EB" font-weight="bold" text-anchor="middle" xml:space="preserve">df.style</text>
+<rect x="452.1" y="22.0" width="199.1" height="25.0" rx="12.5" fill="#DBEAFE" stroke="none" stroke-width="1.2"/>
+<text x="551.7" y="38.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="middle" xml:space="preserve">處理後：Styler 化妝後的報表</text>
+<rect x="452.1" y="58.0" width="299.9" height="144.0" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.2"/>
+<rect x="452.1" y="58.0" width="299.9" height="36.0" rx="8" fill="#F1F5F9" stroke="none" stroke-width="1.2"/>
+<line x1="452.1" y1="94.0" x2="752.0" y2="94.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<line x1="504.1" y1="58.0" x2="504.1" y2="202.0" stroke="#CBD5E1" stroke-width="1.2"/>
+<text x="478.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="bold" text-anchor="middle" xml:space="preserve"></text>
+<text x="530.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">國文</text>
+<text x="582.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">英文</text>
+<text x="634.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">數學</text>
+<text x="706.1" y="81.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="bold" text-anchor="middle" xml:space="preserve">營收</text>
+<text x="478.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小明</text>
+<text x="530.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">85</text>
+<text x="582.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#DC2626" font-weight="bold" text-anchor="middle" xml:space="preserve">45</text>
+<rect x="611.1" y="97.0" width="46.0" height="30.0" rx="5" fill="#1E3A8A" stroke="none" stroke-width="1.2"/>
+<text x="634.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">92</text>
+<text x="706.1" y="117.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">1,234,568</text>
+<line x1="458.1" y1="130.0" x2="746.0" y2="130.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="478.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小華</text>
+<text x="530.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#DC2626" font-weight="bold" text-anchor="middle" xml:space="preserve">58</text>
+<rect x="559.1" y="133.0" width="46.0" height="30.0" rx="5" fill="#1E3A8A" stroke="none" stroke-width="1.2"/>
+<text x="582.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">88</text>
+<text x="634.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">60</text>
+<text x="706.1" y="153.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">987,654</text>
+<line x1="458.1" y1="166.0" x2="746.0" y2="166.0" stroke="#EEF2F7" stroke-width="1"/>
+<text x="478.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#64748B" font-weight="normal" text-anchor="middle" xml:space="preserve">小美</text>
+<rect x="507.1" y="169.0" width="46.0" height="30.0" rx="5" fill="#1E3A8A" stroke="none" stroke-width="1.2"/>
+<text x="530.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#FFFFFF" font-weight="bold" text-anchor="middle" xml:space="preserve">90</text>
+<text x="582.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">72</text>
+<text x="634.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#DC2626" font-weight="bold" text-anchor="middle" xml:space="preserve">55</text>
+<text x="706.1" y="189.4" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="15" fill="#1E293B" font-weight="normal" text-anchor="middle" xml:space="preserve">456,789</text>
+<text x="452.1" y="236.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#DC2626" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="465.1" y="236.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#DC2626" font-weight="bold" text-anchor="start" xml:space="preserve">紅字 = 不及格（自訂規則 map）</text>
+<text x="452.1" y="262.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#1E3A8A" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="465.1" y="262.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#1E3A8A" font-weight="bold" text-anchor="start" xml:space="preserve">深藍底 = 每科最高分（highlight_max）</text>
+<text x="452.1" y="288.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="10" fill="#15803D" font-weight="normal" text-anchor="start" xml:space="preserve">●</text>
+<text x="465.1" y="288.0" font-family="'Noto Sans TC','PingFang TC','Microsoft JhengHei','Heiti TC',sans-serif" font-size="13" fill="#15803D" font-weight="bold" text-anchor="start" xml:space="preserve">營收 = 千分位、無小數（format）</text>
+</svg>

@@ -62,29 +62,11 @@
 
 **① 有雜訊的 CSV → 用參數讀成乾淨表格**
 
-```text
-處理前：ex4.csv（原始檔）                         處理後：DataFrame
-┌──────────────────────────────────────┐
-│# hey!                    ← 第 0 行：註解│       a   b   c   d  message
-│a,b,c,d,message           ← 第 1 行：標題│   0   1   2   3   4  hello
-│# just wanted to make ... ← 第 2 行：註解│   1   5   6   7   8  world
-│# who reads CSV files ... ← 第 3 行：註解│   2   9  10  11  12  foo
-│1,2,3,4,hello                          │
-│5,6,7,8,world                          │
-│9,10,11,12,foo                         │
-└──────────────────────────────────────┘
-        ▼  pd.read_csv('ex4.csv', skiprows=[0, 2, 3])
-```
+![有雜訊的 CSV 用參數讀成乾淨表格](./圖解/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg)
 
 **② 資料的進出口：pandas 是中間的轉運站**
 
-```text
-  CSV ──┐                                      ┌──► CSV（to_csv）
- Excel ─┤                                      ├──► Excel（to_excel）
-  JSON ─┼──► read_xxx() ──► 【DataFrame】 ──► to_xxx() ─┼──► JSON（to_json）
- Web API┤                    篩選、統計、清理          └──► SQLite（to_sql）
- SQLite ┘
-```
+![pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出](./圖解/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg)
 
 ---
 
