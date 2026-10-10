@@ -58,11 +58,11 @@
 
 **① merge：用「車站代碼」把兩張表配對起來**
 
-![merge：用車站代碼把兩張表配對起來](./圖解/merge%E9%85%8D%E5%B0%8D.svg)
+[![merge：用車站代碼把兩張表配對起來](./圖解/merge%E9%85%8D%E5%B0%8D.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/merge%E9%85%8D%E5%B0%8D.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② stack / unstack：長表 ↔ 寬表**
 
-![stack / unstack：長表與寬表互換](./圖解/%E9%95%B7%E8%A1%A8%E5%AF%AC%E8%A1%A8.svg)
+[![stack / unstack：長表與寬表互換](./圖解/%E9%95%B7%E8%A1%A8%E5%AF%AC%E8%A1%A8.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/%E9%95%B7%E8%A1%A8%E5%AF%AC%E8%A1%A8.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：`unstack` 是把「列的某一層名牌」**搬到欄位上**（變寬）；`stack` 是把「欄位」**搬回列上**（變長）。⚠️ 名牌組合不能重複，所以通常要**先 groupby 加總**再 unstack。
 

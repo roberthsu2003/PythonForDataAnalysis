@@ -62,11 +62,11 @@
 
 **① 有雜訊的 CSV → 用參數讀成乾淨表格**
 
-![有雜訊的 CSV 用參數讀成乾淨表格](./圖解/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg)
+[![有雜訊的 CSV 用參數讀成乾淨表格](./圖解/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② 資料的進出口：pandas 是中間的轉運站**
 
-![pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出](./圖解/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg)
+[![pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出](./圖解/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

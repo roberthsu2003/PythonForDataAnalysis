@@ -57,7 +57,7 @@
 
 **從原始紀錄 → 交叉表 → 百分比表 → 長條圖**
 
-![原始紀錄 → 交叉表 → 百分比表 → 長條圖](./圖解/%E4%BA%A4%E5%8F%89%E8%A1%A8%E5%88%B0%E9%95%B7%E6%A2%9D%E5%9C%96.svg)
+[![原始紀錄 → 交叉表 → 百分比表 → 長條圖](./圖解/%E4%BA%A4%E5%8F%89%E8%A1%A8%E5%88%B0%E9%95%B7%E6%A2%9D%E5%9C%96.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%9C%96%E8%A7%A3/%E4%BA%A4%E5%8F%89%E8%A1%A8%E5%88%B0%E9%95%B7%E6%A2%9D%E5%9C%96.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

@@ -60,15 +60,15 @@
 
 **① Series：一欄有名牌的資料**
 
-![Series：一欄有名牌的資料](./圖解/Series%E7%B5%90%E6%A7%8B.svg)
+[![Series：一欄有名牌的資料](./圖解/Series%E7%B5%90%E6%A7%8B.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/Series%E7%B5%90%E6%A7%8B.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② DataFrame：從 Python 字典變成表格，再加上新欄位**
 
-![Python 字典轉成 DataFrame 並新增欄位](./圖解/%E5%AD%97%E5%85%B8%E8%AE%8ADataFrame.svg)
+[![Python 字典轉成 DataFrame 並新增欄位](./圖解/%E5%AD%97%E5%85%B8%E8%AE%8ADataFrame.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E5%AD%97%E5%85%B8%E8%AE%8ADataFrame.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **③ 索引對齊：按名牌配對，對不上就是 NaN**
 
-![兩個 Series 依名牌配對相加，配不到就是 NaN](./圖解/%E7%B4%A2%E5%BC%95%E5%B0%8D%E9%BD%8A.svg)
+[![兩個 Series 依名牌配對相加，配不到就是 NaN](./圖解/%E7%B4%A2%E5%BC%95%E5%B0%8D%E9%BD%8A.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E7%B4%A2%E5%BC%95%E5%B0%8D%E9%BD%8A.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

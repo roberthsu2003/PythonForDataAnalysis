@@ -56,7 +56,7 @@
 
 **Split → Apply → Combine：依「區域」統計 YouBike 車位與故障數**
 
-![Split → Apply → Combine：依區域統計車位與故障數](./圖解/%E5%88%86%E7%B5%84%E8%A8%88%E7%AE%97%E5%90%88%E4%BD%B5.svg)
+[![Split → Apply → Combine：依區域統計車位與故障數](./圖解/%E5%88%86%E7%B5%84%E8%A8%88%E7%AE%97%E5%90%88%E4%BD%B5.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%9C%96%E8%A7%A3/%E5%88%86%E7%B5%84%E8%A8%88%E7%AE%97%E5%90%88%E4%BD%B5.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：比率類指標（故障率、達成率、小費比例）要 **「先分組加總，再相除」**，不能把每站的比率直接平均——大站和小站的權重不同。
 

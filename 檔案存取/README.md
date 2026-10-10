@@ -62,11 +62,11 @@
 
 **① CSV：純文字 → 二維清單（一列一筆）**
 
-![CSV 純文字讀成二維清單](./圖解/csv%E8%BD%89%E4%BA%8C%E7%B6%AD%E6%B8%85%E5%96%AE.svg)
+[![CSV 純文字讀成二維清單](./圖解/csv%E8%BD%89%E4%BA%8C%E7%B6%AD%E6%B8%85%E5%96%AE.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/csv%E8%BD%89%E4%BA%8C%E7%B6%AD%E6%B8%85%E5%96%AE.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② JSON：一層一層的資料夾 → 取出真正的資料清單**
 
-![JSON 一層一層取出資料](./圖解/json%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B.svg)
+[![JSON 一層一層取出資料](./圖解/json%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/json%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

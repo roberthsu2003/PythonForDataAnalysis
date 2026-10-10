@@ -54,7 +54,7 @@
 
 ## 📐 2. 資料長什麼樣子？（直觀結構圖解）
 
-![Styler：同一份資料，化妝前後的差別](./圖解/Styler%E5%8C%96%E5%A6%9D%E5%89%8D%E5%BE%8C.svg)
+[![Styler：同一份資料，化妝前後的差別](./圖解/Styler%E5%8C%96%E5%A6%9D%E5%89%8D%E5%BE%8C.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%9C%96%E8%A7%A3/Styler%E5%8C%96%E5%A6%9D%E5%89%8D%E5%BE%8C.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：`df.style` 開頭 → 一路用「.」串接各種化妝步驟 → 最後顯示或匯出。資料本身**從頭到尾都沒被改變**。
 

@@ -55,11 +55,11 @@
 
 **① 問題類型決定圖表類型**
 
-![五類問題對應五種圖表](./圖解/%E5%95%8F%E9%A1%8C%E9%A1%9E%E5%9E%8B%E5%B0%8D%E6%87%89%E5%9C%96%E8%A1%A8.svg)
+[![五類問題對應五種圖表](./圖解/%E5%95%8F%E9%A1%8C%E9%A1%9E%E5%9E%8B%E5%B0%8D%E6%87%89%E5%9C%96%E8%A1%A8.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E5%9C%96%E8%A7%A3/%E5%95%8F%E9%A1%8C%E9%A1%9E%E5%9E%8B%E5%B0%8D%E6%87%89%E5%9C%96%E8%A1%A8.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② 與 AI 協作分析資料的五個步驟**
 
-![與 AI 協作分析資料的五個步驟](./圖解/AI%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B.svg)
+[![與 AI 協作分析資料的五個步驟](./圖解/AI%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E5%9C%96%E8%A7%A3/AI%E5%8D%94%E4%BD%9C%E6%B5%81%E7%A8%8B.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：**先認識、再提問、才畫圖；畫完交給 AI，最後自己驗證。**
 

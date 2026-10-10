@@ -54,11 +54,11 @@
 
 **① 從「一條清單」重新排成「一張表格」（reshape）**
 
-![reshape：一維陣列重排成 3 列 × 4 欄](./圖解/reshape%E9%87%8D%E6%8E%92.svg)
+[![reshape：一維陣列重排成 3 列 × 4 欄](./圖解/reshape%E9%87%8D%E6%8E%92.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/reshape%E9%87%8D%E6%8E%92.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② 統計時最重要的「軸（axis）」觀念：橫著算還是直著算？**
 
-![axis=0 直著算、axis=1 橫著算](./圖解/axis%E6%96%B9%E5%90%91.svg)
+[![axis=0 直著算、axis=1 橫著算](./圖解/axis%E6%96%B9%E5%90%91.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/axis%E6%96%B9%E5%90%91.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：`axis=1` 是「每一列（每個人）算一個答案」；`axis=0` 是「每一欄（每個項目）算一個答案」。不確定時，看結果有幾個數字就知道了！
 

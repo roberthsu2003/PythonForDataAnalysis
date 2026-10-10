@@ -57,7 +57,7 @@
 
 **人口密度 CSV：清理前 vs. 清理後**
 
-![人口密度 CSV：清理前 vs. 清理後](./圖解/%E4%BA%BA%E5%8F%A3%E5%AF%86%E5%BA%A6%E6%B8%85%E7%90%86%E5%89%8D%E5%BE%8C.svg)
+[![人口密度 CSV：清理前 vs. 清理後](./圖解/%E4%BA%BA%E5%8F%A3%E5%AF%86%E5%BA%A6%E6%B8%85%E7%90%86%E5%89%8D%E5%BE%8C.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/%E5%9C%96%E8%A7%A3/%E4%BA%BA%E5%8F%A3%E5%AF%86%E5%BA%A6%E6%B8%85%E7%90%86%E5%89%8D%E5%BE%8C.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

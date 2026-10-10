@@ -60,11 +60,11 @@
 
 **① `loc` vs. `iloc`：同一張表、兩種取法**
 
-![loc 按名牌、iloc 按位置取資料](./圖解/loc%E8%88%87iloc.svg)
+[![loc 按名牌、iloc 按位置取資料](./圖解/loc%E8%88%87iloc.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/loc%E8%88%87iloc.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② 成績單：新增總分 → 排名 → 依名次排序**
 
-![成績單：新增總分、排名，再依名次排序](./圖解/%E6%8E%92%E5%90%8D%E6%8E%92%E5%BA%8F.svg)
+[![成績單：新增總分、排名，再依名次排序](./圖解/%E6%8E%92%E5%90%8D%E6%8E%92%E5%BA%8F.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/%E6%8E%92%E5%90%8D%E6%8E%92%E5%BA%8F.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 ---
 

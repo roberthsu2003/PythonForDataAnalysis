@@ -65,11 +65,11 @@
 
 **① 一張圖表的組成（Figure → Axes → 元素）**
 
-![Matplotlib 圖表的組成：Figure、Axes 與元素](./圖解/%E5%9C%96%E8%A1%A8%E7%B5%84%E6%88%90%E5%85%83%E7%B4%A0.svg)
+[![Matplotlib 圖表的組成：Figure、Axes 與元素](./圖解/%E5%9C%96%E8%A1%A8%E7%B5%84%E6%88%90%E5%85%83%E7%B4%A0.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E5%9C%96%E8%A1%A8%E7%B5%84%E6%88%90%E5%85%83%E7%B4%A0.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 **② 從數字到圖表：資料怎麼對應到座標軸**
 
-![兩串數字畫成折線圖](./圖解/%E6%95%B8%E5%AD%97%E5%B0%8D%E6%87%89%E5%BA%A7%E6%A8%99%E8%BB%B8.svg)
+[![兩串數字畫成折線圖](./圖解/%E6%95%B8%E5%AD%97%E5%B0%8D%E6%87%89%E5%BA%A7%E6%A8%99%E8%BB%B8.svg)](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E6%95%B8%E5%AD%97%E5%B0%8D%E6%87%89%E5%BA%A7%E6%A8%99%E8%BB%B8.svg)<br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub>
 
 > 💡 **記憶口訣**：X 軸放「分類或時間」，Y 軸放「要比較的數字」。兩串資料的**筆數必須一樣多**，否則畫不出來。
 
