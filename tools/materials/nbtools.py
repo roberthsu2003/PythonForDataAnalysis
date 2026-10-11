@@ -58,13 +58,17 @@ print('✅ 素材準備完成：', [f for f in FILES if os.path.exists(f)])
 
 def font_cell():
     return code('''
-# --- 設定 Matplotlib 中文字型支援 ---
-# 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字
+# --- 設定 Matplotlib 中文字型支援（Mac / Windows / Colab 通用）---
 %pip install -q mplfonts
-!mplfonts init
 
+import glob, os
+import mplfonts
+from matplotlib import font_manager
 from mplfonts import use_font
-use_font("Noto Sans CJK SC")
+
+for f in glob.glob(os.path.join(os.path.dirname(mplfonts.__file__), "fonts", "*.[ot]tf")):
+    font_manager.fontManager.addfont(f)   # 直接註冊 mplfonts 內附的字型，不改任何檔案
+use_font("Noto Sans CJK SC")              # 套用思源黑體，負號也會一起處理
 ''')
 
 

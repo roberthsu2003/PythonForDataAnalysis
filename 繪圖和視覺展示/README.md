@@ -178,7 +178,7 @@ plt.show()                               # 顯示圖表
 > 請你：
 > 1. 使用 **Matplotlib** 繪製 **[圖表類型：折線圖／長條圖／直方圖／圓餅圖]**，X 軸是 **[ ]**、Y 軸是 **[ ]**，標題是 **[ ]**。
 > 2. 詳細解釋為什麼選這種圖表，以及每一步的繪圖邏輯（畫布、畫框、座標軸、圖例）。
-> 3. 產出繁體中文說明的完整程式碼，**正確設定繁體中文字型**（使用 `mplfonts`：`%pip install -q mplfonts`、`!mplfonts init` 後執行 `use_font("Noto Sans CJK SC")`），並標註潛在的陷阱（例如：X 與 Y 筆數不一致、中文變方塊、類別太多導致標籤重疊）。」
+> 3. 產出繁體中文說明的完整程式碼，**正確設定繁體中文字型**（使用 `mplfonts`：`%pip install -q mplfonts` 後，用 `font_manager.fontManager.addfont()` 註冊 mplfonts 內附字型，再執行 `use_font("Noto Sans CJK SC")`；不要用 `mplfonts init`），並標註潛在的陷阱（例如：X 與 Y 筆數不一致、中文變方塊、類別太多導致標籤重疊）。」
 
 **🎯 情境延伸範本**（依需求替換）：
 

@@ -1,13 +1,20 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
+import glob
+import os
+
+import mplfonts
+from matplotlib import font_manager
 from mplfonts import use_font
 
 # ==========================================
 # 1. 設定 Matplotlib 中文字型支援
 # ==========================================
-# 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字（需先 pip install mplfonts 並執行一次 mplfonts init）
-use_font("Noto Sans CJK SC")
+# 使用 mplfonts 內附的思源黑體，避免圖表中文出現亂碼或方塊字（需先 pip install mplfonts）
+for f in glob.glob(os.path.join(os.path.dirname(mplfonts.__file__), "fonts", "*.[ot]tf")):
+    font_manager.fontManager.addfont(f)   # 直接註冊 mplfonts 內附的字型，不改任何檔案
+use_font("Noto Sans CJK SC")              # 套用思源黑體，負號也會一起處理
 
 # ==========================================
 # 2. 初始化參數與數據計算

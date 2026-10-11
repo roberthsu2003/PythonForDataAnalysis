@@ -16,7 +16,7 @@
    - 在同一個圖表中同時繪製 y = A * sin(ω * x + φ) 和 y = A * cos(ω * x + φ) 兩條曲線。
    - 包含格線（grid）、圖表標題、X/Y 軸標籤，以及圖例（Legend）以區分 sin 和 cos。
    - X 軸範圍設定為 0 到 4π。
-   - **中文字型支援**：圖表的標題、軸標籤和圖例必須使用繁體中文顯示，且程式中必須使用 `mplfonts` 套件設定中文字型（`from mplfonts import use_font` 後執行 `use_font("Noto Sans CJK SC")`，套件需先 `pip install mplfonts` 並執行一次 `mplfonts init`），確保中文字元均能正常顯示，不會出現方塊或亂碼。
+   - **中文字型支援**：圖表的標題、軸標籤和圖例必須使用繁體中文顯示，且程式中必須使用 `mplfonts` 套件設定中文字型（`from mplfonts import use_font` 後執行 `use_font("Noto Sans CJK SC")`，執行前先用 `font_manager.fontManager.addfont()` 註冊 mplfonts 套件資料夾 `fonts/` 內的字型檔，不要用 `mplfonts init`；套件需先 `pip install mplfonts`），確保中文字元均能正常顯示，不會出現方塊或亂碼。
 3. **互動控制（Matplotlib Widgets）**：
    - 在圖表下方加入三個滑桿（Slider），讓使用者可以即時調整以下參數：
      - **振幅 (Amplitude, A)**：調整範圍 0.1 至 5.0，預設為 1.0。
