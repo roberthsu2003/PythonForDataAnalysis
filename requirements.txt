@@ -8,3 +8,4 @@ pyinputplus
 openpyxl
 seaborn
 scipy
+mplfonts

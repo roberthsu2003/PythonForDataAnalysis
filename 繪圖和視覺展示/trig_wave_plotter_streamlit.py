@@ -3,10 +3,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import streamlit as st
+from mplfonts import use_font
 
-# 1. 設定中文字型與負號顯示，確保在 Windows 與 macOS 正常顯示中文
-plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei', 'Arial Unicode MS', 'Heiti TC', 'sans-serif']
-plt.rcParams['axes.unicode_minus'] = False  # 解決座標軸負號「-」顯示為方塊的問題
+# 1. 設定 Matplotlib 中文字型支援
+# 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字（需先 pip install mplfonts）
+use_font("Noto Sans CJK TC")
 
 # 2. 設定 Streamlit 網頁基本配置
 st.set_page_config(

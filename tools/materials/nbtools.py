@@ -8,7 +8,6 @@ import nbformat
 
 REPO_RAW = 'https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/'
 REPO_BLOB = 'https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/'
-FONT_URL = REPO_RAW + quote('繪圖和視覺展示/ChineseFont.ttf')
 
 
 def zip_name(chapter):
@@ -58,28 +57,13 @@ print('✅ 素材準備完成：', [f for f in FILES if os.path.exists(f)])
 
 
 def font_cell():
-    return code(f'''
-# 🈶 設定圖表中文字型（避免中文變成方塊）
-import os, urllib.request
-import matplotlib.pyplot as plt
-from matplotlib import font_manager
+    return code('''
+# --- 設定 Matplotlib 中文字型支援 ---
+# 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字
+%pip install -q mplfonts
 
-def setup_chinese_font():
-    installed = {{f.name for f in font_manager.fontManager.ttflist}}
-    for name in ['Noto Sans CJK TC', 'Microsoft JhengHei', 'PingFang TC', 'Heiti TC', 'Arial Unicode MS']:
-        if name in installed:                       # 電腦裡已經有中文字型就直接用
-            plt.rcParams['font.sans-serif'] = [name]
-            break
-    else:                                           # 沒有（例如 Colab）就下載課程提供的字型
-        path = 'ChineseFont.ttf'
-        if not os.path.exists(path):
-            urllib.request.urlretrieve('{FONT_URL}', path)
-        font_manager.fontManager.addfont(path)
-        plt.rcParams['font.sans-serif'] = [font_manager.FontProperties(fname=path).get_name()]
-    plt.rcParams['axes.unicode_minus'] = False      # 負號正常顯示
-
-setup_chinese_font()
-print('✅ 中文字型設定完成：', plt.rcParams['font.sans-serif'][0])
+from mplfonts import use_font
+use_font("Noto Sans CJK TC")
 ''')
 
 

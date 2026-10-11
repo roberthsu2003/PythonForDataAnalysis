@@ -1,30 +1,13 @@
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.widgets import Slider
-import platform
+from mplfonts import use_font
 
 # ==========================================
-# 1. 中文字型支援設定 (解決 matplotlib 中文亂碼問題)
+# 1. 設定 Matplotlib 中文字型支援
 # ==========================================
-def set_chinese_font():
-    """
-    根據不同的作業系統，自動設定 matplotlib 的繁體中文字型
-    """
-    sys_plat = platform.system()
-    if sys_plat == 'Windows':
-        # Windows 系統使用微軟正黑體
-        plt.rcParams['font.sans-serif'] = ['Microsoft JhengHei', 'Arial Unicode MS']
-    elif sys_plat == 'Darwin':
-        # macOS 系統使用儷黑體、Heiti TC 或 Arial Unicode MS
-        plt.rcParams['font.sans-serif'] = ['Heiti TC', 'Arial Unicode MS', 'AppleGothic']
-    else:
-        # Linux / Unix 系統常規設定
-        plt.rcParams['font.sans-serif'] = ['Noto Sans CJK TC', 'Liberation Sans', 'DejaVu Sans']
-    
-    # 修正負號 '-' 顯示為方塊的問題
-    plt.rcParams['axes.unicode_minus'] = False
-
-set_chinese_font()
+# 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字（需先 pip install mplfonts）
+use_font("Noto Sans CJK TC")
 
 # ==========================================
 # 2. 初始化參數與數據計算
