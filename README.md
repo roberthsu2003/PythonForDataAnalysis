@@ -2,6 +2,8 @@
 
 [Pandas、NumPy、Matplotlib 最適合搭配的介面工具比較表](./最適合搭配的介面工具比較表.md)
 
+🤖 **[AI 協作資料分析｜十二個範例](./AI協作資料分析_12個範例/README.md)**：給不熟悉程式的學生，建好環境後用 prompt 指揮 AI，完成 12 個範例就能走完資料分析的完整流程。
+
 📦 **每個章節都附有「茶語時光」情境範例 Notebook 與可下載的學生素材壓縮檔**，請見各章 README 的「學生素材下載」區塊（素材由 [`tools/build_student_materials.py`](./tools/build_student_materials.py) 產生）。
 
 ---
