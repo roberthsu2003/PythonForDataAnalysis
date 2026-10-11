@@ -61,9 +61,10 @@ def font_cell():
 # --- 設定 Matplotlib 中文字型支援 ---
 # 使用 mplfonts 自動套用思源黑體，避免圖表中文出現亂碼或方塊字
 %pip install -q mplfonts
+!mplfonts init
 
 from mplfonts import use_font
-use_font("Noto Sans CJK TC")
+use_font("Noto Sans CJK SC")
 ''')
 
 
