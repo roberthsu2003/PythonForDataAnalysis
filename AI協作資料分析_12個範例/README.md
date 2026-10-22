@@ -49,57 +49,80 @@
    uv init --python 3.12
 4. 使用 uv 安裝本課程所需的所有資料分析與視覺化套件：
    uv add pandas numpy matplotlib seaborn openpyxl jupyter streamlit mplfonts
-5. 安裝完成後，請在「資料分析專案」根目錄建立並執行 00_env_check.ipynb（使用專案內的 .venv）：
+5. 請在專案根目錄建立 GEMINI.md 規則檔，設定 Antigravity 助教角色、繁體中文字型設定與五步資料思維 SOP。
+6. 安裝完成後，請在「資料分析專案」根目錄建立並執行 00_env_check.ipynb（使用專案內的 .venv）：
    - 印出 Python、pandas、numpy、matplotlib、seaborn、openpyxl、streamlit 的版本。
    - 註冊並設定 mplfonts 內建的繁體中文字型（Noto Sans CJK SC），確保負號與中文能正常顯示。
    - 繪製一張包含負數、繁體中文標題、圖例與座標軸的折線圖，並存為 00_env_check.png。
-6. 請執行全部儲存格，並回報：各套件是否皆已就緒、圖片中文與負號是否正常無亂碼。
+7. 請執行全部儲存格，並回報：各套件是否皆已就緒、圖片中文與負號是否正常無亂碼。
 ```
 
 > [!NOTE]
 > - **專案核心**：建立完成後，用 VS Code 或 IDE 開啟「資料分析專案」資料夾，後續所有範例皆在該專案內進行。
 > - **中文字型免煩惱**：環境內已自動安裝 `mplfonts`，AI 會自動處理 Matplotlib 與 Seaborn 的中文顯示與負號正常，不需要另外手動下載或安裝字型檔。
 
-## 在 GitHub 閱讀，只下載當次需要的檔案
+---
 
-1. 在 GitHub 開啟當次範例的 README，可先按最上方的 Colab 按鈕執行 `lesson.ipynb`，再直接複製 prompt 給 AI。
-2. 在自己的學生專案中，讓 AI 建立該例資料夾，例如 `01_class_scores/`；Notebook、輸出與應用都放在該例內。
-3. 每份 Notebook 會下載該例所需的固定資料；也可以點 README 的「範例檔下載」連結，只儲存本次需要的檔案到 `範例資料夾/data/`。不要下載整個 GitHub repo 或全部範例資料。
-4. 依序貼 A0～A5，再貼 B1～B2。分析思維不確定時，隨時回頭對照 [【📊 看懂資料與選對圖表】](../看懂資料與選對圖表/README.md) 的五步 SOP。
+## 🤖 Antigravity 專屬配置：建立 `GEMINI.md` 專案規則檔
 
-CSV 連結開啟時若瀏覽器直接顯示文字，使用「另存新檔」並保留 `.csv` 副檔名。資料卡可線上閱讀，不必下載。AI 可讀取教材網址；如果工具無法讀取，貼上當次 README 的內容即可。
+如果你使用 **Google Antigravity**（IDE 或 CLI），專案根目錄下的 `GEMINI.md` 是最關鍵的靈魂文件。
 
-## 每例的兩組 prompt 怎麼貼
+### 為什麼需要 `GEMINI.md`？
+在 Antigravity 中，`GEMINI.md` 是專案的全域行為與環境規範。只要專案內包含此檔案，**Antigravity 在每次對話中都會自動載入並嚴格遵循**：
+1. **永久免重複貼提示詞**：每次開啟新範例，不必再手動重複複製「助教角色設定」或「繁體中文繪圖 prompt」。
+2. **自動中文字型與負號防呆**：AI 在寫繪圖程式時，會自動引用 `mplfonts` 與思源黑體（`Noto Sans CJK SC`），徹底告別中文方塊缺字與負號亂碼。
+3. **貫徹五步思維 SOP**：AI 自動化身為資料教練，引導你先貼標籤、套提問積木、邊界檢核防呆，最後才選圖出報告。
+4. **主動分步教學**：AI 每次只前進一步，每步完成後會停下來問你一個思維觀念問題，確認理解並驗收數字後才繼續。
 
-- **A0～A5：Notebook 路線。** 設定 AI 角色 → 讀取與觀察 → 清理與整理 → 分析與計算 → 視覺化與解讀 → 重新執行與保存。每段停下問一個觀念問題，學生確認結果合理後才貼下一段。
-- **B1～B2：交付路線。** 把 Notebook 的邏輯整理成可重複執行的腳本、報表或 Streamlit 應用，再驗收「重跑結果一致、數字和 Notebook 相同」。
+### 📄 `GEMINI.md` 完整內容（可直接複製或由 Step 0 自動建立）
 
-AI 要能直接建立真正的 `.ipynb` 與程式檔並執行。若使用只有聊天功能的 AI，請它交付完整檔案，再由學生存到指定位置；沒有執行能力時不可宣稱已執行或測試。每次續接對話，讓 AI 先讀線上教材與本機 Notebook，避免從頭亂改。
+若需手動建立或檢查，請確保專案根目錄（`資料分析專案/GEMINI.md`）具備以下內容：
 
-### 共用 prompt｜Matplotlib 與 Seaborn 繁體中文繪圖
+```markdown
+# Python 資料分析專屬助教規則 (GEMINI.md)
 
-第一次繪圖前貼給 AI；每個新 Notebook 都要套用，Streamlit 應用與輸出圖表的腳本也沿用同一設定。字型由第 0 步安裝的 `mplfonts` 套件提供，不必另外下載字型檔。
+你是一位專業且具備耐心的「Python 資料分析教學助教」，專門引導完全不寫程式的商業分析初學者，透過自然語言與思維 SOP 循序漸進完成資料分析。
 
-```text
-請在 Notebook 第一張圖之前加入以下字型設定儲存格，不要改寫成其他方式：
+## 1. 執行環境與工具規範
+- **虛擬環境**：嚴格使用本專案內的 `.venv`（由 `uv` 套件管理工具建立）。
+- **實體執行**：具備終端機與程式執行能力，直接在專案內建立 `.ipynb` 筆記本或 `.py` 腳本並執行。絕不編造未執行的假數字或假結論。
 
-import glob, os
-import mplfonts
-from matplotlib import font_manager
-from mplfonts import use_font
+## 2. 繁體中文與視覺化字型規範（自動套用，無需使用者提醒）
+- 所有的說明回覆、圖表標題、座標軸標籤、圖例與註解，一律使用**繁體中文**。
+- 凡涉及 Matplotlib 或 Seaborn 繪圖，一律在 Notebook 第一張圖之前自動加入以下思源黑體字型設定，徹底解決中文方塊缺字與負號亂碼：
+  \`\`\`python
+  import glob, os
+  import mplfonts
+  from matplotlib import font_manager
+  from mplfonts import use_font
 
-for f in glob.glob(os.path.join(os.path.dirname(mplfonts.__file__), "fonts", "*.[ot]tf")):
-    font_manager.fontManager.addfont(f)   # 直接註冊 mplfonts 內附的字型，不改任何檔案
-use_font("Noto Sans CJK SC")              # 套用思源黑體，負號也會一起處理
+  for f in glob.glob(os.path.join(os.path.dirname(mplfonts.__file__), "fonts", "*.[ot]tf")):
+      font_manager.fontManager.addfont(f)   # 註冊 mplfonts 內建字型
+  use_font("Noto Sans CJK SC")              # 套用思源黑體，自動處理負號
+  \`\`\`
+- 使用 Seaborn 繪圖時，搭配 `sns.set_theme(font="Noto Sans CJK SC")`，避免主題重設字型。
+- 繪圖完成後，主動檢查負數與中文顯示是否正常。
 
-使用 Seaborn 時改用 sns.set_theme(font="Noto Sans CJK SC")，避免主題覆蓋中文字型。
-不要執行 mplfonts init，也不要寫死老師電腦的字型路徑。
-Streamlit 應用與輸出圖表的腳本，在程式開頭執行同一段設定。
-圖表標題、座標軸、圖例、類別與註解全部使用繁體中文。
-用含負數的中文圖測試顯示及存檔；缺字時修正，不改成英文。
+## 3. 貫徹五步資料分析思維 SOP
+在引導每個範例時，必須依照先前思維篇所學之 SOP 推進：
+1. **欄位角色貼標籤**：引導學生標記「指標 (Metric)」、「條件 (Dimension)」、「標識 (ID)」，釐清能算什麼、不能算什麼。
+2. **套用五大提問積木**：針對問題歸納為「比較、組成、分布、關係、趨勢」。
+3. **邊界反向檢核防呆**：劃出分析紅線（缺時間不推趨勢、缺類別不比大小、相關不推因果、ID 絕不加總）。
+4. **選對圖表與座標軸**：嚴守座標軸規則（X 軸條件、Y 軸指標從 0 開始、標籤長用水平長條圖、不亂連散佈圖線條）。
+5. **分步引導與觀念驗收**：一次只執行一個步驟（A0～A5），每步完成後主動向學生提出一個觀念問題確認理解，確認數據合理後才進行下一步。
 ```
 
-`Noto Sans CJK SC` 是 mplfonts 內附的思源黑體，可以正常顯示繁體中文。在 Google Colab 使用時，請在這段程式最前面加一行 `%pip install -q mplfonts`。設定依據：[Matplotlib 字型管理](https://matplotlib.org/stable/api/font_manager_api.html)、[Seaborn 主題設定](https://seaborn.pydata.org/generated/seaborn.set_theme.html)。
+---
+
+## 🚀 在 Antigravity 中操作實戰範例流程
+
+配置好環境與 `GEMINI.md` 後，進入各案例的操作流程將變得極度流暢：
+
+1. **查看案例情境**：在 GitHub 開啟當次範例的 README（如 `01_class_scores`），了解資料背景與問題。
+2. **建立範例資料夾與下載資料**：點選範例 README 的「範例檔下載」連結，儲存至 `01_class_scores/data/`（或直接指示 Antigravity 幫你下載）。
+3. **A 路線（Notebook 逐步分析）**：在 Antigravity 中發出需求（例如：*「請在 01_class_scores/ 建立 lesson.ipynb，先讀取並觀察 scores.csv」*），AI 將自動遵循 `GEMINI.md` 規則引導你完成 5 步分析與中文化繪圖。
+4. **B 路線（交付專案成果）**：分析驗收無誤後，指示 AI 將邏輯轉為可重複執行的 Python 腳本、Excel 報表或 Streamlit 互動儀表板。
+
 
 ### AI 出錯時的除錯 prompt
 
