@@ -4,14 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>五大問題類型與圖表動態視覺化 | 看懂資料與選對圖表</title>
-  <meta name="description" content="互動式動畫展示五大分析問題（比較、組成、分布、關係、趨勢）所對應的真實圖表樣貌，讓學生看見文字就能秒懂對應圖表。">
+  <meta name="description" content="互動式動畫展示五大分析問題（比較、組成、分布、關係、趨勢）所對應的真實圖表樣貌，點擊按鈕即時觀看圖表生長動畫。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #2563eb;
-      --primary-light: #eff6ff;
       --comp-color: #2563eb;
       --compst-color: #ea580c;
       --dist-color: #7c3aed;
@@ -28,9 +27,10 @@
       --slate-900: #0f172a;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
-      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
       --radius-lg: 18px;
       --radius-md: 12px;
+      --radius-sm: 8px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,54 +41,6 @@
       color: var(--slate-800);
       line-height: 1.6;
       padding-bottom: 60px;
-    }
-
-    /* 頂部導航 */
-    header {
-      background: rgba(255, 255, 255, 0.9);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--slate-200);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 14px 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 800;
-      font-size: 1.15rem;
-      color: var(--slate-900);
-      text-decoration: none;
-    }
-    .nav-tabs {
-      display: flex;
-      gap: 8px;
-    }
-    .nav-tab-btn {
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      color: var(--slate-600);
-    }
-    .nav-tab-btn.active {
-      background: var(--primary);
-      color: #fff;
-    }
-    .nav-tab-btn:hover:not(.active) {
-      background: var(--slate-100);
-      color: var(--primary);
     }
 
     /* Hero */
@@ -128,7 +80,7 @@
     /* 控制列：五大問題分類按鈕 */
     .type-switcher {
       max-width: 1100px;
-      margin: 24px auto 32px;
+      margin: 20px auto 28px;
       padding: 0 24px;
       display: flex;
       justify-content: center;
@@ -139,7 +91,7 @@
       background: #FFFFFF;
       border: 2px solid var(--slate-200);
       border-radius: 999px;
-      padding: 10px 22px;
+      padding: 10px 20px;
       font-size: 0.95rem;
       font-weight: 700;
       color: var(--slate-700);
@@ -147,7 +99,7 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.22s ease;
       box-shadow: var(--shadow-sm);
     }
     .type-btn:hover {
@@ -155,33 +107,23 @@
       box-shadow: var(--shadow-md);
     }
     .type-btn.active[data-type="comp"] {
-      background: var(--comp-color);
-      border-color: var(--comp-color);
-      color: #fff;
+      background: var(--comp-color); border-color: var(--comp-color); color: #fff;
       box-shadow: 0 4px 14px rgba(37,99,235,0.35);
     }
     .type-btn.active[data-type="compst"] {
-      background: var(--compst-color);
-      border-color: var(--compst-color);
-      color: #fff;
+      background: var(--compst-color); border-color: var(--compst-color); color: #fff;
       box-shadow: 0 4px 14px rgba(234,88,12,0.35);
     }
     .type-btn.active[data-type="dist"] {
-      background: var(--dist-color);
-      border-color: var(--dist-color);
-      color: #fff;
+      background: var(--dist-color); border-color: var(--dist-color); color: #fff;
       box-shadow: 0 4px 14px rgba(124,58,237,0.35);
     }
     .type-btn.active[data-type="rel"] {
-      background: var(--rel-color);
-      border-color: var(--rel-color);
-      color: #fff;
+      background: var(--rel-color); border-color: var(--rel-color); color: #fff;
       box-shadow: 0 4px 14px rgba(5,150,105,0.35);
     }
     .type-btn.active[data-type="trend"] {
-      background: var(--trend-color);
-      border-color: var(--trend-color);
-      color: #fff;
+      background: var(--trend-color); border-color: var(--trend-color); color: #fff;
       box-shadow: 0 4px 14px rgba(220,38,38,0.35);
     }
 
@@ -195,19 +137,17 @@
       background: var(--card-bg);
       border: 1.5px solid var(--slate-200);
       border-radius: var(--radius-lg);
-      padding: 36px;
+      padding: 32px;
       box-shadow: var(--shadow-xl);
       display: grid;
       grid-template-columns: 1.05fr 1.35fr;
-      gap: 36px;
-      align-items: center;
-      transition: all 0.3s ease;
+      gap: 32px;
+      align-items: start;
     }
     @media (max-width: 900px) {
       .stage-card {
         grid-template-columns: 1fr;
         padding: 24px;
-        gap: 24px;
       }
     }
 
@@ -215,7 +155,7 @@
     .text-column {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 18px;
     }
     .type-header {
       display: flex;
@@ -239,21 +179,21 @@
     .core-box {
       background: #F8FAFC;
       border-left: 5px solid var(--primary);
-      padding: 16px 20px;
+      padding: 14px 18px;
       border-radius: 0 var(--radius-md) var(--radius-md) 0;
     }
     .core-box .label {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.05em;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .core-box .content {
-      font-size: 1.1rem;
+      font-size: 1.08rem;
       font-weight: 800;
       color: var(--slate-900);
       line-height: 1.4;
@@ -264,13 +204,13 @@
       background: #FFFFFF;
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 18px 20px;
+      padding: 16px 18px;
     }
     .questions-box .label {
       font-size: 0.82rem;
       font-weight: 700;
       color: var(--slate-600);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       display: flex;
       align-items: center;
       gap: 6px;
@@ -278,9 +218,9 @@
     .q-item {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 10px;
-      font-size: 0.95rem;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 0.92rem;
       color: var(--slate-700);
       font-weight: 600;
     }
@@ -289,30 +229,63 @@
     }
     .q-item span.bubble-icon {
       color: var(--primary);
-      font-size: 1.1rem;
-      line-height: 1.3;
     }
 
-    /* 對應圖表標籤列 */
-    .matched-charts {
+    /* 左下角：可點擊的圖表按鈕清單 */
+    .sub-charts-section {
+      background: #F8FAFC;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 16px;
+    }
+    .sub-charts-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--slate-700);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .sub-charts-hint {
+      font-size: 0.75rem;
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .sub-charts-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      align-items: center;
     }
-    .chart-pill {
-      font-size: 0.8rem;
+    .sub-chart-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      padding: 7px 12px;
+      font-size: 0.86rem;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: var(--slate-100);
       color: var(--slate-700);
-      border: 1px solid var(--slate-200);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
     }
-    .chart-pill.highlight {
+    .sub-chart-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .sub-chart-btn.active {
       background: #EFF6FF;
-      color: #1D4ED8;
-      border-color: #93C5FD;
+      border-color: #2563EB;
+      color: #1E40AF;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.2);
+    }
+    .sub-chart-btn.active::before {
+      content: '✔';
+      font-size: 0.75rem;
+      color: #2563EB;
     }
 
     /* 右側：動態圖表畫布 */
@@ -320,29 +293,28 @@
       background: #F8FAFC;
       border: 1.5px solid var(--slate-200);
       border-radius: var(--radius-md);
-      padding: 24px;
-      position: relative;
+      padding: 20px;
       display: flex;
       flex-direction: column;
+      position: relative;
+    }
+    .canvas-header {
+      display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      min-height: 380px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--slate-200);
     }
     .canvas-title {
-      position: absolute;
-      top: 14px;
-      left: 20px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--slate-600);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--slate-900);
       display: flex;
       align-items: center;
       gap: 6px;
     }
     .replay-btn {
-      position: absolute;
-      top: 10px;
-      right: 14px;
       background: #FFFFFF;
       border: 1px solid var(--slate-300);
       padding: 5px 12px;
@@ -364,54 +336,46 @@
 
     .svg-wrapper {
       width: 100%;
-      max-width: 460px;
-      height: 300px;
+      height: 250px;
       display: flex;
       align-items: center;
       justify-content: center;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    .svg-wrapper svg {
+      width: 100%;
+      height: 100%;
     }
 
-    /* 動畫 Keyframes 定義 */
-    @keyframes growBar {
-      from { width: 0; }
-      to { width: var(--w); }
+    /* 下方說明與避坑 */
+    .chart-info-box {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.88rem;
     }
-    @keyframes growCol {
-      from { height: 0; y: 220; }
-      to { height: var(--h); y: var(--y); }
+    .chart-info-item {
+      display: flex;
+      gap: 8px;
+      line-height: 1.5;
     }
-    @keyframes drawPath {
-      from { stroke-dashoffset: 600; }
-      to { stroke-dashoffset: 0; }
+    .chart-info-item strong {
+      color: var(--slate-900);
+      white-space: nowrap;
     }
-    @keyframes popDot {
-      0% { transform: scale(0); opacity: 0; }
-      70% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(1); opacity: 0.85; }
-    }
-    @keyframes rotateCircle {
-      from { stroke-dashoffset: 380; }
-      to { stroke-dashoffset: var(--offset); }
-    }
-    @keyframes expandBox {
-      0% { opacity: 0; transform: scaleX(0); }
-      100% { opacity: 1; transform: scaleX(1); }
-    }
-
-    .anim-bar {
-      animation: growBar 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .anim-col {
-      animation: growCol 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-    .anim-line {
-      stroke-dasharray: 600;
-      stroke-dashoffset: 600;
-      animation: drawPath 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
-    }
-    .anim-dot {
-      transform-origin: center;
-      animation: popDot 0.5s ease-out forwards;
+    .chart-code-hint {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      background: var(--slate-100);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: #0F172A;
+      display: inline-block;
+      margin-top: 4px;
     }
 
     /* 頁尾 */
@@ -432,29 +396,16 @@
     footer a:hover {
       text-decoration: underline;
     }
+  </style>
   <script src="./js/nav.js"></script>
 </head>
 <body>
 
-  <!-- 頂部導航 -->
-  <header>
-    <div class="nav-container">
-      <a href="./" class="logo">
-        <span>📊 Python 資料分析</span>
-        <span style="font-size: 0.8rem; background: #2563eb; color: #fff; padding: 2px 8px; border-radius: 999px;">動態實驗室</span>
-      </a>
-      <div class="nav-tabs">
-        <a href="./question-types.html" class="nav-tab-btn active">🎯 五大問題與圖表動畫</a>
-        <a href="./index.html" class="nav-tab-btn">⚡ 欄位組合速查</a>
-      </div>
-    </div>
-  </header>
-
   <!-- Hero -->
   <section class="hero">
-    <div class="hero-badge">🎬 視覺化動態演示</div>
+    <div class="hero-badge">🎬 互動式動態演示</div>
     <h1>五大問題類型與圖表動態對照</h1>
-    <p>看懂文字，秒懂圖表！點選切換下方五大問題類型，觀察溝通核心如何轉化為真實生長的動態圖表。</p>
+    <p>看懂文字，秒懂圖表！點選上方五大問題類型，再點擊左下角圖表按鈕，親眼看見圖表如何動態生長出來！</p>
   </section>
 
   <!-- 五大按鈕選單 -->
@@ -478,7 +429,7 @@
 
   <!-- 主展示舞台 -->
   <main class="stage">
-    <div class="stage-card" id="stageCard">
+    <div class="stage-card">
 
       <!-- 左側文字解說 -->
       <div class="text-column">
@@ -487,9 +438,9 @@
           <span class="type-en-title" id="typeEnTitle">Comparison</span>
         </div>
 
-        <!-- 溝通核心（放在最上方） -->
+        <!-- 溝通核心（最上方） -->
         <div class="core-box" id="coreBox" style="border-left-color: var(--comp-color);">
-          <div class="label" style="color: var(--comp-color);">
+          <div class="label" id="coreLabel" style="color: var(--comp-color);">
             <span>🎯</span> 溝通核心
           </div>
           <div class="content" id="coreContent">
@@ -500,35 +451,52 @@
         <!-- 經典問法 -->
         <div class="questions-box">
           <div class="label">
-            <span>🗣️</span> 經典問法（問出具體問題）：
+            <span>🗣️</span> 經典問法（老闆 / 主管會這樣問）：
           </div>
-          <div id="questionsList">
-            <!-- 由 JS 動態注入 -->
-          </div>
+          <div id="questionsList"></div>
         </div>
 
-        <!-- 對應圖表標籤 -->
-        <div>
-          <div style="font-size: 0.8rem; font-weight: 700; color: var(--slate-600); margin-bottom: 8px;">
-            🖼️ 這類問題對應的標準圖表：
+        <!-- 左下角：可點擊的圖表按鈕清單 -->
+        <div class="sub-charts-section">
+          <div class="sub-charts-title">
+            <span>🖼️ 點擊下方圖表，觀看動態動畫：</span>
+            <span class="sub-charts-hint">點選立即切換 ➔</span>
           </div>
-          <div class="matched-charts" id="chartPills">
-            <!-- 由 JS 動態注入 -->
+          <div class="sub-charts-grid" id="subChartBtns">
+            <!-- 由 JS 動態注入可點選按鈕 -->
           </div>
         </div>
       </div>
 
       <!-- 右側動態圖表畫布 -->
       <div class="canvas-column">
-        <div class="canvas-title">
-          <span>🎬</span> <span id="chartCaption">動態生長示意</span>
+        <div class="canvas-header">
+          <div class="canvas-title">
+            <span>🎬</span> <span id="chartCaption">圖表動畫演示</span>
+          </div>
+          <button class="replay-btn" id="replayBtn" title="重新播放動畫">
+            <span>🔄</span> 重新播放
+          </button>
         </div>
-        <button class="replay-btn" id="replayBtn" title="重新播放動畫">
-          <span>🔄</span> 重新播放
-        </button>
 
         <div class="svg-wrapper" id="svgStage">
-          <!-- 由 JS 繪製並觸發動畫 -->
+          <!-- 由 JS 繪製並觸發 SVG SMIL 動畫 -->
+        </div>
+
+        <!-- 圖表詳細說明與避坑 -->
+        <div class="chart-info-box">
+          <div class="chart-info-item">
+            <strong>💡 適用時機：</strong>
+            <span id="chartWhen">...</span>
+          </div>
+          <div class="chart-info-item">
+            <strong style="color: #dc2626;">⚠️ 避坑提醒：</strong>
+            <span id="chartWarn">...</span>
+          </div>
+          <div class="chart-info-item">
+            <strong>💻 程式語法：</strong>
+            <div><span class="chart-code-hint" id="chartCode">df.plot()</span></div>
+          </div>
         </div>
       </div>
 
@@ -537,12 +505,12 @@
 
   <!-- 頁尾 -->
   <footer>
-    <p>返回專題文件：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E9%81%B8%E5%9C%96%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87" target="_blank">📖 數據選圖思考規則完整指引</a> ｜ <a href="./index.html">⚡ 欄位組合速查</a></p>
-    <p style="margin-top: 6px; font-size: 0.82rem;">本互動網頁專為資料分析初學者設計・看懂資料與選對圖表</p>
+    <p>返回專題文件：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E9%81%B8%E5%9C%96%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87" target="_blank">📖 數據選圖思考規則完整指引</a> ｜ <a href="./field-combinations.html">⚡ 欄位組合速查工具</a></p>
   </footer>
 
   <script>
-    const dataModel = {
+    // 完整題庫與所有對應的子圖表動畫庫
+    const fullModel = {
       comp: {
         tagName: "比較問題",
         enName: "Comparison",
@@ -553,36 +521,173 @@
           "「北中南各區的業績排名與差距如何？」",
           "「今年各部門的預算達成率誰最高？」"
         ],
-        charts: ["排序長條圖 (首選)", "水平長條圖", "分組長條圖", "點圖 / 棒棒糖圖"],
-        caption: "長條生長動畫：清楚比出長短高低",
-        drawSVG: () => `
-          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-            <!-- 座標軸 -->
-            <line x1="80" y1="20" x2="80" y2="210" stroke="#94A3B8" stroke-width="1.5"/>
-            <line x1="80" y1="210" x2="390" y2="210" stroke="#CBD5E1" stroke-width="1"/>
-            
-            <!-- 4 根排序長條，依序帶有不同動畫延遲 -->
-            <!-- 項目 1 -->
-            <text x="70" y="55" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">研發部</text>
-            <rect x="80" y="38" width="0" height="26" rx="4" fill="#2563EB" class="anim-bar" style="--w: 270px; animation-delay: 0.1s;"/>
-            <text x="360" y="55" font-size="11" fill="#2563EB" font-weight="bold">450 萬</text>
+        subCharts: [
+          {
+            name: "水平長條圖 (首選)",
+            caption: "水平長條圖：由長到短排序，標籤好讀不折行",
+            when: "類別大於 7 個、或標籤文字較長時的首選；人類肉眼對長度比對最敏感。",
+            warn: "長條圖基準線（X 軸）必須從 0 起跳！依數值由大到小排序。",
+            code: "df.sort_values('金額').plot(x='部門', y='金額', kind='barh')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="80" y1="20" x2="80" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="80" y1="200" x2="390" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+                
+                <text x="70" y="52" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">研發部</text>
+                <rect x="80" y="36" width="0" height="24" rx="4" fill="#2563EB">
+                  <animate attributeName="width" from="0" to="260" dur="0.8s" begin="0.1s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="350" y="52" font-size="11" fill="#2563EB" font-weight="bold">450 萬</text>
 
-            <!-- 項目 2 -->
-            <text x="70" y="100" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">業務部</text>
-            <rect x="80" y="83" width="0" height="26" rx="4" fill="#3B82F6" class="anim-bar" style="--w: 200px; animation-delay: 0.25s;"/>
-            <text x="290" y="100" font-size="11" fill="#3B82F6" font-weight="bold">320 萬</text>
+                <text x="70" y="95" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">業務部</text>
+                <rect x="80" y="79" width="0" height="24" rx="4" fill="#3B82F6">
+                  <animate attributeName="width" from="0" to="190" dur="0.8s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="280" y="95" font-size="11" fill="#3B82F6" font-weight="bold">320 萬</text>
 
-            <!-- 項目 3 -->
-            <text x="70" y="145" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">行銷部</text>
-            <rect x="80" y="128" width="0" height="26" rx="4" fill="#60A5FA" class="anim-bar" style="--w: 130px; animation-delay: 0.4s;"/>
-            <text x="220" y="145" font-size="11" fill="#60A5FA" font-weight="bold">190 萬</text>
+                <text x="70" y="138" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">行銷部</text>
+                <rect x="80" y="122" width="0" height="24" rx="4" fill="#60A5FA">
+                  <animate attributeName="width" from="0" to="120" dur="0.8s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="210" y="138" font-size="11" fill="#60A5FA" font-weight="bold">190 萬</text>
 
-            <!-- 項目 4 -->
-            <text x="70" y="190" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">人資部</text>
-            <rect x="80" y="173" width="0" height="26" rx="4" fill="#93C5FD" class="anim-bar" style="--w: 70px; animation-delay: 0.55s;"/>
-            <text x="160" y="190" font-size="11" fill="#93C5FD" font-weight="bold">95 萬</text>
-          </svg>
-        `
+                <text x="70" y="181" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">人資部</text>
+                <rect x="80" y="165" width="0" height="24" rx="4" fill="#93C5FD">
+                  <animate attributeName="width" from="0" to="65" dur="0.8s" begin="0.55s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="155" y="181" font-size="11" fill="#93C5FD" font-weight="bold">95 萬</text>
+              </svg>
+            `
+          },
+          {
+            name: "垂直長條圖",
+            caption: "垂直長條圖：類別少於 7 個且名稱短時的最佳選擇",
+            when: "項目少且文字精簡時，垂直長條符合一般閱讀習慣。",
+            warn: "垂直長條圖 Y 軸必須從 0 開始，避免視覺放大切成顯著假象。",
+            code: "df.plot(x='部門', y='金額', kind='bar')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="20" x2="50" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+
+                <!-- 4 根垂直長條由下拔高 -->
+                <rect x="75" y="190" width="45" height="0" rx="3" fill="#2563EB">
+                  <animate attributeName="height" from="0" to="140" dur="0.8s" begin="0.1s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                  <animate attributeName="y" from="190" to="50" dur="0.8s" begin="0.1s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="97" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">研發</text>
+
+                <rect x="150" y="190" width="45" height="0" rx="3" fill="#3B82F6">
+                  <animate attributeName="height" from="0" to="105" dur="0.8s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                  <animate attributeName="y" from="190" to="85" dur="0.8s" begin="0.25s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="172" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">業務</text>
+
+                <rect x="225" y="190" width="45" height="0" rx="3" fill="#60A5FA">
+                  <animate attributeName="height" from="0" to="70" dur="0.8s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                  <animate attributeName="y" from="190" to="120" dur="0.8s" begin="0.4s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="247" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">行銷</text>
+
+                <rect x="300" y="190" width="45" height="0" rx="3" fill="#93C5FD">
+                  <animate attributeName="height" from="0" to="40" dur="0.8s" begin="0.55s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                  <animate attributeName="y" from="190" to="150" dur="0.8s" begin="0.55s" fill="freeze" calcMode="spline" keySplines="0.16 1 0.3 1"/>
+                </rect>
+                <text x="322" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">人資</text>
+              </svg>
+            `
+          },
+          {
+            name: "分組長條圖",
+            caption: "分組長條圖：同一個部門並列比較「預算 vs 實際」",
+            when: "跨 2 個指標（例如今年 vs 去年、預算 vs 實際支出）比對。",
+            warn: "每組指標勿超過 3 個，避免畫面擁擠；圖例顏色務必清楚。",
+            code: "df.plot(x='部門', y=['預算', '實際'], kind='bar')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <!-- 圖例 -->
+                <rect x="250" y="15" width="12" height="10" fill="#2563EB"/>
+                <text x="268" y="24" font-size="11" fill="#64748B">預算</text>
+                <rect x="315" y="15" width="12" height="10" fill="#F97316"/>
+                <text x="333" y="24" font-size="11" fill="#64748B">實際</text>
+
+                <!-- 組 1: 研發 -->
+                <rect x="80" y="190" width="22" height="0" fill="#2563EB">
+                  <animate attributeName="height" from="0" to="130" dur="0.7s" begin="0.1s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="60" dur="0.7s" begin="0.1s" fill="freeze"/>
+                </rect>
+                <rect x="105" y="190" width="22" height="0" fill="#F97316">
+                  <animate attributeName="height" from="0" to="115" dur="0.7s" begin="0.2s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="75" dur="0.7s" begin="0.2s" fill="freeze"/>
+                </rect>
+                <text x="103" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">研發部</text>
+
+                <!-- 組 2: 業務 -->
+                <rect x="175" y="190" width="22" height="0" fill="#2563EB">
+                  <animate attributeName="height" from="0" to="90" dur="0.7s" begin="0.3s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="100" dur="0.7s" begin="0.3s" fill="freeze"/>
+                </rect>
+                <rect x="200" y="190" width="22" height="0" fill="#F97316">
+                  <animate attributeName="height" from="0" to="110" dur="0.7s" begin="0.4s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="80" dur="0.7s" begin="0.4s" fill="freeze"/>
+                </rect>
+                <text x="198" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">業務部</text>
+
+                <!-- 組 3: 行銷 -->
+                <rect x="270" y="190" width="22" height="0" fill="#2563EB">
+                  <animate attributeName="height" from="0" to="60" dur="0.7s" begin="0.5s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="130" dur="0.7s" begin="0.5s" fill="freeze"/>
+                </rect>
+                <rect x="295" y="190" width="22" height="0" fill="#F97316">
+                  <animate attributeName="height" from="0" to="75" dur="0.7s" begin="0.6s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="115" dur="0.7s" begin="0.6s" fill="freeze"/>
+                </rect>
+                <text x="293" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">行銷部</text>
+              </svg>
+            `
+          },
+          {
+            name: "點圖 / 棒棒糖圖",
+            caption: "點圖：項目極多時，減輕大色塊壓迫感",
+            when: "項目多達 15~30 個時，以細線+端點精準定位數值，畫面最清爽。",
+            warn: "依然需要依數值排序；端點標籤文字不可過小。",
+            code: "plt.hlines(y=df['品項'], xmin=0, xmax=df['數值']) + plt.plot(df['數值'], 'o')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="80" y1="20" x2="80" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
+                
+                <!-- 棒棒糖 1 -->
+                <line x1="80" y1="50" x2="330" y2="50" stroke="#CBD5E1" stroke-width="2"/>
+                <circle cx="330" cy="50" r="0" fill="#2563EB">
+                  <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.2s" fill="freeze"/>
+                </circle>
+                <text x="70" y="54" font-size="11" fill="#334155" text-anchor="end">品項 A</text>
+
+                <!-- 棒棒糖 2 -->
+                <line x1="80" y1="95" x2="260" y2="95" stroke="#CBD5E1" stroke-width="2"/>
+                <circle cx="260" cy="95" r="0" fill="#2563EB">
+                  <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.35s" fill="freeze"/>
+                </circle>
+                <text x="70" y="99" font-size="11" fill="#334155" text-anchor="end">品項 B</text>
+
+                <!-- 棒棒糖 3 -->
+                <line x1="80" y1="140" x2="190" y2="140" stroke="#CBD5E1" stroke-width="2"/>
+                <circle cx="190" cy="140" r="0" fill="#2563EB">
+                  <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.5s" fill="freeze"/>
+                </circle>
+                <text x="70" y="144" font-size="11" fill="#334155" text-anchor="end">品項 C</text>
+
+                <!-- 棒棒糖 4 -->
+                <line x1="80" y1="185" x2="130" y2="185" stroke="#CBD5E1" stroke-width="2"/>
+                <circle cx="130" cy="185" r="0" fill="#2563EB">
+                  <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.65s" fill="freeze"/>
+                </circle>
+                <text x="70" y="189" font-size="11" fill="#334155" text-anchor="end">品項 D</text>
+              </svg>
+            `
+          }
+        ]
       },
       compst: {
         tagName: "組成問題",
@@ -594,42 +699,79 @@
           "「今年營業額主要是哪幾個產品線貢獻的？」",
           "「各支付方式在全體訂單的占有比例各是多少？」"
         ],
-        charts: ["百分比長條圖 (首選)", "甜甜圈圖 (≤ 4 類)", "圓餅圖", "堆疊長條圖"],
-        caption: "比例展開動畫：各部分合成 100%",
-        drawSVG: () => `
-          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-            <!-- 甜甜圈旋轉生長動畫 -->
-            <g transform="translate(130, 120)">
-              <!-- 底灰圓 -->
-              <circle cx="0" cy="0" r="65" fill="none" stroke="#F1F5F9" stroke-width="30"/>
-              <!-- 扇區 1: 50% (長度約 204) -->
-              <circle cx="0" cy="0" r="65" fill="none" stroke="#EA580C" stroke-width="30"
-                stroke-dasharray="204 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.1s; animation-duration: 0.9s;"/>
-              <!-- 扇區 2: 30% (長度約 122) -->
-              <circle cx="0" cy="0" r="65" fill="none" stroke="#FB923C" stroke-width="30"
-                stroke-dasharray="122 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.4s; animation-duration: 0.8s; transform: rotate(180deg); transform-origin: 0 0;"/>
-              <!-- 扇區 3: 20% (長度約 82) -->
-              <circle cx="0" cy="0" r="65" fill="none" stroke="#FED7AA" stroke-width="30"
-                stroke-dasharray="82 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.7s; animation-duration: 0.7s; transform: rotate(288deg); transform-origin: 0 0;"/>
-              <text x="0" y="6" font-size="13" fill="#7C2D12" font-weight="bold" text-anchor="middle">總和 100%</text>
-            </g>
+        subCharts: [
+          {
+            name: "百分比長條圖 (首選)",
+            caption: "百分比長條圖：比例切分一目了然，空間最節省",
+            when: "組成分析的第一首選！比圓餅圖更容易精確比較長度。",
+            warn: "務必在圖表上註明「分母是全部總額」，所有部分相加必為 100%。",
+            code: "df.plot(kind='bar', stacked=True)",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <!-- 百分比長條動畫 -->
+                <g transform="translate(60, 80)">
+                  <rect x="0" y="0" width="300" height="40" rx="6" fill="#F1F5F9" stroke="#E2E8F0"/>
+                  <!-- 區塊 1: 50% -->
+                  <rect x="0" y="0" width="0" height="40" rx="6" fill="#EA580C">
+                    <animate attributeName="width" from="0" to="150" dur="0.7s" begin="0.1s" fill="freeze"/>
+                  </rect>
+                  <text x="75" y="25" font-size="12" fill="#FFFFFF" font-weight="bold" text-anchor="middle">50%</text>
 
-            <!-- 圖例與標註 -->
-            <g transform="translate(260, 60)">
-              <rect x="0" y="0" width="14" height="14" rx="3" fill="#EA580C"/>
-              <text x="22" y="12" font-size="13" fill="#334155" font-weight="bold">雲端軟體 (50%)</text>
+                  <!-- 區塊 2: 30% -->
+                  <rect x="150" y="0" width="0" height="40" fill="#FB923C">
+                    <animate attributeName="width" from="0" to="90" dur="0.7s" begin="0.3s" fill="freeze"/>
+                  </rect>
+                  <text x="195" y="25" font-size="12" fill="#FFFFFF" font-weight="bold" text-anchor="middle">30%</text>
 
-              <rect x="0" y="35" width="14" height="14" rx="3" fill="#FB923C"/>
-              <text x="22" y="47" font-size="13" fill="#334155" font-weight="bold">硬體設備 (30%)</text>
+                  <!-- 區塊 3: 20% -->
+                  <rect x="240" y="0" width="0" height="40" rx="6" fill="#FED7AA">
+                    <animate attributeName="width" from="0" to="60" dur="0.7s" begin="0.5s" fill="freeze"/>
+                  </rect>
+                  <text x="270" y="25" font-size="11" fill="#7C2D12" font-weight="bold" text-anchor="middle">20%</text>
+                </g>
 
-              <rect x="0" y="70" width="14" height="14" rx="3" fill="#FED7AA"/>
-              <text x="22" y="82" font-size="13" fill="#334155" font-weight="bold">外部顧問 (20%)</text>
-
-              <line x1="0" y1="110" x2="140" y2="110" stroke="#CBD5E1" stroke-width="1"/>
-              <text x="0" y="130" font-size="11" fill="#EA580C" font-weight="bold">⚠️ 類別超過 5 個切忌圓餅圖</text>
-            </g>
-          </svg>
-        `
+                <!-- 圖例 -->
+                <g transform="translate(60, 160)">
+                  <rect x="0" y="0" width="12" height="12" rx="2" fill="#EA580C"/><text x="18" y="11" font-size="12" fill="#334155">雲端軟體 (50%)</text>
+                  <rect x="110" y="0" width="12" height="12" rx="2" fill="#FB923C"/><text x="128" y="11" font-size="12" fill="#334155">硬體設備 (30%)</text>
+                  <rect x="220" y="0" width="12" height="12" rx="2" fill="#FED7AA"/><text x="238" y="11" font-size="12" fill="#334155">專業顧問 (20%)</text>
+                </g>
+              </svg>
+            `
+          },
+          {
+            name: "甜甜圈圖 (≤ 4 類)",
+            caption: "甜甜圈圖：類別極少時，直觀呈現核心份額",
+            when: "只有 2~4 個分類，且想強調某單一主導比例時使用。",
+            warn: "類別一旦超過 5 個，切忌使用圓餅/甜甜圈圖（禁止切碎披薩）。",
+            code: "df.plot(kind='pie', wedgeprops=dict(width=0.4))",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(130, 115)">
+                  <!-- 甜甜圈圓環動畫 -->
+                  <circle cx="0" cy="0" r="65" fill="none" stroke="#F1F5F9" stroke-width="30"/>
+                  <circle cx="0" cy="0" r="65" fill="none" stroke="#EA580C" stroke-width="30"
+                    stroke-dasharray="204 408" stroke-dashoffset="408">
+                    <animate attributeName="stroke-dashoffset" from="408" to="0" dur="0.9s" begin="0.1s" fill="freeze"/>
+                  </circle>
+                  <circle cx="0" cy="0" r="65" fill="none" stroke="#FB923C" stroke-width="30"
+                    stroke-dasharray="122 408" stroke-dashoffset="408" transform="rotate(180 0 0)">
+                    <animate attributeName="stroke-dashoffset" from="408" to="0" dur="0.8s" begin="0.3s" fill="freeze"/>
+                  </circle>
+                  <text x="0" y="6" font-size="13" fill="#7C2D12" font-weight="bold" text-anchor="middle">總和 100%</text>
+                </g>
+                <g transform="translate(250, 65)">
+                  <rect x="0" y="0" width="14" height="14" rx="3" fill="#EA580C"/>
+                  <text x="22" y="12" font-size="13" fill="#334155" font-weight="bold">線上刷卡 (50%)</text>
+                  <rect x="0" y="35" width="14" height="14" rx="3" fill="#FB923C"/>
+                  <text x="22" y="47" font-size="13" fill="#334155" font-weight="bold">行動支付 (30%)</text>
+                  <rect x="0" y="70" width="14" height="14" rx="3" fill="#FED7AA"/>
+                  <text x="22" y="82" font-size="13" fill="#334155" font-weight="bold">其他門市 (20%)</text>
+                </g>
+              </svg>
+            `
+          }
+        ]
       },
       dist: {
         tagName: "分布問題",
@@ -641,33 +783,87 @@
           "「專案花費工時有沒有特別誇張的極端延遲個案？」",
           "「客戶單筆消費金額是集中在幾百元，還是常出現破萬大單？」"
         ],
-        charts: ["直方圖 (Histogram)", "箱形圖 / 盒鬚圖 (Box Plot)", "次數長條圖"],
-        caption: "直方圖與箱形圖：抓住集中與極端值",
-        drawSVG: () => `
-          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-            <line x1="40" y1="180" x2="380" y2="180" stroke="#94A3B8" stroke-width="1.2"/>
-            <line x1="40" y1="30" x2="40" y2="180" stroke="#CBD5E1" stroke-width="1"/>
+        subCharts: [
+          {
+            name: "直方圖 (Histogram)",
+            caption: "直方圖：觀察單一連續數值的集中波峰與偏態",
+            when: "單一連續數值欄位（大量列），切分成等寬區間（Bins）看群體輪廓。",
+            warn: "直方圖柱與柱相連無空隙；切勿只看平均數就妄下結論！",
+            code: "df['工時'].plot(kind='hist', bins=10)",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="40" y1="180" x2="380" y2="180" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="40" y1="30" x2="40" y2="180" stroke="#CBD5E1" stroke-width="1"/>
 
-            <!-- 直方圖柱子動畫由底往上長 -->
-            <rect x="60" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 30px; --y: 150px; animation-delay: 0.1s;"/>
-            <rect x="96" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 80px; --y: 100px; animation-delay: 0.2s;"/>
-            <rect x="132" y="180" width="36" height="0" fill="#9333EA" stroke="#7E22CE" class="anim-col" style="--h: 130px; --y: 50px; animation-delay: 0.3s;"/>
-            <rect x="168" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 95px; --y: 85px; animation-delay: 0.4s;"/>
-            <rect x="204" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 55px; --y: 125px; animation-delay: 0.5s;"/>
-            <rect x="240" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 25px; --y: 155px; animation-delay: 0.6s;"/>
-            <rect x="276" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 12px; --y: 168px; animation-delay: 0.7s;"/>
+                <!-- 直方圖柱子拔高動畫 -->
+                <rect x="60" y="180" width="38" height="0" fill="#C084FC" stroke="#A855F7">
+                  <animate attributeName="height" from="0" to="30" dur="0.6s" begin="0.1s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="150" dur="0.6s" begin="0.1s" fill="freeze"/>
+                </rect>
+                <rect x="98" y="180" width="38" height="0" fill="#C084FC" stroke="#A855F7">
+                  <animate attributeName="height" from="0" to="80" dur="0.6s" begin="0.2s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="100" dur="0.6s" begin="0.2s" fill="freeze"/>
+                </rect>
+                <rect x="136" y="180" width="38" height="0" fill="#9333EA" stroke="#7E22CE">
+                  <animate attributeName="height" from="0" to="135" dur="0.6s" begin="0.3s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="45" dur="0.6s" begin="0.3s" fill="freeze"/>
+                </rect>
+                <rect x="174" y="180" width="38" height="0" fill="#C084FC" stroke="#A855F7">
+                  <animate attributeName="height" from="0" to="95" dur="0.6s" begin="0.4s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="85" dur="0.6s" begin="0.4s" fill="freeze"/>
+                </rect>
+                <rect x="212" y="180" width="38" height="0" fill="#C084FC" stroke="#A855F7">
+                  <animate attributeName="height" from="0" to="50" dur="0.6s" begin="0.5s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="130" dur="0.6s" begin="0.5s" fill="freeze"/>
+                </rect>
+                <rect x="250" y="180" width="38" height="0" fill="#C084FC" stroke="#A855F7">
+                  <animate attributeName="height" from="0" to="20" dur="0.6s" begin="0.6s" fill="freeze"/>
+                  <animate attributeName="y" from="180" to="160" dur="0.6s" begin="0.6s" fill="freeze"/>
+                </rect>
 
-            <!-- 中位數標線 -->
-            <line x1="150" y1="30" x2="150" y2="180" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 3" class="anim-line" style="animation-delay: 0.8s;"/>
-            <text x="156" y="40" font-size="11" fill="#DC2626" font-weight="bold">中位數</text>
+                <!-- 中位數紅線從頂部垂降 -->
+                <line x1="155" y1="30" x2="155" y2="180" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 3"/>
+                <text x="160" y="40" font-size="11" fill="#DC2626" font-weight="bold">中位數</text>
+                <text x="210" y="202" font-size="11" fill="#64748B" text-anchor="middle">← 連續區間相連無縫隙 →</text>
+              </svg>
+            `
+          },
+          {
+            name: "箱形圖 / 盒鬚圖",
+            caption: "箱形圖：一眼看清中位數、四分位距與極端異常值",
+            when: "想檢視中位數是否被極端值拉偏，或跨部門比對分布時最強大。",
+            warn: "紅點為離群值 (Outliers)，切勿隨意刪除，應深入探討原因。",
+            code: "df.plot(y='通勤時間', kind='box')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="40" y1="180" x2="380" y2="180" stroke="#CBD5E1" stroke-width="1"/>
+                
+                <!-- 水平箱形圖 -->
+                <line x1="80" y1="100" x2="140" y2="100" stroke="#7E22CE" stroke-width="2"/>
+                <line x1="80" y1="85" x2="80" y2="115" stroke="#7E22CE" stroke-width="2"/>
+                <text x="80" y="135" font-size="10" fill="#64748B" text-anchor="middle">Min 最小值</text>
 
-            <!-- 底部極端值標註 -->
-            <circle cx="340" cy="170" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.0s;"/>
-            <text x="340" y="155" font-size="10" fill="#DC2626" font-weight="bold" text-anchor="middle">極端異常值</text>
-            
-            <text x="150" y="202" font-size="11" fill="#64748B" text-anchor="middle">← 連續數值區間 (Bins) 相連無空隙 →</text>
-          </svg>
-        `
+                <!-- 箱體 -->
+                <rect x="140" y="70" width="120" height="60" fill="#EDE9FE" stroke="#7E22CE" stroke-width="2" rx="2"/>
+                
+                <!-- 中位數線 -->
+                <line x1="190" y1="70" x2="190" y2="130" stroke="#DC2626" stroke-width="2.5"/>
+                <text x="190" y="60" font-size="11" fill="#DC2626" font-weight="bold" text-anchor="middle">中位數 Q2</text>
+
+                <!-- 右鬚 -->
+                <line x1="260" y1="100" x2="320" y2="100" stroke="#7E22CE" stroke-width="2"/>
+                <line x1="320" y1="85" x2="320" y2="115" stroke="#7E22CE" stroke-width="2"/>
+                <text x="320" y="135" font-size="10" fill="#64748B" text-anchor="middle">Max 最大值</text>
+
+                <!-- 極端異常值點 -->
+                <circle cx="360" cy="100" r="0" fill="#DC2626">
+                  <animate attributeName="r" from="0" to="5" dur="0.4s" begin="0.4s" fill="freeze"/>
+                </circle>
+                <text x="360" y="85" font-size="10" fill="#DC2626" font-weight="bold" text-anchor="middle">極端離群值</text>
+              </svg>
+            `
+          }
+        ]
       },
       rel: {
         tagName: "關係問題",
@@ -679,34 +875,66 @@
           "「員工加班工時與專案出現 Bug 的次數是否有連動？」",
           "「廣告投放預算與官網新註冊人數是否有正向關聯？」"
         ],
-        charts: ["散佈圖 (Scatter Plot)", "氣泡圖 (Bubble Chart)", "相關係數熱力圖"],
-        caption: "散佈點散開動畫：觀察成對趨勢連動",
-        drawSVG: () => `
-          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="200" x2="380" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
-            <line x1="50" y1="20" x2="50" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+        subCharts: [
+          {
+            name: "散佈圖 (首選)",
+            caption: "散佈圖：觀察兩個連續數值的連動走向與集聚型態",
+            when: "手上擁有 2 個成對連續數值（X 與 Y）時的唯一首選。",
+            warn: "絕對不要用折線將散佈點連起來！牢記「相關不等於因果」。",
+            code: "df.plot(x='拜訪次數', y='成交金額', kind='scatter')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="50" y1="20" x2="50" y2="190" stroke="#CBD5E1" stroke-width="1"/>
 
-            <!-- 趨勢擬合線動畫 -->
-            <line x1="70" y1="180" x2="360" y2="40" stroke="#10B981" stroke-width="2" stroke-dasharray="5 3" class="anim-line" style="animation-delay: 0.6s;"/>
+                <!-- 散佈點以動畫逐一浮現 -->
+                <circle cx="80" cy="165" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.1s" fill="freeze"/></circle>
+                <circle cx="110" cy="150" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.15s" fill="freeze"/></circle>
+                <circle cx="140" cy="160" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.2s" fill="freeze"/></circle>
+                <circle cx="170" cy="125" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.25s" fill="freeze"/></circle>
+                <circle cx="200" cy="135" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.3s" fill="freeze"/></circle>
+                <circle cx="230" cy="105" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.35s" fill="freeze"/></circle>
+                <circle cx="260" cy="90" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.4s" fill="freeze"/></circle>
+                <circle cx="290" cy="95" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.45s" fill="freeze"/></circle>
+                <circle cx="320" cy="70" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.5s" fill="freeze"/></circle>
+                <circle cx="350" cy="45" r="0" fill="#059669"><animate attributeName="r" from="0" to="5" dur="0.3s" begin="0.55s" fill="freeze"/></circle>
 
-            <!-- 散佈點以不同延遲彈跳出現 -->
-            <circle cx="80" cy="170" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.1s;"/>
-            <circle cx="110" cy="155" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.15s;"/>
-            <circle cx="130" cy="165" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.2s;"/>
-            <circle cx="160" cy="130" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.25s;"/>
-            <circle cx="180" cy="140" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.3s;"/>
-            <circle cx="210" cy="110" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.35s;"/>
-            <circle cx="230" cy="95" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.4s;"/>
-            <circle cx="260" cy="100" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.45s;"/>
-            <circle cx="290" cy="75" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.5s;"/>
-            <circle cx="320" cy="60" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.55s;"/>
-            <circle cx="350" cy="45" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.6s;"/>
+                <!-- 趨勢擬合線 -->
+                <line x1="70" y1="175" x2="360" y2="40" stroke="#10B981" stroke-width="2" stroke-dasharray="5 3"/>
+                <text x="350" y="210" font-size="11" fill="#64748B" font-weight="bold">X 軸：拜訪次數 →</text>
+                <text x="60" y="25" font-size="11" fill="#64748B" font-weight="bold">↑ Y 軸：成交額</text>
+              </svg>
+            `
+          },
+          {
+            name: "氣泡圖 (3 個變數)",
+            caption: "氣泡圖：X 軸、Y 軸加上氣泡面積大小（第 3 個指標）",
+            when: "除了兩個連續變數外，還想同時看規模大小（如公司人口、總預算）。",
+            warn: "氣泡必須按「面積」而非「半徑」縮放，避免視覺誇大 4 倍。",
+            code: "plt.scatter(x, y, s=df['利潤']*10, alpha=0.5)",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="50" y1="20" x2="50" y2="190" stroke="#CBD5E1" stroke-width="1"/>
 
-            <text x="360" y="220" font-size="11" fill="#64748B" font-weight="bold">X 軸：拜訪次數 →</text>
-            <text x="60" y="25" font-size="11" fill="#64748B" font-weight="bold">↑ Y 軸：成交金額</text>
-            <text x="230" y="220" font-size="11" fill="#059669" font-weight="bold">正相關走向（禁止連線）</text>
-          </svg>
-        `
+                <circle cx="90" cy="140" r="0" fill="#059669" opacity="0.6">
+                  <animate attributeName="r" from="0" to="12" dur="0.5s" begin="0.1s" fill="freeze"/>
+                </circle>
+                <circle cx="160" cy="110" r="0" fill="#059669" opacity="0.6">
+                  <animate attributeName="r" from="0" to="24" dur="0.5s" begin="0.25s" fill="freeze"/>
+                </circle>
+                <circle cx="250" cy="80" r="0" fill="#059669" opacity="0.6">
+                  <animate attributeName="r" from="0" to="35" dur="0.5s" begin="0.4s" fill="freeze"/>
+                </circle>
+                <circle cx="330" cy="50" r="0" fill="#059669" opacity="0.6">
+                  <animate attributeName="r" from="0" to="16" dur="0.5s" begin="0.55s" fill="freeze"/>
+                </circle>
+
+                <text x="210" y="210" font-size="11" fill="#059669" font-weight="bold" text-anchor="middle">圓形大小代表第 3 個數值指標（如利潤規模）</text>
+              </svg>
+            `
+          }
+        ]
       },
       trend: {
         tagName: "趨勢問題",
@@ -718,54 +946,101 @@
           "「網站訪問流量在週末是否有週期性下跌？」",
           "「新產品自上市以來，每日活躍用戶的走勢如何？」"
         ],
-        charts: ["折線圖 (Line Chart)", "時間長條圖 (少時間點)", "堆疊面積圖"],
-        caption: "時間折線動態繪製：看清斜率與轉折",
-        drawSVG: () => `
-          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
-            <line x1="50" y1="200" x2="380" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
-            <line x1="50" y1="30" x2="50" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+        subCharts: [
+          {
+            name: "折線圖 (首選)",
+            caption: "折線圖：時間由左至右，觀察斜率與波段轉折",
+            when: "連續時間點較多（> 5 個時間點，例如每月、每日走勢）。",
+            warn: "X 軸必須是真實時間型態且嚴格遞增；非時間類別嚴禁連線！",
+            code: "df.plot(x='月份', y='營收', kind='line', marker='o')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+                <line x1="50" y1="20" x2="50" y2="190" stroke="#CBD5E1" stroke-width="1"/>
 
-            <!-- 連續折線平滑動態畫出 -->
-            <polyline points="70,170 120,180 170,140 220,100 270,120 320,60 370,40"
-              fill="none" stroke="#DC2626" stroke-width="3" class="anim-line" style="animation-duration: 1.4s;"/>
+                <!-- 折線動畫 -->
+                <polyline points="70,160 120,170 170,130 220,90 270,110 320,50 370,35"
+                  fill="none" stroke="#DC2626" stroke-width="3" stroke-dasharray="600" stroke-dashoffset="600">
+                  <animate attributeName="stroke-dashoffset" from="600" to="0" dur="1.2s" begin="0.1s" fill="freeze"/>
+                </polyline>
 
-            <!-- 時間點節點 -->
-            <circle cx="70" cy="170" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.2s;"/><text x="70" y="218" font-size="10" fill="#64748B" text-anchor="middle">1月</text>
-            <circle cx="120" cy="180" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.4s;"/><text x="120" y="218" font-size="10" fill="#64748B" text-anchor="middle">2月</text>
-            <circle cx="170" cy="140" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.6s;"/><text x="170" y="218" font-size="10" fill="#64748B" text-anchor="middle">3月</text>
-            <circle cx="220" cy="100" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.8s;"/><text x="220" y="218" font-size="10" fill="#64748B" text-anchor="middle">4月</text>
-            <circle cx="270" cy="120" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.0s;"/><text x="270" y="218" font-size="10" fill="#64748B" text-anchor="middle">5月</text>
-            <circle cx="320" cy="60" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.2s;"/><text x="320" y="218" font-size="10" fill="#64748B" text-anchor="middle">6月</text>
-            <circle cx="370" cy="40" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.4s;"/><text x="370" y="218" font-size="10" fill="#64748B" text-anchor="middle">7月</text>
-          </svg>
-        `
+                <!-- 節點圓點 -->
+                <circle cx="70" cy="160" r="4.5" fill="#DC2626"/><text x="70" y="210" font-size="10" fill="#64748B" text-anchor="middle">1月</text>
+                <circle cx="120" cy="170" r="4.5" fill="#DC2626"/><text x="120" y="210" font-size="10" fill="#64748B" text-anchor="middle">2月</text>
+                <circle cx="170" cy="130" r="4.5" fill="#DC2626"/><text x="170" y="210" font-size="10" fill="#64748B" text-anchor="middle">3月</text>
+                <circle cx="220" cy="90" r="4.5" fill="#DC2626"/><text x="220" y="210" font-size="10" fill="#64748B" text-anchor="middle">4月</text>
+                <circle cx="270" cy="110" r="4.5" fill="#DC2626"/><text x="270" y="210" font-size="10" fill="#64748B" text-anchor="middle">5月</text>
+                <circle cx="320" cy="50" r="4.5" fill="#DC2626"/><text x="320" y="210" font-size="10" fill="#64748B" text-anchor="middle">6月</text>
+                <circle cx="370" cy="35" r="4.5" fill="#DC2626"/><text x="370" y="210" font-size="10" fill="#64748B" text-anchor="middle">7月</text>
+              </svg>
+            `
+          },
+          {
+            name: "時間長條圖 (少時間點)",
+            caption: "時間長條圖：只有少數季度時，長條圖比折線更穩重",
+            when: "只有 3~4 個時間點（如 Q1, Q2, Q3, Q4 或 2022~2024 年報）。",
+            warn: "時間點太少時畫折線圖會只有短短兩截，長條圖更能傳達獨立量體感。",
+            code: "df.plot(x='季度', y='營收', kind='bar')",
+            svg: () => `
+              <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
+                <line x1="50" y1="190" x2="380" y2="190" stroke="#94A3B8" stroke-width="1.5"/>
+
+                <rect x="75" y="190" width="48" height="0" rx="3" fill="#DC2626">
+                  <animate attributeName="height" from="0" to="90" dur="0.7s" begin="0.1s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="100" dur="0.7s" begin="0.1s" fill="freeze"/>
+                </rect>
+                <text x="99" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">Q1</text>
+
+                <rect x="150" y="190" width="48" height="0" rx="3" fill="#DC2626">
+                  <animate attributeName="height" from="0" to="120" dur="0.7s" begin="0.25s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="70" dur="0.7s" begin="0.25s" fill="freeze"/>
+                </rect>
+                <text x="174" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">Q2</text>
+
+                <rect x="225" y="190" width="48" height="0" rx="3" fill="#DC2626">
+                  <animate attributeName="height" from="0" to="80" dur="0.7s" begin="0.4s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="110" dur="0.7s" begin="0.4s" fill="freeze"/>
+                </rect>
+                <text x="249" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">Q3</text>
+
+                <rect x="300" y="190" width="48" height="0" rx="3" fill="#DC2626">
+                  <animate attributeName="height" from="0" to="150" dur="0.7s" begin="0.55s" fill="freeze"/>
+                  <animate attributeName="y" from="190" to="40" dur="0.7s" begin="0.55s" fill="freeze"/>
+                </rect>
+                <text x="324" y="210" font-size="11" fill="#334155" text-anchor="middle" font-weight="bold">Q4</text>
+              </svg>
+            `
+          }
+        ]
       }
     };
 
-    let currentType = 'comp';
+    let currentMainType = 'comp';
+    let currentSubChartIndex = 0;
 
-    function renderType(typeKey) {
-      currentType = typeKey;
-      const data = dataModel[typeKey];
+    // 渲染五大問題類型
+    function selectMainType(typeKey) {
+      currentMainType = typeKey;
+      currentSubChartIndex = 0;
+      const data = fullModel[typeKey];
 
-      // 按鈕 active
+      // 更新上方分類按鈕
       document.querySelectorAll('.type-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.type === typeKey);
       });
 
-      // 標題與標籤
+      // 更新標題與溝通核心
       const tag = document.getElementById('typeTag');
       tag.innerText = data.tagName;
       tag.style.background = data.themeColor;
       document.getElementById('typeEnTitle').innerText = data.enName;
 
-      // 溝通核心（最上方）
       const coreBox = document.getElementById('coreBox');
       coreBox.style.borderLeftColor = data.themeColor;
-      coreBox.querySelector('.label').style.color = data.themeColor;
+      document.getElementById('coreLabel').style.color = data.themeColor;
       document.getElementById('coreContent').innerText = data.core;
 
-      // 經典問法
+      // 更新經典問法
       const qList = document.getElementById('questionsList');
       qList.innerHTML = data.questions.map(q => `
         <div class="q-item">
@@ -774,37 +1049,63 @@
         </div>
       `).join('');
 
-      // 對應圖表標籤
-      const pills = document.getElementById('chartPills');
-      pills.innerHTML = data.charts.map((c, idx) => `
-        <span class="chart-pill ${idx === 0 ? 'highlight' : ''}">${c}</span>
-      `).join('');
+      // 動態生成左下角子圖表按鈕！
+      const btnContainer = document.getElementById('subChartBtns');
+      btnContainer.innerHTML = '';
+      data.subCharts.forEach((chart, idx) => {
+        const btn = document.createElement('button');
+        btn.className = `sub-chart-btn ${idx === 0 ? 'active' : ''}`;
+        btn.innerText = chart.name;
+        btn.onclick = () => selectSubChart(idx);
+        btnContainer.appendChild(btn);
+      });
 
-      // 右側圖表標題與 SVG 動畫重繪
-      document.getElementById('chartCaption').innerText = data.caption;
-      playSVG(data);
+      // 載入第一個子圖表
+      selectSubChart(0);
     }
 
-    function playSVG(data) {
-      const container = document.getElementById('svgStage');
-      container.innerHTML = data.drawSVG();
+    // 渲染具體子圖表與動畫
+    function selectSubChart(subIdx) {
+      currentSubChartIndex = subIdx;
+      const data = fullModel[currentMainType];
+      const chart = data.subCharts[subIdx];
+
+      // 更新左下角按鈕狀態
+      document.querySelectorAll('.sub-chart-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === subIdx);
+      });
+
+      // 更新右側說明文字
+      document.getElementById('chartCaption').innerText = chart.caption;
+      document.getElementById('chartWhen').innerText = chart.when;
+      document.getElementById('chartWarn').innerText = chart.warn;
+      document.getElementById('chartCode').innerText = chart.code;
+
+      // 播放 SVG SMIL 動畫
+      playCurrentSVG();
     }
 
-    // 按鈕切換監聽
+    function playCurrentSVG() {
+      const chart = fullModel[currentMainType].subCharts[currentSubChartIndex];
+      const stage = document.getElementById('svgStage');
+      stage.innerHTML = chart.svg();
+    }
+
+    // 頂部大類切換事件
     document.getElementById('typeSwitcher').addEventListener('click', (e) => {
       const btn = e.target.closest('.type-btn');
       if (btn) {
-        renderType(btn.dataset.type);
+        selectMainType(btn.dataset.type);
       }
     });
 
     // 重新播放按鈕
     document.getElementById('replayBtn').addEventListener('click', () => {
-      playSVG(dataModel[currentType]);
+      playCurrentSVG();
     });
 
-    // 預設載入比較
-    renderType('comp');
+    // 頁面初次載入
+    selectMainType('comp');
   </script>
 </body>
 </html>
