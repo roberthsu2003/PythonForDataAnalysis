@@ -30,7 +30,7 @@
 | 「數字隨日期、月份或年份怎麼改變？」 | **趨勢** | 折線圖；只有少數時間點可用長條圖輔助 | [趨勢選圖規則](./數據選圖思考規則/README.md#5-趨勢-trend) |
 
 > ⚠️ 一份資料可以同時回答不同類型的問題。關鍵不是「這份資料屬於哪一類」，而是「我現在想回答的問題是哪一類」。
-> 詳細的決策樹與組合速查表請參閱 [數據選圖思考規則完整專題](./數據選圖思考規則/README.md) 或體驗 [🌐 線上互動選圖工具（GitHub Pages）](https://roberthsu2003.github.io/PythonForDataAnalysis/)。
+> 詳細的決策樹與組合速查表請參閱 [數據選圖思考規則完整專題](./數據選圖思考規則/README.md) 或體驗 [🌐 線上互動選圖工具（GitHub Pages）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)。
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/README.ipynb) [開啟完整示範 Notebook](./README.ipynb)
 

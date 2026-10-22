@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Python 資料分析・圖表思維互動實驗室 | 教材總覽</title>
-  <meta name="description" content="Python 資料分析與視覺化圖表互動教材大廳，提供五大問題動態圖表展示、欄位速查決策工具等獨立互動單元。">
+  <title>Python 資料分析 | 互動教材與學習站台</title>
+  <meta name="description" content="Python 資料分析全系列互動教材，包含 Pandas 基礎、資料整理、視覺化圖表挑選與 AI 協作分析。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -12,7 +12,6 @@
     :root {
       --primary: #2563eb;
       --primary-light: #eff6ff;
-      --primary-border: #bfdbfe;
       --slate-50: #f8fafc;
       --slate-100: #f1f5f9;
       --slate-200: #e2e8f0;
@@ -21,354 +20,285 @@
       --slate-700: #334155;
       --slate-800: #1e293b;
       --slate-900: #0f172a;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --radius-lg: 16px;
+      --radius-md: 10px;
       --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
-      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
       background: #F8FAFC;
       color: var(--slate-800);
       line-height: 1.6;
       padding-bottom: 80px;
     }
 
+    /* 頂部導航 */
+    header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: var(--slate-900);
+      text-decoration: none;
+    }
+
     /* Hero */
     .hero {
-      max-width: 1000px;
+      max-width: 960px;
       margin: 48px auto 36px;
       padding: 0 24px;
       text-align: center;
     }
     .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 16px;
+      display: inline-block;
+      padding: 5px 14px;
       background: var(--primary-light);
-      border: 1px solid var(--primary-border);
+      border: 1px solid #bfdbfe;
       border-radius: 999px;
       color: var(--primary);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       font-weight: 700;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
     .hero h1 {
       font-size: 2.6rem;
       font-weight: 900;
       color: var(--slate-900);
       letter-spacing: -0.03em;
-      margin-bottom: 16px;
-      line-height: 1.25;
+      margin-bottom: 14px;
     }
     .hero p {
       font-size: 1.15rem;
       color: var(--slate-600);
-      max-width: 740px;
+      max-width: 680px;
       margin: 0 auto;
     }
 
-    /* 容器 */
+    /* 主容器 */
     .container {
-      max-width: 1160px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 24px;
     }
 
-    /* 區塊標題 */
-    .section-header {
-      margin-bottom: 24px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-    }
     .section-title {
       font-size: 1.35rem;
       font-weight: 800;
       color: var(--slate-900);
+      margin-bottom: 20px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
-    /* 卡片網格 */
-    .cards-grid {
+    /* 章節網格 */
+    .chapters-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 28px;
-      margin-bottom: 56px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 24px;
     }
 
-    .topic-card {
+    .chapter-card {
       background: #FFFFFF;
       border: 1.5px solid var(--slate-200);
       border-radius: var(--radius-lg);
-      padding: 32px 28px;
+      padding: 28px;
       box-shadow: var(--shadow-md);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.25s ease;
       position: relative;
-      overflow: hidden;
     }
-    .topic-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: var(--card-accent, var(--primary));
-      opacity: 0.9;
+    .chapter-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--primary);
     }
-    .topic-card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-xl);
-      border-color: var(--card-accent, var(--primary));
+    .chapter-card.active-card {
+      border-color: var(--primary);
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
     }
 
-    .card-top {
-      margin-bottom: 24px;
-    }
-    .card-badge {
+    .card-status {
       display: inline-block;
       font-size: 0.75rem;
       font-weight: 800;
-      padding: 4px 10px;
+      padding: 3px 10px;
       border-radius: 999px;
-      background: var(--card-light, #eff6ff);
-      color: var(--card-accent, #2563eb);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
+    .status-live { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+    .status-upcoming { background: #F1F5F9; color: #64748B; border: 1px solid #E2E8F0; }
+
     .card-title {
-      font-size: 1.35rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: var(--slate-900);
-      margin-bottom: 10px;
-      line-height: 1.35;
+      margin-bottom: 8px;
     }
     .card-desc {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: var(--slate-600);
+      margin-bottom: 16px;
       line-height: 1.6;
-    }
-
-    .card-features {
-      list-style: none;
-      margin: 16px 0;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-    .card-features li {
-      font-size: 0.88rem;
-      color: var(--slate-700);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 600;
     }
 
     .card-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      background: var(--card-accent, var(--primary));
+      gap: 6px;
+      background: var(--primary);
       color: #FFFFFF;
       text-decoration: none;
-      padding: 12px 20px;
+      padding: 10px 18px;
       border-radius: var(--radius-md);
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-weight: 700;
       transition: all 0.2s ease;
-      box-shadow: var(--shadow-sm);
     }
     .card-btn:hover {
-      filter: brightness(1.08);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-    /* 流程引導步驟 */
-    .flow-section {
-      background: #FFFFFF;
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-lg);
-      padding: 36px 32px;
-      box-shadow: var(--shadow-md);
-      margin-bottom: 48px;
-    }
-    .steps-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-      margin-top: 24px;
-    }
-    .step-item {
-      background: var(--slate-50);
-      border: 1px solid var(--slate-200);
-      border-radius: var(--radius-md);
-      padding: 20px;
-    }
-    .step-num {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--primary);
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      margin-bottom: 6px;
-    }
-    .step-title {
-      font-size: 1.05rem;
-      font-weight: 800;
-      color: var(--slate-900);
-      margin-bottom: 6px;
-    }
-    .step-desc {
-      font-size: 0.88rem;
-      color: var(--slate-600);
+      filter: brightness(1.1);
     }
 
     /* 頁尾 */
     footer {
-      max-width: 1160px;
-      margin: 48px auto 0;
+      max-width: 1200px;
+      margin: 60px auto 0;
       padding: 24px;
       border-top: 1px solid var(--slate-200);
       text-align: center;
       color: var(--slate-600);
       font-size: 0.9rem;
     }
-    footer a {
-      color: var(--primary);
-      text-decoration: none;
-      font-weight: 600;
-    }
-    footer a:hover {
-      text-decoration: underline;
-    }
+    footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
   </style>
-  <script src="./js/nav.js"></script>
 </head>
 <body>
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-badge">💡 看懂資料與選對圖表・互動專區</div>
-    <h1>數據思維與圖表挑選實驗室</h1>
-    <p>擺脫死記圖表名稱！透過動態生長動畫與真實資料欄位對照，建立一套「問題決定類型，特徵決定圖表」的標準決策思維。</p>
-  </section>
-
-  <div class="container">
-
-    <!-- 核心互動單元 -->
-    <div class="section-header">
-      <div class="section-title">
-        <span>🚀</span>
-        <span>獨立互動單元目錄</span>
+  <!-- 頂部導航 -->
+  <header>
+    <div class="nav-container">
+      <a href="./index.html" class="logo">
+        <span>📊 Python 資料分析</span>
+        <span style="font-size: 0.75rem; background: #2563EB; color: #fff; padding: 2px 8px; border-radius: 999px;">學習首頁</span>
+      </a>
+      <div>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" style="text-decoration: none; font-size: 0.9rem; font-weight: 700; color: #475569;">GitHub 開源庫 ↗</a>
       </div>
     </div>
+  </header>
 
-    <div class="cards-grid">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">🚀 互動式資料分析教學站</div>
+    <h1>Python 資料分析・全章節互動教材</h1>
+    <p>結合 Jupyter Notebook、動態視覺化網頁與辦公室實戰練習，依據學習路徑逐步掌握數據洞察力。</p>
+  </section>
 
-      <!-- 卡片 1：五大問題動態動畫 -->
-      <div class="topic-card" style="--card-accent: #2563EB; --card-light: #EFF6FF;">
-        <div class="card-top">
-          <span class="card-badge">單元一・核心提問篇</span>
-          <h2 class="card-title">🎯 五大問題與圖表動態展示</h2>
-          <p class="card-desc">老闆問一句話，你腦海中該浮現什麼圖？觀看比較、組成、分布、關係、趨勢如何以動態動畫實體化呈現！</p>
-          <ul class="card-features">
-            <li><span>✨</span> 溝通核心與經典問法對照</li>
-            <li><span>🎬</span> 5 種真實圖表生長動畫（長條、甜甜圈、折線...）</li>
-            <li><span>🔄</span> 支援單元隨選與重播動態</li>
-          </ul>
+  <!-- 章節目錄網格 -->
+  <main class="container">
+    <div class="section-title">
+      <span>📚</span>
+      <span>全書章節與互動專區</span>
+    </div>
+
+    <div class="chapters-grid">
+
+      <!-- 已上線章節：看懂資料與選對圖表 -->
+      <div class="chapter-card active-card">
+        <div>
+          <span class="card-status status-live">🌟 互動專區已上線</span>
+          <h2 class="card-title">📊 看懂資料與選對圖表</h2>
+          <p class="card-desc">辦公室人員必備的五種圖表入門！包含「五大問題動態生長動畫」與「7 大欄位組合速查決策工具」，點選欄位立即看見最佳推薦圖表與避坑提醒。</p>
         </div>
-        <a href="./question-types.html" class="card-btn">
-          <span>▶ 開啟動態演示網頁</span>
-          <span>→</span>
+        <a href="./chart-selection/index.html" class="card-btn">
+          <span>進入此章節互動專區</span>
+          <span>➔</span>
         </a>
       </div>
 
-      <!-- 卡片 2：資料欄位速查決策工具 -->
-      <div class="topic-card" style="--card-accent: #059669; --card-light: #ECFDF5;">
-        <div class="card-top">
-          <span class="card-badge">單元二・欄位速查篇</span>
-          <h2 class="card-title">⚡ 資料欄位 ➔ 圖表速查決策工具</h2>
-          <p class="card-desc">手邊有一份 Excel 或 Pandas 資料表？直接點選手邊的「欄位組合」，立刻看見真實資料表格與最佳推薦圖表！</p>
-          <ul class="card-features">
-            <li><span>📋</span> 模擬真實 DataFrame 資料長相與型態</li>
-            <li><span>🎯</span> 7 種欄位組合即時切換比對</li>
-            <li><span>⚠️</span> 關鍵防呆提醒與 Pandas 一行繪圖程式碼</li>
-          </ul>
+      <!-- 未來章節 1：初見 pandas -->
+      <div class="chapter-card">
+        <div>
+          <span class="card-status status-upcoming">📖 Notebook 教材</span>
+          <h2 class="card-title">🐼 初見 pandas 與基礎功能</h2>
+          <p class="card-desc">Series 與 DataFrame 的基礎架構、索引與欄位選取、過濾與統計運算起步教學。</p>
         </div>
-        <a href="./field-combinations.html" class="card-btn">
-          <span>🔍 開啟欄位速查工具</span>
-          <span>→</span>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%88%9D%E8%A6%8Bpandas" target="_blank" class="card-btn" style="background: #F1F5F9; color: #334155;">
+          <span>檢視 GitHub 教材</span>
+          <span>↗</span>
         </a>
       </div>
 
-      <!-- 卡片 3：完整教學文件指引 -->
-      <div class="topic-card" style="--card-accent: #7C3AED; --card-light: #F5F3FF;">
-        <div class="card-top">
-          <span class="card-badge">完整教材・思考決策樹</span>
-          <h2 class="card-title">📖 數據選圖思考規則全文</h2>
-          <p class="card-desc">回到完整教學 Markdown 文件，閱讀完整的圖表決策流程圖、6 大新手常見地雷（Anti-patterns）與 5 點防呆驗收清單。</p>
-          <ul class="card-features">
-            <li><span>🗺️</span> 完整 Mermaid 視覺化思維流程圖</li>
-            <li><span>🛑</span> 截斷 Y 軸、切碎披薩等 6 大地雷解析</li>
-            <li><span>✅</span> 圖表產出前的 30 秒驗收檢核表</li>
-          </ul>
+      <!-- 未來章節 2：數據整理與連接重塑 -->
+      <div class="chapter-card">
+        <div>
+          <span class="card-status status-upcoming">📖 Notebook 教材</span>
+          <h2 class="card-title">🧩 數據整理、連接、合併、重塑</h2>
+          <p class="card-desc">多表關聯 Merge、Concat、樞紐分析表 Pivot Table 與 Melt 長寬表轉換技巧。</p>
         </div>
-        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E9%81%B8%E5%9C%96%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87" target="_blank" class="card-btn">
-          <span>📄 閱讀 GitHub 教材全文</span>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91" target="_blank" class="card-btn" style="background: #F1F5F9; color: #334155;">
+          <span>檢視 GitHub 教材</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- 未來章節 3：繪圖和視覺展示 -->
+      <div class="chapter-card">
+        <div>
+          <span class="card-status status-upcoming">📖 Notebook 教材</span>
+          <h2 class="card-title">🎨 繪圖和視覺展示</h2>
+          <p class="card-desc">深入使用 Matplotlib 與 Seaborn 打造高品質商業報表，自訂座標軸、字型與配色調性。</p>
+        </div>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA" target="_blank" class="card-btn" style="background: #F1F5F9; color: #334155;">
+          <span>檢視 GitHub 教材</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <!-- 未來章節 4：AI 協作分析 -->
+      <div class="chapter-card">
+        <div>
+          <span class="card-status status-upcoming">📖 Notebook 教材</span>
+          <h2 class="card-title">🤖 AI 協作資料分析・12 個範例</h2>
+          <p class="card-desc">結合大型語言模型與資料分析，從業務月報到問卷分析的 12 個可交付端到端分析範例。</p>
+        </div>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B" target="_blank" class="card-btn" style="background: #F1F5F9; color: #334155;">
+          <span>檢視 GitHub 教材</span>
           <span>↗</span>
         </a>
       </div>
 
     </div>
-
-    <!-- 學習順序指引 -->
-    <div class="flow-section">
-      <div class="section-title">
-        <span>🧭</span>
-        <span>學生拿到一組數據的四步決策流程</span>
-      </div>
-      <div class="steps-grid">
-        <div class="step-item">
-          <div class="step-num">Step 01</div>
-          <div class="step-title">檢驗欄位 DNA</div>
-          <div class="step-desc">區分識別碼 (ID)、類別型、數值型、時間型，不要把年份當數值平均。</div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">Step 02</div>
-          <div class="step-title">鎖定核心提問</div>
-          <div class="step-desc">問一句話：「我想幫誰回答什麼問題？」歸納為五大問題類型。</div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">Step 03</div>
-          <div class="step-title">特徵精準挑圖</div>
-          <div class="step-desc">根據項目多寡、標籤長短、變數數量，二選一挑出最適圖表。</div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">Step 04</div>
-          <div class="step-title">送出前防呆</div>
-          <div class="step-desc">檢查 Y 軸基準從 0 開始、類別已排序、標註分母、不妄斷因果。</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
+  </main>
 
   <!-- 頁尾 -->
   <footer>
     <p>專案開源庫：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">roberthsu2003 / PythonForDataAnalysis</a></p>
-    <p style="margin-top: 6px; font-size: 0.85rem;">本教材致力於幫助一般辦公室人員與分析初學者建立紮實的圖表溝通力。</p>
+    <p style="margin-top: 6px; font-size: 0.85rem;">全書所有章節互動網頁皆獨立管理・持續擴充中</p>
   </footer>
 
 </body>

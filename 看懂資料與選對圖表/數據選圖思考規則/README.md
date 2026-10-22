@@ -80,7 +80,7 @@ graph TD
 
 > 🎬 **動態視覺化演示**：
 > 想親眼看見「溝通核心」與「經典問法」如何對應到長條圖、甜甜圈圖、直方圖、散佈圖與折線圖的動態生長動畫嗎？
-> 👉 **[開啟線上互動動畫網頁：五大問題與圖表動態展示](https://roberthsu2003.github.io/PythonForDataAnalysis/question-types.html)** ｜ [本機原始碼檢視](../../docs/question-types.html)
+> 👉 **[開啟線上互動動畫網頁：五大問題與圖表動態展示](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/question-types.html)** ｜ [本機原始碼檢視](../../docs/chart-selection/question-types.html)
 
 ### 1. 比較 (Comparison)
 - **溝通核心**：突顯「高低差距」與「相對排名」。
@@ -173,7 +173,7 @@ graph TD
 
 > 🌐 **想在線上動手點選看看嗎？**
 > 我們為這個速查表格打造了**互動式網頁體驗版**！你可以直接點選按鈕切換不同欄位組合，親眼看見「真實資料表格長怎樣」、「老闆會怎麼問」以及「圖表的即時外觀」：
-> 👉 **[開啟線上互動速查工具（GitHub Pages 網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/field-combinations.html)** ｜ [本機原始碼檢視](../../docs/field-combinations.html)
+> 👉 **[開啟線上互動速查工具（GitHub Pages 網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/field-combinations.html)** ｜ [本機原始碼檢視](../../docs/chart-selection/field-combinations.html)
 
 | 手邊欄位組合 | 對應問題類型 | 典型情境 | 推薦圖表 | 注意事項 |
 | --- | --- | --- | --- | --- |
