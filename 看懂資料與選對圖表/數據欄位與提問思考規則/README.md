@@ -8,6 +8,15 @@
 
 ---
 
+## 🌐 本章專屬互動網頁實驗室（GitHub Pages）
+
+為了幫助你快速掌握提問技巧，我們打造了專屬的互動操作工具，包含「角色貼標籤測驗」、「5 大積木句型動態組合」、「邊界反向檢核診斷」與「AI 萬用 Prompt 產生器」：
+
+👉 **[💡 數據欄位與提問思考規則・線上互動實驗室 ↗](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/question-rules.html)**  
+*(本機預覽：[`docs/chart-selection/question-rules.html`](../../docs/chart-selection/question-rules.html))*
+
+---
+
 ## 🧭 數據提問思考決策圖
 
 面對任何數據表，請依序執行以下三個思考步驟：

@@ -1,0 +1,1644 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>數據欄位與提問思考規則 | 互動思維實驗室</title>
+  <meta name="description" content="看到數據如何精準發問？透過貼標籤、積木組合與邊界反向檢核三步法，掌握高質量商業數據提問，並提供 AI 萬用 Prompt 產生器。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --success-border: #a7f3d0;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --warning-border: #fde68a;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --danger-border: #fecaca;
+      --purple: #8b5cf6;
+      --purple-light: #f5f3ff;
+      --purple-border: #ddd6fe;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+      background: #F8FAFC;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    /* 頂部 Hero */
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 28px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.025em;
+      margin-bottom: 14px;
+      line-height: 1.25;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--slate-600);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    /* 容器 */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 導航功能頁籤 (Tabs) */
+    .tab-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      color: var(--slate-700);
+      padding: 10px 20px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .tab-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      transform: translateY(-2px);
+    }
+
+    /* 單元卡片容器 */
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.28s ease;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* 通用卡片容器 */
+    .glass-card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      box-shadow: var(--shadow-md);
+      margin-bottom: 32px;
+    }
+    .card-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--slate-100);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .card-header-title {
+      font-size: 1.4rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-header-badge {
+      font-size: 0.8rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: var(--slate-100);
+      color: var(--slate-700);
+    }
+
+    /* 步驟 1：角色標籤卡片網格 */
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .role-card {
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1.5px solid var(--slate-200);
+      background: #FFFFFF;
+      position: relative;
+      transition: all 0.2s ease;
+    }
+    .role-card.metric {
+      border-top: 4px solid var(--success);
+      background: linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 30%);
+    }
+    .role-card.dimension {
+      border-top: 4px solid var(--primary);
+      background: linear-gradient(180deg, #EFF6FF 0%, #FFFFFF 30%);
+    }
+    .role-card.identifier {
+      border-top: 4px solid var(--slate-600);
+      background: linear-gradient(180deg, #F1F5F9 0%, #FFFFFF 30%);
+    }
+    .role-card-title {
+      font-size: 1.2rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .role-desc {
+      font-size: 0.92rem;
+      color: var(--slate-600);
+      margin-bottom: 14px;
+    }
+    .role-examples {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: var(--slate-700);
+    }
+    .role-core-role {
+      margin-top: 12px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* 測驗小遊戲 */
+    .quiz-section {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-top: 24px;
+    }
+    .quiz-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .quiz-items-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .quiz-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      box-shadow: var(--shadow-sm);
+    }
+    .quiz-col-name {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .quiz-col-desc {
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      margin-bottom: 12px;
+    }
+    .quiz-options {
+      display: flex;
+      gap: 6px;
+    }
+    .quiz-btn {
+      flex: 1;
+      padding: 6px 4px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      border-radius: 6px;
+      border: 1px solid var(--slate-200);
+      background: #FFFFFF;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+    .quiz-btn:hover {
+      border-color: var(--primary);
+      background: var(--slate-50);
+    }
+    .quiz-feedback {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      padding: 8px 10px;
+      border-radius: 6px;
+      display: none;
+      line-height: 1.4;
+    }
+    .quiz-feedback.correct {
+      display: block;
+      background: var(--success-light);
+      border: 1px solid var(--success-border);
+      color: #065f46;
+    }
+    .quiz-feedback.wrong {
+      display: block;
+      background: var(--danger-light);
+      border: 1px solid var(--danger-border);
+      color: #991b1b;
+    }
+
+    /* 步驟 2：積木提問組合器 */
+    .block-selector {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .block-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .block-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+    }
+    .block-btn.active {
+      background: var(--slate-900);
+      border-color: var(--slate-900);
+      color: #FFFFFF;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .block-detail-panel {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .block-detail-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .block-info-card {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+    }
+    .block-focus-box {
+      background: #FFFFFF;
+      border-left: 4px solid var(--primary);
+      padding: 14px 18px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .block-focus-title {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .block-focus-text {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+
+    .block-patterns-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--slate-700);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .pattern-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .pattern-item {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--slate-800);
+      display: flex;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .pattern-num {
+      color: var(--primary);
+      font-weight: 800;
+    }
+
+    .block-example-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .example-header {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 999px;
+      display: inline-block;
+    }
+    .tag-metric { background: var(--success-light); color: var(--success); border: 1px solid var(--success-border); }
+    .tag-dimension { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+    .tag-time { background: #fdf4ff; color: #a21caf; border: 1px solid #f0abfc; }
+
+    .example-fields-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.88rem;
+      margin-bottom: 16px;
+    }
+    .example-q-box {
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+    .example-q-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #c2410c;
+      margin-bottom: 4px;
+    }
+    .example-q-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: #7c2d12;
+      line-height: 1.5;
+    }
+
+    .metric-tips {
+      background: #F1F5F9;
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 0.85rem;
+      color: var(--slate-700);
+    }
+
+    /* 步驟 3：邊界反向檢核 */
+    .boundary-svg-container {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      overflow-x: auto;
+    }
+    .boundary-svg-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .boundary-selector {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .boundary-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .boundary-btn:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+    }
+    .boundary-btn.active {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #FFFFFF;
+    }
+
+    .boundary-detail-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 800px) {
+      .boundary-detail-box {
+        grid-template-columns: 1fr;
+      }
+    }
+    .b-card {
+      background: #FFFFFF;
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      border: 1px solid var(--slate-200);
+    }
+    .b-card.danger {
+      border-left: 4px solid var(--danger);
+      background: #FEF2F2;
+      border-color: var(--danger-border);
+    }
+    .b-card.success {
+      border-left: 4px solid var(--success);
+      background: #F0FDF4;
+      border-color: var(--success-border);
+    }
+    .b-card-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+    .b-card.danger .b-card-title { color: #991b1b; }
+    .b-card.success .b-card-title { color: #065f46; }
+    .b-card-main {
+      font-size: 1.05rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .b-card.danger .b-card-main { color: #7f1d1d; }
+    .b-card.success .b-card-main { color: #064e3b; }
+    .b-card-reason {
+      font-size: 0.88rem;
+      color: var(--slate-600);
+      line-height: 1.5;
+    }
+
+    /* 模式二：實戰沙盒 */
+    .sandbox-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 24px;
+    }
+    @media (max-width: 960px) {
+      .sandbox-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .table-box {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    .data-table th {
+      background: #F1F5F9;
+      padding: 10px 12px;
+      font-weight: 700;
+      color: var(--slate-700);
+      border-bottom: 1px solid var(--slate-200);
+      text-align: left;
+    }
+    .data-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-800);
+    }
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+    .checkbox-col {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sandbox-checkbox-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 18px;
+      background: var(--slate-50);
+      padding: 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--slate-200);
+    }
+    .check-chip {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .check-chip input {
+      accent-color: var(--primary);
+    }
+    .check-chip.checked {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .sandbox-output-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* 模式三：Prompt 產生器 */
+    .prompt-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .prompt-container {
+        grid-template-columns: 1fr;
+      }
+    }
+    .prompt-form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-label {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--slate-800);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .form-input {
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--slate-200);
+      font-size: 0.95rem;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      background: #FFFFFF;
+    }
+    .form-input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+    .quick-preset-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 4px;
+    }
+    .preset-btn {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--slate-200);
+      background: var(--slate-50);
+      color: var(--slate-600);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .preset-btn:hover {
+      background: var(--slate-100);
+      border-color: var(--slate-300);
+      color: var(--slate-900);
+    }
+
+    .prompt-output-box {
+      background: #0F172A;
+      color: #F8FAFC;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+    .prompt-pre {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      word-break: break-word;
+      color: #E2E8F0;
+      margin-bottom: 20px;
+      max-height: 380px;
+      overflow-y: auto;
+    }
+    .copy-btn {
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 12px 20px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+    .copy-btn:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+
+    /* 浮動提示 Toast */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 22px;
+      border-radius: 999px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid rgba(255,255,255,0.2);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      pointer-events: none;
+      z-index: 1000;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 頁尾 */
+    footer {
+      max-width: 1200px;
+      margin: 48px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+  <script src="./js/nav.js"></script>
+</head>
+<body>
+
+  <!-- Hero 區域 -->
+  <section class="hero">
+    <div class="hero-badge">💡 數據分析思維・第一步</div>
+    <h1>數據欄位與提問思考規則</h1>
+    <p>看到數據如何精準發問？透過「貼角色標籤 ➔ 積木組合句型 ➔ 邊界反向檢核」三步思考法，1 分鐘內有系統地列出高價值商業問題！</p>
+  </section>
+
+  <!-- 主操作區 -->
+  <main class="container">
+
+    <!-- 主頁籤切換列 -->
+    <div class="tab-bar">
+      <button class="tab-btn active" onclick="switchMainTab('tab-blocks', this)">
+        <span>🧩 提問三步思考規則</span>
+      </button>
+      <button class="tab-btn" onclick="switchMainTab('tab-sandbox', this)">
+        <span>📋 辦公室採購表實戰演練</span>
+      </button>
+      <button class="tab-btn" onclick="switchMainTab('tab-prompt', this)">
+        <span>🤖 AI 提問 Prompt 產生器</span>
+      </button>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 頁籤一：提問三步思考規則（包含步驟 1、2、3） -->
+    <!-- ========================================== -->
+    <div id="tab-blocks" class="tab-content active">
+
+      <!-- 步驟 1 卡片 -->
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-header-title">
+            <span>🏷️ 步驟 1：欄位角色貼標籤</span>
+          </div>
+          <span class="card-header-badge">認識數據積木</span>
+        </div>
+        <p style="color: var(--slate-600); margin-bottom: 20px; font-size: 0.98rem;">
+          拿到任何 Excel 或 CSV 檔時，先不要急著看數字大小，而是把每一欄貼上以下三種角色標籤之一：
+        </p>
+
+        <!-- 三角色網格 -->
+        <div class="role-grid">
+          <!-- 角色 1 -->
+          <div class="role-card metric">
+            <div class="role-card-title">
+              <span>🟢 指標 (Metric)</span>
+            </div>
+            <p class="role-desc">連續數值型資料，可以進行加總、平均、計算差距與成長率。</p>
+            <div class="role-examples">
+              <strong>典型欄位：</strong>採購金額、加班工時、營收、滿意度分數
+            </div>
+            <div class="role-core-role">
+              <span>🎯 核心角色：</span>
+              <span>「我想衡量的結果是什麼」</span>
+            </div>
+          </div>
+
+          <!-- 角色 2 -->
+          <div class="role-card dimension">
+            <div class="role-card-title">
+              <span>🔵 條件 (Dimension)</span>
+            </div>
+            <p class="role-desc">類別型或時間型資料，用來切分、分群、排先後順序的維度。</p>
+            <div class="role-examples">
+              <strong>典型欄位：</strong>部門名稱、產品類別、地區、成交日期
+            </div>
+            <div class="role-core-role">
+              <span>🎯 核心角色：</span>
+              <span>「在什麼情況 / 誰的身上發生」</span>
+            </div>
+          </div>
+
+          <!-- 角色 3 -->
+          <div class="role-card identifier">
+            <div class="role-card-title">
+              <span>⚪ 標識 (Identifier)</span>
+            </div>
+            <p class="role-desc">每一筆獨一無二的識別號碼，不具備數值分析含義。</p>
+            <div class="role-examples">
+              <strong>典型欄位：</strong>員工工號、採購單號、身分證字號、會員編號
+            </div>
+            <div class="role-core-role">
+              <span>🎯 核心角色：</span>
+              <span>「算筆數專用，不可做數學運算」</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 互動測驗小卡 -->
+        <div class="quiz-section">
+          <div class="quiz-title">
+            <span>🎮 職場新手防呆實戰：下列欄位該貼什麼標籤？</span>
+          </div>
+          <p style="font-size: 0.88rem; color: var(--slate-600); margin-bottom: 16px;">
+            點擊下方按鈕測試你的辨識敏銳度，留意「數字長相但不是數值」的經典陷阱：
+          </p>
+
+          <div class="quiz-items-grid">
+            <!-- 測驗題 1 -->
+            <div class="quiz-card" id="qCard-1">
+              <div class="quiz-col-name">
+                <span>員工工號 (如: 10023)</span>
+              </div>
+              <div class="quiz-col-desc">雖然內容全為數字，但有加總或平均的意義嗎？</div>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="checkQuiz(1, 'metric', 'wrong', '❌ 錯誤！員工工號相加或平均毫無管理含義，它只是代號！')">🟢 指標</button>
+                <button class="quiz-btn" onclick="checkQuiz(1, 'dimension', 'wrong', '❌ 不合適！工號每人不同，不適合作為分組類別。')">🔵 條件</button>
+                <button class="quiz-btn" onclick="checkQuiz(1, 'identifier', 'correct', '🎉 正確！工號是【標識】，僅能用來 Distinct Count 計算人頭，絕對不能算平均數！')">⚪ 標識</button>
+              </div>
+              <div class="quiz-feedback" id="qFeedback-1"></div>
+            </div>
+
+            <!-- 測驗題 2 -->
+            <div class="quiz-card" id="qCard-2">
+              <div class="quiz-col-name">
+                <span>加班工時 (如: 14.5 小時)</span>
+              </div>
+              <div class="quiz-col-desc">帶有明確測量單位（小時），能夠進行統計運算。</div>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="checkQuiz(2, 'metric', 'correct', '🎉 正確！帶有時間長度單位的數字，可計算總和與平均，是標準的【指標】。')">🟢 指標</button>
+                <button class="quiz-btn" onclick="checkQuiz(2, 'dimension', 'wrong', '❌ 錯誤！它是可連續測量的數字，不是分組條件。')">🔵 條件</button>
+                <button class="quiz-btn" onclick="checkQuiz(2, 'identifier', 'wrong', '❌ 錯誤！工時具備數值分析價值，不是辨識身分的代碼。')">⚪ 標識</button>
+              </div>
+              <div class="quiz-feedback" id="qFeedback-2"></div>
+            </div>
+
+            <!-- 測驗題 3 -->
+            <div class="quiz-card" id="qCard-3">
+              <div class="quiz-col-name">
+                <span>客戶滿意度 (如: 極滿意/滿意)</span>
+              </div>
+              <div class="quiz-col-desc">文字選項或等級分級，用來區分受訪者態度。</div>
+              <div class="quiz-options">
+                <button class="quiz-btn" onclick="checkQuiz(3, 'metric', 'wrong', '❌ 陷阱題！文字型選項不能直接做數學平均（除非先轉為尺度分數）。')">🟢 指標</button>
+                <button class="quiz-btn" onclick="checkQuiz(3, 'dimension', 'correct', '🎉 正確！用來將受訪者切分不同群體的標籤，屬於【條件（類別）】。')">🔵 條件</button>
+                <button class="quiz-btn" onclick="checkQuiz(3, 'identifier', 'wrong', '❌ 錯誤！多人會有相同的滿意度，並非唯一的身分識別碼。')">⚪ 標識</button>
+              </div>
+              <div class="quiz-feedback" id="qFeedback-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步驟 2 卡片 -->
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-header-title">
+            <span>🧱 步驟 2：提問公式積木組合器</span>
+          </div>
+          <span class="card-header-badge">5 大公式句型切換</span>
+        </div>
+        <p style="color: var(--slate-600); margin-bottom: 20px; font-size: 0.98rem;">
+          貼完標籤後，依你想了解的角度挑選 1 ~ 3 個欄位，直接套用提問積木句型：
+        </p>
+
+        <!-- 5 大積木按鈕 -->
+        <div class="block-selector" id="blockBtnGroup">
+          <button class="block-btn active" onclick="selectBlock('A', this)">
+            <span>🧱 積木 A</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">單一數值欄位</span>
+          </button>
+          <button class="block-btn" onclick="selectBlock('B', this)">
+            <span>🧱 積木 B</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">1 類別 ＋ 1 數值</span>
+          </button>
+          <button class="block-btn" onclick="selectBlock('C', this)">
+            <span>🧱 積木 C</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">1 時間 ＋ 1 數值</span>
+          </button>
+          <button class="block-btn" onclick="selectBlock('D', this)">
+            <span>🧱 積木 D</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">2 個數值欄位</span>
+          </button>
+          <button class="block-btn" onclick="selectBlock('E', this)">
+            <span>🧱 積木 E</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">1 類別 ＋ 1 時間 ＋ 1 數值</span>
+          </button>
+        </div>
+
+        <!-- 積木詳細展示雙欄 -->
+        <div class="block-detail-panel">
+          <!-- 左欄：思考方向與標準句型 -->
+          <div class="block-info-card">
+            <div class="block-focus-box">
+              <div class="block-focus-title">🎯 核心思考方向</div>
+              <div class="block-focus-text" id="blockFocusText">探索指標的「總體常態與極端狀況」。</div>
+            </div>
+
+            <div class="block-patterns-title">
+              <span>🗣️ 標準提問句型模板：</span>
+            </div>
+            <ul class="pattern-list" id="blockPatternList">
+              <!-- JS 動態填入 -->
+            </ul>
+
+            <div class="metric-tips" id="blockMetricTips">
+              <strong>💡 推薦分析運算指標：</strong>平均數 (Mean)、中位數 (Median)、標準差、離群極值 (Min/Max)。
+            </div>
+          </div>
+
+          <!-- 右欄：辦公室實戰範例 -->
+          <div class="block-example-card">
+            <div>
+              <div class="example-header">
+                <span>🏢 辦公室情境範例</span>
+                <span class="tag-pill tag-metric" id="blockExampleBadge">單一數值</span>
+              </div>
+              <div class="example-fields-box" id="blockExampleFields">
+                <strong>挑選欄位：</strong>`訂單金額` (數值)
+              </div>
+              <div class="example-q-box">
+                <div class="example-q-label">💬 範例提問問句：</div>
+                <div class="example-q-text" id="blockExampleQ">
+                  「這批訂單平均金額是多少？中位數是多少？是否有高得離譜的大單拉高了平均？」
+                </div>
+              </div>
+            </div>
+            <div style="font-size: 0.85rem; color: var(--slate-600); border-top: 1px solid var(--slate-100); padding-top: 12px;">
+              <strong>推薦搭配圖表：</strong><span id="blockRecommendedChart">直方圖 (Histogram) 或 箱形圖 (Box Plot)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 步驟 3 卡片 -->
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-header-title">
+            <span>🛡️ 步驟 3：邊界反向檢核（防呆紅線診斷）</span>
+          </div>
+          <span class="card-header-badge" style="background: var(--danger-light); color: var(--danger);">畫出不能問的紅線</span>
+        </div>
+        <p style="color: var(--slate-600); margin-bottom: 20px; font-size: 0.98rem;">
+          問完問題後，最後一步是做<strong>可行性檢查</strong>。避免提出「這份資料根本無法回答」的無效問題：
+        </p>
+
+        <!-- SVG 圖解展示區 -->
+        <div class="boundary-svg-container">
+          <img src="./images/邊界反向檢核.svg" alt="邊界反向檢核防呆紅線架構圖">
+        </div>
+
+        <!-- 5 大情境診斷切換按鈕 -->
+        <div class="boundary-selector" id="boundaryBtnGroup">
+          <button class="boundary-btn active" onclick="selectBoundary(0, this)">1. 缺乏時間欄位</button>
+          <button class="boundary-btn" onclick="selectBoundary(1, this)">2. 缺乏類別欄位</button>
+          <button class="boundary-btn" onclick="selectBoundary(2, this)">3. 只有單一數值</button>
+          <button class="boundary-btn" onclick="selectBoundary(3, this)">4. 只有相關數據（因果陷阱）</button>
+          <button class="boundary-btn" onclick="selectBoundary(4, this)">5. 面對 ID 標識碼</button>
+        </div>
+
+        <!-- 診斷對照盒 -->
+        <div class="boundary-detail-box" id="boundaryDetailBox">
+          <!-- JS 填入 -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 頁籤二：辦公室採購表實戰演練沙盒 -->
+    <!-- ========================================== -->
+    <div id="tab-sandbox" class="tab-content">
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-header-title">
+            <span>📋 實戰演練：辦公室採購明細.csv</span>
+          </div>
+          <span class="card-header-badge">自由勾選欄位體驗</span>
+        </div>
+        <p style="color: var(--slate-600); margin-bottom: 20px; font-size: 0.98rem;">
+          假設你手邊有以下這張真實辦公室資料表。請隨意勾選 1~3 個欄位，系統將即時診斷出你匹配到的提問積木，並自動產生優質提問與防呆紅線！
+        </p>
+
+        <!-- 資料表格展示 -->
+        <div class="table-box">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>採購單號 (ID)</th>
+                <th>採購日期 (時間)</th>
+                <th>申請部門 (類別)</th>
+                <th>採購類別 (類別)</th>
+                <th>採購金額 (數值)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>PO-2025-001</code></td>
+                <td>2025/03/15</td>
+                <td>行銷部</td>
+                <td>辦公耗材</td>
+                <td>$4,500</td>
+              </tr>
+              <tr>
+                <td><code>PO-2025-002</code></td>
+                <td>2025/03/18</td>
+                <td>研發部</td>
+                <td>硬體設備</td>
+                <td>$85,000</td>
+              </tr>
+              <tr>
+                <td><code>PO-2025-003</code></td>
+                <td>2025/03/20</td>
+                <td>行政部</td>
+                <td>軟體訂閱</td>
+                <td>$12,000</td>
+              </tr>
+              <tr>
+                <td><code>PO-2025-004</code></td>
+                <td>2025/04/02</td>
+                <td>研發部</td>
+                <td>軟體訂閱</td>
+                <td>$28,000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 互動沙盒控制與輸出 -->
+        <div class="sandbox-container">
+          <!-- 勾選區 -->
+          <div>
+            <div style="font-size: 0.95rem; font-weight: 800; color: var(--slate-900); margin-bottom: 10px;">
+              👇 勾選你想挑選分析的欄位（可多選）：
+            </div>
+            <div class="sandbox-checkbox-bar">
+              <label class="check-chip" id="chip-id">
+                <input type="checkbox" onchange="updateSandbox()" value="id">
+                <span>⚪ 採購單號 (ID)</span>
+              </label>
+              <label class="check-chip" id="chip-date">
+                <input type="checkbox" onchange="updateSandbox()" value="date">
+                <span>🔵 採購日期 (時間)</span>
+              </label>
+              <label class="check-chip checked" id="chip-dept">
+                <input type="checkbox" onchange="updateSandbox()" value="dept" checked>
+                <span>🔵 申請部門 (類別)</span>
+              </label>
+              <label class="check-chip" id="chip-cat">
+                <input type="checkbox" onchange="updateSandbox()" value="cat">
+                <span>🔵 採購類別 (類別)</span>
+              </label>
+              <label class="check-chip checked" id="chip-amount">
+                <input type="checkbox" onchange="updateSandbox()" value="amount" checked>
+                <span>🟢 採購金額 (數值)</span>
+              </label>
+            </div>
+
+            <div style="background: var(--slate-50); border: 1px solid var(--slate-200); border-radius: var(--radius-sm); padding: 14px; font-size: 0.88rem; color: var(--slate-600);">
+              💡 <strong>提示</strong>：隨意組合不同欄位，觀察右側提問角度如何動態演變！
+            </div>
+          </div>
+
+          <!-- 即時診斷輸出卡片 -->
+          <div class="sandbox-output-card" id="sandboxResult">
+            <!-- JS 動態渲染 -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 頁籤三：AI 提問 Prompt 產生器 -->
+    <!-- ========================================== -->
+    <div id="tab-prompt" class="tab-content">
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-header-title">
+            <span>🤖 AI 萬用提問 Prompt 產生器</span>
+          </div>
+          <span class="card-header-badge" style="background: var(--purple-light); color: var(--purple);">一鍵複製到 AI</span>
+        </div>
+        <p style="color: var(--slate-600); margin-bottom: 24px; font-size: 0.98rem;">
+          學會這套思考規則後，你也可以直接把你的欄位屬性填在下方，一鍵生成結構嚴謹的「提問 Prompt」，交給 ChatGPT、Claude 或 Gemini 產出專屬商業問題清單！
+        </p>
+
+        <div class="prompt-container">
+          <!-- 左側：輸入表單 -->
+          <div class="prompt-form">
+            <div>
+              <div style="font-size: 0.88rem; font-weight: 800; color: var(--slate-700); margin-bottom: 6px;">快速帶入情境範例：</div>
+              <div class="quick-preset-bar">
+                <button class="preset-btn" onclick="loadPreset('procure')">🏢 採購明細表</button>
+                <button class="preset-btn" onclick="loadPreset('hr')">👥 人資加班工時表</button>
+                <button class="preset-btn" onclick="loadPreset('sales')">💰 業務銷售訂單表</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>🟢 數值指標欄位：</span>
+                <span style="font-size: 0.78rem; color: var(--slate-500);">(可加總平均的數字)</span>
+              </label>
+              <input type="text" id="inputMetric" class="form-input" value="採購金額" placeholder="例如：採購金額, 工時, 營收" oninput="generatePrompt()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>🔵 條件類別欄位：</span>
+                <span style="font-size: 0.78rem; color: var(--slate-500);">(文字分類、組別)</span>
+              </label>
+              <input type="text" id="inputDimension" class="form-input" value="申請部門, 採購類別" placeholder="例如：部門名稱, 產品品類, 職級" oninput="generatePrompt()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>🔵 時間欄位：</span>
+                <span style="font-size: 0.78rem; color: var(--slate-500);">(日期或年月份)</span>
+              </label>
+              <input type="text" id="inputTime" class="form-input" value="採購日期" placeholder="例如：採購日期, 訂單月份" oninput="generatePrompt()">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">
+                <span>⚪ 識別碼欄位：</span>
+                <span style="font-size: 0.78rem; color: var(--slate-500);">(唯一識別編號)</span>
+              </label>
+              <input type="text" id="inputId" class="form-input" value="採購單號" placeholder="例如：採購單號, 員工工號" oninput="generatePrompt()">
+            </div>
+          </div>
+
+          <!-- 右側：Prompt 預覽與複製按鈕 -->
+          <div class="prompt-output-box">
+            <div style="font-size: 0.85rem; font-weight: 800; color: #94A3B8; text-transform: uppercase; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center;">
+              <span>即時生成 Prompt 預覽</span>
+              <span style="color: var(--primary-border); font-size: 0.75rem;">Markdown 格式</span>
+            </div>
+            <pre class="prompt-pre" id="promptText"></pre>
+            <button class="copy-btn" onclick="copyPrompt()">
+              <span>📋 複製完整 Prompt 到剪貼簿</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- 複製成功提示 -->
+  <div class="toast" id="copyToast">
+    <span>✅ 已成功複製 Prompt！可直接貼至 ChatGPT / Claude / Gemini 使用。</span>
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>Python 資料分析・看懂資料與選對圖表互動教材 | <a href="./index.html">返回章節大廳</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">GitHub 專案原始碼</a></p>
+  </footer>
+
+  <script>
+    // ==========================================
+    // 1. 頁籤切換
+    // ==========================================
+    function switchMainTab(tabId, btn) {
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    // ==========================================
+    // 2. 步驟 1 測驗判定
+    // ==========================================
+    function checkQuiz(qNum, selectedType, resultType, message) {
+      const fb = document.getElementById(`qFeedback-${qNum}`);
+      fb.className = `quiz-feedback ${resultType}`;
+      fb.innerHTML = message;
+    }
+
+    // ==========================================
+    // 3. 步驟 2 積木資料庫與切換
+    // ==========================================
+    const blockData = {
+      'A': {
+        focus: '探索指標的「總體常態與極端狀況」。',
+        badge: '單一數值',
+        patterns: [
+          '這項【數值】在全體樣本中的<strong>平均水準</strong>與<strong>中位數</strong>在哪裡？',
+          '這項【數值】的分佈是<strong>集中還是極度分散</strong>？',
+          '是否存在少數極端偏高或偏低的<strong>異常極端值（離群點）</strong>？'
+        ],
+        tips: '平均數 (Mean)、中位數 (Median)、標準差、離群極值 (Min/Max)',
+        fields: '`訂單金額` (數值)',
+        question: '「這批訂單平均金額是多少？中位數是多少？是否有高得離譜的大單拉高了平均？」',
+        chart: '直方圖 (Histogram) 或 箱形圖 (Box Plot)'
+      },
+      'B': {
+        focus: '探索「不同群體之間的勝負差距與主力結構」。',
+        badge: '1 類別 ＋ 1 數值',
+        patterns: [
+          '哪一個【類別】的【數值】<strong>表現最好（排第一名）</strong>？哪一個表現最差？',
+          '排名前三名的【類別】，是否就佔據了整體【數值】的<strong>絕大部分份額（二八法則）</strong>？',
+          '各【類別】之間的差距是<strong>勢均力敵</strong>，還是出現<strong>斷崖式落差</strong>？'
+        ],
+        tips: '分組加總 (Sum)、分組平均 (Mean)、排名 (Rank)、占比百分比 (%)',
+        fields: '`產品類別` (類別) ＋ `銷售金額` (數值)',
+        question: '「哪一項產品類別是本季度的營收冠軍？前兩大品類佔據了全公司多少比例的營收？」',
+        chart: '垂直長條圖 (Column) 或 水平長條圖 (Bar Chart)'
+      },
+      'C': {
+        focus: '探索「時間進程上的演變規律與波動節奏」。',
+        badge: '1 時間 ＋ 1 數值',
+        patterns: [
+          '這項【數值】隨【時間】推移，呈現<strong>成長、持平還是衰退</strong>的走向？',
+          '這一年中，哪一個月份是【數值】的<strong>最高峰（旺季）</strong>？哪一個月份是<strong>最低谷（淡季）</strong>？',
+          '各週期（例如逐季或逐月）之間有沒有明顯規律的<strong>週期波動節奏</strong>？'
+        ],
+        tips: '時間序列累計、月增率 (MoM)、年增率 (YoY)、移動平均 (Rolling Average)',
+        fields: '`月份` (時間) ＋ `營收` (數值)',
+        question: '「過去 12 個月營收是否有持續成長？哪一季是營收主力？有沒有突發性的下滑月份？」',
+        chart: '折線圖 (Line Chart) 或 時間長條圖'
+      },
+      'D': {
+        focus: '探索「兩項指標是否互相牽動與連動關聯」。',
+        badge: '2 個數值',
+        patterns: [
+          '當【數值 A】升高時，【數值 B】通常會<strong>跟著升高、還是降低</strong>？',
+          '兩者之間是否存在明顯的<strong>正向或負向關聯趨勢</strong>？',
+          '有沒有哪些特例是【數值 A】很高，但【數值 B】卻<strong>異常偏低的離群點</strong>？'
+        ],
+        tips: '相關係數 (Correlation Coefficient r)、趨勢擬合線、離群點篩檢',
+        fields: '`專案預估工時` (數值) ＋ `專案實際工時` (數值)',
+        question: '「預估工時較長的專案，實際工時是不是也普遍偏高？有沒有預估很短但實際嚴重超時的專案？」',
+        chart: '散佈圖 (Scatter Plot)'
+      },
+      'E': {
+        focus: '探索「不同群體在時間走勢上的分歧與競爭走向」。',
+        badge: '1 類別 ＋ 1 時間 ＋ 1 數值',
+        patterns: [
+          '在不同【類別】之間，他們隨【時間】演變的<strong>走勢是否相同</strong>？',
+          '是否有某個【類別】在特定時間點<strong>突然爆發成長或大幅萎縮</strong>？',
+          '誰是長期穩定貢獻者？誰是波動劇烈的高風險群體？'
+        ],
+        tips: '多維交叉分析 (Pivot Table)、分群分組趨勢線、各組成長率比對',
+        fields: '`部門` (類別) ＋ `月份` (時間) ＋ `加班時數` (數值)',
+        question: '「資訊部與業務部在下半年的加班時數走勢是否一致？哪一個部門在年底衝刺期加班激增？」',
+        chart: '多線折線圖 (Multi-Line Chart) 或 分組/堆疊長條圖'
+      }
+    };
+
+    function selectBlock(key, btn) {
+      document.querySelectorAll('#blockBtnGroup .block-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const data = blockData[key];
+      document.getElementById('blockFocusText').innerText = data.focus;
+      document.getElementById('blockExampleBadge').innerText = data.badge;
+      document.getElementById('blockMetricTips').innerHTML = `<strong>💡 推薦分析運算指標：</strong>${data.tips}`;
+      document.getElementById('blockExampleFields').innerHTML = `<strong>挑選欄位：</strong>${data.fields}`;
+      document.getElementById('blockExampleQ').innerText = data.question;
+      document.getElementById('blockRecommendedChart').innerText = data.chart;
+
+      const pList = document.getElementById('blockPatternList');
+      pList.innerHTML = data.patterns.map((p, idx) => `
+        <li class="pattern-item">
+          <span class="pattern-num">${idx + 1}.</span>
+          <div>${p}</div>
+        </li>
+      `).join('');
+    }
+
+    // ==========================================
+    // 4. 步驟 3 邊界反向檢核
+    // ==========================================
+    const boundaryData = [
+      {
+        btn: '1. 缺乏時間欄位',
+        title: '缺乏【時間欄位】',
+        wrong: '❌ 「今年業績是否有比去年進步？」',
+        reason: '資料只有單月或單一切片報表，沒有過去的時間維度，無法計算成長或衰退！',
+        correct: '⭕ 「本月各部門中誰業績最佳？各品類銷售佔比為何？」',
+        tip: '沒有時間欄位，只能做當期的「靜態截面比較」或「組成比例」。'
+      },
+      {
+        btn: '2. 缺乏類別欄位',
+        title: '缺乏【類別欄位】',
+        wrong: '❌ 「業務部的表現是不是比客服部好？」',
+        reason: '資料只有全體彙總數字，未曾紀錄「部門」或「人員分類」標籤，無法進行組間對比。',
+        correct: '⭕ 必須先要求資料來源端補齊分類標籤，否則只能問「全體總指標趨勢」。',
+        tip: '無法對不存在的欄位做分組 (Group By)。'
+      },
+      {
+        btn: '3. 只有單一數值',
+        title: '只有【單一數值】',
+        wrong: '❌ 「投入更多預算是否能帶來更高滿意度？」',
+        reason: '手邊只有一個指標欄位，根本沒有第二個變數可供計算相互牽動或相關性。',
+        correct: '⭕ 「這項數值的平均數是多少？有無極端值？」',
+        tip: '研究關聯或互相影響，至少需要 2 個可對應比較的連續數值。'
+      },
+      {
+        btn: '4. 只有相關數據（因果陷阱）',
+        title: '只有【相關數據】',
+        wrong: '❌ 「多買硬體設備能不能直接提升員工工作績效？」',
+        reason: '【鐵律：相關不等於因果】。觀察性數據僅能證明兩者有同步趨勢，無法證明因果推進。',
+        correct: '⭕ 「硬體採購金額較高的部門，其工作產出是否呈現正向相關？」',
+        tip: '若無嚴謹的 A/B 測試或控制實驗，絕對不可在報告中直接下「因果結論」。'
+      },
+      {
+        btn: '5. 面對 ID 標識碼',
+        title: '面對【ID 標識碼】',
+        wrong: '❌ 「本年度員工工號的平均值是多少？」',
+        reason: 'ID、電話號碼、身分證字號等雖由數字組成，但本質是獨立識別代號，無數量涵義。',
+        correct: '⭕ 「全公司有效員工工號共有多少個 (Distinct Count)？」',
+        tip: '識別碼只能用來 Count 筆數，算平均數與加總是典型的菜鳥錯誤。'
+      }
+    ];
+
+    function selectBoundary(index, btn) {
+      document.querySelectorAll('#boundaryBtnGroup .boundary-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const item = boundaryData[index];
+      const box = document.getElementById('boundaryDetailBox');
+      box.innerHTML = `
+        <div class="b-card danger">
+          <div class="b-card-title">常犯的錯誤發問</div>
+          <div class="b-card-main">${item.wrong}</div>
+          <div class="b-card-reason"><strong>🛑 為什麼絕對不能問：</strong><br/>${item.reason}</div>
+        </div>
+        <div class="b-card success">
+          <div class="b-card-title">正確應對的做法</div>
+          <div class="b-card-main">${item.correct}</div>
+          <div class="b-card-reason"><strong>💡 思考原則：</strong><br/>${item.tip}</div>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 5. 實戰演練沙盒邏輯
+    // ==========================================
+    function updateSandbox() {
+      const idChecked = document.querySelector('input[value="id"]').checked;
+      const dateChecked = document.querySelector('input[value="date"]').checked;
+      const deptChecked = document.querySelector('input[value="dept"]').checked;
+      const catChecked = document.querySelector('input[value="cat"]').checked;
+      const amountChecked = document.querySelector('input[value="amount"]').checked;
+
+      // 更新 chip 外觀
+      document.getElementById('chip-id').classList.toggle('checked', idChecked);
+      document.getElementById('chip-date').classList.toggle('checked', dateChecked);
+      document.getElementById('chip-dept').classList.toggle('checked', deptChecked);
+      document.getElementById('chip-cat').classList.toggle('checked', catChecked);
+      document.getElementById('chip-amount').classList.toggle('checked', amountChecked);
+
+      const resBox = document.getElementById('sandboxResult');
+
+      const selectedCols = [];
+      if (idChecked) selectedCols.push('採購單號 (ID)');
+      if (dateChecked) selectedCols.push('採購日期 (時間)');
+      if (deptChecked) selectedCols.push('申請部門 (類別)');
+      if (catChecked) selectedCols.push('採購類別 (類別)');
+      if (amountChecked) selectedCols.push('採購金額 (數值)');
+
+      if (selectedCols.length === 0) {
+        resBox.innerHTML = `
+          <div style="text-align: center; color: var(--slate-500); padding: 40px 0;">
+            👉 請至少在左側勾選 1 個欄位！
+          </div>
+        `;
+        return;
+      }
+
+      let matchedBlock = '';
+      let matchedBadge = '';
+      let questions = [];
+      let warning = '';
+
+      if (amountChecked && !deptChecked && !catChecked && !dateChecked && !idChecked) {
+        matchedBlock = '🧱 積木 A：單一數值欄位';
+        matchedBadge = 'tag-metric';
+        questions = [
+          '平均每筆採購金額是多少？中位數是多少？',
+          '採購金額最高的單子是多少錢？是否有異常偏高的大額採購？'
+        ];
+        warning = '缺乏類別與時間，無法問「哪個部門花最多」或「各月採購走勢」。';
+      } else if (amountChecked && (deptChecked || catChecked) && !dateChecked) {
+        const catName = deptChecked && catChecked ? '部門與採購類別' : (deptChecked ? '申請部門' : '採購類別');
+        matchedBlock = '🧱 積木 B：1~2 個類別 ＋ 1 個數值';
+        matchedBadge = 'tag-dimension';
+        questions = [
+          `各【${catName}】的累計採購金額誰高誰低？誰佔最大宗？`,
+          `前兩大支出的【${catName}】佔據了公司多少比例的採購預算？`
+        ];
+        warning = '缺乏時間欄位，絕對不能問「採購金額是否隨月份增長」。';
+      } else if (amountChecked && dateChecked && !deptChecked && !catChecked) {
+        matchedBlock = '🧱 積木 C：1 個時間 ＋ 1 個數值';
+        matchedBadge = 'tag-time';
+        questions = [
+          '採購總金額隨月份推進呈現成長還是收縮？',
+          '哪一個月份是採購高峰（例如季初或季末衝刺期）？'
+        ];
+        warning = '缺乏部門或類別標籤，無法比較「誰花得比較多」。';
+      } else if (amountChecked && dateChecked && (deptChecked || catChecked)) {
+        matchedBlock = '🧱 積木 E：類別 ＋ 時間 ＋ 數值';
+        matchedBadge = 'tag-dimension';
+        questions = [
+          '各部門在每個月的採購金額走勢是否相同？哪一個部門在特定月份採購激增？',
+          '各採購品類隨時間推移，哪一類是長期穩定支出，哪一類是單季突發性支出？'
+        ];
+        warning = '雖然維度完整，但絕對不能推導「多買設備導致員工績效提升」的因果結論！';
+      } else if (idChecked && !amountChecked && !dateChecked && !deptChecked && !catChecked) {
+        matchedBlock = '⚪ 標識欄位（ID 碼）';
+        matchedBadge = 'tag-metric';
+        questions = [
+          '整張表目前共有幾張不重複的採購單 (Count Distinct)？'
+        ];
+        warning = '採購單號不可做平均、加總或相減等任何數學運算！';
+      } else {
+        matchedBlock = '複合組合探索';
+        matchedBadge = 'tag-dimension';
+        questions = [
+          '不同類別組合中，各組的採購單筆數分佈為何？'
+        ];
+        warning = '注意避免在沒有對照實驗的情況下直接下因果結論。';
+      }
+
+      resBox.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--slate-100); padding-bottom: 12px;">
+          <div>
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--slate-500); text-transform: uppercase;">匹配到的提問積木</div>
+            <div style="font-size: 1.15rem; font-weight: 800; color: var(--slate-900);">${matchedBlock}</div>
+          </div>
+          <span class="tag-pill ${matchedBadge}">已選 ${selectedCols.length} 個欄位</span>
+        </div>
+
+        <div>
+          <div style="font-size: 0.88rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;">🗣️ 推薦的高價值提問：</div>
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px;">
+            ${questions.map((q, i) => `
+              <li style="font-size: 0.92rem; font-weight: 700; color: var(--slate-800); background: var(--slate-50); padding: 10px 12px; border-radius: 6px; border-left: 3px solid var(--primary);">
+                ${i + 1}. ${q}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+
+        <div style="background: var(--danger-light); border: 1px solid var(--danger-border); border-radius: 6px; padding: 12px 14px;">
+          <div style="font-size: 0.8rem; font-weight: 800; color: #991b1b; margin-bottom: 4px;">⚠️ 邊界反向檢核（提問紅線）：</div>
+          <div style="font-size: 0.88rem; color: #7f1d1d; line-height: 1.4;">${warning}</div>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // 6. AI 萬用 Prompt 產生器
+    // ==========================================
+    function generatePrompt() {
+      const metric = document.getElementById('inputMetric').value.trim() || '[尚未填寫]';
+      const dimension = document.getElementById('inputDimension').value.trim() || '[尚未填寫]';
+      const time = document.getElementById('inputTime').value.trim() || '[無時間欄位]';
+      const id = document.getElementById('inputId').value.trim() || '[無識別碼]';
+
+      const promptTemplate = `我手上有一份資料表，以下是欄位清單與角色屬性：
+- 🟢 數值指標欄位：[${metric}]
+- 🔵 條件類別欄位：[${dimension}]
+- 🔵 時間進程欄位：[${time}]
+- ⚪ 識別標識欄位：[${id}]
+
+請依照「數據提問思考規則」，幫我完成以下三件事：
+1. 套用提問積木，針對這組資料提出 4~5 個不同面向（比較、組成、分布、關係、趨勢）的高價值商業分析問題。
+2. 指出這些問題各自需要使用哪些欄位與運算指標（平均數、總合、百分比、成長率等）。
+3. 根據目前資料欄位的限制，進行「邊界反向檢核」，提醒我有哪 2 個常見的管理問題是「這份資料絕對無法回答」的防呆紅線？`;
+
+      document.getElementById('promptText').innerText = promptTemplate;
+    }
+
+    function loadPreset(type) {
+      if (type === 'procure') {
+        document.getElementById('inputMetric').value = '採購金額';
+        document.getElementById('inputDimension').value = '申請部門, 採購類別';
+        document.getElementById('inputTime').value = '採購日期';
+        document.getElementById('inputId').value = '採購單號';
+      } else if (type === 'hr') {
+        document.getElementById('inputMetric').value = '加班時數, 請假天數, 績效評分';
+        document.getElementById('inputDimension').value = '所屬部門, 職等職級, 辦公地點';
+        document.getElementById('inputTime').value = '統計月份';
+        document.getElementById('inputId').value = '員工工號';
+      } else if (type === 'sales') {
+        document.getElementById('inputMetric').value = '訂單金額, 折扣率, 獲利金額';
+        document.getElementById('inputDimension').value = '業務人員, 銷售區域, 產品系列';
+        document.getElementById('inputTime').value = '成交日期';
+        document.getElementById('inputId').value = '訂單編號, 客戶ID';
+      }
+      generatePrompt();
+    }
+
+    function copyPrompt() {
+      const text = document.getElementById('promptText').innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('copyToast');
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 2800);
+      });
+    }
+
+    // 初始化載入
+    document.addEventListener('DOMContentLoaded', () => {
+      selectBlock('A', document.querySelector('#blockBtnGroup .block-btn'));
+      selectBoundary(0, document.querySelector('#boundaryBtnGroup .boundary-btn'));
+      updateSandbox();
+      generatePrompt();
+    });
+  </script>
+</body>
+</html>
