@@ -1,6 +1,8 @@
 # 04｜社區活動問卷大掃除：把髒資料變成能分析的資料
 
-你提出需求、看懂結果並驗收；AI 負責寫程式、執行和除錯。此資料夾只提供資料與提示詞，Notebook 與程式由你指揮 AI 在自己的專案中產生。
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/04_survey_cleaning/lesson.ipynb) [開啟教材 Notebook](./lesson.ipynb)
+
+你提出需求、看懂結果並驗收；AI 負責寫程式、執行和除錯。先從上方教材 Notebook 的資料下載與讀取起點開始，再依提示詞逐步完成自己的分析與交付成果。
 
 - 任務：資料清理：重複、缺值、格式統一、異常值與多選題拆解。
 - 交付成果：可重複執行的清理腳本與清理報告。
