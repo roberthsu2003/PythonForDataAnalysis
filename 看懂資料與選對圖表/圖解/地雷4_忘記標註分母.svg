@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1088" height="260" viewBox="0 0 1088 260" role="img" aria-label="忘記標註百分比的分母 (Missing Sample Size N)">
+  <title>忘記標註百分比的分母 (Missing Sample Size N)</title>
+  <defs>
+    <style>
+      .row-tag { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 13px; font-weight: 800; }
+      .box-title-c { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 14px; font-weight: 800; fill: #166534; }
+      .box-title-w { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 14px; font-weight: 800; fill: #991B1B; }
+      .box-desc-c { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 12px; font-weight: 500; fill: #14532D; }
+      .box-desc-w { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 12px; font-weight: 500; fill: #7F1D1D; }
+      .chart-label { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 11px; fill: #475569; font-weight: 600; }
+      .chart-axis { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 10px; fill: #94A3B8; }
+      .stat-val { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; font-weight: 800; }
+    </style>
+    <filter id="c-shadow" x="-2%" y="-4%" width="104%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+    <marker id="red-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#DC2626" />
+    </marker>
+  </defs>
+
+  <!-- 單列小標籤 -->
+  <rect x="0" y="0" width="1088" height="26" rx="5" fill="#F1F5F9" />
+  <rect x="0" y="0" width="60" height="26" rx="5" fill="#0F172A" />
+  <text x="30" y="17" class="row-tag" fill="#FFFFFF" text-anchor="middle">地雷 4</text>
+  <text x="72" y="17" class="row-tag" fill="#1E293B">忘記標註百分比的分母 (Missing Sample Size N)</text>
+
+  <!-- 左邊：✅ 正確做法 (寬 530, 高 210) -->
+  <g transform="translate(0, 36)">
+    <rect x="0" y="0" width="530" height="214" rx="10" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5" filter="url(#c-shadow)" />
+    <rect x="0" y="0" width="530" height="34" rx="10" fill="#F0FDF4" />
+    <rect x="0" y="24" width="530" height="10" fill="#F0FDF4" />
+    <line x1="0" y1="34" x2="530" y2="34" stroke="#DCFCE7" stroke-width="1" />
+    <text x="14" y="22" class="box-title-c">✅ 明確註記樣本數 N・具統計代表性</text>
+    <text x="14" y="52" class="box-desc-c">誠實標示「滿意度 80% (N=320/400 份問卷)」，數據具有足夠公信力與代表性。</text>
+    <g transform="translate(130, 52)">
+      
+              <g transform="translate(130, 75)">
+                <rect x="-95" y="-55" width="190" height="110" rx="10" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.5" />
+                <text x="0" y="-18" font-size="11" fill="#166534" font-weight="700" text-anchor="middle">客戶整體滿意度</text>
+                <text x="0" y="18" font-size="34" fill="#15803D" font-weight="900" text-anchor="middle">80%</text>
+                <rect x="-65" y="28" width="130" height="20" rx="4" fill="#DCFCE7" />
+                <text x="0" y="42" font-size="9.5" fill="#166534" font-weight="700" text-anchor="middle">有效樣本數 N = 400 份</text>
+              </g>
+            
+    </g>
+  </g>
+
+  <!-- 右邊：❌ 錯誤地雷 (寬 530, 高 210) -->
+  <g transform="translate(558, 36)">
+    <rect x="0" y="0" width="530" height="214" rx="10" fill="#FFFFFF" stroke="#FCA5A5" stroke-width="1.5" filter="url(#c-shadow)" />
+    <rect x="0" y="0" width="530" height="34" rx="10" fill="#FEF2F2" />
+    <rect x="0" y="24" width="530" height="10" fill="#FEF2F2" />
+    <line x1="0" y1="34" x2="530" y2="34" stroke="#FEE2E2" stroke-width="1" />
+    <text x="14" y="22" class="box-title-w">❌ 隱瞞只有 5 人填答・假高比率誤導決策</text>
+    <text x="14" y="52" class="box-desc-w">「滿意度 80%」實際只有 5 個人填寫（4 人滿意），樣本嚴重不足卻刻意隱匿分母。</text>
+    <g transform="translate(130, 52)">
+      
+              <g transform="translate(130, 75)">
+                <rect x="-95" y="-55" width="190" height="110" rx="10" fill="#FEF2F2" stroke="#FCA5A5" stroke-width="1.5" />
+                <text x="0" y="-18" font-size="11" fill="#991B1B" font-weight="700" text-anchor="middle">客戶整體滿意度高達</text>
+                <text x="0" y="18" font-size="34" fill="#DC2626" font-weight="900" text-anchor="middle">80%！</text>
+                <text x="0" y="42" font-size="9" fill="#B91C1C" font-weight="800" text-anchor="middle">（真相：僅 5 人填寫，4人滿意）</text>
+              </g>
+            
+    </g>
+  </g>
+</svg>

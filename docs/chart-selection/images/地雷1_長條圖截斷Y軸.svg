@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1088" height="260" viewBox="0 0 1088 260" role="img" aria-label="長條圖截斷 Y 軸起點 (Truncated Y-Axis)">
+  <title>長條圖截斷 Y 軸起點 (Truncated Y-Axis)</title>
+  <defs>
+    <style>
+      .row-tag { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 13px; font-weight: 800; }
+      .box-title-c { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 14px; font-weight: 800; fill: #166534; }
+      .box-title-w { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 14px; font-weight: 800; fill: #991B1B; }
+      .box-desc-c { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 12px; font-weight: 500; fill: #14532D; }
+      .box-desc-w { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 12px; font-weight: 500; fill: #7F1D1D; }
+      .chart-label { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', 'PingFang TC', sans-serif; font-size: 11px; fill: #475569; font-weight: 600; }
+      .chart-axis { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 10px; fill: #94A3B8; }
+      .stat-val { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; font-weight: 800; }
+    </style>
+    <filter id="c-shadow" x="-2%" y="-4%" width="104%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.04" />
+    </filter>
+    <marker id="red-arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#DC2626" />
+    </marker>
+  </defs>
+
+  <!-- 單列小標籤 -->
+  <rect x="0" y="0" width="1088" height="26" rx="5" fill="#F1F5F9" />
+  <rect x="0" y="0" width="60" height="26" rx="5" fill="#0F172A" />
+  <text x="30" y="17" class="row-tag" fill="#FFFFFF" text-anchor="middle">地雷 1</text>
+  <text x="72" y="17" class="row-tag" fill="#1E293B">長條圖截斷 Y 軸起點 (Truncated Y-Axis)</text>
+
+  <!-- 左邊：✅ 正確做法 (寬 530, 高 210) -->
+  <g transform="translate(0, 36)">
+    <rect x="0" y="0" width="530" height="214" rx="10" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.5" filter="url(#c-shadow)" />
+    <rect x="0" y="0" width="530" height="34" rx="10" fill="#F0FDF4" />
+    <rect x="0" y="24" width="530" height="10" fill="#F0FDF4" />
+    <line x1="0" y1="34" x2="530" y2="34" stroke="#DCFCE7" stroke-width="1" />
+    <text x="14" y="22" class="box-title-c">✅ Y 軸絕對從 0 開始・比例誠實客觀</text>
+    <text x="14" y="52" class="box-desc-c">柱長 85 與 90 的高度差距僅 5.8%，忠實反映客觀高低，不誇大差距。</text>
+    <g transform="translate(130, 52)">
+      
+              <line x1="40" y1="120" x2="230" y2="120" stroke="#CBD5E1" stroke-width="1.2" />
+              <line x1="40" y1="30" x2="40" y2="120" stroke="#CBD5E1" stroke-width="1.2" />
+              <text x="34" y="123" class="chart-axis" text-anchor="end">0</text>
+              <text x="34" y="78" class="chart-axis" text-anchor="end">50</text>
+              <text x="34" y="34" class="chart-axis" text-anchor="end">100</text>
+              <line x1="37" y1="75" x2="40" y2="75" stroke="#94A3B8" />
+              <line x1="37" y1="30" x2="40" y2="30" stroke="#94A3B8" />
+              <!-- 柱 A (85) -->
+              <rect x="65" y="43" width="50" height="77" rx="3" fill="#16A34A" />
+              <text x="90" y="36" class="stat-val" fill="#15803D" text-anchor="middle">85</text>
+              <text x="90" y="134" class="chart-label" text-anchor="middle">門市 A</text>
+              <!-- 柱 B (90) -->
+              <rect x="140" y="38" width="50" height="82" rx="3" fill="#22C55E" />
+              <text x="165" y="31" class="stat-val" fill="#15803D" text-anchor="middle">90</text>
+              <text x="165" y="134" class="chart-label" text-anchor="middle">門市 B</text>
+              <path d="M 90 22 L 165 22" fill="none" stroke="#16A34A" stroke-width="1" stroke-dasharray="2,2" />
+              <text x="127" y="18" font-size="9.5" fill="#15803D" font-weight="700" text-anchor="middle">真實差距僅 5.8%</text>
+            
+    </g>
+  </g>
+
+  <!-- 右邊：❌ 錯誤地雷 (寬 530, 高 210) -->
+  <g transform="translate(558, 36)">
+    <rect x="0" y="0" width="530" height="214" rx="10" fill="#FFFFFF" stroke="#FCA5A5" stroke-width="1.5" filter="url(#c-shadow)" />
+    <rect x="0" y="0" width="530" height="34" rx="10" fill="#FEF2F2" />
+    <rect x="0" y="24" width="530" height="10" fill="#FEF2F2" />
+    <line x1="0" y1="34" x2="530" y2="34" stroke="#FEE2E2" stroke-width="1" />
+    <text x="14" y="22" class="box-title-w">❌ 從 80 截斷起跳・高度被誇大成 2 倍！</text>
+    <text x="14" y="52" class="box-desc-w">起點切在 80，使 85（高5）與 90（高10）視覺高度差了 2 倍，嚴重誤導決策者。</text>
+    <g transform="translate(130, 52)">
+      
+              <line x1="40" y1="120" x2="230" y2="120" stroke="#FCA5A5" stroke-width="1.2" />
+              <line x1="40" y1="30" x2="40" y2="120" stroke="#FCA5A5" stroke-width="1.2" />
+              <text x="34" y="123" class="chart-axis" fill="#DC2626" font-weight="800" text-anchor="end">80</text>
+              <text x="34" y="78" class="chart-axis" text-anchor="end">85</text>
+              <text x="34" y="34" class="chart-axis" text-anchor="end">90</text>
+              <!-- 截斷鋸齒線標示 -->
+              <path d="M 36 112 L 44 116 L 36 120" fill="none" stroke="#DC2626" stroke-width="1.5" />
+              <!-- 柱 A (85 -> 高度 40) -->
+              <rect x="65" y="80" width="50" height="40" rx="3" fill="#F87171" />
+              <text x="90" y="73" class="stat-val" fill="#B91C1C" text-anchor="middle">85</text>
+              <text x="90" y="134" class="chart-label" text-anchor="middle">門市 A</text>
+              <!-- 柱 B (90 -> 高度 80) -->
+              <rect x="140" y="40" width="50" height="80" rx="3" fill="#DC2626" />
+              <text x="165" y="33" class="stat-val" fill="#B91C1C" text-anchor="middle">90</text>
+              <text x="165" y="134" class="chart-label" text-anchor="middle">門市 B</text>
+              <!-- 誇大箭頭 -->
+              <path d="M 196 120 L 196 40" fill="none" stroke="#DC2626" stroke-width="1.5" marker-end="url(#red-arrow)" />
+              <text x="202" y="75" font-size="9" fill="#DC2626" font-weight="800">看似差 200%！</text>
+            
+    </g>
+  </g>
+</svg>
