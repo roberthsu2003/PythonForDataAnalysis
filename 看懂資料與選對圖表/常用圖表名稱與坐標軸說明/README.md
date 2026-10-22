@@ -1,5 +1,7 @@
 # 📊 常用圖表名稱與坐標軸說明：中英文對照、X/Y 軸原理與核心用途
 
+> 📚 **本文是「看懂資料與選對圖表」的第 5 課**。上一課你知道了問題有五大類；這一課認識每一類常用的圖表，以及 X 軸、Y 軸該放什麼。
+
 > 💡 **核心原則：搞懂圖表 DNA 與坐標軸，才能正確表達與指揮 AI。**  
 > 本章內容已同步建置為線上互動網頁，支援即時切換、縮圖預覽與 Python 代碼複製：  
 > 👉 [🌐 前往線上互動網頁：常用圖表名稱與座標軸配置指南](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/chart-vocabulary.html)
@@ -100,8 +102,14 @@
 
 ---
 
-## 🔗 下一步學習導引
+## 🔗 延伸資源
 
-- 👉 **繼續前往第四步**：[決定適合圖表的思考規則](../決定適合圖表的思考規則/README.md)
-- 👉 **回顧第二步**：[看懂五大核心問題類型與選圖決策](../README.md#二看懂五大核心問題類型與選圖決策)
-- 👉 **線上互動網頁體驗**：[常用圖表名稱與座標軸配置指南 (含互動篩選)](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/chart-vocabulary.html)
+- 🌐 **線上互動網頁體驗**：[常用圖表名稱與座標軸配置指南 (含互動篩選)](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/chart-vocabulary.html)
+---
+
+### 🧭 課程導覽
+
+| ⬅️ 上一課 | 🏠 | 下一課 ➡️ |
+| :--- | :---: | ---: |
+| [第 4 課：五大問題類別](../五大問題類別與識別句型/README.md) | [學習地圖](../README.md) | [第 6 課：依條件選圖、避開地雷](../決定適合圖表的思考規則/README.md) |
+
