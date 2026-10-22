@@ -25,7 +25,7 @@ graph TD
     style AIPrompt fill:#ffe0b2,stroke:#f57c00,stroke-width:2px;
 ```
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/README.ipynb) [開啟完整示範 Notebook](./README.ipynb) ｜ [💡 專題：數據提問思考規則](./數據欄位與提問思考規則/README.md) ｜ [🧭 專題：數據選圖思考規則](./數據選圖思考規則/README.md) ｜ [🌐 線上互動選圖工具](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/README.ipynb) [開啟完整示範 Notebook](./README.ipynb) ｜ [💡 專題：數據提問思考規則](./數據欄位與提問思考規則/README.md) ｜ [🧭 專題：決定適合圖表的思考規則](./決定適合圖表的思考規則/README.md) ｜ [🌐 線上互動實驗室](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
 
 ---
 
@@ -71,6 +71,9 @@ graph TD
        └─ 5. 趨勢 (Trend) ──────── 數字隨時間如何推進與演變
 ```
 
+> 🎬 **動態視覺化演示**：想親眼看見五大問題類型如何動態生長出對應的長條圖、甜甜圈圖、直方圖、散佈圖與折線圖嗎？
+> 👉 **請體驗線上互動單元：[【🎯 五大問題與圖表動態展示（網頁版）】](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/question-types.html)**
+
 ### 五大問題類別定義與識別句型
 
 | 問題類別 | 核心關注點 | 辨識關鍵句型 | 關鍵指標 / 核心概念 |
@@ -85,21 +88,27 @@ graph TD
 
 ## 第三章 📈 最後一步：決定適合的圖表
 
+> 📖 **專題深入探討**：同一問題會因項目多寡、名稱長短而選用不同圖表。我們已將特徵決策樹、欄位速查與六大地雷對照整理成專題。
+> 👉 **請點此進入閱讀：[【🧭 決定適合圖表的思考規則：從資料特徵到最佳圖表】](./決定適合圖表的思考規則/README.md)**
+
 一旦確定了「問題類別」，再結合「資料特性」（如項目數量、時間點多寡），就能迅速、精確地挑選出最佳圖表，避開視覺化地雷：
 
 [![五類問題對應五種圖表](./圖解/%E5%95%8F%E9%A1%8C%E9%A1%9E%E5%9E%8B%E5%B0%8D%E6%87%89%E5%9C%96%E8%A1%A8.svg)](./圖解/%E5%95%8F%E9%A1%8C%E9%A1%9E%E5%9E%8B%E5%B0%8D%E6%87%89%E5%9C%96%E8%A1%A8.svg)
 
-### 問題類別與推薦圖表對照
+### 問題類別與推薦圖表對照（快速指引）
 
 | 問題類別 | 推薦首選圖表 | 適用情境與資料特徵 | 關鍵規範與解讀提醒 |
 | :--- | :--- | :--- | :--- |
-| **比較** | **水平長條圖** (Bar)<br>**垂直長條圖** (Column)<br>**分組長條圖 / 點圖** | • 項目名稱長或項目多（$\ge 7$ 個）用水平長條<br>• 項目少（$< 7$ 個）用垂直長條<br>• 同時比較兩個指標（如目標 vs 實際）用分組長條 | • 長條圖 **Y 軸必須從 0 開始**，不可截斷基準線<br>• 依數值大小由大到小排序，切忌隨機雜亂 |
+| **比較** | **水平長條圖** (Bar)<br>**垂直長條圖** (Column)<br>**分組長條圖 / 點圖** | • 項目名稱長或項目多（$\ge 7$ 個）用水平長條<br>• 項目少（$\le 6$ 個）用垂直長條<br>• 同時比較兩個指標（如目標 vs 實際）用分組長條 | • 長條圖 **Y 軸必須從 0 開始**，不可截斷基準線<br>• 依數值大小由大到小排序，切忌隨機雜亂 |
 | **組成** | **百分比長條圖**<br>**堆疊長條圖**<br>**甜甜圈圖 / 圓餅圖** | • 類別 $\le 4$ 個且差異顯著時才用圓餅圖<br>• 類別 $> 4$ 個或需精準比較大小，一律改用百分比長條圖 | • **一定要交代分母是什麼**（各部分合起來須為 100%）<br>• 圓餅圖千萬不要做成 3D 傾斜 |
 | **分布** | **直方圖 (Histogram)**<br>**箱形圖 (Box Plot)** | • 直方圖：看大量數據的集中區間與波峰分佈<br>• 箱形圖：看中位數、四分位距與離群極端值 | • 平均數要搭配中位數解讀，避免極端值誤導<br>• 直方圖的組距 (bins) 需合宜調整 |
 | **關係** | **散佈圖 (Scatter Plot)**<br>**相關係數熱力圖** | • 散佈圖：檢視兩個連續數值是否同向/反向變動<br>• 熱力圖：多個數值變數兩兩之間的關聯強度 | • **相關不等於因果**（不可擅自推論因果機制）<br>• 散佈點之間不可用折線隨意串連 |
 | **趨勢** | **折線圖 (Line Chart)**<br>**時間長條圖** | • 折線圖：時間點連續且較多（$> 5$ 個點）<br>• 時間長條圖：時間點極少（如 3~4 個季度或年） | • 時間軸必須由左至右、由早到晚嚴格排序<br>• 兩、三個時間點不足以推斷長期趨勢 |
 
-> 📚 想要掌握更進階的挑圖決策樹與例外規則？請見：[🧭 數據選圖思考規則專題](./數據選圖思考規則/README.md)。
+> 🌐 **專題線上互動工具**：
+> - 📊 **[依資料條件挑圖指南（網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/chart-matrix.html)**：線上點選資料特徵，即時高亮對應最佳圖表！
+> - ⚡ **[資料欄位 ➔ 圖表速查工具（網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/field-combinations.html)**：點選欄位組合，即刻對照真實資料表長相與圖表！
+> - 🛑 **完整六大圖表地雷與防呆清單**：請參閱 [決定適合圖表的思考規則全文](./決定適合圖表的思考規則/README.md)。
 
 ---
 
@@ -278,6 +287,7 @@ sequenceDiagram
 
 ## 🚀 下一步：延伸學習
 
-- 📖 **深入選圖決策與邊界案例**：閱讀 [數據選圖思考規則完整指引](./數據選圖思考規則/README.md)
-- 🌐 **互動練習**：進入 [線上互動選圖工具（GitHub Pages）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
+- 💡 **第一步：數據提問**：閱讀 [數據欄位與提問思考規則](./數據欄位與提問思考規則/README.md)
+- 🧭 **第三步：圖表決策**：閱讀 [決定適合圖表的思考規則全文](./決定適合圖表的思考規則/README.md)
+- 🌐 **線上互動實驗室**：進入 [圖表思維與挑選實驗室（GitHub Pages）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
 - 💻 **實戰 Notebook 範例**：前往 [AI 協作資料分析｜十二個範例](../AI協作資料分析_12個範例/README.md)，體驗端到端的多輪數據分析專案。
