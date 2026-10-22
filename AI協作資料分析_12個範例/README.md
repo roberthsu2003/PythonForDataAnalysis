@@ -49,7 +49,7 @@
    uv init --python 3.12
 4. 使用 uv 安裝本課程所需的所有資料分析與視覺化套件：
    uv add pandas numpy matplotlib seaborn openpyxl jupyter streamlit mplfonts
-5. 請在專案根目錄建立 GEMINI.md 規則檔，設定 Antigravity 助教角色、繁體中文字型設定與五步資料思維 SOP。
+5. 請在專案根目錄建立 GEMINI.md 規則檔，設定 AI 助教角色、繁體中文字型設定與五步資料思維 SOP。
 6. 安裝完成後，請在「資料分析專案」根目錄建立並執行 00_env_check.ipynb（使用專案內的 .venv）：
    - 印出 Python、pandas、numpy、matplotlib、seaborn、openpyxl、streamlit 的版本。
    - 註冊並設定 mplfonts 內建的繁體中文字型（Noto Sans CJK SC），確保負號與中文能正常顯示。
@@ -63,12 +63,12 @@
 
 ---
 
-## 🤖 Antigravity 專屬配置：建立 `GEMINI.md` 專案規則檔
+## 🤖 本機 AI 助教配置：建立 `GEMINI.md` 專案規則檔
 
-如果你使用 **Google Antigravity**（IDE 或 CLI），專案根目錄下的 `GEMINI.md` 是最關鍵的靈魂文件。
+如果你在本機使用 AI 程式碼助理（如 Cursor、Windsurf、GitHub Copilot CLI、Antigravity 或其他支援專案規則的 AI 編輯器），專案根目錄下的 `GEMINI.md`（或專案設定規則）是最關鍵的靈魂文件。
 
-### 為什麼需要 `GEMINI.md`？
-在 Antigravity 中，`GEMINI.md` 是專案的全域行為與環境規範。只要專案內包含此檔案，**Antigravity 在每次對話中都會自動載入並嚴格遵循**：
+### 為什麼需要專案規則檔？
+只要專案內包含此檔案，**AI 助教在每次對話中都會自動載入並嚴格遵循**：
 1. **永久免重複貼提示詞**：每次開啟新範例，不必再手動重複複製「助教角色設定」或「繁體中文繪圖 prompt」。
 2. **自動中文字型與負號防呆**：AI 在寫繪圖程式時，會自動引用 `mplfonts` 與思源黑體（`Noto Sans CJK SC`），徹底告別中文方塊缺字與負號亂碼。
 3. **貫徹五步思維 SOP**：AI 自動化身為資料教練，引導你先貼標籤、套提問積木、邊界檢核防呆，最後才選圖出報告。
@@ -114,13 +114,13 @@
 
 ---
 
-## 🚀 在 Antigravity 中操作實戰範例流程
+## 🚀 在本機 AI 助教中操作實戰範例流程
 
 配置好環境與 `GEMINI.md` 後，進入各案例的操作流程將變得極度流暢：
 
 1. **查看案例情境**：在 GitHub 開啟當次範例的 README（如 `01_class_scores`），了解資料背景與問題。
-2. **建立範例資料夾與下載資料**：點選範例 README 的「範例檔下載」連結，儲存至 `01_class_scores/data/`（或直接指示 Antigravity 幫你下載）。
-3. **A 路線（Notebook 逐步分析）**：在 Antigravity 中發出需求（例如：*「請在 01_class_scores/ 建立 lesson.ipynb，先讀取並觀察 scores.csv」*），AI 將自動遵循 `GEMINI.md` 規則引導你完成 5 步分析與中文化繪圖。
+2. **建立範例資料夾與下載資料**：點選範例 README 的「範例檔下載」連結，儲存至 `01_class_scores/data/`（或直接指示 AI 助教幫你下載）。
+3. **A 路線（Notebook 逐步分析）**：在 AI 對話框中發出需求（例如：*「請在 01_class_scores/ 建立 lesson.ipynb，先讀取並觀察 scores.csv」*），AI 將自動遵循規則引導你完成 5 步分析與中文化繪圖。
 4. **B 路線（交付專案成果）**：分析驗收無誤後，指示 AI 將邏輯轉為可重複執行的 Python 腳本、Excel 報表或 Streamlit 互動儀表板。
 
 
