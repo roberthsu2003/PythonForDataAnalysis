@@ -35,44 +35,30 @@
 
 ## 第 0 步｜建立環境
 
-所有實戰案例共用同一個專案與同一個虛擬環境，只需要建立一次。建議使用 Python 3.12。
+所有實戰案例共用同一個專案與同一個虛擬環境，全程**統一使用 uv** 進行套件與環境管理，且**完全由 AI 自動建立與配置**。
 
-### 方法一：使用 uv（推薦）
+你不需要自己手動在終端機輸入任何指令，只要在支援終端機或命令執行的 AI 工具（如 Cursor、Windsurf、GitHub Copilot CLI 或 Antigravity）中，直接複製以下這段 Prompt 貼給 AI，AI 就會自動為你初始化專案、建立 Python 3.12 虛擬環境、安裝所有必備套件，並完成環境驗收測試：
 
-先依 [uv 官方說明](https://docs.astral.sh/uv/getting-started/installation/) 安裝 uv，再開終端機執行：
-
-```bash
-mkdir 資料分析專案
-cd 資料分析專案
-uv init --python 3.12
-uv add pandas numpy matplotlib seaborn openpyxl jupyter streamlit mplfonts
-```
-
-### 方法二：使用 venv＋pip
-
-```bash
-mkdir 資料分析專案
-cd 資料分析專案
-python -m venv .venv
-# macOS：source .venv/bin/activate
-# Windows：.venv\Scripts\activate
-pip install pandas numpy matplotlib seaborn openpyxl jupyter streamlit mplfonts
-```
-
-用 VS Code 開啟「資料分析專案」資料夾，建立 Notebook 時選擇專案內的 `.venv` 當作 kernel。
-
-### 環境檢查 prompt
-
-環境建好後，把這段貼給 AI，確認一切正常再開始 01。
+### 📋 複製這段 Prompt 貼給 AI（一鍵建立與檢查環境）
 
 ```text
-請在我的專案根目錄建立 00_env_check.ipynb，使用專案的 .venv。
-印出 Python、pandas、numpy、matplotlib、seaborn、openpyxl、streamlit 版本。
-依課程首頁「共用繁體中文繪圖 prompt」設定中文字型。
-畫一張含負數、繁體中文標題與圖例的折線圖，並存成 PNG。
-執行全部儲存格，回報每個套件是否可用、圖片中文與負號是否正常。
-缺套件時告訴我安裝命令，不要改用其他套件。
+請擔任我的 Python 資料分析技術助教，幫我建立一個全新的資料分析專案環境：
+1. 本專案全程統一使用 uv 套件管理工具。若本機尚未安裝 uv，請先安裝 uv。
+2. 請在目前目錄下建立一個名為「資料分析專案」的資料夾並進入該目錄。
+3. 使用 uv 初始化專案，指定 Python 版本為 3.12：
+   uv init --python 3.12
+4. 使用 uv 安裝本課程所需的所有資料分析與視覺化套件：
+   uv add pandas numpy matplotlib seaborn openpyxl jupyter streamlit mplfonts
+5. 安裝完成後，請在「資料分析專案」根目錄建立並執行 00_env_check.ipynb（使用專案內的 .venv）：
+   - 印出 Python、pandas、numpy、matplotlib、seaborn、openpyxl、streamlit 的版本。
+   - 註冊並設定 mplfonts 內建的繁體中文字型（Noto Sans CJK SC），確保負號與中文能正常顯示。
+   - 繪製一張包含負數、繁體中文標題、圖例與座標軸的折線圖，並存為 00_env_check.png。
+6. 請執行全部儲存格，並回報：各套件是否皆已就緒、圖片中文與負號是否正常無亂碼。
 ```
+
+> [!NOTE]
+> - **專案核心**：建立完成後，用 VS Code 或 IDE 開啟「資料分析專案」資料夾，後續所有範例皆在該專案內進行。
+> - **中文字型免煩惱**：環境內已自動安裝 `mplfonts`，AI 會自動處理 Matplotlib 與 Seaborn 的中文顯示與負號正常，不需要另外手動下載或安裝字型檔。
 
 ## 在 GitHub 閱讀，只下載當次需要的檔案
 
