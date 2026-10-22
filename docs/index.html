@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>數據欄位與選圖決策速查工具 | 看懂資料與選對圖表</title>
+  <meta name="description" content="互動式數據欄位與圖表挑選速查工具，透過點選手邊的資料欄位組合，立即了解資料長相、問題類型與最合適的推薦圖表。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --success: #10b981;
+      --success-light: #ecfdf5;
+      --warning: #f59e0b;
+      --warning-light: #fffbeb;
+      --danger: #ef4444;
+      --danger-light: #fef2f2;
+      --purple: #8b5cf6;
+      --purple-light: #f5f3ff;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.05);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+      background: #F8FAFC;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* 頂部導航 */
+    header {
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--slate-900);
+      text-decoration: none;
+    }
+    .logo-badge {
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+    .nav-links a {
+      color: var(--slate-600);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s ease;
+    }
+    .nav-links a:hover {
+      background: var(--slate-100);
+      color: var(--primary);
+    }
+
+    /* Hero 區域 */
+    .hero {
+      max-width: 1200px;
+      margin: 32px auto 24px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 主容器 */
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 按鈕清單區塊 (Tabs) */
+    .selector-section {
+      margin-bottom: 24px;
+    }
+    .selector-label {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .buttons-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .combo-btn {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      padding: 10px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .combo-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .combo-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+      transform: translateY(-2px);
+    }
+    .combo-btn .btn-badge {
+      font-size: 0.72rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: var(--slate-100);
+      color: var(--slate-600);
+    }
+    .combo-btn.active .btn-badge {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
+    }
+
+    /* 互動兩欄展示卡片 */
+    .display-panel {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    @media (max-width: 900px) {
+      .display-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* 單個卡片外觀 */
+    .card {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      display: flex;
+      flex-direction: column;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--slate-100);
+    }
+    .card-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+    .tag-blue { background: var(--primary-light); color: var(--primary); border: 1px solid var(--primary-border); }
+    .tag-green { background: var(--success-light); color: var(--success); border: 1px solid #a7f3d0; }
+    .tag-orange { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+    .tag-purple { background: var(--purple-light); color: var(--purple); border: 1px solid #ddd6fe; }
+    .tag-red { background: var(--danger-light); color: var(--danger); border: 1px solid #fecaca; }
+
+    /* 資料表格模擬 (Mock DataFrame) */
+    .table-container {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      margin-bottom: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      text-align: left;
+    }
+    th {
+      background: #edf2f7;
+      padding: 10px 14px;
+      color: var(--slate-700);
+      font-weight: 700;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    th .col-type {
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      font-weight: normal;
+      color: var(--slate-600);
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--slate-200);
+      color: var(--slate-800);
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    .cell-num {
+      font-family: 'JetBrains Mono', monospace;
+      text-align: right;
+    }
+
+    /* 情境提問方塊 */
+    .scenario-box {
+      background: #f8fafc;
+      border-left: 4px solid var(--primary);
+      padding: 12px 16px;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 16px;
+    }
+    .scenario-box .q-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .scenario-box .q-text {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--slate-900);
+    }
+
+    /* 右側：圖表預覽卡 */
+    .chart-preview-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 220px;
+      margin-bottom: 16px;
+    }
+    .chart-preview-box svg {
+      width: 100%;
+      max-height: 200px;
+    }
+
+    /* 解釋與避坑提示 */
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .info-item {
+      display: flex;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+    .info-icon {
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+    .info-content strong {
+      color: var(--slate-900);
+    }
+    .info-content {
+      color: var(--slate-600);
+    }
+    .code-pill {
+      font-family: 'JetBrains Mono', monospace;
+      background: #e2e8f0;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      color: #0f172a;
+    }
+
+    /* 頁尾 */
+    footer {
+      max-width: 1200px;
+      margin: 48px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部導航 -->
+  <header>
+    <div class="nav-container">
+      <a href="./" class="logo">
+        <span>📊 Python 資料分析</span>
+        <span class="logo-badge">互動指南</span>
+      </a>
+      <div class="nav-links">
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">GitHub 倉庫</a>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E9%81%B8%E5%9C%96%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87" target="_blank">📖 閱讀思考規則全文</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">💡 點選按鈕・直觀體驗</div>
+    <h1>資料欄位 ➔ 圖表速查決策工具</h1>
+    <p>手邊拿到數據不知道該畫哪種圖？請在下方點選你手上的「欄位組合」，立刻查看真實資料表格長相、想回答的問題，以及最適合的圖表外觀！</p>
+  </section>
+
+  <!-- 主體操作區 -->
+  <main class="main-container">
+
+    <!-- 按鈕選單 -->
+    <section class="selector-section">
+      <div class="selector-label">👇 點選你的欄位組合：</div>
+      <div class="buttons-grid" id="btnGroup">
+        <!-- 由 JS 動態生成按鈕 -->
+      </div>
+    </section>
+
+    <!-- 雙欄展示 -->
+    <section class="display-panel" id="displayPanel">
+      
+      <!-- 左欄：資料長相 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📋</span>
+            <span>這組欄位「資料長怎樣」？</span>
+          </div>
+          <span class="tag" id="problemTag">問題類型</span>
+        </div>
+
+        <div class="scenario-box">
+          <div class="q-title">🗣️ 老闆或同仁會問什麼？</div>
+          <div class="q-text" id="scenarioQuestion">載入中...</div>
+        </div>
+
+        <div class="table-container">
+          <table id="mockTable">
+            <!-- 由 JS 填入表格 -->
+          </table>
+        </div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-icon">🔍</span>
+            <div class="info-content">
+              <strong>欄位特徵解讀：</strong>
+              <span id="colExplanation">...</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">⚙️</span>
+            <div class="info-content">
+              <strong>處理第一步：</strong>
+              <span id="firstAction">...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 右欄：推薦圖表 -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🎯</span>
+            <span id="chartHeading">推薦圖表</span>
+          </div>
+          <span class="tag tag-green">首選推薦</span>
+        </div>
+
+        <div class="chart-preview-box" id="chartPreview">
+          <!-- 由 JS 繪製 SVG 圖表 -->
+        </div>
+
+        <div class="info-list">
+          <div class="info-item">
+            <span class="info-icon">💡</span>
+            <div class="info-content">
+              <strong>為什麼選這張圖？</strong>
+              <span id="whyChart">...</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">⚠️</span>
+            <div class="info-content">
+              <strong style="color: var(--danger);">關鍵防呆提醒：</strong>
+              <span id="warnChart">...</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <span class="info-icon">💻</span>
+            <div class="info-content">
+              <strong>Pandas / Python 常用語法：</strong>
+              <code class="code-pill" id="codeHint">df.plot()</code>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>本互動工具隸屬於 GitHub 專案：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">PythonForDataAnalysis</a></p>
+    <p style="margin-top: 6px; font-size: 0.82rem;">教學教材設計：看懂資料與選對圖表・數據選圖思考規則</p>
+  </footer>
+
+  <script>
+    // 7 大情境資料庫
+    const scenarios = [
+      {
+        id: "cat_only",
+        btnTitle: "只有 1 個類別（無數值）",
+        btnBadge: "計數統計",
+        problemType: "分布 / 組成",
+        tagClass: "tag-purple",
+        question: "「問卷填答者的付款方式偏好，哪一種最普遍？」",
+        colExplanation: "只有一個文字分類欄位（如付款方式、部門、滿意度）。手邊沒有現成的金額或分數，必須先透過「計算各類出現筆數」來轉化成數值。",
+        firstAction: "使用 <code>df['付款方式'].value_counts()</code> 統計每項分類的次數，再依頻次由高到低排序。",
+        columns: [
+          { name: "訂單編號", type: "ID (識別碼)" },
+          { name: "付款方式", type: "Categorical (類別)" }
+        ],
+        rows: [
+          ["ORD-2025-001", "信用卡線上刷卡"],
+          ["ORD-2025-002", "LINE Pay 行動支付"],
+          ["ORD-2025-003", "信用卡線上刷卡"],
+          ["ORD-2025-004", "超商代碼繳費"],
+          ["ORD-2025-005", "LINE Pay 行動支付"]
+        ],
+        chartName: "次數長條圖 (Count Bar Chart)",
+        whyChart: "將類別出現頻率以長條長度具體化，一眼看出誰最多、誰最少。",
+        warnChart: "類別請由次數多到少排序；若只有 2~3 個類別且強調總數占比，也可轉成甜甜圈圖。",
+        codeHint: "df['付款方式'].value_counts().plot(kind='barh')",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="120" y1="20" x2="120" y2="150" stroke="#94A3B8" stroke-width="1.5"/>
+            <line x1="120" y1="150" x2="380" y2="150" stroke="#CBD5E1" stroke-width="1"/>
+            
+            <text x="110" y="45" font-size="12" fill="#334155" text-anchor="end">信用卡</text>
+            <rect x="120" y="30" width="210" height="22" rx="3" fill="#8B5CF6"/>
+            <text x="336" y="46" font-size="11" fill="#8B5CF6" font-weight="bold">142 筆 (47%)</text>
+
+            <text x="110" y="85" font-size="12" fill="#334155" text-anchor="end">LINE Pay</text>
+            <rect x="120" y="70" width="140" height="22" rx="3" fill="#A78BFA"/>
+            <text x="266" y="86" font-size="11" fill="#8B5CF6" font-weight="bold">95 筆 (32%)</text>
+
+            <text x="110" y="125" font-size="12" fill="#334155" text-anchor="end">超商繳費</text>
+            <rect x="120" y="110" width="90" height="22" rx="3" fill="#DDD6FE"/>
+            <text x="216" y="126" font-size="11" fill="#8B5CF6" font-weight="bold">63 筆 (21%)</text>
+          </svg>
+        `
+      },
+      {
+        id: "cat_num",
+        btnTitle: "1 個類別 + 1 個數值",
+        btnBadge: "高低比較",
+        problemType: "比較 (Comparison)",
+        tagClass: "tag-blue",
+        question: "「各部門的年度總支出誰最多？差距多大？」",
+        colExplanation: "包含 1 個名詞維度（部門）與 1 個量化指標（支出金額）。典型的比高低、分名次情境。",
+        firstAction: "依金額由高到低排序（如研發部居首）；檢查 Y 軸基準是否從 0 開始。",
+        columns: [
+          { name: "部門名稱", type: "Categorical (類別)" },
+          { name: "年度總支出 (萬元)", type: "Numerical (數值)" }
+        ],
+        rows: [
+          ["研發一部", "450"],
+          ["市場推廣部", "320"],
+          ["客戶服務中心", "180"],
+          ["人資行政部", "110"]
+        ],
+        chartName: "水平長條圖 (Horizontal Bar Chart)",
+        whyChart: "人類眼睛對「水平長度」比對最敏銳，部門名稱文字水平展開好讀不折行。",
+        warnChart: "長條圖基準線必須從 0 起跳！嚴禁截斷座標軸誇大微小差距。",
+        codeHint: "df.sort_values('支出').plot(x='部門', y='支出', kind='barh')",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="100" y1="20" x2="100" y2="150" stroke="#94A3B8" stroke-width="1.5"/>
+            <text x="90" y="45" font-size="12" fill="#334155" text-anchor="end">研發一部</text>
+            <rect x="100" y="30" width="240" height="20" rx="3" fill="#2563EB"/>
+            <text x="348" y="45" font-size="11" fill="#2563EB" font-weight="bold">450 萬</text>
+
+            <text x="90" y="80" font-size="12" fill="#334155" text-anchor="end">市場推廣</text>
+            <rect x="100" y="65" width="170" height="20" rx="3" fill="#3B82F6"/>
+            <text x="278" y="80" font-size="11" fill="#3B82F6" font-weight="bold">320 萬</text>
+
+            <text x="90" y="115" font-size="12" fill="#334155" text-anchor="end">客戶服務</text>
+            <rect x="100" y="100" width="95" height="20" rx="3" fill="#60A5FA"/>
+            <text x="203" y="115" font-size="11" fill="#60A5FA" font-weight="bold">180 萬</text>
+
+            <text x="90" y="150" font-size="12" fill="#334155" text-anchor="end">人資行政</text>
+            <rect x="100" y="135" width="60" height="20" rx="3" fill="#93C5FD"/>
+            <text x="168" y="150" font-size="11" fill="#93C5FD" font-weight="bold">110 萬</text>
+          </svg>
+        `
+      },
+      {
+        id: "cat_share",
+        btnTitle: "1 個類別 + 1 個總額占比",
+        btnBadge: "成分占比",
+        problemType: "組成 (Composition)",
+        tagClass: "tag-orange",
+        question: "「4 種採購預算來源，各占了全體花費的幾成？」",
+        colExplanation: "各分類加總起來正好等於 100%（或總採購預算），目的是觀察各部分與整體的結構關係。",
+        firstAction: "確認全體加總是否為 100%，並在圖表下方或標題明確寫出「分母是全部採購金額」。",
+        columns: [
+          { name: "採購類別", type: "Categorical (類別)" },
+          { name: "占總預算比例", type: "Numerical (百分比)" }
+        ],
+        rows: [
+          ["軟體與雲端授權", "45%"],
+          ["硬體設備升級", "30%"],
+          ["外部專業顧問", "15%"],
+          ["辦公耗材雜項", "10%"]
+        ],
+        chartName: "百分比長條圖 或 甜甜圈圖 (≤ 4 類)",
+        whyChart: "百分比長條圖比圓餅圖更容易讓眼睛精確比較比例，且占用空間小。",
+        warnChart: "類別一旦超過 5 個，切忌使用圓餅圖（會切成細碎披薩），請改用排序長條圖。",
+        codeHint: "df.plot(kind='bar', stacked=True)",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <g transform="translate(110, 90)">
+              <!-- 甜甜圈圓環 (半徑 60, 內徑 35) -->
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#EA580C" stroke-width="26" stroke-dasharray="170 377" stroke-dashoffset="0"/>
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#FB923C" stroke-width="26" stroke-dasharray="113 377" stroke-dashoffset="-170"/>
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#FED7AA" stroke-width="26" stroke-dasharray="56 377" stroke-dashoffset="-283"/>
+              <circle cx="0" cy="0" r="60" fill="none" stroke="#FDBA74" stroke-width="26" stroke-dasharray="38 377" stroke-dashoffset="-339"/>
+              <text x="0" y="5" font-size="12" fill="#7C2D12" font-weight="bold" text-anchor="middle">總計 100%</text>
+            </g>
+            <!-- 圖例 -->
+            <g transform="translate(210, 40)">
+              <rect x="0" y="0" width="12" height="12" rx="2" fill="#EA580C"/><text x="18" y="11" font-size="12" fill="#334155">雲端軟體 (45%)</text>
+              <rect x="0" y="24" width="12" height="12" rx="2" fill="#FB923C"/><text x="18" y="35" font-size="12" fill="#334155">硬體設備 (30%)</text>
+              <rect x="0" y="48" width="12" height="12" rx="2" fill="#FED7AA"/><text x="18" y="59" font-size="12" fill="#334155">外部顧問 (15%)</text>
+              <rect x="0" y="72" width="12" height="12" rx="2" fill="#FDBA74"/><text x="18" y="83" font-size="12" fill="#334155">耗材雜項 (10%)</text>
+            </g>
+          </svg>
+        `
+      },
+      {
+        id: "time_num",
+        btnTitle: "1 個時間 + 1 個數值",
+        btnBadge: "連續走勢",
+        problemType: "趨勢 (Trend)",
+        tagClass: "tag-red",
+        question: "「過去 12 個月公司每月營收是在成長還是衰退？」",
+        colExplanation: "包含具有時間連續順序的欄位（如月、季、日）與 1 個量化數值指標。核心是看斜率與走向。",
+        firstAction: "確保時間欄位轉換為真正的日期型態（Datetime），且嚴格按時間先後排序。",
+        columns: [
+          { name: "月份 (時間序列)", type: "Temporal (時間)" },
+          { name: "每月營業額 (萬元)", type: "Numerical (數值)" }
+        ],
+        rows: [
+          ["2025-01", "240"],
+          ["2025-02", "210"],
+          ["2025-03", "280"],
+          ["2025-04", "350"],
+          ["2025-05", "390"]
+        ],
+        chartName: "折線圖 (Line Chart)",
+        whyChart: "連續線段能將肉眼注意力聚焦在走勢的「斜率」與「轉折點」。",
+        warnChart: "X 軸如果不是時間序列（如部門名稱），嚴禁使用折線連接！若時間點極少（僅 3 個季度）可用時間長條圖。",
+        codeHint: "df.plot(x='月份', y='營業額', kind='line', marker='o')",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="150" x2="360" y2="150" stroke="#94A3B8" stroke-width="1.2"/>
+            <line x1="40" y1="20" x2="40" y2="150" stroke="#CBD5E1" stroke-width="1"/>
+            
+            <polyline points="60,130 110,140 160,105 210,75 260,50 310,35" fill="none" stroke="#DC2626" stroke-width="2.5"/>
+            
+            <circle cx="60" cy="130" r="4" fill="#DC2626"/><text x="60" y="165" font-size="10" fill="#64748B" text-anchor="middle">1月</text>
+            <circle cx="110" cy="140" r="4" fill="#DC2626"/><text x="110" y="165" font-size="10" fill="#64748B" text-anchor="middle">2月</text>
+            <circle cx="160" cy="105" r="4" fill="#DC2626"/><text x="160" y="165" font-size="10" fill="#64748B" text-anchor="middle">3月</text>
+            <circle cx="210" cy="75" r="4" fill="#DC2626"/><text x="210" y="165" font-size="10" fill="#64748B" text-anchor="middle">4月</text>
+            <circle cx="260" cy="50" r="4" fill="#DC2626"/><text x="260" y="165" font-size="10" fill="#64748B" text-anchor="middle">5月</text>
+            <circle cx="310" cy="35" r="4" fill="#DC2626"/><text x="310" y="165" font-size="10" fill="#64748B" text-anchor="middle">6月</text>
+          </svg>
+        `
+      },
+      {
+        id: "single_num_many",
+        btnTitle: "1 個連續數值（大量列）",
+        btnBadge: "集中與離散",
+        problemType: "分布 (Distribution)",
+        tagClass: "tag-purple",
+        question: "「全公司同仁的單日通勤時間大多落在幾分鐘？有無極端值？」",
+        colExplanation: "單一數值欄位，但有數百到數千筆資料列。目的不是看個別是誰，而是看整體數據的聚集形態與分散程度。",
+        firstAction: "計算五數概括（Min, Q1, Median, Q3, Max），切勿只看平均數。",
+        columns: [
+          { name: "員工識別碼", type: "ID (不計算)" },
+          { name: "單程通勤時間 (分鐘)", type: "Numerical (連續數值)" }
+        ],
+        rows: [
+          ["EMP-012", "35"],
+          ["EMP-013", "42"],
+          ["EMP-014", "15"],
+          ["EMP-015", "85 (極端值)"],
+          ["EMP-016", "38"]
+        ],
+        chartName: "直方圖 (Histogram) 或 箱形圖 (Box Plot)",
+        whyChart: "直方圖將數值切成分組區間（Bins），能看見鐘型波峰；箱形圖能精準抓出不受平均數拉偏的中位數與異常離群值。",
+        warnChart: "直方圖柱子必須相連（無縫隙）；千萬不能只看平均數就下結論。",
+        codeHint: "df['通勤時間'].plot(kind='hist', bins=10)",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="150" x2="360" y2="150" stroke="#94A3B8" stroke-width="1.2"/>
+            <line x1="40" y1="20" x2="40" y2="150" stroke="#CBD5E1" stroke-width="1"/>
+            
+            <!-- 直方圖連續柱 -->
+            <rect x="50" y="130" width="35" height="20" fill="#C084FC" stroke="#A855F7"/>
+            <rect x="85" y="90" width="35" height="60" fill="#C084FC" stroke="#A855F7"/>
+            <rect x="120" y="40" width="35" height="110" fill="#9333EA" stroke="#7E22CE"/>
+            <rect x="155" y="65" width="35" height="85" fill="#C084FC" stroke="#A855F7"/>
+            <rect x="190" y="105" width="35" height="45" fill="#C084FC" stroke="#A855F7"/>
+            <rect x="225" y="125" width="35" height="25" fill="#C084FC" stroke="#A855F7"/>
+            <rect x="260" y="140" width="35" height="10" fill="#C084FC" stroke="#A855F7"/>
+            
+            <!-- 中位數紅線 -->
+            <line x1="137" y1="20" x2="137" y2="150" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <text x="142" y="30" font-size="11" fill="#DC2626" font-weight="bold">中位數 38 分</text>
+          </svg>
+        `
+      },
+      {
+        id: "two_nums",
+        btnTitle: "2 個連續數值",
+        btnBadge: "牽動關係",
+        problemType: "關係 (Relationship)",
+        tagClass: "tag-green",
+        question: "「專案的預估工時越高，實際花費工時真的也越高嗎？」",
+        colExplanation: "每一筆資料都包含一對連續數值（X 軸變數與 Y 軸變數）。核心是探討兩者是否有連動或相關性。",
+        firstAction: "計算皮爾森相關係數（Pearson Correlation），並確認兩軸皆為數值軸。",
+        columns: [
+          { name: "專案名稱", type: "ID / 標籤" },
+          { name: "預估工時 (小時)", type: "Numerical (X 軸)" },
+          { name: "實際工時 (小時)", type: "Numerical (Y 軸)" }
+        ],
+        rows: [
+          ["CRM 升級", "120", "135"],
+          ["官網改版", "80", "92"],
+          ["會員系統", "200", "260"],
+          ["資安稽核", "40", "45"]
+        ],
+        chartName: "散佈圖 (Scatter Plot)",
+        whyChart: "每個點代表一個專案，觀察點群的分散形狀（由左下到右上為正相關）。",
+        warnChart: "絕對不能用折線將散佈點連起來！並且牢記：「高度相關不等於具備因果關係」。",
+        codeHint: "df.plot(x='預估工時', y='實際工時', kind='scatter')",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="150" x2="360" y2="150" stroke="#94A3B8" stroke-width="1.2"/>
+            <line x1="50" y1="20" x2="50" y2="150" stroke="#CBD5E1" stroke-width="1"/>
+            
+            <!-- 趨勢線 -->
+            <line x1="60" y1="140" x2="340" y2="35" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4 3"/>
+            
+            <!-- 散佈點 -->
+            <circle cx="80" cy="130" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="120" cy="115" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="150" cy="100" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="170" cy="105" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="210" cy="85" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="240" cy="70" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="270" cy="65" r="4.5" fill="#15803D" opacity="0.8"/>
+            <circle cx="310" cy="45" r="4.5" fill="#15803D" opacity="0.8"/>
+            
+            <text x="345" y="145" font-size="10" fill="#64748B">預估工時 →</text>
+            <text x="55" y="25" font-size="10" fill="#64748B">↑ 實際工時</text>
+          </svg>
+        `
+      },
+      {
+        id: "cat_two_nums",
+        btnTitle: "1 個類別 + 2 個數值",
+        btnBadge: "雙指標對照",
+        problemType: "比較 (Comparison)",
+        tagClass: "tag-blue",
+        question: "「各部門的『編列預算』與『實際花費』相比，誰超支、誰節省？」",
+        colExplanation: "包含 1 個分類欄位（部門）與 2 個需要同台較量的數值欄位（如預算 vs 實際、今年 vs 去年）。",
+        firstAction: "統一金額單位，確保兩組數值具有相同的分母與比較基準。",
+        columns: [
+          { name: "部門", type: "Categorical (類別)" },
+          { name: "編列預算 (萬元)", type: "Numerical (指標一)" },
+          { name: "實際花費 (萬元)", type: "Numerical (指標二)" }
+        ],
+        rows: [
+          ["行銷企劃部", "200", "230 (超支)"],
+          ["技術研發部", "500", "480 (節省)"],
+          ["營運總務部", "150", "145 (節省)"]
+        ],
+        chartName: "分組長條圖 (Grouped Bar Chart)",
+        whyChart: "將同一部門的兩個長條併排擺放，能同時比對「部門間的高低」與「指標間的差距」。",
+        warnChart: "指標勿超過 3 個，否則長條過於擁擠；顏色圖例（Legend）必須標示明確。",
+        codeHint: "df.plot(x='部門', y=['預算', '實際'], kind='bar')",
+        renderSVG: () => `
+          <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="150" x2="360" y2="150" stroke="#94A3B8" stroke-width="1.2"/>
+            
+            <!-- 圖例 -->
+            <rect x="230" y="20" width="12" height="10" fill="#2563EB"/>
+            <text x="248" y="29" font-size="11" fill="#64748B">編列預算</text>
+            <rect x="305" y="20" width="12" height="10" fill="#F97316"/>
+            <text x="323" y="29" font-size="11" fill="#64748B">實際花費</text>
+
+            <!-- 組 1: 行銷 -->
+            <rect x="80" y="80" width="22" height="70" fill="#2563EB" rx="2"/>
+            <rect x="105" y="65" width="22" height="85" fill="#F97316" rx="2"/>
+            <text x="103" y="165" font-size="11" fill="#334155" text-anchor="middle">行銷部</text>
+
+            <!-- 組 2: 研發 -->
+            <rect x="175" y="40" width="22" height="110" fill="#2563EB" rx="2"/>
+            <rect x="200" y="48" width="22" height="102" fill="#F97316" rx="2"/>
+            <text x="198" y="165" font-size="11" fill="#334155" text-anchor="middle">研發部</text>
+
+            <!-- 組 3: 營運 -->
+            <rect x="270" y="95" width="22" height="55" fill="#2563EB" rx="2"/>
+            <rect x="295" y="98" width="22" height="52" fill="#F97316" rx="2"/>
+            <text x="293" y="165" font-size="11" fill="#334155" text-anchor="middle">營運部</text>
+          </svg>
+        `
+      }
+    ];
+
+    // 初始化按鈕
+    const btnGroup = document.getElementById('btnGroup');
+    scenarios.forEach((item, index) => {
+      const btn = document.createElement('button');
+      btn.className = `combo-btn ${index === 0 ? 'active' : ''}`;
+      btn.innerHTML = `
+        <span>${item.btnTitle}</span>
+        <span class="btn-badge">${item.btnBadge}</span>
+      `;
+      btn.onclick = () => selectScenario(index);
+      btnGroup.appendChild(btn);
+    });
+
+    // 切換情境渲染函數
+    function selectScenario(index) {
+      const data = scenarios[index];
+
+      // 更新按鈕 active 樣式
+      document.querySelectorAll('.combo-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === index);
+      });
+
+      // 填入問題類型標籤
+      const tag = document.getElementById('problemTag');
+      tag.className = `tag ${data.tagClass}`;
+      tag.innerText = data.problemType;
+
+      // 填入提問
+      document.getElementById('scenarioQuestion').innerText = data.question;
+
+      // 填入特徵解釋
+      document.getElementById('colExplanation').innerHTML = data.colExplanation;
+      document.getElementById('firstAction').innerHTML = data.firstAction;
+
+      // 渲染資料表格
+      const table = document.getElementById('mockTable');
+      let tableHTML = '<thead><tr>';
+      data.columns.forEach(col => {
+        tableHTML += `<th>${col.name}<span class="col-type">${col.type}</span></th>`;
+      });
+      tableHTML += '</tr></thead><tbody>';
+      data.rows.forEach(row => {
+        tableHTML += '<tr>';
+        row.forEach((cell, idx) => {
+          const isNum = idx > 0 && !isNaN(parseFloat(cell));
+          tableHTML += `<td class="${isNum ? 'cell-num' : ''}">${cell}</td>`;
+        });
+        tableHTML += '</tr>';
+      });
+      tableHTML += '</tbody>';
+      table.innerHTML = tableHTML;
+
+      // 右側圖表
+      document.getElementById('chartHeading').innerText = data.chartName;
+      document.getElementById('chartPreview').innerHTML = data.renderSVG();
+      document.getElementById('whyChart').innerText = data.whyChart;
+      document.getElementById('warnChart').innerText = data.warnChart;
+      document.getElementById('codeHint').innerText = data.codeHint;
+
+      // 平滑淡入動畫效果
+      const panel = document.getElementById('displayPanel');
+      panel.style.animation = 'none';
+      panel.offsetHeight; // trigger reflow
+      panel.style.animation = 'fadeIn 0.25s ease';
+    }
+
+    // 預設選中第 1 個
+    selectScenario(0);
+  </script>
+</body>
+</html>
