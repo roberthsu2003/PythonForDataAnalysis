@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="分布類型的圖表選用與外觀示意">
+  <title>分布類型的圖表選用</title>
+  <defs>
+    <style>
+      .card-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.2; rx: 10px; }
+      .chart-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 15px; font-weight: 700; fill: #0F172A; text-anchor: middle; }
+      .chart-en { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; fill: #64748B; text-anchor: middle; }
+      .desc-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 12px; font-weight: 700; fill: #334155; }
+      .desc-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 12px; fill: #64748B; }
+      .warn-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #B91C1C; font-weight: 600; }
+      .rec-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #15803D; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- 外層背景 -->
+  <rect x="0" y="0" width="960" height="310" rx="12" fill="#FAF5FF" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- 頂部類別標題 -->
+  <g transform="translate(24, 28)">
+    <rect x="0" y="-14" width="70" height="24" rx="12" fill="#F3E8FF"/>
+    <text x="35" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="12" font-weight="700" fill="#7E22CE" text-anchor="middle">分布問題</text>
+    <text x="82" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="13" font-weight="600" fill="#334155">
+      核心目的：單一連續數據的集中位置、分散程度與極端異常值（Outliers）
+    </text>
+  </g>
+
+  <!-- ======================== 卡片 1：直方圖 ======================== -->
+  <g transform="translate(24, 52)">
+    <rect width="446" height="240" class="card-bg"/>
+    <!-- 示意圖區 (寬 422, 高 92) -->
+    <rect x="12" y="12" width="422" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="390" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="36" y1="16" x2="36" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 連續無間隔柱狀 (Bin 區間) 呈現鐘型偏態分布 -->
+    <rect x="46" y="74" width="34" height="14" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="80" y="52" width="34" height="36" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="114" y="26" width="34" height="62" fill="#9333EA" stroke="#7E22CE" stroke-width="0.8"/>
+    <rect x="148" y="38" width="34" height="50" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="182" y="56" width="34" height="32" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="216" y="68" width="34" height="20" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="250" y="76" width="34" height="12" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <rect x="284" y="82" width="34" height="6" fill="#C084FC" stroke="#A855F7" stroke-width="0.8"/>
+    <!-- 中位數標示虛線 -->
+    <line x1="131" y1="18" x2="131" y2="88" stroke="#DC2626" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <text x="135" y="24" font-size="9" fill="#DC2626" font-weight="bold">中位數</text>
+
+    <!-- 名稱 -->
+    <text x="223" y="126" class="chart-title">直方圖</text>
+    <text x="223" y="142" class="chart-en">Histogram</text>
+    <line x1="16" y1="152" x2="430" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="20" y="174" class="desc-title">適用條件：</text>
+    <text x="20" y="193" class="desc-text">• 單一連續數值欄位（如員工薪資、通勤時間、商品單價）</text>
+    <text x="20" y="210" class="desc-text">• 觀察數據是在中間集中（常態），還是向單邊傾斜（偏態）</text>
+    <text x="20" y="230" class="warn-text">⚠️ 柱與柱相連無空隙（代表連續區間 Bin），切勿與長條圖搞混！</text>
+  </g>
+
+  <!-- ======================== 卡片 2：箱形圖 ======================== -->
+  <g transform="translate(490, 52)">
+    <rect width="446" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="422" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 水平座標軸 -->
+    <line x1="36" y1="88" x2="390" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+
+    <!-- 箱形圖 (水平呈現) -->
+    <!-- 左鬚 -->
+    <line x1="70" y1="50" x2="140" y2="50" stroke="#7E22CE" stroke-width="1.5"/>
+    <line x1="70" y1="40" x2="70" y2="60" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="70" y="74" font-size="9" fill="#64748B" text-anchor="middle">最小值</text>
+    <!-- 箱體 (Q1 到 Q3) -->
+    <rect x="140" y="32" width="120" height="36" fill="#EDE9FE" stroke="#7E22CE" stroke-width="1.5" rx="1"/>
+    <!-- 中位數線 (Q2) -->
+    <line x1="185" y1="32" x2="185" y2="68" stroke="#DC2626" stroke-width="2"/>
+    <text x="185" y="26" font-size="9" fill="#DC2626" font-weight="bold" text-anchor="middle">中位數 Q2</text>
+    <!-- 右鬚 -->
+    <line x1="260" y1="50" x2="330" y2="50" stroke="#7E22CE" stroke-width="1.5"/>
+    <line x1="330" y1="40" x2="330" y2="60" stroke="#7E22CE" stroke-width="1.5"/>
+    <text x="330" y="74" font-size="9" fill="#64748B" text-anchor="middle">最大值</text>
+    <!-- 離群異常值 (Outliers) -->
+    <circle cx="365" cy="50" r="3.5" fill="#DC2626"/>
+    <circle cx="380" cy="50" r="3.5" fill="#DC2626"/>
+    <text x="372" y="38" font-size="9" fill="#DC2626" font-weight="bold" text-anchor="middle">極端離群值</text>
+
+    <!-- 名稱 -->
+    <text x="223" y="126" class="chart-title">箱形圖（盒鬚圖）</text>
+    <text x="223" y="142" class="chart-en">Box Plot</text>
+    <line x1="16" y1="152" x2="430" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="20" y="174" class="desc-title">適用條件：</text>
+    <text x="20" y="193" class="desc-text">• 想一眼看出 5 個統計關鍵數字（Min, Q1, Median, Q3, Max）</text>
+    <text x="20" y="210" class="desc-text">• 需要跨部門、跨組別並列比較分布時最精準俐落</text>
+    <text x="20" y="230" class="rec-text">✅ 檢驗「平均數有沒有被少數極端大客戶拉偏」的最佳神器！</text>
+  </g>
+</svg>
