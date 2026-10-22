@@ -7,7 +7,7 @@
   <meta name="description" content="學習常用圖表的中英文名稱、X/Y 軸配置規範與核心用途，掌握向 AI 提問的視覺化關鍵字。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --primary: #2563eb;
@@ -62,41 +62,42 @@
       color: var(--primary);
       font-size: 0.88rem;
       font-weight: 700;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
     .hero h1 {
-      font-size: 2.3rem;
+      font-size: 2.5rem;
       font-weight: 900;
       color: var(--slate-900);
       letter-spacing: -0.025em;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       line-height: 1.25;
     }
     .hero p {
       font-size: 1.1rem;
       color: var(--slate-600);
-      max-width: 720px;
+      max-width: 760px;
       margin: 0 auto;
     }
 
     /* 篩選標籤 */
     .filter-tabs {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
       justify-content: center;
+      gap: 8px;
       margin-bottom: 32px;
+      flex-wrap: wrap;
     }
     .filter-btn {
-      padding: 9px 18px;
-      border-radius: 999px;
-      border: 1.5px solid var(--slate-200);
       background: #FFFFFF;
-      color: var(--slate-700);
-      font-size: 0.92rem;
+      border: 1px solid var(--slate-200);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.88rem;
       font-weight: 700;
+      color: var(--slate-700);
       cursor: pointer;
       transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
     }
     .filter-btn:hover {
       border-color: var(--primary);
@@ -106,15 +107,15 @@
       background: var(--primary);
       border-color: var(--primary);
       color: #FFFFFF;
-      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
     }
 
-    /* 圖表卡片網格 */
+    /* 卡片網格 */
     .grid-container {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
       gap: 24px;
-      margin-bottom: 56px;
+      margin-bottom: 48px;
     }
 
     .chart-card {
@@ -123,31 +124,23 @@
       border-radius: var(--radius-lg);
       padding: 24px;
       box-shadow: var(--shadow-md);
-      transition: all 0.25s ease;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
-      overflow: hidden;
     }
     .chart-card:hover {
       transform: translateY(-4px);
       box-shadow: var(--shadow-xl);
       border-color: var(--theme-color, var(--primary));
     }
-    .chart-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 4px;
-      background: var(--theme-color, var(--primary));
-    }
 
     .card-head {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .chart-title-group {
       display: flex;
@@ -162,8 +155,8 @@
       gap: 6px;
     }
     .chart-name-en {
-      font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
-      font-size: 0.85rem;
+      font-family: 'JetBrains Mono', Consolas, Menlo, monospace;
+      font-size: 0.82rem;
       color: var(--slate-600);
       font-weight: 600;
       margin-top: 2px;
@@ -178,13 +171,31 @@
       white-space: nowrap;
     }
 
+    /* 圖表 SVG 縮圖容器 */
+    .chart-visual-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 10px;
+      margin: 12px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 140px;
+    }
+    .chart-visual-box svg {
+      width: 100%;
+      height: 125px;
+      display: block;
+    }
+
     /* 座標軸資訊盒 */
     .axes-box {
       background: var(--slate-50);
       border: 1px solid var(--slate-200);
       border-radius: var(--radius-md);
       padding: 14px;
-      margin: 14px 0;
+      margin: 12px 0;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -221,14 +232,19 @@
     .code-preview {
       background: #0F172A;
       color: #38BDF8;
-      font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+      font-family: 'JetBrains Mono', Consolas, Menlo, monospace;
       font-size: 0.8rem;
       padding: 10px 14px;
       border-radius: 8px;
-      margin-bottom: 14px;
+      margin-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+    }
+    .code-preview code {
+      overflow-x: auto;
+      white-space: nowrap;
     }
 
     .copy-btn {
@@ -237,10 +253,11 @@
       color: #FFFFFF;
       font-size: 0.75rem;
       font-weight: 700;
-      padding: 4px 8px;
+      padding: 4px 10px;
       border-radius: 4px;
       cursor: pointer;
       transition: background 0.2s;
+      white-space: nowrap;
     }
     .copy-btn:hover {
       background: rgba(255,255,255,0.3);
@@ -298,6 +315,9 @@
       text-decoration: none;
       font-weight: 600;
     }
+    footer a:hover {
+      text-decoration: underline;
+    }
   </style>
   <script src="./js/nav.js"></script>
 </head>
@@ -334,6 +354,25 @@
           </div>
           <span class="category-badge">比較類</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="30" y1="115" x2="300" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <line x1="30" y1="15" x2="30" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="24" y="118" font-size="9" fill="#94A3B8" text-anchor="end">0</text>
+            <rect x="50" y="35" width="36" height="80" rx="3" fill="#16A34A" />
+            <text x="68" y="130" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">門市 A</text>
+            <text x="68" y="28" font-size="9" fill="#16A34A" font-weight="800" text-anchor="middle">85萬</text>
+            <rect x="115" y="60" width="36" height="55" rx="3" fill="#22C55E" />
+            <text x="133" y="130" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">門市 B</text>
+            <text x="133" y="53" font-size="9" fill="#22C55E" font-weight="800" text-anchor="middle">62萬</text>
+            <rect x="180" y="25" width="36" height="90" rx="3" fill="#15803D" />
+            <text x="198" y="130" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">門市 C</text>
+            <text x="198" y="18" font-size="9" fill="#15803D" font-weight="800" text-anchor="middle">98萬</text>
+            <rect x="245" y="75" width="36" height="40" rx="3" fill="#86EFAC" />
+            <text x="263" y="130" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">門市 D</text>
+            <text x="263" y="68" font-size="9" fill="#15803D" font-weight="800" text-anchor="middle">45萬</text>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">X 軸：</span>
@@ -359,6 +398,23 @@
             <span class="chart-name-en">Horizontal Bar Chart (barh)</span>
           </div>
           <span class="category-badge">比較類・首選</span>
+        </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="100" y1="12" x2="100" y2="128" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="92" y="32" font-size="9" fill="#475569" font-weight="700" text-anchor="end">顧客關係部</text>
+            <rect x="100" y="18" width="170" height="18" rx="3" fill="#16A34A" />
+            <text x="276" y="31" font-size="9" fill="#16A34A" font-weight="800">4,200</text>
+            <text x="92" y="62" font-size="9" fill="#475569" font-weight="700" text-anchor="end">數位行銷處</text>
+            <rect x="100" y="48" width="130" height="18" rx="3" fill="#22C55E" />
+            <text x="236" y="61" font-size="9" fill="#22C55E" font-weight="800">3,100</text>
+            <text x="92" y="92" font-size="9" fill="#475569" font-weight="700" text-anchor="end">產品研發中心</text>
+            <rect x="100" y="78" width="100" height="18" rx="3" fill="#4ADE80" />
+            <text x="206" y="91" font-size="9" fill="#15803D" font-weight="800">2,400</text>
+            <text x="92" y="122" font-size="9" fill="#475569" font-weight="700" text-anchor="end">行政管理部</text>
+            <rect x="100" y="108" width="60" height="18" rx="3" fill="#BBF7D0" />
+            <text x="166" y="121" font-size="9" fill="#15803D" font-weight="800">1,200</text>
+          </svg>
         </div>
         <div class="axes-box">
           <div class="axis-row">
@@ -386,6 +442,27 @@
           </div>
           <span class="category-badge">比較類</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="30" y1="115" x2="300" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <rect x="175" y="12" width="10" height="10" fill="#16A34A" rx="2" />
+            <text x="190" y="20" font-size="8.5" fill="#475569">實際達成</text>
+            <rect x="240" y="12" width="10" height="10" fill="#94A3B8" rx="2" />
+            <text x="255" y="20" font-size="8.5" fill="#475569">預算目標</text>
+            <!-- 組 1 -->
+            <rect x="55" y="45" width="18" height="70" rx="2" fill="#16A34A" />
+            <rect x="75" y="60" width="18" height="55" rx="2" fill="#94A3B8" />
+            <text x="74" y="128" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">北區</text>
+            <!-- 組 2 -->
+            <rect x="135" y="35" width="18" height="80" rx="2" fill="#16A34A" />
+            <rect x="155" y="40" width="18" height="75" rx="2" fill="#94A3B8" />
+            <text x="154" y="128" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">中區</text>
+            <!-- 組 3 -->
+            <rect x="215" y="55" width="18" height="60" rx="2" fill="#16A34A" />
+            <rect x="235" y="50" width="18" height="65" rx="2" fill="#94A3B8" />
+            <text x="234" y="128" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">南區</text>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">X 軸：</span>
@@ -411,6 +488,31 @@
             <span class="chart-name-en">100% Stacked Bar Chart</span>
           </div>
           <span class="category-badge">組成類・首選</span>
+        </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <!-- 組 A -->
+            <text x="45" y="40" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="end">2023</text>
+            <rect x="52" y="26" width="130" height="22" fill="#EA580C" rx="2" />
+            <rect x="182" y="26" width="80" height="22" fill="#FB923C" />
+            <rect x="262" y="26" width="40" height="22" fill="#FED7AA" rx="2" />
+            <text x="110" y="41" font-size="9" fill="#FFF" font-weight="800">52%</text>
+            <text x="215" y="41" font-size="9" fill="#FFF" font-weight="800">32%</text>
+            <!-- 組 B -->
+            <text x="45" y="80" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="end">2024</text>
+            <rect x="52" y="66" width="165" height="22" fill="#EA580C" rx="2" />
+            <rect x="217" y="66" width="60" height="22" fill="#FB923C" />
+            <rect x="277" y="66" width="25" height="22" fill="#FED7AA" rx="2" />
+            <text x="130" y="81" font-size="9" fill="#FFF" font-weight="800">66%</text>
+            <text x="240" y="81" font-size="9" fill="#FFF" font-weight="800">24%</text>
+            <!-- 圖例 -->
+            <circle cx="80" cy="118" r="4" fill="#EA580C" />
+            <text x="90" y="121" font-size="8.5" fill="#64748B">直營門市</text>
+            <circle cx="155" cy="118" r="4" fill="#FB923C" />
+            <text x="165" y="121" font-size="8.5" fill="#64748B">線上電商</text>
+            <circle cx="230" cy="118" r="4" fill="#FED7AA" />
+            <text x="240" y="121" font-size="8.5" fill="#64748B">批發經銷</text>
+          </svg>
         </div>
         <div class="axes-box">
           <div class="axis-row">
@@ -438,6 +540,28 @@
           </div>
           <span class="category-badge">組成類・有條件</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <g transform="translate(100, 70)">
+              <!-- S1 (60%): 216 deg -->
+              <path d="M 0 -48 A 48 48 0 1 1 -45.6 14.8 L -26.6 8.6 A 28 28 0 1 0 0 -28 Z" fill="#EA580C" />
+              <!-- S2 (25%): 90 deg -->
+              <path d="M -45.6 14.8 A 48 48 0 0 1 -33.9 -33.9 L -19.8 -19.8 A 28 28 0 0 0 -26.6 8.6 Z" fill="#FB923C" />
+              <!-- S3 (15%): 54 deg -->
+              <path d="M -33.9 -33.9 A 48 48 0 0 1 0 -48 L 0 -28 A 28 28 0 0 0 -19.8 -19.8 Z" fill="#FED7AA" />
+              <text x="0" y="4" font-size="12" font-weight="900" fill="#EA580C" text-anchor="middle">60%</text>
+              <text x="0" y="15" font-size="7.5" fill="#64748B" text-anchor="middle">主力佔比</text>
+            </g>
+            <g transform="translate(180, 42)">
+              <circle cx="0" cy="5" r="4.5" fill="#EA580C" />
+              <text x="12" y="9" font-size="9.5" font-weight="700" fill="#1E293B">線上 (60%)</text>
+              <circle cx="0" cy="26" r="4.5" fill="#FB923C" />
+              <text x="12" y="30" font-size="9.5" font-weight="700" fill="#1E293B">實體 (25%)</text>
+              <circle cx="0" cy="47" r="4.5" fill="#FED7AA" />
+              <text x="12" y="51" font-size="9.5" font-weight="700" fill="#1E293B">電話 (15%)</text>
+            </g>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">軸線：</span>
@@ -463,6 +587,26 @@
             <span class="chart-name-en">Histogram</span>
           </div>
           <span class="category-badge">分布類・看形狀</span>
+        </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="30" y1="115" x2="300" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <g fill="#9333EA" stroke="#FFFFFF" stroke-width="1">
+              <rect x="40" y="100" width="28" height="15" />
+              <rect x="68" y="80" width="28" height="35" />
+              <rect x="96" y="45" width="28" height="70" />
+              <rect x="124" y="20" width="28" height="95" />
+              <rect x="152" y="35" width="28" height="80" />
+              <rect x="180" y="60" width="28" height="55" />
+              <rect x="208" y="85" width="28" height="30" />
+              <rect x="236" y="105" width="28" height="10" />
+            </g>
+            <path d="M 40 110 Q 138 5 264 110" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="3,3" />
+            <text x="138" y="14" font-size="8.5" fill="#7C3AED" font-weight="800" text-anchor="middle">集中波峰</text>
+            <text x="40" y="128" font-size="8" fill="#64748B">30k</text>
+            <text x="138" y="128" font-size="8" fill="#64748B">55k</text>
+            <text x="264" y="128" font-size="8" fill="#64748B">100k</text>
+          </svg>
         </div>
         <div class="axes-box">
           <div class="axis-row">
@@ -490,6 +634,32 @@
           </div>
           <span class="category-badge">分布類・抓異常</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="30" y1="115" x2="300" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 組 A -->
+            <g transform="translate(100, 0)">
+              <line x1="0" y1="100" x2="0" y2="25" stroke="#9333EA" stroke-width="1.5" />
+              <line x1="-12" y1="100" x2="12" y2="100" stroke="#9333EA" stroke-width="1.5" />
+              <line x1="-12" y1="25" x2="12" y2="25" stroke="#9333EA" stroke-width="1.5" />
+              <rect x="-24" y="45" width="48" height="40" fill="#F3E8FF" stroke="#9333EA" stroke-width="1.8" rx="2" />
+              <line x1="-24" y1="62" x2="24" y2="62" stroke="#6B21A8" stroke-width="2.5" />
+              <text x="28" y="66" font-size="8.5" fill="#6B21A8" font-weight="800">中位數</text>
+              <text x="0" y="128" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">部門甲</text>
+            </g>
+            <!-- 組 B + 離群點 -->
+            <g transform="translate(220, 0)">
+              <line x1="0" y1="105" x2="0" y2="45" stroke="#9333EA" stroke-width="1.5" />
+              <line x1="-12" y1="105" x2="12" y2="105" stroke="#9333EA" stroke-width="1.5" />
+              <line x1="-12" y1="45" x2="12" y2="45" stroke="#9333EA" stroke-width="1.5" />
+              <rect x="-24" y="65" width="48" height="30" fill="#F3E8FF" stroke="#9333EA" stroke-width="1.8" rx="2" />
+              <line x1="-24" y1="78" x2="24" y2="78" stroke="#6B21A8" stroke-width="2.5" />
+              <circle cx="0" cy="18" r="4.5" fill="#EF4444" stroke="#DC2626" stroke-width="1.5" />
+              <text x="12" y="22" font-size="8.5" fill="#EF4444" font-weight="800">極端值!</text>
+              <text x="0" y="128" font-size="9.5" fill="#64748B" font-weight="700" text-anchor="middle">部門乙</text>
+            </g>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">數值軸：</span>
@@ -515,6 +685,27 @@
             <span class="chart-name-en">Scatter Plot</span>
           </div>
           <span class="category-badge">關係類・雙數值</span>
+        </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="40" y1="115" x2="290" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <line x1="40" y1="15" x2="40" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="290" y="128" font-size="8.5" fill="#64748B" text-anchor="end">X: 預估工時</text>
+            <text x="45" y="22" font-size="8.5" fill="#64748B">Y: 實際工時</text>
+            <g fill="#E11D48">
+              <circle cx="65" cy="102" r="4" />
+              <circle cx="85" cy="94" r="4" />
+              <circle cx="110" cy="88" r="4" />
+              <circle cx="130" cy="74" r="4" />
+              <circle cx="155" cy="68" r="4" />
+              <circle cx="175" cy="56" r="4" />
+              <circle cx="205" cy="48" r="4" />
+              <circle cx="230" cy="38" r="4" />
+              <circle cx="260" cy="28" r="4" />
+            </g>
+            <line x1="55" y1="110" x2="270" y2="22" stroke="#FB7185" stroke-width="1.5" stroke-dasharray="4,4" />
+            <text x="210" y="22" font-size="8.5" fill="#E11D48" font-weight="800">正相關趨勢</text>
+          </svg>
         </div>
         <div class="axes-box">
           <div class="axis-row">
@@ -542,6 +733,37 @@
           </div>
           <span class="category-badge">關係類・多變數</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <g transform="translate(95, 15)">
+              <rect x="0" y="0" width="36" height="26" fill="#1E40AF" stroke="#FFF" />
+              <text x="18" y="17" font-size="8.5" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              <rect x="36" y="0" width="36" height="26" fill="#93C5FD" stroke="#FFF" />
+              <text x="54" y="17" font-size="8.5" fill="#1E293B" font-weight="700" text-anchor="middle">0.42</text>
+              <rect x="72" y="0" width="36" height="26" fill="#FCA5A5" stroke="#FFF" />
+              <text x="90" y="17" font-size="8.5" fill="#1E293B" font-weight="700" text-anchor="middle">-0.6</text>
+
+              <rect x="0" y="26" width="36" height="26" fill="#93C5FD" stroke="#FFF" />
+              <text x="18" y="43" font-size="8.5" fill="#1E293B" font-weight="700" text-anchor="middle">0.42</text>
+              <rect x="36" y="26" width="36" height="26" fill="#1E40AF" stroke="#FFF" />
+              <text x="54" y="43" font-size="8.5" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              <rect x="72" y="26" width="36" height="26" fill="#F87171" stroke="#FFF" />
+              <text x="90" y="43" font-size="8.5" fill="#FFF" font-weight="700" text-anchor="middle">-0.8</text>
+
+              <rect x="0" y="52" width="36" height="26" fill="#FCA5A5" stroke="#FFF" />
+              <text x="18" y="69" font-size="8.5" fill="#1E293B" font-weight="700" text-anchor="middle">-0.6</text>
+              <rect x="36" y="52" width="36" height="26" fill="#F87171" stroke="#FFF" />
+              <text x="54" y="69" font-size="8.5" fill="#FFF" font-weight="700" text-anchor="middle">-0.8</text>
+              <rect x="72" y="52" width="36" height="26" fill="#1E40AF" stroke="#FFF" />
+              <text x="90" y="69" font-size="8.5" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              
+              <text x="-6" y="17" font-size="8.5" fill="#64748B" text-anchor="end">工時</text>
+              <text x="-6" y="43" font-size="8.5" fill="#64748B" text-anchor="end">成本</text>
+              <text x="-6" y="69" font-size="8.5" fill="#64748B" text-anchor="end">滿意度</text>
+            </g>
+            <text x="145" y="122" font-size="8.5" fill="#64748B" text-anchor="middle">藍色：正相關 ｜ 紅色：負相關</text>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">X/Y 軸：</span>
@@ -568,6 +790,25 @@
           </div>
           <span class="category-badge">趨勢類・時間序</span>
         </div>
+        <div class="chart-visual-box">
+          <svg viewBox="0 0 320 140">
+            <line x1="30" y1="115" x2="300" y2="115" stroke="#CBD5E1" stroke-width="1.5" />
+            <path d="M 45 95 L 90 70 L 135 80 L 180 45 L 225 60 L 270 20" fill="none" stroke="#0284C7" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" />
+            <g fill="#0284C7">
+              <circle cx="45" cy="95" r="3.5" />
+              <circle cx="90" cy="70" r="3.5" />
+              <circle cx="135" cy="80" r="3.5" />
+              <circle cx="180" cy="45" r="3.5" />
+              <circle cx="225" cy="60" r="3.5" />
+              <circle cx="270" cy="20" r="4.5" fill="#0369A1" />
+            </g>
+            <text x="270" y="12" font-size="8.5" fill="#0369A1" font-weight="800" text-anchor="middle">走勢向上</text>
+            <text x="45" y="128" font-size="8" fill="#64748B" text-anchor="middle">1月</text>
+            <text x="135" y="128" font-size="8" fill="#64748B" text-anchor="middle">3月</text>
+            <text x="225" y="128" font-size="8" fill="#64748B" text-anchor="middle">5月</text>
+            <text x="270" y="128" font-size="8" fill="#64748B" text-anchor="middle">6月</text>
+          </svg>
+        </div>
         <div class="axes-box">
           <div class="axis-row">
             <span class="axis-label">X 軸：</span>
@@ -592,7 +833,7 @@
       <h2>📐 坐標軸配置黃金法則與常用圖表全景圖</h2>
       <p>下圖將 X 軸（條件/維度）與 Y 軸（指標/數值）的標準配置、水平長條圖對調例外與禁忌一次整合說明：</p>
       <div class="svg-container">
-        <img src="../../看懂資料與選對圖表/圖解/坐標軸配置與常用圖表說明.svg" alt="坐標軸配置與常用圖表說明">
+        <img src="./images/坐標軸配置與常用圖表說明.svg" alt="坐標軸配置與常用圖表說明">
       </div>
     </div>
 
