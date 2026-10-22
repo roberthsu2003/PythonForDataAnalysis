@@ -12,26 +12,7 @@
 
 面對任何數據表，請依序執行以下三個思考步驟：
 
-```mermaid
-graph TD
-    Data["拿到一組數據表"] --> Step1["【步驟 1：欄位貼標籤】<br/>把欄位拆成：指標 (數值)、條件 (類別/時間)、標識 (ID)"]
-    Step1 --> Step2["【步驟 2：套用提問公式積木】<br/>挑選 1~2 個欄位，拼裝成業務問句"]
-    
-    Step2 --> BlockA["積木 A：單一數值<br/>➔ 問現況分布與極端值"]
-    Step2 --> BlockB["積木 B：類別 ＋ 數值<br/>➔ 問排名比較或總體佔比"]
-    Step2 --> BlockC["積木 C：時間 ＋ 數值<br/>➔ 問時間走勢與週期性"]
-    Step2 --> BlockD["積木 D：數值 ＋ 數值<br/>➔ 問連動性與相關規律"]
-    Step2 --> BlockE["積木 E：類別 ＋ 時間 ＋ 數值<br/>➔ 問群體趨勢差異"]
-
-    Step2 --> Step3["【步驟 3：邊界反向檢核】<br/>檢查缺少的欄位，劃出『絕對不能問』的紅線"]
-    Step3 --> Output["輸出：高價值分析問題清單<br/>（進入問題分類與選圖階段）"]
-
-    style Data fill:#f9f9f9,stroke:#333,stroke-width:2px;
-    style Step1 fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
-    style Step2 fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
-    style Step3 fill:#ffebee,stroke:#d32f2f,stroke-width:2px;
-    style Output fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
-```
+[![數據提問思考決策流程](../圖解/數據提問思考決策流程.svg)](../圖解/數據提問思考決策流程.svg)
 
 ---
 

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="740" viewBox="0 0 1020 740" role="img" aria-label="數據提問思考決策流程圖">
+  <title>數據提問思考決策流程：從資料欄位到商業問題</title>
+  
+  <defs>
+    <!-- 箭頭 marker 定義 -->
+    <marker id="arrow-gray" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L8,5 L0,9 z" fill="#64748B"/>
+    </marker>
+    <marker id="arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L8,5 L0,9 z" fill="#0284C7"/>
+    </marker>
+    <marker id="arrow-amber" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L8,5 L0,9 z" fill="#D97706"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,1 L8,5 L0,9 z" fill="#DC2626"/>
+    </marker>
+    
+    <!-- 輕微陰影濾鏡 -->
+    <filter id="card-shadow" x="-3%" y="-4%" width="106%" height="110%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.05"/>
+    </filter>
+  </defs>
+
+  <style>
+    .font-sans { font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', 'Heiti TC', sans-serif; }
+    .font-mono { font-family: 'SFMono-Regular', 'Consolas', 'Menlo', 'Noto Sans Mono CJK TC', monospace; }
+  </style>
+
+  <!-- 外層容器背景 -->
+  <rect x="2" y="2" width="1016" height="736" rx="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+
+  <!-- 頂部標題區 -->
+  <rect x="30" y="16" width="960" height="42" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+  <text x="50" y="42" class="font-sans" font-size="16" font-weight="bold" fill="#0F172A">🧭 數據提問思考決策流程：看到數據，如何有系統地精準發問？</text>
+  <text x="730" y="42" class="font-sans" font-size="13" font-weight="500" fill="#64748B">標準三步法：貼標籤 ➔ 套積木 ➔ 檢核邊界</text>
+
+  <!-- ==================== 步驟 1 卡片 ==================== -->
+  <g filter="url(#card-shadow)">
+    <rect x="30" y="70" width="960" height="110" rx="12" fill="#FFFFFF" stroke="#0284C7" stroke-width="1.8"/>
+  </g>
+  
+  <!-- 步驟 1 標題徽章 -->
+  <rect x="46" y="84" width="28" height="28" rx="14" fill="#0284C7"/>
+  <text x="60" y="103" class="font-sans" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">1</text>
+  <text x="84" y="103" class="font-sans" font-size="16" font-weight="bold" fill="#0369A1">步驟 1：欄位角色貼標籤（辨識數據 DNA）</text>
+  <text x="440" y="103" class="font-sans" font-size="13" fill="#64748B">拿出一份數據表，先不急著看數字，而是把每一欄歸入三種角色之一：</text>
+
+  <!-- 步驟 1 內部三個角色標籤膠囊 -->
+  <!-- 標籤 1：指標 -->
+  <rect x="46" y="122" width="298" height="46" rx="8" fill="#F0FDF4" stroke="#86EFAC" stroke-width="1.2"/>
+  <circle cx="64" cy="145" r="7" fill="#16A34A"/>
+  <text x="78" y="141" class="font-sans" font-size="13" font-weight="bold" fill="#166534">指標 (Metric)・數值型</text>
+  <text x="78" y="157" class="font-sans" font-size="11" fill="#4B5563">金額、工時、來客數 ➔ 想衡量的結果</text>
+
+  <!-- 標籤 2：條件 -->
+  <rect x="361" y="122" width="298" height="46" rx="8" fill="#F0F9FF" stroke="#7DD3FC" stroke-width="1.2"/>
+  <circle cx="379" cy="145" r="7" fill="#0284C7"/>
+  <text x="393" y="141" class="font-sans" font-size="13" font-weight="bold" fill="#075985">條件 (Dimension)・類別/時間</text>
+  <text x="393" y="157" class="font-sans" font-size="11" fill="#4B5563">部門、產品、月份 ➔ 分群切入點與維度</text>
+
+  <!-- 標籤 3：標識 -->
+  <rect x="676" y="122" width="298" height="46" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2"/>
+  <circle cx="694" cy="145" r="7" fill="#94A3B8"/>
+  <text x="708" y="141" class="font-sans" font-size="13" font-weight="bold" fill="#475569">標識 (Identifier)・ID 流水號</text>
+  <text x="708" y="157" class="font-sans" font-size="11" fill="#DC2626">工號、單號 ➔ 僅供計數，不可平均加總</text>
+
+  <!-- 向下連接箭頭 1 -->
+  <line x1="510" y1="180" x2="510" y2="202" stroke="#0284C7" stroke-width="2" marker-end="url(#arrow-blue)"/>
+
+  <!-- ==================== 步驟 2 卡片 ==================== -->
+  <g filter="url(#card-shadow)">
+    <rect x="30" y="206" width="960" height="236" rx="12" fill="#FFFFFF" stroke="#D97706" stroke-width="1.8"/>
+  </g>
+  
+  <!-- 步驟 2 標題徽章 -->
+  <rect x="46" y="220" width="28" height="28" rx="14" fill="#D97706"/>
+  <text x="60" y="239" class="font-sans" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">2</text>
+  <text x="84" y="239" class="font-sans" font-size="16" font-weight="bold" fill="#B45309">步驟 2：挑選欄位，套用「提問公式積木」（組合出高價值問句）</text>
+  <text x="560" y="239" class="font-sans" font-size="13" fill="#64748B">依據好奇維度，組合 1~2 個欄位套用句型：</text>
+
+  <!-- 積木 A: 單一數值 -->
+  <rect x="46" y="258" width="298" height="76" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2"/>
+  <text x="58" y="278" class="font-sans" font-size="12" font-weight="bold" fill="#B45309">🧱 積木 A：單一指標 (單一數值)</text>
+  <text x="58" y="296" class="font-sans" font-size="12" font-weight="bold" fill="#1E293B">【問現況分布與極端值】</text>
+  <text x="58" y="314" class="font-sans" font-size="11" fill="#4B5563">「指標大多集中在多少？有沒有異常離群值？」</text>
+  <text x="58" y="327" class="font-sans" font-size="10" fill="#92400E">實例：通勤時間大多落在幾分鐘？最長多久？</text>
+
+  <!-- 積木 B: 類別 + 數值 -->
+  <rect x="361" y="258" width="298" height="76" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2"/>
+  <text x="373" y="278" class="font-sans" font-size="12" font-weight="bold" fill="#B45309">🧱 積木 B：類別 ＋ 指標</text>
+  <text x="373" y="296" class="font-sans" font-size="12" font-weight="bold" fill="#1E293B">【問排名比較或總體佔比】</text>
+  <text x="373" y="314" class="font-sans" font-size="11" fill="#4B5563">「哪類最高/最低？各類別佔總預算幾成？」</text>
+  <text x="373" y="327" class="font-sans" font-size="10" fill="#92400E">實例：哪個部門支出最高？各類採購占比？</text>
+
+  <!-- 積木 C: 時間 + 數值 -->
+  <rect x="676" y="258" width="298" height="76" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2"/>
+  <text x="688" y="278" class="font-sans" font-size="12" font-weight="bold" fill="#B45309">🧱 積木 C：時間 ＋ 指標</text>
+  <text x="688" y="296" class="font-sans" font-size="12" font-weight="bold" fill="#1E293B">【問時間走勢與週期規律】</text>
+  <text x="688" y="314" class="font-sans" font-size="11" fill="#4B5563">「指標隨時間是成長或衰退？何時是旺季？」</text>
+  <text x="688" y="327" class="font-sans" font-size="10" fill="#92400E">實例：過去12個月營收走勢？高低峰在哪？</text>
+
+  <!-- 積木 D: 數值 + 數值 (下排左) -->
+  <rect x="46" y="344" width="445" height="84" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2"/>
+  <text x="58" y="364" class="font-sans" font-size="12" font-weight="bold" fill="#B45309">🧱 積木 D：指標 ＋ 指標 (雙數值)</text>
+  <text x="58" y="382" class="font-sans" font-size="12" font-weight="bold" fill="#1E293B">【問連動性與相關趨勢】</text>
+  <text x="58" y="400" class="font-sans" font-size="11" fill="#4B5563">「當指標 A 升高時，指標 B 是否同步升高或降低？有無特例？」</text>
+  <text x="58" y="415" class="font-sans" font-size="10" fill="#92400E">實例：預估工時越長的專案，實際工時也越長嗎？</text>
+
+  <!-- 積木 E: 類別 + 時間 + 數值 (下排右) -->
+  <rect x="510" y="344" width="464" height="84" rx="8" fill="#FFFBEB" stroke="#FDE68A" stroke-width="1.2"/>
+  <text x="522" y="364" class="font-sans" font-size="12" font-weight="bold" fill="#B45309">🧱 積木 E：類別 ＋ 時間 ＋ 指標 (複合維度)</text>
+  <text x="522" y="382" class="font-sans" font-size="12" font-weight="bold" fill="#1E293B">【問跨群體時間走勢分歧】</text>
+  <text x="522" y="400" class="font-sans" font-size="11" fill="#4B5563">「不同類別隨時間的變化走勢是否一致？誰在加速成長，誰在落後？」</text>
+  <text x="522" y="415" class="font-sans" font-size="10" fill="#92400E">實例：各部門在各季度的加班工時趨勢是否相同？</text>
+
+  <!-- 向下連接箭頭 2 -->
+  <line x1="510" y1="442" x2="510" y2="464" stroke="#D97706" stroke-width="2" marker-end="url(#arrow-amber)"/>
+
+  <!-- ==================== 步驟 3 卡片 ==================== -->
+  <g filter="url(#card-shadow)">
+    <rect x="30" y="468" width="960" height="130" rx="12" fill="#FFFFFF" stroke="#DC2626" stroke-width="1.8"/>
+  </g>
+  
+  <!-- 步驟 3 標題徽章 -->
+  <rect x="46" y="482" width="28" height="28" rx="14" fill="#DC2626"/>
+  <text x="60" y="501" class="font-sans" font-size="14" font-weight="bold" fill="#FFFFFF" text-anchor="middle">3</text>
+  <text x="84" y="501" class="font-sans" font-size="16" font-weight="bold" fill="#B91C1C">步驟 3：邊界反向檢核（畫出「絕對不能問」的紅線）</text>
+  <text x="500" y="501" class="font-sans" font-size="13" fill="#64748B">檢查缺少的欄位，避免問出不可行的假問題：</text>
+
+  <!-- 紅線檢核 5 條規則網格 -->
+  <rect x="46" y="518" width="176" height="66" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="54" y="538" class="font-sans" font-size="12" font-weight="bold" fill="#991B1B">❌ 缺時間欄位</text>
+  <text x="54" y="556" class="font-sans" font-size="11" fill="#4B5563">不問趨勢走向</text>
+  <text x="54" y="572" class="font-sans" font-size="10" fill="#64748B">單月資料不問成長衰退</text>
+
+  <rect x="233" y="518" width="176" height="66" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="241" y="538" class="font-sans" font-size="12" font-weight="bold" fill="#991B1B">❌ 缺類別欄位</text>
+  <text x="241" y="556" class="font-sans" font-size="11" fill="#4B5563">不比高低排名</text>
+  <text x="241" y="572" class="font-sans" font-size="10" fill="#64748B">未分組不可比較優劣</text>
+
+  <rect x="420" y="518" width="176" height="66" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="428" y="538" class="font-sans" font-size="12" font-weight="bold" fill="#991B1B">❌ 只有單一指標</text>
+  <text x="428" y="556" class="font-sans" font-size="11" fill="#4B5563">不問關聯影響</text>
+  <text x="428" y="572" class="font-sans" font-size="10" fill="#64748B">無法探討兩者牽動</text>
+
+  <rect x="607" y="518" width="176" height="66" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="615" y="538" class="font-sans" font-size="12" font-weight="bold" fill="#991B1B">❌ 相關 ≠ 因果</text>
+  <text x="615" y="556" class="font-sans" font-size="11" fill="#4B5563">不推導因果結論</text>
+  <text x="615" y="572" class="font-sans" font-size="10" fill="#64748B">不可宣稱 A 導致 B</text>
+
+  <rect x="794" y="518" width="180" height="66" rx="6" fill="#FEF2F2" stroke="#FECACA" stroke-width="1"/>
+  <text x="802" y="538" class="font-sans" font-size="12" font-weight="bold" fill="#991B1B">❌ 面對 ID 標識碼</text>
+  <text x="802" y="556" class="font-sans" font-size="11" fill="#4B5563">絕不算平均加總</text>
+  <text x="802" y="572" class="font-sans" font-size="10" fill="#64748B">流水號運算毫無意義</text>
+
+  <!-- 向下連接箭頭 3 -->
+  <line x1="510" y1="598" x2="510" y2="618" stroke="#DC2626" stroke-width="2" marker-end="url(#arrow-red)"/>
+
+  <!-- ==================== 產出卡片 ==================== -->
+  <g filter="url(#card-shadow)">
+    <rect x="30" y="622" width="960" height="96" rx="12" fill="#F0FDF4" stroke="#16A34A" stroke-width="2"/>
+  </g>
+
+  <!-- 產出內容 -->
+  <circle cx="64" cy="670" r="18" fill="#16A34A"/>
+  <text x="64" y="676" class="font-sans" font-size="18" fill="#FFFFFF" font-weight="bold" text-anchor="middle">✓</text>
+  <text x="96" y="658" class="font-sans" font-size="16" font-weight="bold" fill="#14532D">產出成果：3 ~ 5 個高價值商業分析問題清單</text>
+  <text x="96" y="682" class="font-sans" font-size="13" fill="#166534">現在你知道「能問什麼」與「不能問什麼」，學生不再迷惘！接下來就能順暢進入：</text>
+  <text x="96" y="702" class="font-sans" font-size="13" font-weight="bold" fill="#0369A1">➔ 第二章：問題類別歸納（比較・組成・分布・關係・趨勢） ➔ 第三章：決定最佳圖表 ➔ 第四章：依序引導 AI</text>
+
+</svg>
