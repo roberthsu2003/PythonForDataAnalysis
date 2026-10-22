@@ -15,17 +15,19 @@
 graph TD
     Data["1. 拿到一組數據<br/>盤點欄位資料類型"] --> Questions["2. 判斷這組資料<br/>『能回答哪些問題？』"]
     Questions --> Category{"3. 歸納問題類別<br/>（比較 / 組成 / 分布 / 關係 / 趨勢）"}
-    Category --> Chart["4. 結合資料特徵<br/>決定最適合的圖表"]
-    Chart --> AIPrompt["5. 依靠 AI 循序提問<br/>生成程式碼與客觀解讀"]
+    Category --> ChartBasics["4. 認識圖表名稱<br/>與 X/Y 軸配置原理"]
+    ChartBasics --> Chart["5. 結合資料特徵<br/>決定最適合的圖表"]
+    Chart --> AIPrompt["6. 依靠 AI 循序提問<br/>生成程式碼與客觀解讀"]
 
     style Data fill:#e1f5fe,stroke:#0288d1,stroke-width:2px;
     style Questions fill:#fff9c4,stroke:#fbc02d,stroke-width:2px;
     style Category fill:#e8f5e9,stroke:#388e3c,stroke-width:2px;
+    style ChartBasics fill:#fef3c7,stroke:#d97706,stroke-width:2px;
     style Chart fill:#f3e5f5,stroke:#7b1fa2,stroke-width:2px;
     style AIPrompt fill:#ffe0b2,stroke:#f57c00,stroke-width:2px;
 ```
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/README.ipynb) [開啟完整示範 Notebook](./README.ipynb) ｜ [💡 專題：數據提問思考規則](./數據欄位與提問思考規則/README.md) ｜ [🧭 專題：決定適合圖表的思考規則](./決定適合圖表的思考規則/README.md) ｜ [🌐 線上互動實驗室](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/README.ipynb) [開啟完整示範 Notebook](./README.ipynb) ｜ [💡 專題：數據提問思考規則](./數據欄位與提問思考規則/README.md) ｜ [📊 專題：常用圖表名稱與坐標軸說明](./常用圖表名稱與坐標軸說明/README.md) ｜ [🧭 專題：決定適合圖表的思考規則](./決定適合圖表的思考規則/README.md) ｜ [🌐 線上互動實驗室](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
 
 ---
 
@@ -70,9 +72,38 @@ graph TD
 
 ---
 
-## 第三章 📈 最後一步：決定適合的圖表
+## 第三章 📊 常用圖表基礎：中英文名稱、座標軸原理與核心用途
 
-一旦確定了問題類別，最後就是根據資料特徵（**項目多寡、名稱長短、時間長度、變數個數**）挑選最適合的圖表，並避開視覺化地雷：
+> 📖 **專題深入探討**：我們已將常用圖表的中英文代稱、X/Y 軸配置規範、Python 程式碼對照與三大避雷針整理成專門指南。
+> 👉 **請點此進入閱讀：[【📊 常用圖表名稱與坐標軸說明：中英文對照與軸線原理】](./常用圖表名稱與坐標軸說明/README.md)**
+
+在決定挑選哪張圖之前，必須先認識圖表的「基本功」：**中文名稱、英文名稱（寫程式或問 AI 必備）、X/Y 軸代表的意義以及圖表的真正用途**。
+
+### 1. X 軸與 Y 軸的黃金配置法則
+- **X 軸（橫軸 / 水平軸）**：通常放【條件 / 維度】（如：部門類別、連續日期時間）。
+- **Y 軸（縱軸 / 垂直軸）**：通常放【指標 / 數值】（如：金額、工時、數量），**長條圖數值起點必須從 0 開始**！
+- ⚠️ **例外對調**：當類別名稱很長或項目很多時，改用**水平長條圖**（Y 軸放類別，X 軸放數值），閱讀最舒服。
+
+### 2. 本章核心圖表中英文與用途速查
+
+| 中文圖表名稱 | 英文名稱 (AI 關鍵字) | X 軸放什麼？ | Y 軸放什麼？ | 核心用途與口訣 |
+| :--- | :--- | :--- | :--- | :--- |
+| **垂直長條圖** | Column Chart | 少數類別 ($\le 6$) | 數值 (從0開始) | 比少數類別的高低 |
+| **水平長條圖** | Bar Chart (Horizontal) | 數值 (從0開始) | 類別 (長標籤) | 排名比大小首選 |
+| **分組長條圖** | Grouped Bar Chart | 主類別 (加圖例) | 數值 | 同類別內比對雙指標 |
+| **百分比長條圖** | 100% Stacked Bar | 類別或整體 | 百分比 (0~100%) | 看結構佔比首選（優於圓餅圖） |
+| **甜甜圈/圓餅圖** | Donut / Pie Chart | （以角度切片） | （以角度切片） | 極少類別 ($\le 4$) 看主導份額 |
+| **直方圖** | Histogram | 連續數值區間 (Bins) | 次數／頻率 (筆數) | 看數字集中哪裡（柱子相連） |
+| **箱形圖** | Box Plot | 分類（可選） | 數值 (五數概括) | 秒抓極端異常值（離群值） |
+| **散佈圖** | Scatter Plot | 數值變數 A | 數值變數 B | 雙變數看連動關聯（勿連線） |
+| **相關熱力圖** | Correlation Heatmap | 數值變數名稱 | 數值變數名稱 | 多變數全景掃描關聯強弱 |
+| **折線圖** | Line Chart | 時間軸 (由早到晚) | 連續數值 | 連續時間看演變走勢 |
+
+---
+
+## 第四章 📈 最後一步：決定適合的圖表
+
+一旦確定了問題類別，並熟悉圖表特徵後，最後就是根據手邊資料條件（**項目多寡、名稱長短、時間長度、變數個數**）挑選最適合的圖表，並避開視覺化地雷：
 
 - **比大小・比排名（比較）** ➔ 項目少用垂直長條；項目多或標籤長首選**水平長條**；同時比雙指標用**分組長條**。
 - **看整體結構佔比（組成）** ➔ 首選**百分比長條圖**；類別極少（$\le 4$ 個）且差異顯著時才用圓餅圖／甜甜圈圖。
@@ -87,7 +118,7 @@ graph TD
 
 ---
 
-## 第四章 🤖 依序引導 AI：三階梯提問法 (Prompt 範本)
+## 第五章 🤖 依序引導 AI：三階梯提問法 (Prompt 範本)
 
 當你掌握「**欄位型態 ➔ 能回答的問題 ➔ 問題類別 ➔ 決定圖表**」的觀念後，就可以把這個邏輯轉化為與 AI 對話的提問框架。
 
@@ -263,6 +294,7 @@ sequenceDiagram
 ## 🚀 下一步：延伸學習
 
 - 💡 **第一步：數據提問**：閱讀 [數據欄位與提問思考規則](./數據欄位與提問思考規則/README.md)
-- 🧭 **第三步：圖表決策**：閱讀 [決定適合圖表的思考規則全文](./決定適合圖表的思考規則/README.md)
+- 📊 **基礎功：圖表與坐標軸**：閱讀 [常用圖表名稱與坐標軸說明](./常用圖表名稱與坐標軸說明/README.md)
+- 🧭 **決策心法：圖表挑選**：閱讀 [決定適合圖表的思考規則全文](./決定適合圖表的思考規則/README.md)
 - 🌐 **線上互動實驗室**：進入 [圖表思維與挑選實驗室（GitHub Pages）](https://roberthsu2003.github.io/PythonForDataAnalysis/chart-selection/)
 - 💻 **實戰 Notebook 範例**：前往 [AI 協作資料分析｜十二個範例](../AI協作資料分析_12個範例/README.md)，體驗端到端的多輪數據分析專案。
