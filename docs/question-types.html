@@ -748,17 +748,30 @@
             svg: () => `
               <svg viewBox="0 0 420 230" xmlns="http://www.w3.org/2000/svg">
                 <g transform="translate(130, 115)">
-                  <!-- 甜甜圈圓環動畫 -->
-                  <circle cx="0" cy="0" r="65" fill="none" stroke="#F1F5F9" stroke-width="30"/>
-                  <circle cx="0" cy="0" r="65" fill="none" stroke="#EA580C" stroke-width="30"
-                    stroke-dasharray="204 408" stroke-dashoffset="408">
-                    <animate attributeName="stroke-dashoffset" from="408" to="0" dur="0.9s" begin="0.1s" fill="freeze"/>
-                  </circle>
-                  <circle cx="0" cy="0" r="65" fill="none" stroke="#FB923C" stroke-width="30"
-                    stroke-dasharray="122 408" stroke-dashoffset="408" transform="rotate(180 0 0)">
-                    <animate attributeName="stroke-dashoffset" from="408" to="0" dur="0.8s" begin="0.3s" fill="freeze"/>
-                  </circle>
-                  <text x="0" y="6" font-size="13" fill="#7C2D12" font-weight="bold" text-anchor="middle">總和 100%</text>
+                  <!-- 扇區 1: 50% (右半圓，深橘色 #EA580C) -->
+                  <path d="M 0 -70 A 70 70 0 0 1 0 70 L 0 42 A 42 42 0 0 0 0 -42 Z" fill="#EA580C">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.1s" fill="freeze"/>
+                    <animateTransform attributeName="transform" type="scale" from="0.8" to="1" dur="0.5s" begin="0.1s" fill="freeze"/>
+                  </path>
+                  <text x="56" y="5" font-size="12" fill="#FFFFFF" font-weight="bold" text-anchor="middle">50%</text>
+
+                  <!-- 扇區 2: 30% (左下象限 108度，中橘色 #FB923C) -->
+                  <path d="M 0 70 A 70 70 0 0 1 -66.6 -21.6 L -40 -13 A 42 42 0 0 0 0 42 Z" fill="#FB923C">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.3s" fill="freeze"/>
+                    <animateTransform attributeName="transform" type="scale" from="0.8" to="1" dur="0.5s" begin="0.3s" fill="freeze"/>
+                  </path>
+                  <text x="-48" y="32" font-size="11" fill="#FFFFFF" font-weight="bold" text-anchor="middle">30%</text>
+
+                  <!-- 扇區 3: 20% (左上象限 72度，淺橘色 #FED7AA) -->
+                  <path d="M -66.6 -21.6 A 70 70 0 0 1 0 -70 L 0 -42 A 42 42 0 0 0 -40 -13 Z" fill="#FED7AA">
+                    <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="0.5s" fill="freeze"/>
+                    <animateTransform attributeName="transform" type="scale" from="0.8" to="1" dur="0.5s" begin="0.5s" fill="freeze"/>
+                  </path>
+                  <text x="-28" y="-45" font-size="11" fill="#7C2D12" font-weight="bold" text-anchor="middle">20%</text>
+
+                  <!-- 中心空心標記 -->
+                  <circle cx="0" cy="0" r="41" fill="#FFFFFF"/>
+                  <text x="0" y="5" font-size="12" fill="#7C2D12" font-weight="bold" text-anchor="middle">總和 100%</text>
                 </g>
                 <g transform="translate(250, 65)">
                   <rect x="0" y="0" width="14" height="14" rx="3" fill="#EA580C"/>
