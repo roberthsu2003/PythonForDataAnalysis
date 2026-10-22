@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI 協作資料分析｜14 個循序實作範例</title>
+  <meta name="description" content="從班級成績到法務部開放資料，14 個由淺至深的 AI 協作資料分析範例：每例只多學一件事，在 Colab 指揮 AI 完成分析。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb; --primary-light: #eff6ff; --primary-border: #bfdbfe;
+      --slate-50: #f8fafc; --slate-100: #f1f5f9; --slate-200: #e2e8f0; --slate-300: #cbd5e1;
+      --slate-400: #94a3b8; --slate-500: #64748b; --slate-600: #475569; --slate-700: #334155;
+      --slate-800: #1e293b; --slate-900: #0f172a; --done: #16a34a;
+      --radius-lg: 18px; --radius-md: 12px;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(15,23,42,0.08), 0 2px 4px -2px rgba(15,23,42,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(15,23,42,0.08), 0 10px 10px -5px rgba(15,23,42,0.03);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif; background: #F8FAFC; color: var(--slate-800); line-height: 1.6; padding-bottom: 80px; }
+    a { color: inherit; }
+
+    header { background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--slate-200); position: sticky; top: 0; z-index: 100; }
+    .nav { max-width: 1200px; margin: 0 auto; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .crumb { display: flex; align-items: center; gap: 8px; }
+    .crumb .home { font-size: 0.82rem; font-weight: 700; color: var(--slate-500); text-decoration: none; padding: 4px 8px; border-radius: 6px; background: var(--slate-100); }
+    .crumb .here { font-weight: 800; font-size: 1.05rem; color: var(--slate-900); text-decoration: none; }
+    .nav-links { display: flex; gap: 6px; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; font-size: 0.85rem; font-weight: 700; padding: 6px 12px; border-radius: 6px; color: var(--slate-600); }
+    .nav-links a:hover { background: var(--slate-100); color: var(--slate-900); }
+
+    .hero { max-width: 1000px; margin: 44px auto 28px; padding: 0 24px; text-align: center; }
+    .hero-badge { display: inline-flex; gap: 6px; padding: 6px 16px; background: var(--primary-light); border: 1px solid var(--primary-border); border-radius: 999px; color: var(--primary); font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 900; color: var(--slate-900); letter-spacing: -0.03em; line-height: 1.25; margin-bottom: 14px; }
+    .hero p { font-size: 1.1rem; color: var(--slate-600); max-width: 720px; margin: 0 auto; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    .panel { background: #fff; border: 1px solid var(--slate-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); padding: 22px 26px; margin-bottom: 22px; }
+    .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .step { border-radius: var(--radius-md); padding: 12px 10px; text-align: center; background: var(--slate-50); border: 1px solid var(--slate-200); }
+    .step b { display: block; font-size: 0.98rem; color: var(--slate-900); }
+    .step span { font-size: 0.82rem; color: var(--slate-500); }
+
+    .progress-row { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .progress-text { font-weight: 800; color: var(--slate-900); white-space: nowrap; }
+    .progress-text em { font-style: normal; color: var(--done); font-size: 1.35rem; }
+    .bar { flex: 1; min-width: 200px; height: 12px; background: var(--slate-100); border-radius: 999px; overflow: hidden; }
+    .bar div { height: 100%; width: 0; background: linear-gradient(90deg, #22c55e, #16a34a); border-radius: 999px; transition: width 0.4s ease; }
+    .reset { font: inherit; font-size: 0.8rem; color: var(--slate-500); background: none; border: 1px solid var(--slate-200); border-radius: 8px; padding: 4px 10px; cursor: pointer; }
+    .reset:hover { color: var(--slate-900); border-color: var(--slate-300); }
+
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0 4px; }
+    .filters button { font: inherit; font-size: 0.86rem; font-weight: 700; padding: 7px 14px; border-radius: 999px; border: 1px solid var(--slate-200); background: #fff; color: var(--slate-600); cursor: pointer; }
+    .filters button.active { background: var(--slate-900); border-color: var(--slate-900); color: #fff; }
+
+    .stage { margin-top: 30px; }
+    .stage-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+    .stage-head h2 { font-size: 1.3rem; font-weight: 900; color: var(--slate-900); display: flex; align-items: center; gap: 10px; }
+    .stage-head h2 i { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+    .stage-head p { color: var(--slate-500); font-size: 0.92rem; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 20px; }
+    .card { background: #fff; border: 1px solid var(--slate-200); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s ease, box-shadow 0.2s ease; position: relative; }
+    .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); }
+    .card .accent { height: 5px; }
+    .thumb { aspect-ratio: 16 / 9; background: var(--slate-50); border-bottom: 1px solid var(--slate-100); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .thumb img { width: 100%; height: 100%; object-fit: contain; padding: 8px; }
+    .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+    .title-row { display: flex; align-items: center; gap: 10px; }
+    .num { font-weight: 900; font-size: 0.85rem; color: #fff; border-radius: 8px; padding: 2px 8px; }
+    .title-row h3 { font-size: 1.12rem; font-weight: 900; color: var(--slate-900); }
+    .q { font-size: 0.95rem; color: var(--slate-800); font-weight: 700; }
+    .meta { font-size: 0.84rem; color: var(--slate-500); }
+    .new { font-size: 0.88rem; color: var(--slate-700); background: var(--slate-50); border-radius: 10px; padding: 8px 10px; }
+    .new b { color: var(--slate-900); }
+    .actions { display: flex; gap: 8px; margin-top: auto; padding-top: 6px; align-items: center; flex-wrap: wrap; }
+    .btn { text-decoration: none; font-size: 0.86rem; font-weight: 800; padding: 8px 12px; border-radius: 10px; display: inline-flex; align-items: center; gap: 6px; }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-ghost { background: var(--slate-100); color: var(--slate-700); }
+    .btn-ghost:hover { background: var(--slate-200); }
+    .done-toggle { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; font-size: 0.86rem; font-weight: 700; color: var(--slate-500); cursor: pointer; user-select: none; }
+    .done-toggle input { width: 18px; height: 18px; accent-color: var(--done); cursor: pointer; }
+    .card.done { border-color: #bbf7d0; }
+    .card.done .done-toggle { color: var(--done); }
+    .card.done::after { content: '✓ 已完成'; position: absolute; top: 14px; right: 12px; background: var(--done); color: #fff; font-size: 0.78rem; font-weight: 800; padding: 3px 10px; border-radius: 999px; }
+
+    .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 36px; }
+    .tool { background: #fff; border: 1px solid var(--slate-200); border-radius: var(--radius-lg); padding: 18px 20px; text-decoration: none; box-shadow: var(--shadow-sm); transition: box-shadow 0.2s ease; }
+    .tool:hover { box-shadow: var(--shadow-md); }
+    .tool b { display: block; font-size: 1rem; color: var(--slate-900); margin-bottom: 4px; }
+    .tool span { font-size: 0.88rem; color: var(--slate-500); }
+    .section-title { font-size: 1.3rem; font-weight: 900; color: var(--slate-900); margin-top: 40px; }
+
+    footer { text-align: center; margin-top: 50px; color: var(--slate-400); font-size: 0.85rem; }
+    footer a { color: var(--slate-500); }
+
+    @media (max-width: 760px) {
+      .hero h1 { font-size: 1.9rem; }
+      .steps { grid-template-columns: 1fr 1fr; }
+      .step:last-child { grid-column: span 2; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="crumb">
+        <a class="home" href="../index.html">🏠 全課程總首頁</a>
+        <span style="color: var(--slate-300);">/</span>
+        <a class="here" href="./index.html">🤖 AI 協作資料分析</a>
+      </div>
+      <nav class="nav-links">
+        <a href="../chart-selection/index.html">📊 前一章：看懂資料與選對圖表</a>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%E6%8E%92%E8%A7%A3.md" target="_blank">🧯 常見問題排解 ↗</a>
+        <a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">GitHub ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-badge">🤖 不用寫程式，指揮 AI 做分析</div>
+    <h1>14 個循序實作範例</h1>
+    <p>每一例只多學一件事。打開 Colab，照著五步驟指揮 Gemini 完成分析，再親自核對結果。完成的範例打勾，進度會記在這台電腦的瀏覽器裡。</p>
+  </section>
+
+  <main class="container">
+    <div class="panel">
+      <div class="steps">
+        <div class="step"><b>① 欄位貼標籤</b><span>一列代表什麼？</span></div>
+        <div class="step"><b>② 套提問積木</b><span>挑 1～3 個欄位問</span></div>
+        <div class="step"><b>③ 邊界檢核</b><span>先找不能問的</span></div>
+        <div class="step"><b>④ 選對圖表</b><span>問題決定圖表</span></div>
+        <div class="step"><b>⑤ 指揮 AI 並驗收</b><span>數字能回查原始資料</span></div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="progress-row">
+        <div class="progress-text">學習進度：<em id="doneCount">0</em> / <span id="total">14</span></div>
+        <div class="bar"><div id="barFill"></div></div>
+        <button class="reset" id="resetBtn" type="button">清除進度</button>
+      </div>
+      <div class="filters" id="filters">
+        <button type="button" data-filter="all" class="active">全部</button>
+        <button type="button" data-filter="todo">只看未完成</button>
+      </div>
+    </div>
+
+    <div id="stages"></div>
+
+    <h2 class="section-title">🧰 做範例時的好幫手</h2>
+    <div class="tools">
+      <a class="tool" href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E5%9C%96%E8%A7%A3/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E9%80%9F%E6%9F%A5%E5%8D%A1.svg" target="_blank"><b>📇 資料分析速查卡</b><span>五步驟、選圖規則、六大地雷、三階提問法，一頁看完</span></a>
+      <a class="tool" href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/%E5%B8%B8%E8%A6%8B%E5%95%8F%E9%A1%8C%E6%8E%92%E8%A7%A3.md" target="_blank"><b>🧯 常見問題排解</b><span>中文變方框、找不到檔案、AI 結果不一樣時怎麼辦</span></a>
+      <a class="tool" href="../chart-selection/index.html"><b>📊 前一章互動實驗室</b><span>忘記怎麼選圖？回去複習五大問題與選圖規則</span></a>
+      <a class="tool" href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/README.md" target="_blank"><b>📂 範例庫完整說明</b><span>學習路線、每例新學重點、怎麼使用每個資料夾</span></a>
+    </div>
+  </main>
+
+  <footer>
+    <p>專案開源庫：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">roberthsu2003/PythonForDataAnalysis</a> ｜ 範例資料（14 除外）為教學用模擬資料</p>
+  </footer>
+
+  <script>
+    const STAGES = [{"id": "s1", "name": "第一段：熟悉流程", "desc": "先完整走一次五步驟", "color": "#16A34A"}, {"id": "s2", "name": "第二段：把亂資料整理乾淨", "desc": "讀檔、清理、合併、轉表", "color": "#2563EB"}, {"id": "s3", "name": "第三段：數對東西、算對指標", "desc": "人次與人數、時區、單位、比率", "color": "#D97706"}, {"id": "s4", "name": "第四段：自己來", "desc": "綜合專題與真實開放資料", "color": "#DC2626"}];
+    const EXAMPLES = [{"id": "01", "title": "班級段考成績", "stage": "s1", "question": "哪一科全班平均最低？", "chart": "垂直長條圖", "new": "走一次完整五步驟；缺考不是 0 分", "row": "一位學生", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/01_class_scores/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/01_class_scores/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/01_class_scores/README.md"}, {"id": "02", "title": "便利商店銷售", "stage": "s1", "question": "哪一類商品整週營收最高？", "chart": "垂直長條圖", "new": "自己算出營收；賣最多件 ≠ 賺最多錢", "row": "某一天、某一個品項的銷售", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/02_store_sales/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/02_store_sales/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/02_store_sales/README.md"}, {"id": "03", "title": "圖書館借閱", "stage": "s2", "question": "哪一類書被借最多次？", "chart": "水平長條圖", "new": "讀對三種檔案；用代碼查出分類名稱", "row": "一次借書紀錄", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/03_library_files/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/03_library_files/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/03_library_files/README.md"}, {"id": "04", "title": "社區活動問卷", "stage": "s2", "question": "滿意度 1～5 分各有幾人？", "chart": "垂直長條圖", "new": "刪重複、統一寫法，並記錄改了什麼", "row": "一份送出的問卷", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/04_survey_cleaning/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/04_survey_cleaning/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/04_survey_cleaning/README.md"}, {"id": "05", "title": "連鎖書店季報", "stage": "s2", "question": "第一季哪家門市營收最高？", "chart": "垂直長條圖", "new": "多表合併；找出對不上的資料", "row": "一筆訂單", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/05_bookstore_merge/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/05_bookstore_merge/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/05_bookstore_merge/README.md"}, {"id": "06", "title": "縣市用電", "stage": "s2", "question": "臺北市 24 個月用電怎麼變化？", "chart": "折線圖", "new": "把表格轉個方向，才畫得出趨勢", "row": "轉長表後：一縣市、一個月的用電", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/06_power_reshape/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/06_power_reshape/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/06_power_reshape/README.md"}, {"id": "07", "title": "健身房會員", "stage": "s3", "question": "哪家分店入場人次最多？", "chart": "垂直長條圖", "new": "「人次」和「人數」是兩回事", "row": "一次入場（不是一位會員）", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/07_gym_groupby/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/07_gym_groupby/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/07_gym_groupby/README.md"}, {"id": "08", "title": "外送訂單", "stage": "s3", "question": "一天中幾點訂單最多？", "chart": "垂直長條圖", "new": "國際標準時間比台灣慢 8 小時", "row": "一筆外送訂單", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/08_delivery_time/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/08_delivery_time/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/08_delivery_time/README.md"}, {"id": "09", "title": "六城市氣象", "stage": "s3", "question": "臺北一年的氣溫怎麼變化？", "chart": "折線圖", "new": "問題不同就換圖；單位不同不共用軸", "row": "一個城市、一個月份", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/09_weather_charts/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/09_weather_charts/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/09_weather_charts/README.md"}, {"id": "10", "title": "台北租屋", "stage": "s3", "question": "每坪租金大多落在哪裡？", "chart": "直方圖", "new": "找出打錯的資料；用每坪租金公平比較", "row": "一筆出租物件", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/10_rent_seaborn/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/10_rent_seaborn/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/10_rent_seaborn/README.md"}, {"id": "11", "title": "業務週報", "stage": "s3", "question": "哪一組整季達成率最高？", "chart": "垂直長條圖＋100% 參考線", "new": "比率先講清楚分子和分母", "row": "一位業務、一週", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/11_sales_kpi_style/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/11_sales_kpi_style/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/11_sales_kpi_style/README.md"}, {"id": "12", "title": "共享單車（總整）", "stage": "s4", "question": "一天中幾點借車最多？", "chart": "垂直長條圖", "new": "清理決定跟著問題走；最後自己出題", "row": "一次借還車", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/12_bike_capstone/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/12_bike_capstone/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/12_bike_capstone/README.md"}, {"id": "13", "title": "辦公室資料", "stage": "s4", "question": "各部門全年實際支出多少？", "chart": "垂直長條圖", "new": "五種問題各畫一張圖", "row": "每張表都不同，要逐張確認", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/13_office_chart_basics/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/13_office_chart_basics/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/13_office_chart_basics/README.md"}, {"id": "14", "title": "法務部公開統計", "stage": "s4", "question": "依所選資料回答一個問題", "chart": "依問題選圖", "new": "真實開放資料：來源卡、民國年", "row": "依所選資料而定", "img": "https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/14_moj_public_data/images/main_chart.png", "colab": "https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/14_moj_public_data/lesson.ipynb", "readme": "https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/AI%E5%8D%94%E4%BD%9C%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90_12%E5%80%8B%E7%AF%84%E4%BE%8B/14_moj_public_data/README.md"}];
+    const KEY = 'ai-examples-done-v1';
+    let filter = 'all';
+
+    function loadDone() {
+      try { return new Set(JSON.parse(localStorage.getItem(KEY) || '[]')); } catch (e) { return new Set(); }
+    }
+    function saveDone(done) {
+      try { localStorage.setItem(KEY, JSON.stringify([...done])); } catch (e) { /* 無法儲存時只在本次頁面有效 */ }
+    }
+    let done = loadDone();
+
+    function escapeHtml(s) {
+      return s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    }
+
+    function card(ex, color) {
+      const isDone = done.has(ex.id);
+      return `
+        <article class="card${isDone ? ' done' : ''}" data-id="${ex.id}">
+          <div class="accent" style="background:${color}"></div>
+          <a class="thumb" href="${ex.readme}" target="_blank" title="看完整說明">
+            <img src="${ex.img}" alt="${escapeHtml(ex.title)} 主線成果圖" loading="lazy">
+          </a>
+          <div class="body">
+            <div class="title-row"><span class="num" style="background:${color}">${ex.id}</span><h3>${escapeHtml(ex.title)}</h3></div>
+            <div class="q">🎯 ${escapeHtml(ex.question)}</div>
+            <div class="meta">📈 ${escapeHtml(ex.chart)}　｜　一列＝${escapeHtml(ex.row)}</div>
+            <div class="new">🆕 <b>多學一件事：</b>${escapeHtml(ex.new)}</div>
+            <div class="actions">
+              <a class="btn btn-primary" href="${ex.colab}" target="_blank">▶ 在 Colab 開啟</a>
+              <a class="btn btn-ghost" href="${ex.readme}" target="_blank">📖 說明</a>
+              <label class="done-toggle"><input type="checkbox" ${isDone ? 'checked' : ''}> 完成</label>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function render() {
+      const root = document.getElementById('stages');
+      root.innerHTML = STAGES.map(st => {
+        const items = EXAMPLES.filter(ex => ex.stage === st.id && (filter === 'all' || !done.has(ex.id)));
+        if (!items.length) return '';
+        return `
+          <section class="stage">
+            <div class="stage-head">
+              <h2><i style="background:${st.color}"></i>${st.name}</h2>
+              <p>${st.desc}</p>
+            </div>
+            <div class="grid">${items.map(ex => card(ex, st.color)).join('')}</div>
+          </section>`;
+      }).join('') || '<div class="panel" style="text-align:center;font-weight:700;">🎉 全部完成了！可以挑戰用自己的資料走一次五步驟。</div>';
+
+      root.querySelectorAll('.done-toggle input').forEach(box => {
+        box.addEventListener('change', e => {
+          const id = e.target.closest('.card').dataset.id;
+          e.target.checked ? done.add(id) : done.delete(id);
+          saveDone(done);
+          render();
+        });
+      });
+      document.getElementById('doneCount').textContent = done.size;
+      document.getElementById('total').textContent = EXAMPLES.length;
+      document.getElementById('barFill').style.width = (done.size / EXAMPLES.length * 100) + '%';
+    }
+
+    document.getElementById('filters').addEventListener('click', e => {
+      if (!e.target.dataset.filter) return;
+      filter = e.target.dataset.filter;
+      document.querySelectorAll('#filters button').forEach(b => b.classList.toggle('active', b === e.target));
+      render();
+    });
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      done = new Set();
+      saveDone(done);
+      render();
+    });
+    render();
+  </script>
+</body>
+</html>

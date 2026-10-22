@@ -158,4 +158,6 @@
 
 👉 **[AI 協作資料分析｜14 個循序實作範例](../AI協作資料分析_12個範例/README.md)**
 
+🌐 也可以從[互動版範例總覽](https://roberthsu2003.github.io/PythonForDataAnalysis/ai-examples/)挑範例、記錄進度。
+
 [返回主教材](../README.md)
