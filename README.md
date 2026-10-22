@@ -4,27 +4,6 @@
 
 用 **NumPy、pandas、Matplotlib** 把原始資料變成能做決策的報表與圖表。每一章都搭配 AI 協作的方法：學會怎麼向 AI 描述需求，也學會怎麼驗收 AI 的產出。
 
-## 🧭 從哪裡開始？
-
-| 你的情況 | 建議路線 |
-| :--- | :--- |
-| 想**系統學會**資料分析，看懂每一行程式 | 👉 從下方 [課程地圖](#course-map) 第 1 章依序學習 |
-| **不熟悉程式**，想用 AI 完成資料分析 | 👉 [AI 協作資料分析｜十二個範例](./AI協作資料分析_12個範例/README.md)：建好環境後用 prompt 指揮 AI，完成 12 個範例就能走完完整流程 |
-
-> [!TIP]
-> 📦 每一章都附有「茶語時光」情境範例 Notebook 與可下載的**學生素材壓縮檔**，請見各章 README 的「學生素材下載」區塊。範例 Notebook 上方有 **Open in Colab** 按鈕，不用安裝也能直接在瀏覽器執行。
-
-<a id="course-map"></a>
-
-## 🗺️ 課程地圖
-
-```mermaid
-flowchart LR
-    A["🧱 基礎工具<br>第 1～4 章"] --> B["🐼 pandas 入門<br>第 5～7 章"]
-    B --> C["🧹 整理資料<br>第 8～11 章"]
-    C --> D["📈 分析與呈現<br>第 12～14 章"]
-    D --> E["🚀 綜合實戰<br>第 15～16 章"]
-```
 
 ### 🧱 階段一｜基礎工具
 
@@ -58,32 +37,27 @@ flowchart LR
 | :---: | :--- | :--- |
 | 12 | [直接使用pandas繪制圖表](./直接使用pandas繪制圖表/README.md) | 表格一行出圖，再用 seaborn 畫統計圖 |
 | 13 | [日期和時間](./日期和時間/README.md) | 時間索引、resample、shift、rolling 與時區 |
-| 14 | [看懂資料與選對圖表](./看懂資料與選對圖表/README.md) | 判斷欄位類型、選對圖表，並把圖表交給 AI 解讀 |
 
 ### 🚀 階段五｜綜合實戰
 
 | 章 | 主題 | 你會學到 |
 | :---: | :--- | :--- |
-| 15 | [全方面分析](./全方面分析/README.md) | 用台鐵 2023 年進出站資料走完一次完整分析流程 |
-| 16 | [資料分析範例](./資料分析範例/README.md) | 政府開放資料、股票、網路紀錄等延伸範例 |
+| 14 | [全方面分析](./全方面分析/README.md) | 用台鐵 2023 年進出站資料走完一次完整分析流程 |
+| 15 | [資料分析範例](./資料分析範例/README.md) | 政府開放資料、股票、網路紀錄等延伸範例 |
 
-## 🧰 學習資源
+## 🤖 零程式碼・AI 協作專區
 
-| 資源 | 說明 |
+這是一套**完全不寫程式**、全程依靠 AI 協作的學習規劃。專注於看懂資料、釐清問題本質與驗收成果，透過 AI 建立 `uv` 開發環境並完成視覺化與實戰專題：
+
+| 主題 | 內容說明 |
 | :--- | :--- |
-| [AI 協作資料分析｜十二個範例](./AI協作資料分析_12個範例/README.md) | 12 個附資料的 AI 協作範例，從環境建立到綜合專題 |
-| [介面工具比較表](./最適合搭配的介面工具比較表.md) | Pandas、NumPy、Matplotlib 最適合搭配的介面工具（Streamlit 等） |
-| [學生素材產生器](./tools/build_student_materials.py) | 各章「茶語時光」範例 Notebook 與素材壓縮檔的產生程式 |
+| [看懂資料與選對圖表](./看懂資料與選對圖表/README.md) | 判斷欄位類型、鎖定核心提問、依資料特徵決定最佳圖表，並指揮 AI 繪圖與客觀解讀 |
+| [AI 協作資料分析](./AI協作資料分析_12個範例/README.md) | 使用 AI 建立 uv 開發環境，以提示詞指揮 AI 完成端到端資料分析實戰範例（範例動態持續擴充） |
+| [最適合搭配的介面工具比較表](./最適合搭配的介面工具比較表.md) | 評估 Streamlit、Gradio 等現代互動介面工具，依靠 AI 協作快速搭建資料應用與儀表板 |
 
-## 💻 在自己的電腦上執行
+---
 
-```bash
-git clone https://github.com/roberthsu2003/PythonForDataAnalysis.git
-cd PythonForDataAnalysis
-python -m venv .venv
-# macOS：source .venv/bin/activate
-# Windows：.venv\Scripts\activate
-pip install -r requirements.txt jupyter
-```
+### 🛠️ 工具
+- [學生素材產生器](./tools/build_student_materials.py)：各章範例 Notebook 與素材壓縮檔的產生程式
 
-用 VS Code 開啟資料夾，執行 Notebook 時選擇專案內的 `.venv` 當作 kernel。
+
