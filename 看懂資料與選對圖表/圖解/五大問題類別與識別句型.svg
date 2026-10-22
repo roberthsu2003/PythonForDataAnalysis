@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1020" height="630" viewBox="0 0 1020 630" role="img" aria-label="五大分析問題類別與識別句型全景圖">
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="650" viewBox="0 0 1080 650" role="img" aria-label="五大分析問題類別與識別句型全景圖">
   <title>五大分析問題類別與核心識別句型</title>
   
   <defs>
     <!-- 微陰影濾鏡 -->
-    <filter id="subtle-shadow" x="-2%" y="-4%" width="104%" height="112%" filterUnits="userSpaceOnUse">
+    <filter id="card-shadow" x="-2%" y="-3%" width="104%" height="108%" filterUnits="userSpaceOnUse">
       <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0F172A" flood-opacity="0.06"/>
     </filter>
   </defs>
@@ -14,168 +14,182 @@
   </style>
 
   <!-- 外層容器 -->
-  <rect x="2" y="2" width="1016" height="626" rx="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
+  <rect x="2" y="2" width="1076" height="646" rx="16" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.5"/>
 
   <!-- 頂部標題列 -->
-  <rect x="24" y="16" width="972" height="42" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
+  <rect x="24" y="16" width="1032" height="42" rx="8" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"/>
   <text x="44" y="42" class="font-sans" font-size="16" font-weight="bold" fill="#0F172A">🎯 五大分析問題類別與核心識別句型全景圖</text>
-  <text x="640" y="42" class="font-sans" font-size="13" font-weight="500" fill="#64748B">圖表為問題服務・同一份資料，問題不同就屬於不同類別</text>
+  <text x="690" y="42" class="font-sans" font-size="13" font-weight="500" fill="#64748B">圖表為問題服務・同一份資料，問題不同就屬於不同類別</text>
 
   <!-- 左側總起點卡片：分析問題 -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="24" y="72" width="116" height="534" rx="12" fill="#1E293B" stroke="#0F172A" stroke-width="1.5"/>
+  <g filter="url(#card-shadow)">
+    <rect x="24" y="72" width="124" height="554" rx="12" fill="#1E293B" stroke="#0F172A" stroke-width="1.5"/>
   </g>
-  <circle cx="82" cy="120" r="24" fill="#334155"/>
-  <text x="82" y="128" class="font-sans" font-size="22" fill="#FFFFFF" text-anchor="middle">❓</text>
-  <text x="82" y="175" class="font-sans" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">分 析</text>
-  <text x="82" y="202" class="font-sans" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">問 題</text>
-  <text x="82" y="225" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">Questions</text>
   
-  <line x1="46" y1="248" x2="118" y2="248" stroke="#475569" stroke-width="1"/>
-  <text x="82" y="278" class="font-sans" font-size="12" fill="#E2E8F0" text-anchor="middle">我想幫誰</text>
-  <text x="82" y="298" class="font-sans" font-size="12" fill="#E2E8F0" text-anchor="middle">解答什麼</text>
-  <text x="82" y="318" class="font-sans" font-size="12" fill="#38BDF8" font-weight="bold" text-anchor="middle">核心疑惑？</text>
+  <!-- 左側圓形問號圖示 -->
+  <circle cx="86" cy="124" r="26" fill="#334155" stroke="#475569" stroke-width="1.5"/>
+  <circle cx="86" cy="124" r="20" fill="#EF4444" opacity="0.15"/>
+  <text x="86" y="132" class="font-sans" font-size="24" fill="#F87171" font-weight="bold" text-anchor="middle">?</text>
+  
+  <text x="86" y="180" class="font-sans" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">分 析</text>
+  <text x="86" y="206" class="font-sans" font-size="16" font-weight="bold" fill="#FFFFFF" text-anchor="middle">問 題</text>
+  <text x="86" y="228" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">Questions</text>
+  
+  <line x1="46" y1="250" x2="126" y2="250" stroke="#475569" stroke-width="1"/>
+  <text x="86" y="280" class="font-sans" font-size="12" fill="#CBD5E1" text-anchor="middle">我想幫誰</text>
+  <text x="86" y="302" class="font-sans" font-size="12" fill="#CBD5E1" text-anchor="middle">解答什麼</text>
+  <text x="86" y="324" class="font-sans" font-size="12" fill="#38BDF8" font-weight="bold" text-anchor="middle">核心疑惑？</text>
 
-  <rect x="42" y="490" width="80" height="92" rx="6" fill="#0F172A" stroke="#334155" stroke-width="1"/>
-  <text x="82" y="515" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">決定類型</text>
-  <text x="82" y="535" class="font-sans" font-size="13" fill="#F8FAFC" font-weight="bold" text-anchor="middle">↓↓↓</text>
-  <text x="82" y="555" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">鎖定圖表</text>
+  <rect x="38" y="506" width="96" height="96" rx="8" fill="#0F172A" stroke="#334155" stroke-width="1"/>
+  <text x="86" y="532" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">確認問題類型</text>
+  <text x="86" y="556" class="font-sans" font-size="15" fill="#38BDF8" font-weight="bold" text-anchor="middle">↓↓↓</text>
+  <text x="86" y="580" class="font-sans" font-size="11" fill="#94A3B8" text-anchor="middle">精準鎖定圖表</text>
 
   <!-- 連接弧線 (從左側節點連接到右側 5 張卡片) -->
-  <path d="M 140 250 C 165 250, 160 116, 185 116" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M 140 280 C 165 280, 160 222, 185 222" fill="none" stroke="#EA580C" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M 140 339 C 165 339, 160 328, 185 328" fill="none" stroke="#9333EA" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M 140 398 C 165 398, 160 434, 185 434" fill="none" stroke="#E11D48" stroke-width="2.2" stroke-linecap="round"/>
-  <path d="M 140 428 C 165 428, 160 540, 185 540" fill="none" stroke="#0284C7" stroke-width="2.2" stroke-linecap="round"/>
+  <path d="M 148 260 C 172 260, 168 122, 192 122" fill="none" stroke="#16A34A" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 148 285 C 172 285, 168 232, 192 232" fill="none" stroke="#EA580C" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 148 349 C 172 349, 168 342, 192 342" fill="none" stroke="#9333EA" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 148 405 C 172 405, 168 452, 192 452" fill="none" stroke="#E11D48" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M 148 435 C 172 435, 168 562, 192 562" fill="none" stroke="#0284C7" stroke-width="2.5" stroke-linecap="round"/>
 
   <!-- ==================== 1. 比較 (Comparison) ==================== -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="185" y="72" width="811" height="92" rx="10" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.8"/>
+  <g filter="url(#card-shadow)">
+    <rect x="192" y="72" width="864" height="96" rx="10" fill="#FFFFFF" stroke="#86EFAC" stroke-width="1.8"/>
   </g>
-  <rect x="185" y="72" width="6" height="92" rx="3" fill="#16A34A"/>
-  <!-- 類別徽章 -->
-  <rect x="203" y="86" width="135" height="30" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1"/>
-  <text x="213" y="106" class="font-sans" font-size="13" font-weight="bold" fill="#15803D">📊 1. 比較 Comparison</text>
-  <text x="203" y="138" class="font-sans" font-size="11" font-weight="500" fill="#166534">比大小・比排名・比差距</text>
+  <rect x="192" y="72" width="6" height="96" rx="3" fill="#16A34A"/>
+  
+  <!-- 欄 1：類別徽章 (x: 210 ~ 340) -->
+  <rect x="210" y="86" width="130" height="32" rx="6" fill="#F0FDF4" stroke="#BBF7D0" stroke-width="1.2"/>
+  <text x="275" y="107" class="font-sans" font-size="13" font-weight="bold" fill="#15803D" text-anchor="middle">📊 1. 比較</text>
+  <text x="275" y="132" class="font-sans" font-size="11" font-weight="bold" fill="#166534" text-anchor="middle">Comparison</text>
+  <text x="275" y="150" class="font-sans" font-size="11" fill="#4B5563" text-anchor="middle">比大小・排名・差距</text>
 
-  <!-- 核心關注點 -->
-  <text x="355" y="102" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
-  <text x="355" y="124" class="font-sans" font-size="13" font-weight="bold" fill="#1E293B">突顯項目之間的高低差距與優劣排名</text>
-  <text x="355" y="144" class="font-sans" font-size="11" fill="#4B5563">各組對象在同一指標下的高低落差</text>
+  <!-- 欄 2：核心關注點 (x: 358 ~ 585) -->
+  <text x="358" y="99" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
+  <text x="358" y="122" class="font-sans" font-size="13" font-weight="bold" fill="#0F172A">突顯項目間的高低差距與優劣排名</text>
+  <text x="358" y="144" class="font-sans" font-size="11" fill="#475569">比較多個對象在同一指標下的落差</text>
 
-  <!-- 經典識別句型 -->
-  <rect x="585" y="84" width="245" height="68" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="597" y="104" class="font-sans" font-size="11" font-weight="bold" fill="#0369A1">💬 經典職場問句</text>
-  <text x="597" y="124" class="font-sans" font-size="12" fill="#1E293B">「哪個部門每人平均花費最高？」</text>
-  <text x="597" y="142" class="font-sans" font-size="12" fill="#1E293B">「A 方案與 B 方案業績誰勝出？」</text>
+  <!-- 欄 3：經典職場問句 (x: 595 ~ 855) -->
+  <rect x="595" y="84" width="260" height="72" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="607" y="103" class="font-sans" font-size="11" font-weight="bold" fill="#0369A1">💬 經典職場問句</text>
+  <text x="607" y="124" class="font-sans" font-size="11.5" fill="#1E293B">「哪個部門每人平均花費最高？」</text>
+  <text x="607" y="143" class="font-sans" font-size="11.5" fill="#1E293B">「A 方案與 B 方案業績誰勝出？」</text>
 
-  <!-- 關鍵指標與圖表 -->
-  <text x="846" y="104" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與圖表</text>
-  <text x="846" y="124" class="font-sans" font-size="12" font-weight="bold" fill="#15803D">排序、平均值、差距</text>
-  <text x="846" y="144" class="font-sans" font-size="11" fill="#475569">首選：水平/垂直長條圖</text>
+  <!-- 欄 4：關鍵指標與首選圖表 (x: 870 ~ 1040) -->
+  <text x="870" y="99" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與首選圖表</text>
+  <text x="870" y="122" class="font-sans" font-size="12" font-weight="bold" fill="#15803D">排序、平均值、差距</text>
+  <text x="870" y="144" class="font-sans" font-size="11" fill="#475569">首選：水平/垂直長條圖</text>
 
   <!-- ==================== 2. 組成 (Composition) ==================== -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="185" y="178" width="811" height="92" rx="10" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.8"/>
+  <g filter="url(#card-shadow)">
+    <rect x="192" y="182" width="864" height="96" rx="10" fill="#FFFFFF" stroke="#FED7AA" stroke-width="1.8"/>
   </g>
-  <rect x="185" y="178" width="6" height="92" rx="3" fill="#EA580C"/>
-  <!-- 類別徽章 -->
-  <rect x="203" y="192" width="145" height="30" rx="6" fill="#FFF7ED" stroke="#FFEDD5" stroke-width="1"/>
-  <text x="213" y="212" class="font-sans" font-size="13" font-weight="bold" fill="#C2410C">🥧 2. 組成 Composition</text>
-  <text x="203" y="244" class="font-sans" font-size="11" font-weight="500" fill="#9A3412">部分占整體的結構份額</text>
+  <rect x="192" y="182" width="6" height="96" rx="3" fill="#EA580C"/>
+  
+  <!-- 欄 1：類別徽章 -->
+  <rect x="210" y="196" width="130" height="32" rx="6" fill="#FFF7ED" stroke="#FFEDD5" stroke-width="1.2"/>
+  <text x="275" y="217" class="font-sans" font-size="13" font-weight="bold" fill="#C2410C" text-anchor="middle">🥧 2. 組成</text>
+  <text x="275" y="242" class="font-sans" font-size="11" font-weight="bold" fill="#9A3412" text-anchor="middle">Composition</text>
+  <text x="275" y="260" class="font-sans" font-size="11" fill="#4B5563" text-anchor="middle">部分占整體的份額</text>
 
-  <!-- 核心關注點 -->
-  <text x="355" y="208" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
-  <text x="355" y="230" class="font-sans" font-size="13" font-weight="bold" fill="#1E293B">突顯各部分占總額的比例（合為100%）</text>
-  <text x="355" y="250" class="font-sans" font-size="11" fill="#4B5563">分析整體結構組成與主要貢獻來源</text>
+  <!-- 欄 2：核心關注點 -->
+  <text x="358" y="209" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
+  <text x="358" y="232" class="font-sans" font-size="13" font-weight="bold" fill="#0F172A">各部分占總額的比例（合為 100%）</text>
+  <text x="358" y="254" class="font-sans" font-size="11" fill="#475569">分析整體結構與核心貢獻來源</text>
 
-  <!-- 經典識別句型 -->
-  <rect x="585" y="190" width="245" height="68" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="597" y="210" class="font-sans" font-size="11" font-weight="bold" fill="#C2410C">💬 經典職場問句</text>
-  <text x="597" y="230" class="font-sans" font-size="12" fill="#1E293B">「各採購類別各占總預算幾成？」</text>
-  <text x="597" y="248" class="font-sans" font-size="12" fill="#1E293B">「營收主要由哪幾條產品線構成？」</text>
+  <!-- 欄 3：經典職場問句 -->
+  <rect x="595" y="194" width="260" height="72" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="607" y="213" class="font-sans" font-size="11" font-weight="bold" fill="#C2410C">💬 經典職場問句</text>
+  <text x="607" y="234" class="font-sans" font-size="11.5" fill="#1E293B">「各採購類別各占總預算幾成？」</text>
+  <text x="607" y="253" class="font-sans" font-size="11.5" fill="#1E293B">「營收主要由哪幾條產品線構成？」</text>
 
-  <!-- 關鍵指標與圖表 -->
-  <text x="846" y="210" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與圖表</text>
-  <text x="846" y="230" class="font-sans" font-size="12" font-weight="bold" fill="#C2410C">百分比 (%)、總和 (Sum)</text>
-  <text x="846" y="250" class="font-sans" font-size="11" fill="#475569">首選：百分比長條圖</text>
+  <!-- 欄 4：關鍵指標與首選圖表 -->
+  <text x="870" y="209" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與首選圖表</text>
+  <text x="870" y="232" class="font-sans" font-size="12" font-weight="bold" fill="#C2410C">百分比 (%)、總和 (Sum)</text>
+  <text x="870" y="254" class="font-sans" font-size="11" fill="#475569">首選：百分比長條圖</text>
 
   <!-- ==================== 3. 分布 (Distribution) ==================== -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="185" y="284" width="811" height="92" rx="10" fill="#FFFFFF" stroke="#E9D5FF" stroke-width="1.8"/>
+  <g filter="url(#card-shadow)">
+    <rect x="192" y="292" width="864" height="96" rx="10" fill="#FFFFFF" stroke="#E9D5FF" stroke-width="1.8"/>
   </g>
-  <rect x="185" y="284" width="6" height="92" rx="3" fill="#9333EA"/>
-  <!-- 類別徽章 -->
-  <rect x="203" y="298" width="145" height="30" rx="6" fill="#FAF5FF" stroke="#F3E8FF" stroke-width="1"/>
-  <text x="213" y="318" class="font-sans" font-size="13" font-weight="bold" fill="#7E22CE">📦 3. 分布 Distribution</text>
-  <text x="203" y="350" class="font-sans" font-size="11" font-weight="500" fill="#6B21A8">集中區間與極端離群值</text>
+  <rect x="192" y="292" width="6" height="96" rx="3" fill="#9333EA"/>
+  
+  <!-- 欄 1：類別徽章 -->
+  <rect x="210" y="306" width="130" height="32" rx="6" fill="#FAF5FF" stroke="#F3E8FF" stroke-width="1.2"/>
+  <text x="275" y="327" class="font-sans" font-size="13" font-weight="bold" fill="#7E22CE" text-anchor="middle">📦 3. 分布</text>
+  <text x="275" y="352" class="font-sans" font-size="11" font-weight="bold" fill="#6B21A8" text-anchor="middle">Distribution</text>
+  <text x="275" y="370" class="font-sans" font-size="11" fill="#4B5563" text-anchor="middle">集中區間與極端值</text>
 
-  <!-- 核心關注點 -->
-  <text x="355" y="314" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
-  <text x="355" y="336" class="font-sans" font-size="13" font-weight="bold" fill="#1E293B">觀察單一數值集中在何處與離散廣度</text>
-  <text x="355" y="356" class="font-sans" font-size="11" fill="#4B5563">抓出少數拉偏平均數的極端爆表數值</text>
+  <!-- 欄 2：核心關注點 -->
+  <text x="358" y="319" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
+  <text x="358" y="342" class="font-sans" font-size="13" font-weight="bold" fill="#0F172A">單一指標集中在何處與分散廣度</text>
+  <text x="358" y="364" class="font-sans" font-size="11" fill="#475569">抓出拉偏平均數的少數極端離群值</text>
 
-  <!-- 經典識別句型 -->
-  <rect x="585" y="296" width="245" height="68" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="597" y="316" class="font-sans" font-size="11" font-weight="bold" fill="#7E22CE">💬 經典職場問句</text>
-  <text x="597" y="336" class="font-sans" font-size="12" fill="#1E293B">「大部分同仁通勤時間落在哪？」</text>
-  <text x="597" y="354" class="font-sans" font-size="12" fill="#1E293B">「工時是否有誇張延遲的極端值？」</text>
+  <!-- 欄 3：經典職場問句 -->
+  <rect x="595" y="304" width="260" height="72" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="607" y="323" class="font-sans" font-size="11" font-weight="bold" fill="#7E22CE">💬 經典職場問句</text>
+  <text x="607" y="344" class="font-sans" font-size="11.5" fill="#1E293B">「大部分同仁通勤時間落在哪？」</text>
+  <text x="607" y="363" class="font-sans" font-size="11.5" fill="#1E293B">「工時是否有誇張延遲的極端個案？」</text>
 
-  <!-- 關鍵指標與圖表 -->
-  <text x="846" y="316" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與圖表</text>
-  <text x="846" y="336" class="font-sans" font-size="12" font-weight="bold" fill="#7E22CE">中位數、波峰、離群值</text>
-  <text x="846" y="356" class="font-sans" font-size="11" fill="#475569">首選：直方圖 / 箱形圖</text>
+  <!-- 欄 4：關鍵指標與首選圖表 -->
+  <text x="870" y="319" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與首選圖表</text>
+  <text x="870" y="342" class="font-sans" font-size="12" font-weight="bold" fill="#7E22CE">中位數、波峰、離群值</text>
+  <text x="870" y="364" class="font-sans" font-size="11" fill="#475569">首選：直方圖 / 箱形圖</text>
 
   <!-- ==================== 4. 關係 (Relationship) ==================== -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="185" y="390" width="811" height="92" rx="10" fill="#FFFFFF" stroke="#FECDD3" stroke-width="1.8"/>
+  <g filter="url(#card-shadow)">
+    <rect x="192" y="402" width="864" height="96" rx="10" fill="#FFFFFF" stroke="#FECDD3" stroke-width="1.8"/>
   </g>
-  <rect x="185" y="390" width="6" height="92" rx="3" fill="#E11D48"/>
-  <!-- 類別徽章 -->
-  <rect x="203" y="404" width="145" height="30" rx="6" fill="#FFF1F2" stroke="#FFE4E6" stroke-width="1"/>
-  <text x="213" y="424" class="font-sans" font-size="13" font-weight="bold" fill="#BE123C">🔗 4. 關係 Relationship</text>
-  <text x="203" y="456" class="font-sans" font-size="11" font-weight="500" fill="#9F1239">雙變數共同變動與相關性</text>
+  <rect x="192" y="402" width="6" height="96" rx="3" fill="#E11D48"/>
+  
+  <!-- 欄 1：類別徽章 -->
+  <rect x="210" y="416" width="130" height="32" rx="6" fill="#FFF1F2" stroke="#FFE4E6" stroke-width="1.2"/>
+  <text x="275" y="437" class="font-sans" font-size="13" font-weight="bold" fill="#BE123C" text-anchor="middle">🔗 4. 關係</text>
+  <text x="275" y="462" class="font-sans" font-size="11" font-weight="bold" fill="#9F1239" text-anchor="middle">Relationship</text>
+  <text x="275" y="480" class="font-sans" font-size="11" fill="#4B5563" text-anchor="middle">雙變數共同變動規律</text>
 
-  <!-- 核心關注點 -->
-  <text x="355" y="420" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
-  <text x="355" y="442" class="font-sans" font-size="13" font-weight="bold" fill="#1E293B">探討兩個連續數值變數是否同步增減</text>
-  <text x="355" y="462" class="font-sans" font-size="11" fill="#DC2626">⚠️ 提醒：相關不等於因果，不可隨意下因果結論</text>
+  <!-- 欄 2：核心關注點 -->
+  <text x="358" y="429" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
+  <text x="358" y="452" class="font-sans" font-size="13" font-weight="bold" fill="#0F172A">兩連續數值是否同步升降（正負相關）</text>
+  <text x="358" y="474" class="font-sans" font-size="11" font-weight="bold" fill="#DC2626">⚠️ 提醒：相關性絕對不代表因果關係！</text>
 
-  <!-- 經典識別句型 -->
-  <rect x="585" y="402" width="245" height="68" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="597" y="422" class="font-sans" font-size="11" font-weight="bold" fill="#BE123C">💬 經典職場問句</text>
-  <text x="597" y="442" class="font-sans" font-size="12" fill="#1E293B">「預估工時與實際工時有關係嗎？」</text>
-  <text x="597" y="460" class="font-sans" font-size="12" fill="#1E293B">「廣告費花越多，來客數真的越多？」</text>
+  <!-- 欄 3：經典職場問句 -->
+  <rect x="595" y="414" width="260" height="72" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="607" y="433" class="font-sans" font-size="11" font-weight="bold" fill="#BE123C">💬 經典職場問句</text>
+  <text x="607" y="454" class="font-sans" font-size="11.5" fill="#1E293B">「預估工時與實際工時有關係嗎？」</text>
+  <text x="607" y="473" class="font-sans" font-size="11.5" fill="#1E293B">「廣告費花越多，來客數真的越多？」</text>
 
-  <!-- 關鍵指標與圖表 -->
-  <text x="846" y="422" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與圖表</text>
-  <text x="846" y="442" class="font-sans" font-size="12" font-weight="bold" fill="#BE123C">散佈點群、相關係數 (r)</text>
-  <text x="846" y="462" class="font-sans" font-size="11" fill="#475569">首選：散佈圖 (勿連線)</text>
+  <!-- 欄 4：關鍵指標與首選圖表 -->
+  <text x="870" y="429" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與首選圖表</text>
+  <text x="870" y="452" class="font-sans" font-size="12" font-weight="bold" fill="#BE123C">散佈點群、相關係數 (r)</text>
+  <text x="870" y="474" class="font-sans" font-size="11" fill="#475569">首選：散佈圖 (切勿連線)</text>
 
   <!-- ==================== 5. 趨勢 (Trend) ==================== -->
-  <g filter="url(#subtle-shadow)">
-    <rect x="185" y="496" width="811" height="92" rx="10" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.8"/>
+  <g filter="url(#card-shadow)">
+    <rect x="192" y="512" width="864" height="96" rx="10" fill="#FFFFFF" stroke="#BAE6FD" stroke-width="1.8"/>
   </g>
-  <rect x="185" y="496" width="6" height="92" rx="3" fill="#0284C7"/>
-  <!-- 類別徽章 -->
-  <rect x="203" y="510" width="135" height="30" rx="6" fill="#F0F9FF" stroke="#E0F2FE" stroke-width="1"/>
-  <text x="213" y="530" class="font-sans" font-size="13" font-weight="bold" fill="#0369A1">📈 5. 趨勢 Trend</text>
-  <text x="203" y="562" class="font-sans" font-size="11" font-weight="500" fill="#075985">隨時間推移的演變走向</text>
+  <rect x="192" y="512" width="6" height="96" rx="3" fill="#0284C7"/>
+  
+  <!-- 欄 1：類別徽章 -->
+  <rect x="210" y="526" width="130" height="32" rx="6" fill="#F0F9FF" stroke="#E0F2FE" stroke-width="1.2"/>
+  <text x="275" y="547" class="font-sans" font-size="13" font-weight="bold" fill="#0369A1" text-anchor="middle">📈 5. 趨勢</text>
+  <text x="275" y="572" class="font-sans" font-size="11" font-weight="bold" fill="#075985" text-anchor="middle">Trend</text>
+  <text x="275" y="590" class="font-sans" font-size="11" fill="#4B5563" text-anchor="middle">隨時間演進的走勢</text>
 
-  <!-- 核心關注點 -->
-  <text x="355" y="526" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
-  <text x="355" y="548" class="font-sans" font-size="13" font-weight="bold" fill="#1E293B">觀察數據隨時間演進的成長、衰退與週期</text>
-  <text x="355" y="568" class="font-sans" font-size="11" fill="#4B5563">時間軸必須由左至右、由早到晚嚴格排序</text>
+  <!-- 欄 2：核心關注點 -->
+  <text x="358" y="539" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">核心關注點</text>
+  <text x="358" y="562" class="font-sans" font-size="13" font-weight="bold" fill="#0F172A">指標隨時間推移的成長、衰退與週期性</text>
+  <text x="358" y="584" class="font-sans" font-size="11" fill="#475569">時間軸必須由左至右、由早到晚排序</text>
 
-  <!-- 經典識別句型 -->
-  <rect x="585" y="508" width="245" height="68" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
-  <text x="597" y="528" class="font-sans" font-size="11" font-weight="bold" fill="#0369A1">💬 經典職場問句</text>
-  <text x="597" y="548" class="font-sans" font-size="12" fill="#1E293B">「全年度每月支出是增加還是減少？」</text>
-  <text x="597" y="566" class="font-sans" font-size="12" fill="#1E293B">「哪幾個月份是明顯的淡季與旺季？」</text>
+  <!-- 欄 3：經典職場問句 -->
+  <rect x="595" y="524" width="260" height="72" rx="6" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+  <text x="607" y="543" class="font-sans" font-size="11" font-weight="bold" fill="#0369A1">💬 經典職場問句</text>
+  <text x="607" y="564" class="font-sans" font-size="11.5" fill="#1E293B">「全年度每月支出是增加還是減少？」</text>
+  <text x="607" y="583" class="font-sans" font-size="11.5" fill="#1E293B">「哪幾個月份是明顯的淡季與旺季？」</text>
 
-  <!-- 關鍵指標與圖表 -->
-  <text x="846" y="528" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與圖表</text>
-  <text x="846" y="548" class="font-sans" font-size="12" font-weight="bold" fill="#0369A1">時序、成長率、淡旺季</text>
-  <text x="846" y="568" class="font-sans" font-size="11" fill="#475569">首選：折線圖 / 時間長條圖</text>
+  <!-- 欄 4：關鍵指標與首選圖表 -->
+  <text x="870" y="539" class="font-sans" font-size="11" font-weight="bold" fill="#64748B">關鍵指標與首選圖表</text>
+  <text x="870" y="562" class="font-sans" font-size="12" font-weight="bold" fill="#0369A1">時序、成長率、週期性</text>
+  <text x="870" y="584" class="font-sans" font-size="11" fill="#475569">首選：折線圖 / 時間長條圖</text>
 
 </svg>
