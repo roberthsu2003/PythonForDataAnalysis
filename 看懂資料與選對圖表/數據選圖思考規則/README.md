@@ -173,7 +173,7 @@ graph TD
 
 > 🌐 **想在線上動手點選看看嗎？**
 > 我們為這個速查表格打造了**互動式網頁體驗版**！你可以直接點選按鈕切換不同欄位組合，親眼看見「真實資料表格長怎樣」、「老闆會怎麼問」以及「圖表的即時外觀」：
-> 👉 **[開啟線上互動速查工具（GitHub Pages 網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/)** ｜ [本機原始碼檢視](../../docs/index.html)
+> 👉 **[開啟線上互動速查工具（GitHub Pages 網頁版）](https://roberthsu2003.github.io/PythonForDataAnalysis/field-combinations.html)** ｜ [本機原始碼檢視](../../docs/field-combinations.html)
 
 | 手邊欄位組合 | 對應問題類型 | 典型情境 | 推薦圖表 | 注意事項 |
 | --- | --- | --- | --- | --- |
