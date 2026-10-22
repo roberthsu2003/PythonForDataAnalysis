@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>五大問題類型與圖表動態視覺化 | 看懂資料與選對圖表</title>
+  <meta name="description" content="互動式動畫展示五大分析問題（比較、組成、分布、關係、趨勢）所對應的真實圖表樣貌，讓學生看見文字就能秒懂對應圖表。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --comp-color: #2563eb;
+      --compst-color: #ea580c;
+      --dist-color: #7c3aed;
+      --rel-color: #059669;
+      --trend-color: #dc2626;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --radius-md: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', sans-serif;
+      background: var(--bg);
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+
+    /* 頂部導航 */
+    header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--slate-200);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: var(--slate-900);
+      text-decoration: none;
+    }
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+    }
+    .nav-tab-btn {
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      color: var(--slate-600);
+    }
+    .nav-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+    }
+    .nav-tab-btn:hover:not(.active) {
+      background: var(--slate-100);
+      color: var(--primary);
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1000px;
+      margin: 36px auto 20px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 999px;
+      color: #2563eb;
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .hero p {
+      font-size: 1.05rem;
+      color: var(--slate-600);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 控制列：五大問題分類按鈕 */
+    .type-switcher {
+      max-width: 1100px;
+      margin: 24px auto 32px;
+      padding: 0 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .type-btn {
+      background: #FFFFFF;
+      border: 2px solid var(--slate-200);
+      border-radius: 999px;
+      padding: 10px 22px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: var(--shadow-sm);
+    }
+    .type-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .type-btn.active[data-type="comp"] {
+      background: var(--comp-color);
+      border-color: var(--comp-color);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+    .type-btn.active[data-type="compst"] {
+      background: var(--compst-color);
+      border-color: var(--compst-color);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(234,88,12,0.35);
+    }
+    .type-btn.active[data-type="dist"] {
+      background: var(--dist-color);
+      border-color: var(--dist-color);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+    }
+    .type-btn.active[data-type="rel"] {
+      background: var(--rel-color);
+      border-color: var(--rel-color);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(5,150,105,0.35);
+    }
+    .type-btn.active[data-type="trend"] {
+      background: var(--trend-color);
+      border-color: var(--trend-color);
+      color: #fff;
+      box-shadow: 0 4px 14px rgba(220,38,38,0.35);
+    }
+
+    /* 主展示舞台 */
+    .stage {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .stage-card {
+      background: var(--card-bg);
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 36px;
+      box-shadow: var(--shadow-xl);
+      display: grid;
+      grid-template-columns: 1.05fr 1.35fr;
+      gap: 36px;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    @media (max-width: 900px) {
+      .stage-card {
+        grid-template-columns: 1fr;
+        padding: 24px;
+        gap: 24px;
+      }
+    }
+
+    /* 左側：文字解說區 */
+    .text-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .type-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .type-tag {
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 4px 12px;
+      border-radius: 999px;
+      color: #fff;
+    }
+    .type-en-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+    }
+
+    /* 溝通核心卡片 */
+    .core-box {
+      background: #F8FAFC;
+      border-left: 5px solid var(--primary);
+      padding: 16px 20px;
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+    .core-box .label {
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .core-box .content {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      line-height: 1.4;
+    }
+
+    /* 經典問法對話氣泡清單 */
+    .questions-box {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+    }
+    .questions-box .label {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .q-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 10px;
+      font-size: 0.95rem;
+      color: var(--slate-700);
+      font-weight: 600;
+    }
+    .q-item:last-child {
+      margin-bottom: 0;
+    }
+    .q-item span.bubble-icon {
+      color: var(--primary);
+      font-size: 1.1rem;
+      line-height: 1.3;
+    }
+
+    /* 對應圖表標籤列 */
+    .matched-charts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .chart-pill {
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: var(--slate-100);
+      color: var(--slate-700);
+      border: 1px solid var(--slate-200);
+    }
+    .chart-pill.highlight {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border-color: #93C5FD;
+    }
+
+    /* 右側：動態圖表畫布 */
+    .canvas-column {
+      background: #F8FAFC;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 380px;
+    }
+    .canvas-title {
+      position: absolute;
+      top: 14px;
+      left: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .replay-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-300);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+    .replay-btn:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+
+    .svg-wrapper {
+      width: 100%;
+      max-width: 460px;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* 動畫 Keyframes 定義 */
+    @keyframes growBar {
+      from { width: 0; }
+      to { width: var(--w); }
+    }
+    @keyframes growCol {
+      from { height: 0; y: 220; }
+      to { height: var(--h); y: var(--y); }
+    }
+    @keyframes drawPath {
+      from { stroke-dashoffset: 600; }
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes popDot {
+      0% { transform: scale(0); opacity: 0; }
+      70% { transform: scale(1.3); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.85; }
+    }
+    @keyframes rotateCircle {
+      from { stroke-dashoffset: 380; }
+      to { stroke-dashoffset: var(--offset); }
+    }
+    @keyframes expandBox {
+      0% { opacity: 0; transform: scaleX(0); }
+      100% { opacity: 1; transform: scaleX(1); }
+    }
+
+    .anim-bar {
+      animation: growBar 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .anim-col {
+      animation: growCol 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .anim-line {
+      stroke-dasharray: 600;
+      stroke-dashoffset: 600;
+      animation: drawPath 1.3s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    }
+    .anim-dot {
+      transform-origin: center;
+      animation: popDot 0.5s ease-out forwards;
+    }
+
+    /* 頁尾 */
+    footer {
+      max-width: 1100px;
+      margin: 48px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部導航 -->
+  <header>
+    <div class="nav-container">
+      <a href="./" class="logo">
+        <span>📊 Python 資料分析</span>
+        <span style="font-size: 0.8rem; background: #2563eb; color: #fff; padding: 2px 8px; border-radius: 999px;">動態實驗室</span>
+      </a>
+      <div class="nav-tabs">
+        <a href="./question-types.html" class="nav-tab-btn active">🎯 五大問題與圖表動畫</a>
+        <a href="./index.html" class="nav-tab-btn">⚡ 欄位組合速查</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">🎬 視覺化動態演示</div>
+    <h1>五大問題類型與圖表動態對照</h1>
+    <p>看懂文字，秒懂圖表！點選切換下方五大問題類型，觀察溝通核心如何轉化為真實生長的動態圖表。</p>
+  </section>
+
+  <!-- 五大按鈕選單 -->
+  <div class="type-switcher" id="typeSwitcher">
+    <button class="type-btn active" data-type="comp">
+      <span>📊</span> 1. 比較 (Comparison)
+    </button>
+    <button class="type-btn" data-type="compst">
+      <span>🍰</span> 2. 組成 (Composition)
+    </button>
+    <button class="type-btn" data-type="dist">
+      <span>📦</span> 3. 分布 (Distribution)
+    </button>
+    <button class="type-btn" data-type="rel">
+      <span>🔗</span> 4. 關係 (Relationship)
+    </button>
+    <button class="type-btn" data-type="trend">
+      <span>📈</span> 5. 趨勢 (Trend)
+    </button>
+  </div>
+
+  <!-- 主展示舞台 -->
+  <main class="stage">
+    <div class="stage-card" id="stageCard">
+
+      <!-- 左側文字解說 -->
+      <div class="text-column">
+        <div class="type-header">
+          <span class="type-tag" id="typeTag" style="background: var(--comp-color);">比較問題</span>
+          <span class="type-en-title" id="typeEnTitle">Comparison</span>
+        </div>
+
+        <!-- 溝通核心（放在最上方） -->
+        <div class="core-box" id="coreBox" style="border-left-color: var(--comp-color);">
+          <div class="label" style="color: var(--comp-color);">
+            <span>🎯</span> 溝通核心
+          </div>
+          <div class="content" id="coreContent">
+            突顯「高低差距」與「相對排名」。
+          </div>
+        </div>
+
+        <!-- 經典問法 -->
+        <div class="questions-box">
+          <div class="label">
+            <span>🗣️</span> 經典問法（問出具體問題）：
+          </div>
+          <div id="questionsList">
+            <!-- 由 JS 動態注入 -->
+          </div>
+        </div>
+
+        <!-- 對應圖表標籤 -->
+        <div>
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--slate-600); margin-bottom: 8px;">
+            🖼️ 這類問題對應的標準圖表：
+          </div>
+          <div class="matched-charts" id="chartPills">
+            <!-- 由 JS 動態注入 -->
+          </div>
+        </div>
+      </div>
+
+      <!-- 右側動態圖表畫布 -->
+      <div class="canvas-column">
+        <div class="canvas-title">
+          <span>🎬</span> <span id="chartCaption">動態生長示意</span>
+        </div>
+        <button class="replay-btn" id="replayBtn" title="重新播放動畫">
+          <span>🔄</span> 重新播放
+        </button>
+
+        <div class="svg-wrapper" id="svgStage">
+          <!-- 由 JS 繪製並觸發動畫 -->
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>返回專題文件：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E9%81%B8%E5%9C%96%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87" target="_blank">📖 數據選圖思考規則完整指引</a> ｜ <a href="./index.html">⚡ 欄位組合速查</a></p>
+    <p style="margin-top: 6px; font-size: 0.82rem;">本互動網頁專為資料分析初學者設計・看懂資料與選對圖表</p>
+  </footer>
+
+  <script>
+    const dataModel = {
+      comp: {
+        tagName: "比較問題",
+        enName: "Comparison",
+        themeColor: "#2563eb",
+        core: "突顯「高低差距」與「相對排名」。",
+        questions: [
+          "「哪一個品項／部門賣得最好？」",
+          "「北中南各區的業績排名與差距如何？」",
+          "「今年各部門的預算達成率誰最高？」"
+        ],
+        charts: ["排序長條圖 (首選)", "水平長條圖", "分組長條圖", "點圖 / 棒棒糖圖"],
+        caption: "長條生長動畫：清楚比出長短高低",
+        drawSVG: () => `
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <!-- 座標軸 -->
+            <line x1="80" y1="20" x2="80" y2="210" stroke="#94A3B8" stroke-width="1.5"/>
+            <line x1="80" y1="210" x2="390" y2="210" stroke="#CBD5E1" stroke-width="1"/>
+            
+            <!-- 4 根排序長條，依序帶有不同動畫延遲 -->
+            <!-- 項目 1 -->
+            <text x="70" y="55" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">研發部</text>
+            <rect x="80" y="38" width="0" height="26" rx="4" fill="#2563EB" class="anim-bar" style="--w: 270px; animation-delay: 0.1s;"/>
+            <text x="360" y="55" font-size="11" fill="#2563EB" font-weight="bold">450 萬</text>
+
+            <!-- 項目 2 -->
+            <text x="70" y="100" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">業務部</text>
+            <rect x="80" y="83" width="0" height="26" rx="4" fill="#3B82F6" class="anim-bar" style="--w: 200px; animation-delay: 0.25s;"/>
+            <text x="290" y="100" font-size="11" fill="#3B82F6" font-weight="bold">320 萬</text>
+
+            <!-- 項目 3 -->
+            <text x="70" y="145" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">行銷部</text>
+            <rect x="80" y="128" width="0" height="26" rx="4" fill="#60A5FA" class="anim-bar" style="--w: 130px; animation-delay: 0.4s;"/>
+            <text x="220" y="145" font-size="11" fill="#60A5FA" font-weight="bold">190 萬</text>
+
+            <!-- 項目 4 -->
+            <text x="70" y="190" font-size="12" fill="#334155" text-anchor="end" font-weight="bold">人資部</text>
+            <rect x="80" y="173" width="0" height="26" rx="4" fill="#93C5FD" class="anim-bar" style="--w: 70px; animation-delay: 0.55s;"/>
+            <text x="160" y="190" font-size="11" fill="#93C5FD" font-weight="bold">95 萬</text>
+          </svg>
+        `
+      },
+      compst: {
+        tagName: "組成問題",
+        enName: "Composition",
+        themeColor: "#ea580c",
+        core: "突顯「部分相對於整體的份額」，所有部分加總必須為 100%（或等於整體總額）。",
+        questions: [
+          "「公司總成本裡，人事費用占了幾成？」",
+          "「今年營業額主要是哪幾個產品線貢獻的？」",
+          "「各支付方式在全體訂單的占有比例各是多少？」"
+        ],
+        charts: ["百分比長條圖 (首選)", "甜甜圈圖 (≤ 4 類)", "圓餅圖", "堆疊長條圖"],
+        caption: "比例展開動畫：各部分合成 100%",
+        drawSVG: () => `
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <!-- 甜甜圈旋轉生長動畫 -->
+            <g transform="translate(130, 120)">
+              <!-- 底灰圓 -->
+              <circle cx="0" cy="0" r="65" fill="none" stroke="#F1F5F9" stroke-width="30"/>
+              <!-- 扇區 1: 50% (長度約 204) -->
+              <circle cx="0" cy="0" r="65" fill="none" stroke="#EA580C" stroke-width="30"
+                stroke-dasharray="204 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.1s; animation-duration: 0.9s;"/>
+              <!-- 扇區 2: 30% (長度約 122) -->
+              <circle cx="0" cy="0" r="65" fill="none" stroke="#FB923C" stroke-width="30"
+                stroke-dasharray="122 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.4s; animation-duration: 0.8s; transform: rotate(180deg); transform-origin: 0 0;"/>
+              <!-- 扇區 3: 20% (長度約 82) -->
+              <circle cx="0" cy="0" r="65" fill="none" stroke="#FED7AA" stroke-width="30"
+                stroke-dasharray="82 408" stroke-dashoffset="408" class="anim-line" style="animation-delay: 0.7s; animation-duration: 0.7s; transform: rotate(288deg); transform-origin: 0 0;"/>
+              <text x="0" y="6" font-size="13" fill="#7C2D12" font-weight="bold" text-anchor="middle">總和 100%</text>
+            </g>
+
+            <!-- 圖例與標註 -->
+            <g transform="translate(260, 60)">
+              <rect x="0" y="0" width="14" height="14" rx="3" fill="#EA580C"/>
+              <text x="22" y="12" font-size="13" fill="#334155" font-weight="bold">雲端軟體 (50%)</text>
+
+              <rect x="0" y="35" width="14" height="14" rx="3" fill="#FB923C"/>
+              <text x="22" y="47" font-size="13" fill="#334155" font-weight="bold">硬體設備 (30%)</text>
+
+              <rect x="0" y="70" width="14" height="14" rx="3" fill="#FED7AA"/>
+              <text x="22" y="82" font-size="13" fill="#334155" font-weight="bold">外部顧問 (20%)</text>
+
+              <line x1="0" y1="110" x2="140" y2="110" stroke="#CBD5E1" stroke-width="1"/>
+              <text x="0" y="130" font-size="11" fill="#EA580C" font-weight="bold">⚠️ 類別超過 5 個切忌圓餅圖</text>
+            </g>
+          </svg>
+        `
+      },
+      dist: {
+        tagName: "分布問題",
+        enName: "Distribution",
+        themeColor: "#7c3aed",
+        core: "突顯「數值的離散程度、集中趨勢與異常值（極端值）」。",
+        questions: [
+          "「大部分同仁的單程通勤時間落在哪個區間？」",
+          "「專案花費工時有沒有特別誇張的極端延遲個案？」",
+          "「客戶單筆消費金額是集中在幾百元，還是常出現破萬大單？」"
+        ],
+        charts: ["直方圖 (Histogram)", "箱形圖 / 盒鬚圖 (Box Plot)", "次數長條圖"],
+        caption: "直方圖與箱形圖：抓住集中與極端值",
+        drawSVG: () => `
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <line x1="40" y1="180" x2="380" y2="180" stroke="#94A3B8" stroke-width="1.2"/>
+            <line x1="40" y1="30" x2="40" y2="180" stroke="#CBD5E1" stroke-width="1"/>
+
+            <!-- 直方圖柱子動畫由底往上長 -->
+            <rect x="60" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 30px; --y: 150px; animation-delay: 0.1s;"/>
+            <rect x="96" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 80px; --y: 100px; animation-delay: 0.2s;"/>
+            <rect x="132" y="180" width="36" height="0" fill="#9333EA" stroke="#7E22CE" class="anim-col" style="--h: 130px; --y: 50px; animation-delay: 0.3s;"/>
+            <rect x="168" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 95px; --y: 85px; animation-delay: 0.4s;"/>
+            <rect x="204" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 55px; --y: 125px; animation-delay: 0.5s;"/>
+            <rect x="240" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 25px; --y: 155px; animation-delay: 0.6s;"/>
+            <rect x="276" y="180" width="36" height="0" fill="#C084FC" stroke="#A855F7" class="anim-col" style="--h: 12px; --y: 168px; animation-delay: 0.7s;"/>
+
+            <!-- 中位數標線 -->
+            <line x1="150" y1="30" x2="150" y2="180" stroke="#DC2626" stroke-width="2" stroke-dasharray="4 3" class="anim-line" style="animation-delay: 0.8s;"/>
+            <text x="156" y="40" font-size="11" fill="#DC2626" font-weight="bold">中位數</text>
+
+            <!-- 底部極端值標註 -->
+            <circle cx="340" cy="170" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.0s;"/>
+            <text x="340" y="155" font-size="10" fill="#DC2626" font-weight="bold" text-anchor="middle">極端異常值</text>
+            
+            <text x="150" y="202" font-size="11" fill="#64748B" text-anchor="middle">← 連續數值區間 (Bins) 相連無空隙 →</text>
+          </svg>
+        `
+      },
+      rel: {
+        tagName: "關係問題",
+        enName: "Relationship",
+        themeColor: "#059669",
+        core: "探討「兩個連續數值變數之間是否共同變化（正相關／負相關／無關）」。",
+        questions: [
+          "「業務同仁的拜訪次數越多，成交金額真的越高嗎？」",
+          "「員工加班工時與專案出現 Bug 的次數是否有連動？」",
+          "「廣告投放預算與官網新註冊人數是否有正向關聯？」"
+        ],
+        charts: ["散佈圖 (Scatter Plot)", "氣泡圖 (Bubble Chart)", "相關係數熱力圖"],
+        caption: "散佈點散開動畫：觀察成對趨勢連動",
+        drawSVG: () => `
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="200" x2="380" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
+            <line x1="50" y1="20" x2="50" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+
+            <!-- 趨勢擬合線動畫 -->
+            <line x1="70" y1="180" x2="360" y2="40" stroke="#10B981" stroke-width="2" stroke-dasharray="5 3" class="anim-line" style="animation-delay: 0.6s;"/>
+
+            <!-- 散佈點以不同延遲彈跳出現 -->
+            <circle cx="80" cy="170" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.1s;"/>
+            <circle cx="110" cy="155" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.15s;"/>
+            <circle cx="130" cy="165" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.2s;"/>
+            <circle cx="160" cy="130" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.25s;"/>
+            <circle cx="180" cy="140" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.3s;"/>
+            <circle cx="210" cy="110" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.35s;"/>
+            <circle cx="230" cy="95" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.4s;"/>
+            <circle cx="260" cy="100" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.45s;"/>
+            <circle cx="290" cy="75" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.5s;"/>
+            <circle cx="320" cy="60" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.55s;"/>
+            <circle cx="350" cy="45" r="5" fill="#059669" class="anim-dot" style="animation-delay: 0.6s;"/>
+
+            <text x="360" y="220" font-size="11" fill="#64748B" font-weight="bold">X 軸：拜訪次數 →</text>
+            <text x="60" y="25" font-size="11" fill="#64748B" font-weight="bold">↑ Y 軸：成交金額</text>
+            <text x="230" y="220" font-size="11" fill="#059669" font-weight="bold">正相關走向（禁止連線）</text>
+          </svg>
+        `
+      },
+      trend: {
+        tagName: "趨勢問題",
+        enName: "Trend",
+        themeColor: "#dc2626",
+        core: "觀察「數據隨時間序列演進的變化走勢、週期與轉折點」。",
+        questions: [
+          "「過去 12 個月營收是在成長還是下滑？」",
+          "「網站訪問流量在週末是否有週期性下跌？」",
+          "「新產品自上市以來，每日活躍用戶的走勢如何？」"
+        ],
+        charts: ["折線圖 (Line Chart)", "時間長條圖 (少時間點)", "堆疊面積圖"],
+        caption: "時間折線動態繪製：看清斜率與轉折",
+        drawSVG: () => `
+          <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg">
+            <line x1="50" y1="200" x2="380" y2="200" stroke="#94A3B8" stroke-width="1.5"/>
+            <line x1="50" y1="30" x2="50" y2="200" stroke="#CBD5E1" stroke-width="1"/>
+
+            <!-- 連續折線平滑動態畫出 -->
+            <polyline points="70,170 120,180 170,140 220,100 270,120 320,60 370,40"
+              fill="none" stroke="#DC2626" stroke-width="3" class="anim-line" style="animation-duration: 1.4s;"/>
+
+            <!-- 時間點節點 -->
+            <circle cx="70" cy="170" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.2s;"/><text x="70" y="218" font-size="10" fill="#64748B" text-anchor="middle">1月</text>
+            <circle cx="120" cy="180" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.4s;"/><text x="120" y="218" font-size="10" fill="#64748B" text-anchor="middle">2月</text>
+            <circle cx="170" cy="140" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.6s;"/><text x="170" y="218" font-size="10" fill="#64748B" text-anchor="middle">3月</text>
+            <circle cx="220" cy="100" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 0.8s;"/><text x="220" y="218" font-size="10" fill="#64748B" text-anchor="middle">4月</text>
+            <circle cx="270" cy="120" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.0s;"/><text x="270" y="218" font-size="10" fill="#64748B" text-anchor="middle">5月</text>
+            <circle cx="320" cy="60" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.2s;"/><text x="320" y="218" font-size="10" fill="#64748B" text-anchor="middle">6月</text>
+            <circle cx="370" cy="40" r="4.5" fill="#DC2626" class="anim-dot" style="animation-delay: 1.4s;"/><text x="370" y="218" font-size="10" fill="#64748B" text-anchor="middle">7月</text>
+          </svg>
+        `
+      }
+    };
+
+    let currentType = 'comp';
+
+    function renderType(typeKey) {
+      currentType = typeKey;
+      const data = dataModel[typeKey];
+
+      // 按鈕 active
+      document.querySelectorAll('.type-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.type === typeKey);
+      });
+
+      // 標題與標籤
+      const tag = document.getElementById('typeTag');
+      tag.innerText = data.tagName;
+      tag.style.background = data.themeColor;
+      document.getElementById('typeEnTitle').innerText = data.enName;
+
+      // 溝通核心（最上方）
+      const coreBox = document.getElementById('coreBox');
+      coreBox.style.borderLeftColor = data.themeColor;
+      coreBox.querySelector('.label').style.color = data.themeColor;
+      document.getElementById('coreContent').innerText = data.core;
+
+      // 經典問法
+      const qList = document.getElementById('questionsList');
+      qList.innerHTML = data.questions.map(q => `
+        <div class="q-item">
+          <span class="bubble-icon">💬</span>
+          <span>${q}</span>
+        </div>
+      `).join('');
+
+      // 對應圖表標籤
+      const pills = document.getElementById('chartPills');
+      pills.innerHTML = data.charts.map((c, idx) => `
+        <span class="chart-pill ${idx === 0 ? 'highlight' : ''}">${c}</span>
+      `).join('');
+
+      // 右側圖表標題與 SVG 動畫重繪
+      document.getElementById('chartCaption').innerText = data.caption;
+      playSVG(data);
+    }
+
+    function playSVG(data) {
+      const container = document.getElementById('svgStage');
+      container.innerHTML = data.drawSVG();
+    }
+
+    // 按鈕切換監聽
+    document.getElementById('typeSwitcher').addEventListener('click', (e) => {
+      const btn = e.target.closest('.type-btn');
+      if (btn) {
+        renderType(btn.dataset.type);
+      }
+    });
+
+    // 重新播放按鈕
+    document.getElementById('replayBtn').addEventListener('click', () => {
+      playSVG(dataModel[currentType]);
+    });
+
+    // 預設載入比較
+    renderType('comp');
+  </script>
+</body>
+</html>
