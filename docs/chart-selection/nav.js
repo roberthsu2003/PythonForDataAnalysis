@@ -5,6 +5,7 @@
   const navItems = [
     { title: "章節大廳", url: "./index.html" },
     { title: "🎯 五大問題與圖表動畫", url: "./question-types.html" },
+    { title: "📐 圖表名稱與坐標軸", url: "./chart-vocabulary.html" },
     { title: "📊 資料條件挑圖指南", url: "./chart-matrix.html" },
     { title: "⚡ 欄位組合速查", url: "./field-combinations.html" }
   ];

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>常用圖表名稱與座標軸配置指南 | 圖表思維互動實驗室</title>
+  <meta name="description" content="學習常用圖表的中英文名稱、X/Y 軸配置規範與核心用途，掌握向 AI 提問的視覺化關鍵字。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-light: #eff6ff;
+      --primary-border: #bfdbfe;
+      --slate-50: #f8fafc;
+      --slate-100: #f1f5f9;
+      --slate-200: #e2e8f0;
+      --slate-300: #cbd5e1;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1e293b;
+      --slate-900: #0f172a;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.08), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.08), 0 10px 10px -5px rgba(0,0,0,0.03);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, sans-serif;
+      background: #F8FAFC;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 80px;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 960px;
+      margin: 40px auto 28px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 0.88rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 2.3rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--slate-600);
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 篩選標籤 */
+    .filter-tabs {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1.5px solid var(--slate-200);
+      background: #FFFFFF;
+      color: var(--slate-700);
+      font-size: 0.92rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .filter-btn.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.25);
+    }
+
+    /* 圖表卡片網格 */
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+
+    .chart-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      box-shadow: var(--shadow-md);
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+    .chart-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--theme-color, var(--primary));
+    }
+    .chart-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: var(--theme-color, var(--primary));
+    }
+
+    .card-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+    .chart-title-group {
+      display: flex;
+      flex-direction: column;
+    }
+    .chart-name-cn {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .chart-name-en {
+      font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+      font-size: 0.85rem;
+      color: var(--slate-600);
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .category-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: var(--theme-light, #EFF6FF);
+      color: var(--theme-color, #2563EB);
+      white-space: nowrap;
+    }
+
+    /* 座標軸資訊盒 */
+    .axes-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      margin: 14px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .axis-row {
+      display: flex;
+      align-items: center;
+      font-size: 0.88rem;
+    }
+    .axis-label {
+      width: 65px;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .axis-val {
+      color: var(--slate-700);
+      font-weight: 500;
+      flex: 1;
+    }
+    .axis-val strong {
+      color: var(--theme-color, var(--primary));
+    }
+
+    .chart-desc {
+      font-size: 0.9rem;
+      color: var(--slate-600);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .code-preview {
+      background: #0F172A;
+      color: #38BDF8;
+      font-family: 'SFMono-Regular', Consolas, Menlo, monospace;
+      font-size: 0.8rem;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .copy-btn {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #FFFFFF;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 8px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* 軸線原則全景圖區塊 */
+    .infographic-section {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 48px;
+      box-shadow: var(--shadow-md);
+    }
+    .infographic-section h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .infographic-section p {
+      color: var(--slate-600);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+    }
+    .svg-container {
+      width: 100%;
+      overflow-x: auto;
+      text-align: center;
+      background: #F8FAFC;
+      border-radius: var(--radius-md);
+      padding: 16px;
+      border: 1px solid var(--slate-200);
+    }
+    .svg-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    footer {
+      max-width: 1160px;
+      margin: 48px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+  <script src="./js/nav.js"></script>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">📐 第三章・圖表詞彙與軸線原理</div>
+    <h1>常用圖表名稱與座標軸配置指南</h1>
+    <p>掌握長條圖、直方圖、散佈圖的中英文名稱與 X/Y 軸職責分配，避開坐標軸放置地雷，精準指揮 AI 產出商業圖表！</p>
+  </section>
+
+  <div class="container">
+
+    <!-- 類別篩選按鈕 -->
+    <div class="filter-tabs">
+      <button class="filter-btn active" data-filter="all">🌟 全部圖表 (10)</button>
+      <button class="filter-btn" data-filter="comp">📊 比較類 (3)</button>
+      <button class="filter-btn" data-filter="compst">🥧 組成類 (2)</button>
+      <button class="filter-btn" data-filter="dist">📦 分布類 (2)</button>
+      <button class="filter-btn" data-filter="rel">🔗 關係類 (2)</button>
+      <button class="filter-btn" data-filter="trend">📈 趨勢類 (1)</button>
+    </div>
+
+    <!-- 圖表卡片清單 -->
+    <div class="grid-container" id="chartGrid">
+      
+      <!-- 1. 垂直長條圖 -->
+      <div class="chart-card" data-cat="comp" style="--theme-color: #16A34A; --theme-light: #F0FDF4;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📊 垂直長條圖</span>
+            <span class="chart-name-en">Column Chart</span>
+          </div>
+          <span class="category-badge">比較類</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>少數類別</strong> (≤ 6 個，如部門、產品)</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>連續數值指標</strong>（⚠️ 必須從 0 起算）</span>
+          </div>
+        </div>
+        <p class="chart-desc">比較少數類別的業績、花費或數量高低差距。類別少時直立挺拔，一目瞭然。</p>
+        <div class="code-preview">
+          <code>plt.bar(df['部門'], df['金額'])</code>
+          <button class="copy-btn" onclick="copyText('plt.bar(df[\'部門\'], df[\'金額\'])')">複製</button>
+        </div>
+      </div>
+
+      <!-- 2. 水平長條圖 -->
+      <div class="chart-card" data-cat="comp" style="--theme-color: #16A34A; --theme-light: #F0FDF4;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📊 水平長條圖</span>
+            <span class="chart-name-en">Horizontal Bar Chart (barh)</span>
+          </div>
+          <span class="category-badge">比較類・首選</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>連續數值指標</strong>（從 0 向右展開）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>類別名稱</strong>（文字由左至右水平閱讀）</span>
+          </div>
+        </div>
+        <p class="chart-desc"><strong>職場排名最強圖表！</strong> 項目多（≥ 7 個）或名稱很長時，依數值由大到小排序展開。</p>
+        <div class="code-preview">
+          <code>plt.barh(df['項目'], df['數值'])</code>
+          <button class="copy-btn" onclick="copyText('plt.barh(df[\'項目\'], df[\'數值\'])')">複製</button>
+        </div>
+      </div>
+
+      <!-- 3. 分組長條圖 -->
+      <div class="chart-card" data-cat="comp" style="--theme-color: #16A34A; --theme-light: #F0FDF4;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📊 分組長條圖</span>
+            <span class="chart-name-en">Grouped Bar Chart</span>
+          </div>
+          <span class="category-badge">比較類</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>主要分組類別</strong>（如各部門）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>數值指標</strong> ＋ <strong>圖例</strong>（今年 vs 去年）</span>
+          </div>
+        </div>
+        <p class="chart-desc">在同一類別內同時比對「目標 vs 實際」或「今年 vs 去年」的雙指標落差。</p>
+        <div class="code-preview">
+          <code>sns.barplot(x='部門', y='金額', hue='年度')</code>
+          <button class="copy-btn" onclick="copyText('sns.barplot(x=\'部門\', y=\'金額\', hue=\'年度\', data=df)')">複製</button>
+        </div>
+      </div>
+
+      <!-- 4. 百分比長條圖 -->
+      <div class="chart-card" data-cat="compst" style="--theme-color: #EA580C; --theme-light: #FFF7ED;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📊 百分比長條圖</span>
+            <span class="chart-name-en">100% Stacked Bar Chart</span>
+          </div>
+          <span class="category-badge">組成類・首選</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">軸線：</span>
+            <span class="axis-val">一軸為分類，另一軸為 <strong>0% ~ 100% 百分比</strong></span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">特徵：</span>
+            <span class="axis-val"><strong>色塊總長固定為 100%</strong>，易比對長度</span>
+          </div>
+        </div>
+        <p class="chart-desc"><strong>看內部結構占比的首選！</strong> 比圓餅圖更容易讓眼睛精確比較比例差距。</p>
+        <div class="code-preview">
+          <code>df_pct.plot(kind='bar', stacked=True)</code>
+          <button class="copy-btn" onclick="copyText('df_pct.plot(kind=\'bar\', stacked=True)')">複製</button>
+        </div>
+      </div>
+
+      <!-- 5. 甜甜圈/圓餅圖 -->
+      <div class="chart-card" data-cat="compst" style="--theme-color: #EA580C; --theme-light: #FFF7ED;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">🥧 甜甜圈 / 圓餅圖</span>
+            <span class="chart-name-en">Donut / Pie Chart</span>
+          </div>
+          <span class="category-badge">組成類・有條件</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">軸線：</span>
+            <span class="axis-val"><strong>無 X/Y 軸</strong>（以圓心角與切片弧長代表比例）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">禁忌：</span>
+            <span class="axis-val"><strong>類別必須 ≤ 4 個</strong>，嚴禁 3D 傾斜</span>
+          </div>
+        </div>
+        <p class="chart-desc">僅適用於類別極少且想強調某一個「過半壓倒性主導份額」的情境。</p>
+        <div class="code-preview">
+          <code>plt.pie(df['金額'], labels=df['類別'])</code>
+          <button class="copy-btn" onclick="copyText('plt.pie(df[\'金額\'], labels=df[\'類別\'], autopct=\'%1.1f%%\')')">複製</button>
+        </div>
+      </div>
+
+      <!-- 6. 直方圖 -->
+      <div class="chart-card" data-cat="dist" style="--theme-color: #9333EA; --theme-light: #FAF5FF;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📶 直方圖</span>
+            <span class="chart-name-en">Histogram</span>
+          </div>
+          <span class="category-badge">分布類・看形狀</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>連續數值切成的等寬區間 (Bins)</strong></span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>落入該區間的次數／筆數 (Count)</strong></span>
+          </div>
+        </div>
+        <p class="chart-desc">看成百上千筆數字大多落在哪個區間。<strong>柱子與柱子緊密相連</strong>，代表連續數值。</p>
+        <div class="code-preview">
+          <code>plt.hist(df['薪資'], bins=10)</code>
+          <button class="copy-btn" onclick="copyText('plt.hist(df[\'薪資\'], bins=10, edgecolor=\'black\')')">複製</button>
+        </div>
+      </div>
+
+      <!-- 7. 箱形圖 -->
+      <div class="chart-card" data-cat="dist" style="--theme-color: #9333EA; --theme-light: #FAF5FF;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📦 箱形圖 / 盒鬚圖</span>
+            <span class="chart-name-en">Box Plot</span>
+          </div>
+          <span class="category-badge">分布類・抓異常</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">數值軸：</span>
+            <span class="axis-val"><strong>連續度量數值</strong>（中位數、四分位 Q1/Q3）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">分組軸：</span>
+            <span class="axis-val">各部門或品類（可選，進行並列比較）</span>
+          </div>
+        </div>
+        <p class="chart-desc"><strong>秒抓離群極端值！</strong> 檢視平均數是否被極端值欺騙的最佳利器。</p>
+        <div class="code-preview">
+          <code>sns.boxplot(x='部門', y='通勤時間')</code>
+          <button class="copy-btn" onclick="copyText('sns.boxplot(x=\'部門\', y=\'通勤時間\', data=df)')">複製</button>
+        </div>
+      </div>
+
+      <!-- 8. 散佈圖 -->
+      <div class="chart-card" data-cat="rel" style="--theme-color: #E11D48; --theme-light: #FFF1F2;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">🔘 散佈圖</span>
+            <span class="chart-name-en">Scatter Plot</span>
+          </div>
+          <span class="category-badge">關係類・雙數值</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>連續數值變數 A</strong>（如：預估工時）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>連續數值變數 B</strong>（如：實際工時）</span>
+          </div>
+        </div>
+        <p class="chart-desc">檢驗兩指標是否同步升降（正負相關）。<strong>切勿用線條將點連起來</strong>！</p>
+        <div class="code-preview">
+          <code>plt.scatter(df['預估'], df['實際'])</code>
+          <button class="copy-btn" onclick="copyText('plt.scatter(df[\'預估\'], df[\'實際\'])')">複製</button>
+        </div>
+      </div>
+
+      <!-- 9. 相關熱力圖 -->
+      <div class="chart-card" data-cat="rel" style="--theme-color: #E11D48; --theme-light: #FFF1F2;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">🌡️ 相關係數熱力圖</span>
+            <span class="chart-name-en">Correlation Heatmap</span>
+          </div>
+          <span class="category-badge">關係類・多變數</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X/Y 軸：</span>
+            <span class="axis-val"><strong>各個連續數值欄位名稱的矩陣交叉</strong></span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">顏色：</span>
+            <span class="axis-val"><strong>相關係數 r (-1 ~ +1)</strong>，深淺反映強弱</span>
+          </div>
+        </div>
+        <p class="chart-desc">多個數值欄位兩兩關係的全景掃描工具。提醒：相關不代表因果！</p>
+        <div class="code-preview">
+          <code>sns.heatmap(df.corr(), annot=True)</code>
+          <button class="copy-btn" onclick="copyText('sns.heatmap(df.corr(), annot=True, cmap=\'coolwarm\')')">複製</button>
+        </div>
+      </div>
+
+      <!-- 10. 折線圖 -->
+      <div class="chart-card" data-cat="trend" style="--theme-color: #0284C7; --theme-light: #F0F9FF;">
+        <div class="card-head">
+          <div class="chart-title-group">
+            <span class="chart-name-cn">📈 折線圖</span>
+            <span class="chart-name-en">Line Chart</span>
+          </div>
+          <span class="category-badge">趨勢類・時間序</span>
+        </div>
+        <div class="axes-box">
+          <div class="axis-row">
+            <span class="axis-label">X 軸：</span>
+            <span class="axis-val"><strong>時間型態</strong>（日期、月份，嚴格由早到晚）</span>
+          </div>
+          <div class="axis-row">
+            <span class="axis-label">Y 軸：</span>
+            <span class="axis-val"><strong>連續數值指標</strong>（金額、流量）</span>
+          </div>
+        </div>
+        <p class="chart-desc">連續時間點（> 5 個）看成長、衰退與週期性。<strong>非時間類別嚴禁連線</strong>。</p>
+        <div class="code-preview">
+          <code>plt.plot(df['日期'], df['營收'])</code>
+          <button class="copy-btn" onclick="copyText('plt.plot(df[\'日期\'], df[\'營收\'], marker=\'o\')')">複製</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- 坐標軸配置與圖表基礎 SVG 全景圖 -->
+    <div class="infographic-section">
+      <h2>📐 坐標軸配置黃金法則與常用圖表全景圖</h2>
+      <p>下圖將 X 軸（條件/維度）與 Y 軸（指標/數值）的標準配置、水平長條圖對調例外與禁忌一次整合說明：</p>
+      <div class="svg-container">
+        <img src="../../看懂資料與選對圖表/圖解/坐標軸配置與常用圖表說明.svg" alt="坐標軸配置與常用圖表說明">
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>返回專題文件：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E5%B8%B8%E7%94%A8%E5%9C%96%E8%A1%A8%E5%90%8D%E7%A8%B1%E8%88%87%E5%9D%90%E6%A8%99%E8%BB%B8%E8%AA%AA%E6%98%8E" target="_blank">📖 常用圖表名稱與坐標軸說明全文</a> ｜ <a href="./chart-matrix.html">📊 條件挑圖指南</a></p>
+  </footer>
+
+  <script>
+    // 篩選功能
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('.chart-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        cards.forEach(card => {
+          if (filter === 'all' || card.dataset.cat === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 複製程式碼功能
+    function copyText(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        alert('已複製到剪貼簿：\n' + text);
+      }).catch(err => {
+        console.error('複製失敗：', err);
+      });
+    }
+  </script>
+</body>
+</html>
