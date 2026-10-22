@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>依據資料條件精準挑圖・5 大類型視覺化指南 | Python 資料分析</title>
+  <meta name="description" content="依據資料條件（項目數量、標籤長短、變數多寡）精準挑選圖表！比較、組成、分布、關係、趨勢 5 大類別 15 種圖表動態實測與避坑決策。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563EB;
+      --primary-light: #EFF6FF;
+      --primary-border: #BFDBFE;
+      
+      --comp-color: #2563EB;
+      --comp-bg: #EFF6FF;
+      --comp-border: #BFDBFE;
+
+      --compst-color: #EA580C;
+      --compst-bg: #FFF7ED;
+      --compst-border: #FED7AA;
+
+      --dist-color: #7C3AED;
+      --dist-bg: #F5F3FF;
+      --dist-border: #DDD6FE;
+
+      --rel-color: #059669;
+      --rel-bg: #ECFDF5;
+      --rel-border: #A7F3D0;
+
+      --trend-color: #DC2626;
+      --trend-bg: #FEF2F2;
+      --trend-border: #FECACA;
+
+      --slate-50: #F8FAFC;
+      --slate-100: #F1F5F9;
+      --slate-200: #E2E8F0;
+      --slate-300: #CBD5E1;
+      --slate-400: #94A3B8;
+      --slate-500: #64748B;
+      --slate-600: #475569;
+      --slate-700: #334155;
+      --slate-800: #1E293B;
+      --slate-900: #0F172A;
+
+      --radius-lg: 16px;
+      --radius-md: 10px;
+      --radius-sm: 6px;
+
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.08), 0 4px 6px -4px rgba(0,0,0,0.03);
+      --shadow-xl: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.04);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F8FAFC;
+      color: var(--slate-800);
+      line-height: 1.6;
+      padding-bottom: 90px;
+    }
+
+    /* Hero */
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 28px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 14px;
+      background: var(--primary-light);
+      border: 1px solid var(--primary-border);
+      border-radius: 999px;
+      color: var(--primary);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .hero h1 {
+      font-size: 2.35rem;
+      font-weight: 900;
+      color: var(--slate-900);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+      line-height: 1.25;
+    }
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--slate-600);
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 頂部分類切換選單 */
+    .type-switcher {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .type-tab {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 10px 18px;
+      font-size: 0.92rem;
+      font-weight: 700;
+      color: var(--slate-700);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .type-tab:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    .type-tab.active[data-type="comp"] {
+      background: var(--comp-color); border-color: var(--comp-color); color: #FFF;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+    }
+    .type-tab.active[data-type="compst"] {
+      background: var(--compst-color); border-color: var(--compst-color); color: #FFF;
+      box-shadow: 0 4px 14px rgba(234,88,12,0.35);
+    }
+    .type-tab.active[data-type="dist"] {
+      background: var(--dist-color); border-color: var(--dist-color); color: #FFF;
+      box-shadow: 0 4px 14px rgba(124,58,237,0.35);
+    }
+    .type-tab.active[data-type="rel"] {
+      background: var(--rel-color); border-color: var(--rel-color); color: #FFF;
+      box-shadow: 0 4px 14px rgba(5,150,105,0.35);
+    }
+    .type-tab.active[data-type="trend"] {
+      background: var(--trend-color); border-color: var(--trend-color); color: #FFF;
+      box-shadow: 0 4px 14px rgba(220,38,38,0.35);
+    }
+    .type-tab.active[data-type="all"] {
+      background: var(--slate-900); border-color: var(--slate-900); color: #FFF;
+      box-shadow: 0 4px 14px rgba(15,23,42,0.35);
+    }
+
+    /* 類別說明卡片 (Core Question Banner) */
+    .category-banner {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      border-left: 6px solid var(--primary);
+      transition: border-color 0.3s ease;
+    }
+    .banner-text h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .banner-text p {
+      font-size: 0.95rem;
+      color: var(--slate-600);
+    }
+    .banner-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .matrix-toggle-btn {
+      padding: 8px 16px;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: var(--slate-100);
+      border: 1px solid var(--slate-300);
+      color: var(--slate-700);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .matrix-toggle-btn:hover {
+      background: #FFFFFF;
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* 條件篩選模擬列 (Decision Conditions) */
+    .filter-bar {
+      background: #FFFFFF;
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .filter-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .filter-chip {
+      background: var(--slate-100);
+      border: 1px solid var(--slate-200);
+      color: var(--slate-700);
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .filter-chip:hover {
+      background: #E2E8F0;
+      color: var(--slate-900);
+    }
+    .filter-chip.active {
+      background: var(--slate-900);
+      border-color: var(--slate-900);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(15,23,42,0.25);
+    }
+
+    /* 矩陣大圖浮動展示區 (可展開) */
+    .matrix-diagram-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-300);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      margin-bottom: 32px;
+      box-shadow: var(--shadow-md);
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+    .matrix-diagram-card.show {
+      display: block;
+    }
+    .matrix-diagram-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .matrix-diagram-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .matrix-img-wrap {
+      width: 100%;
+      text-align: center;
+      background: var(--slate-50);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      overflow-x: auto;
+    }
+    .matrix-img-wrap img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* 圖表卡片網格 (2 欄或 3 欄) */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    /* 單張圖表卡片 */
+    .chart-card {
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .chart-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--card-border, #CBD5E1);
+    }
+    .chart-card.highlighted {
+      border: 2px solid var(--card-accent, var(--primary));
+      box-shadow: 0 0 0 4px rgba(37,99,235,0.15), var(--shadow-xl);
+      transform: scale(1.015);
+    }
+    .chart-card.dimmed {
+      opacity: 0.35;
+      filter: grayscale(0.7);
+      transform: scale(0.98);
+    }
+
+    /* 卡片頭部 */
+    .card-head {
+      padding: 16px 20px;
+      background: var(--slate-50);
+      border-bottom: 1px solid var(--slate-200);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .chart-names h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      margin-bottom: 2px;
+    }
+    .chart-names span {
+      font-size: 0.8rem;
+      color: var(--slate-500);
+      font-weight: 600;
+    }
+    .badge-wrap {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .pill-badge {
+      font-size: 0.72rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 999px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .pill-primary { background: #DBEAFE; color: #1E40AF; }
+    .pill-orange  { background: #FFEDD5; color: #9A3412; }
+    .pill-purple  { background: #EDE9FE; color: #5B21B6; }
+    .pill-green   { background: #D1FAE5; color: #065F46; }
+    .pill-red     { background: #FEE2E2; color: #991B1B; }
+
+    /* SVG 繪圖舞台 */
+    .chart-preview-stage {
+      padding: 16px 20px;
+      background: #FFFFFF;
+      min-height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-bottom: 1px solid var(--slate-200);
+    }
+    .stage-svg-wrap {
+      width: 100%;
+      height: 155px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .stage-svg-wrap svg {
+      width: 100%;
+      height: 100%;
+      max-height: 155px;
+      display: block;
+    }
+    .replay-chart-btn {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      background: rgba(241, 245, 249, 0.85);
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--slate-600);
+      padding: 3px 7px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: all 0.15s ease;
+    }
+    .replay-chart-btn:hover {
+      background: #FFFFFF;
+      color: var(--primary);
+      border-color: var(--primary);
+    }
+
+    /* 卡片內容主體 */
+    .card-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      flex: 1;
+    }
+
+    /* 命中條件區塊 */
+    .condition-box {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+    }
+    .cond-title {
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--slate-500);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .cond-desc {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      line-height: 1.4;
+    }
+
+    /* 關鍵避坑指引 */
+    .caveat-box {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      color: #92400E;
+      line-height: 1.45;
+    }
+    .caveat-box strong {
+      color: #78350F;
+    }
+
+    /* 程式碼小抄 */
+    .code-box {
+      background: #0F172A;
+      border-radius: var(--radius-md);
+      padding: 10px 14px;
+      color: #F8FAFC;
+      font-family: 'Fira Code', monospace;
+      font-size: 0.76rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+    .code-box code {
+      color: #38BDF8;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .code-badge {
+      font-size: 0.7rem;
+      color: #94A3B8;
+      background: #1E293B;
+      padding: 2px 6px;
+      border-radius: 4px;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    /* 互動測驗區塊 */
+    .quiz-section {
+      margin-top: 54px;
+      background: #FFFFFF;
+      border: 1.5px solid var(--slate-200);
+      border-radius: var(--radius-lg);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-md);
+    }
+    .quiz-header {
+      margin-bottom: 24px;
+    }
+    .quiz-header h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--slate-900);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 6px;
+    }
+    .quiz-header p {
+      font-size: 0.95rem;
+      color: var(--slate-600);
+    }
+    .quiz-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+    .quiz-card {
+      background: var(--slate-50);
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .quiz-q {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--slate-800);
+      line-height: 1.5;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .quiz-btn {
+      text-align: left;
+      padding: 10px 14px;
+      background: #FFFFFF;
+      border: 1px solid var(--slate-300);
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--slate-700);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .quiz-btn:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .quiz-btn.correct {
+      background: #DCFCE7 !important;
+      border-color: #22C55E !important;
+      color: #15803D !important;
+      font-weight: 700;
+    }
+    .quiz-btn.wrong {
+      background: #FEE2E2 !important;
+      border-color: #EF4444 !important;
+      color: #B91C1C !important;
+    }
+    .quiz-feedback {
+      font-size: 0.85rem;
+      padding: 10px 12px;
+      border-radius: var(--radius-sm);
+      display: none;
+      line-height: 1.45;
+    }
+    .quiz-feedback.show {
+      display: block;
+    }
+    .quiz-feedback.correct-fb {
+      background: #ECFDF5;
+      color: #065F46;
+      border: 1px solid #A7F3D0;
+    }
+    .quiz-feedback.wrong-fb {
+      background: #FEF2F2;
+      color: #991B1B;
+      border: 1px solid #FECACA;
+    }
+
+    /* 頁尾 */
+    footer {
+      max-width: 1200px;
+      margin: 60px auto 0;
+      padding: 24px;
+      border-top: 1px solid var(--slate-200);
+      text-align: center;
+      color: var(--slate-600);
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.85rem; }
+      .charts-grid { grid-template-columns: 1fr; }
+      .category-banner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <script src="./js/nav.js"></script>
+</head>
+<body>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-badge">📊 第三步：依據資料條件精準挑圖</div>
+    <h1>5 大類型視覺化決策指南</h1>
+    <p>問完問題後，手邊資料的「項目多寡、標籤長短、變數數量」直接決定挑選哪一張圖！點擊分類與條件，觀看動態圖表與避坑準則。</p>
+  </section>
+
+  <div class="container">
+
+    <!-- 頂部五大類型 Tab 切換 -->
+    <div class="type-switcher" id="typeTabs">
+      <button class="type-tab active" data-type="comp">
+        <span>📊</span> 1. 比較 (Comparison)
+      </button>
+      <button class="type-tab" data-type="compst">
+        <span>🍰</span> 2. 組成 (Composition)
+      </button>
+      <button class="type-tab" data-type="dist">
+        <span>📦</span> 3. 分布 (Distribution)
+      </button>
+      <button class="type-tab" data-type="rel">
+        <span>🔗</span> 4. 關係 (Relationship)
+      </button>
+      <button class="type-tab" data-type="trend">
+        <span>📈</span> 5. 趨勢 (Trend)
+      </button>
+      <button class="type-tab" data-type="all">
+        <span>🌐</span> 檢視全部 (15 種圖表)
+      </button>
+    </div>
+
+    <!-- 類別說明橫幅 -->
+    <div class="category-banner" id="categoryBanner" style="border-left-color: var(--comp-color);">
+      <div class="banner-text">
+        <h2 id="bannerTitle">
+          <span>📊</span> 比較 (Comparison) 的圖表選用
+        </h2>
+        <p id="bannerDesc">
+          🎯 <strong>核心提問</strong>：「哪一個對象較高？」、「誰排第一名？」、「兩者差距多少？」
+        </p>
+      </div>
+      <div class="banner-actions">
+        <button class="matrix-toggle-btn" id="toggleMatrixBtn">
+          <span>🗺️</span> 查看決策矩陣圖解
+        </button>
+      </div>
+    </div>
+
+    <!-- 矩陣 SVG 圖解展示區（可展開） -->
+    <div class="matrix-diagram-card" id="matrixDiagramCard">
+      <div class="matrix-diagram-header">
+        <div class="matrix-diagram-title">
+          <span>🖼️</span> <span id="matrixDiagramTitle">比較圖表選用矩陣圖</span>
+        </div>
+        <button class="matrix-toggle-btn" id="closeMatrixBtn" style="padding: 4px 10px; font-size: 0.8rem;">
+          ✕ 收合圖解
+        </button>
+      </div>
+      <div class="matrix-img-wrap">
+        <img id="matrixDiagramImg" src="./images/matrix-comparison.svg" alt="選圖決策矩陣">
+      </div>
+    </div>
+
+    <!-- 條件篩選列 -->
+    <div class="filter-bar" id="filterBar">
+      <div class="filter-title">
+        <span>⚡</span> 資料條件過濾：
+      </div>
+      <div class="filter-tags" id="filterChips">
+        <!-- 由 JS 動態注入該類別下的條件按鈕 -->
+      </div>
+    </div>
+
+    <!-- 圖表卡片網格 -->
+    <div class="charts-grid" id="chartsGrid">
+      <!-- 由 JS 動態注入 15 張圖表卡片 -->
+    </div>
+
+    <!-- 互動練習情境測驗 -->
+    <section class="quiz-section">
+      <div class="quiz-header">
+        <h2><span>🎯</span> 3 秒選圖情境快問快答</h2>
+        <p>測試你在真實職場中，能否一眼根據「資料特徵」挑中正確圖表：</p>
+      </div>
+      <div class="quiz-grid">
+        
+        <!-- 題目 1 -->
+        <div class="quiz-card" data-ans="b">
+          <div class="quiz-q">
+            <strong>情境 1：</strong> 手邊有 <strong>15 個產品分類</strong> 的今年營業額，且分類名稱很長（例如「智慧物聯網家庭安全套件」），該選哪種圖？
+          </div>
+          <div class="quiz-options">
+            <button class="quiz-btn" data-choice="a">A. 垂直長條圖（文字斜轉 45 度）</button>
+            <button class="quiz-btn" data-choice="b">B. 水平長條圖（由大到小排序）</button>
+            <button class="quiz-btn" data-choice="c">C. 圓餅圖（切成 15 塊）</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <!-- 題目 2 -->
+        <div class="quiz-card" data-ans="a">
+          <div class="quiz-q">
+            <strong>情境 2：</strong> 分析 <strong>400 位員工月薪</strong>，想找出中位數、確認是否有極端高薪主管拉偏平均，並標示離群值？
+          </div>
+          <div class="quiz-options">
+            <button class="quiz-btn" data-choice="a">A. 箱形圖 / 盒鬚圖 (Box Plot)</button>
+            <button class="quiz-btn" data-choice="b">B. 折線圖 (Line Chart)</button>
+            <button class="quiz-btn" data-choice="c">C. 甜甜圈圖 (Donut Chart)</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+        <!-- 題目 3 -->
+        <div class="quiz-card" data-ans="c">
+          <div class="quiz-q">
+            <strong>情境 3：</strong> 比較 <strong>2021、2022、2023</strong> 三個年份的總營收，只有 3 個時間點，用什麼圖最穩重？
+          </div>
+          <div class="quiz-options">
+            <button class="quiz-btn" data-choice="a">A. 折線圖（連成一條細線）</button>
+            <button class="quiz-btn" data-choice="b">B. 散佈圖（點三個點）</button>
+            <button class="quiz-btn" data-choice="c">C. 時間長條圖 (Time-series Bar)</button>
+          </div>
+          <div class="quiz-feedback"></div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- 頁尾 -->
+  <footer>
+    <p>專案開源庫：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank">roberthsu2003 / PythonForDataAnalysis</a></p>
+    <p style="margin-top: 6px; font-size: 0.85rem;">本教材致力於幫助一般辦公室人員與分析初學者建立紮實的圖表溝通力。</p>
+  </footer>
+
+  <script>
+    // 15 種圖表完整資料集
+    const CHARTS_DATA = [
+      // 1. 比較 (Comparison)
+      {
+        id: "col-chart",
+        category: "comp",
+        name: "垂直長條圖",
+        enName: "Column Chart",
+        badge: "最常用",
+        badgeClass: "pill-primary",
+        conditions: ["few-cat", "short-label"],
+        conditionText: "類別數量少（≤ 7 個）且標籤簡短",
+        caveat: "<strong>Y 軸絕對要從 0 開始</strong>！截斷基準線會嚴重放大差距誤導觀眾。",
+        pythonCode: "sns.barplot(data=df, x='類別', y='數值')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <line x1="30" y1="20" x2="30" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="24" y="124" font-size="9" fill="#94A3B8" text-anchor="end">0</text>
+            <!-- 柱 1 -->
+            <rect x="50" y="40" width="36" height="80" rx="3" fill="#2563EB">
+              <animate attributeName="height" from="0" to="80" dur="0.6s" fill="freeze" />
+              <animate attributeName="y" from="120" to="40" dur="0.6s" fill="freeze" />
+            </rect>
+            <text x="68" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">門市 A</text>
+            <text x="68" y="34" font-size="9" fill="#2563EB" font-weight="800" text-anchor="middle">85萬</text>
+            <!-- 柱 2 -->
+            <rect x="115" y="65" width="36" height="55" rx="3" fill="#3B82F6">
+              <animate attributeName="height" from="0" to="55" dur="0.6s" begin="0.1s" fill="freeze" />
+              <animate attributeName="y" from="120" to="65" dur="0.6s" begin="0.1s" fill="freeze" />
+            </rect>
+            <text x="133" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">門市 B</text>
+            <text x="133" y="59" font-size="9" fill="#3B82F6" font-weight="800" text-anchor="middle">62萬</text>
+            <!-- 柱 3 -->
+            <rect x="180" y="30" width="36" height="90" rx="3" fill="#1D4ED8">
+              <animate attributeName="height" from="0" to="90" dur="0.6s" begin="0.2s" fill="freeze" />
+              <animate attributeName="y" from="120" to="30" dur="0.6s" begin="0.2s" fill="freeze" />
+            </rect>
+            <text x="198" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">門市 C</text>
+            <text x="198" y="24" font-size="9" fill="#1D4ED8" font-weight="800" text-anchor="middle">98萬</text>
+            <!-- 柱 4 -->
+            <rect x="245" y="80" width="36" height="40" rx="3" fill="#60A5FA">
+              <animate attributeName="height" from="0" to="40" dur="0.6s" begin="0.3s" fill="freeze" />
+              <animate attributeName="y" from="120" to="80" dur="0.6s" begin="0.3s" fill="freeze" />
+            </rect>
+            <text x="263" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">門市 D</text>
+            <text x="263" y="74" font-size="9" fill="#60A5FA" font-weight="800" text-anchor="middle">45萬</text>
+          </svg>
+        `
+      },
+      {
+        id: "bar-chart",
+        category: "comp",
+        name: "水平長條圖",
+        enName: "Bar Chart",
+        badge: "長名稱首選",
+        badgeClass: "pill-primary",
+        conditions: ["many-cat", "long-label"],
+        conditionText: "類別多（≥ 7 個）或項目文字較長",
+        caveat: "<strong>必須由大到小排序</strong>！水平文字極好閱讀，切勿讓觀眾斜著脖子看字。",
+        pythonCode: "sns.barplot(data=df.sort_values('值'), x='值', y='長名稱類別')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="90" y1="15" x2="90" y2="135" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 列 1 -->
+            <text x="82" y="34" font-size="9" fill="#475569" font-weight="700" text-anchor="end">智慧語音配件組</text>
+            <rect x="90" y="22" width="180" height="16" rx="3" fill="#2563EB">
+              <animate attributeName="width" from="0" to="180" dur="0.6s" fill="freeze" />
+            </rect>
+            <text x="276" y="34" font-size="8.5" fill="#2563EB" font-weight="800">4,200</text>
+            <!-- 列 2 -->
+            <text x="82" y="62" font-size="9" fill="#475569" font-weight="700" text-anchor="end">高解析度顯示面板</text>
+            <rect x="90" y="50" width="145" height="16" rx="3" fill="#3B82F6">
+              <animate attributeName="width" from="0" to="145" dur="0.6s" begin="0.1s" fill="freeze" />
+            </rect>
+            <text x="241" y="62" font-size="8.5" fill="#3B82F6" font-weight="800">3,450</text>
+            <!-- 列 3 -->
+            <text x="82" y="90" font-size="9" fill="#475569" font-weight="700" text-anchor="end">快充型鋰離子電池</text>
+            <rect x="90" y="78" width="110" height="16" rx="3" fill="#60A5FA">
+              <animate attributeName="width" from="0" to="110" dur="0.6s" begin="0.2s" fill="freeze" />
+            </rect>
+            <text x="206" y="90" font-size="8.5" fill="#60A5FA" font-weight="800">2,600</text>
+            <!-- 列 4 -->
+            <text x="82" y="118" font-size="9" fill="#475569" font-weight="700" text-anchor="end">金屬防護外框材料</text>
+            <rect x="90" y="106" width="75" height="16" rx="3" fill="#93C5FD">
+              <animate attributeName="width" from="0" to="75" dur="0.6s" begin="0.3s" fill="freeze" />
+            </rect>
+            <text x="171" y="118" font-size="8.5" fill="#64748B" font-weight="800">1,820</text>
+          </svg>
+        `
+      },
+      {
+        id: "grouped-bar",
+        category: "comp",
+        name: "分組長條圖",
+        enName: "Grouped Bar",
+        badge: "雙指標比對",
+        badgeClass: "pill-primary",
+        conditions: ["two-metrics"],
+        conditionText: "同一個類別內同時比對 2 個指標（預算 vs 實際）",
+        caveat: "每組指標以 2~3 個為限，過多指標會造成色彩混亂難以識別。",
+        pythonCode: "sns.barplot(data=df, x='部門', y='金額', hue='指標')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 圖例 -->
+            <rect x="180" y="15" width="10" height="10" fill="#2563EB" rx="2" />
+            <text x="195" y="24" font-size="9" fill="#475569">實際達成</text>
+            <rect x="245" y="15" width="10" height="10" fill="#94A3B8" rx="2" />
+            <text x="260" y="24" font-size="9" fill="#475569">預算目標</text>
+            <!-- 組 1 -->
+            <rect x="55" y="45" width="18" height="75" rx="2" fill="#2563EB">
+              <animate attributeName="height" from="0" to="75" dur="0.6s" fill="freeze" />
+              <animate attributeName="y" from="120" to="45" dur="0.6s" fill="freeze" />
+            </rect>
+            <rect x="75" y="60" width="18" height="60" rx="2" fill="#94A3B8">
+              <animate attributeName="height" from="0" to="60" dur="0.6s" begin="0.1s" fill="freeze" />
+              <animate attributeName="y" from="120" to="60" dur="0.6s" begin="0.1s" fill="freeze" />
+            </rect>
+            <text x="74" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">北區</text>
+            <!-- 組 2 -->
+            <rect x="135" y="35" width="18" height="85" rx="2" fill="#2563EB">
+              <animate attributeName="height" from="0" to="85" dur="0.6s" begin="0.15s" fill="freeze" />
+              <animate attributeName="y" from="120" to="35" dur="0.6s" begin="0.15s" fill="freeze" />
+            </rect>
+            <rect x="155" y="40" width="18" height="80" rx="2" fill="#94A3B8">
+              <animate attributeName="height" from="0" to="80" dur="0.6s" begin="0.25s" fill="freeze" />
+              <animate attributeName="y" from="120" to="40" dur="0.6s" begin="0.25s" fill="freeze" />
+            </rect>
+            <text x="154" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">中區</text>
+            <!-- 組 3 -->
+            <rect x="215" y="55" width="18" height="65" rx="2" fill="#2563EB">
+              <animate attributeName="height" from="0" to="65" dur="0.6s" begin="0.3s" fill="freeze" />
+              <animate attributeName="y" from="120" to="55" dur="0.6s" begin="0.3s" fill="freeze" />
+            </rect>
+            <rect x="235" y="50" width="18" height="70" rx="2" fill="#94A3B8">
+              <animate attributeName="height" from="0" to="70" dur="0.6s" begin="0.4s" fill="freeze" />
+              <animate attributeName="y" from="120" to="50" dur="0.6s" begin="0.4s" fill="freeze" />
+            </rect>
+            <text x="234" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">南區</text>
+          </svg>
+        `
+      },
+      {
+        id: "dot-plot",
+        category: "comp",
+        name: "棒棒糖圖 / 點圖",
+        enName: "Lollipop / Dot Plot",
+        badge: "輕量無壓迫",
+        badgeClass: "pill-primary",
+        conditions: ["many-cat", "reduce-clutter"],
+        conditionText: "項目極多且想要突顯精準數值，減少厚重色塊",
+        caveat: "細線有助於引導視線至數據點，非常適合呈現 20 個以上項目的排名。",
+        pythonCode: "plt.stem(df['項目'], df['數值'])",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 桿 1 -->
+            <line x1="60" y1="120" x2="60" y2="40" stroke="#93C5FD" stroke-width="2" />
+            <circle cx="60" cy="40" r="6" fill="#2563EB">
+              <animate attributeName="r" from="0" to="6" dur="0.4s" fill="freeze" />
+            </circle>
+            <text x="60" y="28" font-size="9" fill="#2563EB" font-weight="800" text-anchor="middle">88</text>
+            <text x="60" y="135" font-size="9" fill="#64748B" text-anchor="middle">#01</text>
+            <!-- 桿 2 -->
+            <line x1="110" y1="120" x2="110" y2="55" stroke="#93C5FD" stroke-width="2" />
+            <circle cx="110" cy="55" r="6" fill="#2563EB">
+              <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.1s" fill="freeze" />
+            </circle>
+            <text x="110" y="43" font-size="9" fill="#2563EB" font-weight="800" text-anchor="middle">74</text>
+            <text x="110" y="135" font-size="9" fill="#64748B" text-anchor="middle">#02</text>
+            <!-- 桿 3 -->
+            <line x1="160" y1="120" x2="160" y2="30" stroke="#93C5FD" stroke-width="2" />
+            <circle cx="160" cy="30" r="6" fill="#1D4ED8">
+              <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.2s" fill="freeze" />
+            </circle>
+            <text x="160" y="18" font-size="9" fill="#1D4ED8" font-weight="800" text-anchor="middle">96</text>
+            <text x="160" y="135" font-size="9" fill="#64748B" text-anchor="middle">#03</text>
+            <!-- 桿 4 -->
+            <line x1="210" y1="120" x2="210" y2="70" stroke="#93C5FD" stroke-width="2" />
+            <circle cx="210" cy="70" r="6" fill="#2563EB">
+              <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.3s" fill="freeze" />
+            </circle>
+            <text x="210" y="58" font-size="9" fill="#2563EB" font-weight="800" text-anchor="middle">60</text>
+            <text x="210" y="135" font-size="9" fill="#64748B" text-anchor="middle">#04</text>
+            <!-- 桿 5 -->
+            <line x1="260" y1="120" x2="260" y2="85" stroke="#93C5FD" stroke-width="2" />
+            <circle cx="260" cy="85" r="6" fill="#2563EB">
+              <animate attributeName="r" from="0" to="6" dur="0.4s" begin="0.4s" fill="freeze" />
+            </circle>
+            <text x="260" y="73" font-size="9" fill="#2563EB" font-weight="800" text-anchor="middle">48</text>
+            <text x="260" y="135" font-size="9" fill="#64748B" text-anchor="middle">#05</text>
+          </svg>
+        `
+      },
+
+      // 2. 組成 (Composition)
+      {
+        id: "pct-bar",
+        category: "compst",
+        name: "百分比長條圖",
+        enName: "100% Stacked Bar",
+        badge: "首選推薦 ⭐",
+        badgeClass: "pill-orange",
+        conditions: ["accurate-ratio", "cross-group"],
+        conditionText: "精準比例長度比較（單組或跨組比較）",
+        caveat: "眼睛對「長度長短」的判斷力遠高於「圓弧角度」，比圓餅圖更容易讓觀眾看出差異！",
+        pythonCode: "df_pct.plot(kind='barh', stacked=True)",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <!-- 組 A -->
+            <text x="45" y="42" font-size="10" fill="#64748B" font-weight="700" text-anchor="end">2023</text>
+            <rect x="52" y="28" width="130" height="22" fill="#EA580C" rx="2">
+              <animate attributeName="width" from="0" to="130" dur="0.6s" fill="freeze" />
+            </rect>
+            <rect x="182" y="28" width="80" height="22" fill="#FB923C">
+              <animate attributeName="width" from="0" to="80" dur="0.6s" begin="0.2s" fill="freeze" />
+            </rect>
+            <rect x="262" y="28" width="40" height="22" fill="#FED7AA" rx="2">
+              <animate attributeName="width" from="0" to="40" dur="0.6s" begin="0.4s" fill="freeze" />
+            </rect>
+            <text x="110" y="43" font-size="9" fill="#FFF" font-weight="800">52%</text>
+            <text x="215" y="43" font-size="9" fill="#FFF" font-weight="800">32%</text>
+            <!-- 組 B -->
+            <text x="45" y="86" font-size="10" fill="#64748B" font-weight="700" text-anchor="end">2024</text>
+            <rect x="52" y="72" width="165" height="22" fill="#EA580C" rx="2">
+              <animate attributeName="width" from="0" to="165" dur="0.6s" begin="0.1s" fill="freeze" />
+            </rect>
+            <rect x="217" y="72" width="60" height="22" fill="#FB923C">
+              <animate attributeName="width" from="0" to="60" dur="0.6s" begin="0.3s" fill="freeze" />
+            </rect>
+            <rect x="277" y="72" width="25" height="22" fill="#FED7AA" rx="2">
+              <animate attributeName="width" from="0" to="25" dur="0.6s" begin="0.5s" fill="freeze" />
+            </rect>
+            <text x="130" y="87" font-size="9" fill="#FFF" font-weight="800">66%</text>
+            <text x="240" y="87" font-size="9" fill="#FFF" font-weight="800">24%</text>
+            <!-- 圖例 -->
+            <circle cx="90" cy="122" r="4" fill="#EA580C" />
+            <text x="100" y="125" font-size="9" fill="#64748B">直營門市</text>
+            <circle cx="165" cy="122" r="4" fill="#FB923C" />
+            <text x="175" y="125" font-size="9" fill="#64748B">線上電商</text>
+            <circle cx="240" cy="122" r="4" fill="#FED7AA" />
+            <text x="250" y="125" font-size="9" fill="#64748B">批發經銷</text>
+          </svg>
+        `
+      },
+      {
+        id: "donut-pie",
+        category: "compst",
+        name: "甜甜圈圖 / 圓餅圖",
+        enName: "Donut / Pie Chart",
+        badge: "≤ 4 類別",
+        badgeClass: "pill-orange",
+        conditions: ["few-cat", "highlight-dominant"],
+        conditionText: "類別極少（≤ 4 個）且想強調某個主導份額",
+        caveat: "<strong>嚴禁切超過 5 塊以上碎披薩</strong>！中空處可放核心總數或主導比例數字。",
+        pythonCode: "plt.pie(df['金額'], autopct='%1.1f%%')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <g transform="translate(110, 75)">
+              <!-- S1 (60%): 216 deg -->
+              <path d="M 0 -50 A 50 50 0 1 1 -47.5 15.4 L -28.5 9.2 A 30 30 0 1 0 0 -30 Z" fill="#EA580C">
+                <animateTransform attributeName="transform" type="scale" values="0.8; 1" dur="0.5s" fill="freeze" />
+              </path>
+              <!-- S2 (25%): 90 deg -->
+              <path d="M -47.5 15.4 A 50 50 0 0 1 -35.3 -35.3 L -21.2 -21.2 A 30 30 0 0 0 -28.5 9.2 Z" fill="#FB923C" />
+              <!-- S3 (15%): 54 deg -->
+              <path d="M -35.3 -35.3 A 50 50 0 0 1 0 -50 L 0 -30 A 30 30 0 0 0 -21.2 -21.2 Z" fill="#FED7AA" />
+              <text x="0" y="4" font-size="13" font-weight="900" fill="#EA580C" text-anchor="middle">60%</text>
+              <text x="0" y="16" font-size="8" fill="#64748B" text-anchor="middle">線上訂單</text>
+            </g>
+            <!-- 圖例與標示 -->
+            <g transform="translate(190, 45)">
+              <circle cx="0" cy="5" r="5" fill="#EA580C" />
+              <text x="12" y="9" font-size="10" font-weight="700" fill="#1E293B">線上 (60%)</text>
+              <circle cx="0" cy="28" r="5" fill="#FB923C" />
+              <text x="12" y="32" font-size="10" font-weight="700" fill="#1E293B">實體 (25%)</text>
+              <circle cx="0" cy="51" r="5" fill="#FED7AA" />
+              <text x="12" y="55" font-size="10" font-weight="700" fill="#1E293B">電話 (15%)</text>
+            </g>
+          </svg>
+        `
+      },
+      {
+        id: "stacked-bar",
+        category: "compst",
+        name: "堆疊長條圖",
+        enName: "Stacked Bar Chart",
+        badge: "總量+成分",
+        badgeClass: "pill-orange",
+        conditions: ["total-plus-parts"],
+        conditionText: "同時掌握「各類別總額」與「內部各成分份額」",
+        caveat: "<strong>注意浮動基準線</strong>：除了最底層外，上方色塊起點不一，難以精確比較高低。",
+        pythonCode: "df.plot(kind='bar', stacked=True)",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 柱 1 -->
+            <rect x="65" y="70" width="38" height="50" rx="0" fill="#EA580C">
+              <animate attributeName="height" from="0" to="50" dur="0.5s" fill="freeze" />
+              <animate attributeName="y" from="120" to="70" dur="0.5s" fill="freeze" />
+            </rect>
+            <rect x="65" y="40" width="38" height="30" rx="0" fill="#FB923C">
+              <animate attributeName="height" from="0" to="30" dur="0.5s" begin="0.2s" fill="freeze" />
+              <animate attributeName="y" from="70" to="40" dur="0.5s" begin="0.2s" fill="freeze" />
+            </rect>
+            <text x="84" y="32" font-size="9" fill="#EA580C" font-weight="800" text-anchor="middle">總計 80</text>
+            <text x="84" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">產品 A</text>
+            <!-- 柱 2 -->
+            <rect x="145" y="50" width="38" height="70" rx="0" fill="#EA580C">
+              <animate attributeName="height" from="0" to="70" dur="0.5s" begin="0.1s" fill="freeze" />
+              <animate attributeName="y" from="120" to="50" dur="0.5s" begin="0.1s" fill="freeze" />
+            </rect>
+            <rect x="145" y="20" width="38" height="30" rx="0" fill="#FB923C">
+              <animate attributeName="height" from="0" to="30" dur="0.5s" begin="0.3s" fill="freeze" />
+              <animate attributeName="y" from="50" to="20" dur="0.5s" begin="0.3s" fill="freeze" />
+            </rect>
+            <text x="164" y="14" font-size="9" fill="#EA580C" font-weight="800" text-anchor="middle">總計 100</text>
+            <text x="164" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">產品 B</text>
+            <!-- 柱 3 -->
+            <rect x="225" y="85" width="38" height="35" rx="0" fill="#EA580C">
+              <animate attributeName="height" from="0" to="35" dur="0.5s" begin="0.2s" fill="freeze" />
+              <animate attributeName="y" from="120" to="85" dur="0.5s" begin="0.2s" fill="freeze" />
+            </rect>
+            <rect x="225" y="65" width="38" height="20" rx="0" fill="#FB923C">
+              <animate attributeName="height" from="0" to="20" dur="0.5s" begin="0.4s" fill="freeze" />
+              <animate attributeName="y" from="85" to="65" dur="0.5s" begin="0.4s" fill="freeze" />
+            </rect>
+            <text x="244" y="58" font-size="9" fill="#EA580C" font-weight="800" text-anchor="middle">總計 55</text>
+            <text x="244" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">產品 C</text>
+          </svg>
+        `
+      },
+
+      // 3. 分布 (Distribution)
+      {
+        id: "histogram",
+        category: "dist",
+        name: "直方圖",
+        enName: "Histogram",
+        badge: "波峰區間",
+        badgeClass: "pill-purple",
+        conditions: ["continuous-single", "large-sample"],
+        conditionText: "單一連續數值、大量樣本，看集中峰值",
+        caveat: "<strong>柱子相連代表連續區間 (Bin)</strong>！切勿與長條圖（獨立離散類別）搞混。",
+        pythonCode: "sns.histplot(df['薪資'], bins=20, kde=True)",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 相連柱狀區塊 -->
+            <g fill="#7C3AED" stroke="#FFFFFF" stroke-width="1">
+              <rect x="40" y="105" width="28" height="15"><animate attributeName="height" from="0" to="15" dur="0.4s" fill="freeze"/><animate attributeName="y" from="120" to="105" dur="0.4s" fill="freeze"/></rect>
+              <rect x="68" y="85" width="28" height="35"><animate attributeName="height" from="0" to="35" dur="0.4s" begin="0.05s" fill="freeze"/><animate attributeName="y" from="120" to="85" dur="0.05s" fill="freeze"/></rect>
+              <rect x="96" y="50" width="28" height="70"><animate attributeName="height" from="0" to="70" dur="0.4s" begin="0.1s" fill="freeze"/><animate attributeName="y" from="120" to="50" dur="0.1s" fill="freeze"/></rect>
+              <rect x="124" y="25" width="28" height="95"><animate attributeName="height" from="0" to="95" dur="0.4s" begin="0.15s" fill="freeze"/><animate attributeName="y" from="120" to="25" dur="0.15s" fill="freeze"/></rect>
+              <rect x="152" y="38" width="28" height="82"><animate attributeName="height" from="0" to="82" dur="0.4s" begin="0.2s" fill="freeze"/><animate attributeName="y" from="120" to="38" dur="0.2s" fill="freeze"/></rect>
+              <rect x="180" y="65" width="28" height="55"><animate attributeName="height" from="0" to="55" dur="0.4s" begin="0.25s" fill="freeze"/><animate attributeName="y" from="120" to="65" dur="0.25s" fill="freeze"/></rect>
+              <rect x="208" y="90" width="28" height="30"><animate attributeName="height" from="0" to="30" dur="0.4s" begin="0.3s" fill="freeze"/><animate attributeName="y" from="120" to="90" dur="0.3s" fill="freeze"/></rect>
+              <rect x="236" y="110" width="28" height="10"><animate attributeName="height" from="0" to="10" dur="0.4s" begin="0.35s" fill="freeze"/><animate attributeName="y" from="120" to="110" dur="0.35s" fill="freeze"/></rect>
+            </g>
+            <!-- 常態曲線 -->
+            <path d="M 40 115 Q 138 10 264 115" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="3,3" />
+            <text x="138" y="18" font-size="9" fill="#7C3AED" font-weight="800" text-anchor="middle">集中波峰</text>
+            <text x="40" y="135" font-size="8.5" fill="#64748B">30k</text>
+            <text x="138" y="135" font-size="8.5" fill="#64748B">55k</text>
+            <text x="264" y="135" font-size="8.5" fill="#64748B">100k</text>
+          </svg>
+        `
+      },
+      {
+        id: "box-plot",
+        category: "dist",
+        name: "箱形圖 / 盒鬚圖",
+        enName: "Box Plot",
+        badge: "抓異常值神器 ⭐",
+        badgeClass: "pill-purple",
+        conditions: ["five-number", "detect-outliers"],
+        conditionText: "檢視 5 數概括與揪出極端異常值 (Outliers)",
+        caveat: "一眼看穿平均數是否被少數極端暴增值拉偏，老闆質疑平均值時的唯一救星。",
+        pythonCode: "sns.boxplot(data=df, x='部門', y='薪資')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 組 A 箱形 -->
+            <g transform="translate(100, 0)">
+              <!-- 鬚 -->
+              <line x1="0" y1="105" x2="0" y2="25" stroke="#7C3AED" stroke-width="1.5" />
+              <line x1="-12" y1="105" x2="12" y2="105" stroke="#7C3AED" stroke-width="1.5" />
+              <line x1="-12" y1="25" x2="12" y2="25" stroke="#7C3AED" stroke-width="1.5" />
+              <!-- 盒身 (Q1 ~ Q3) -->
+              <rect x="-24" y="45" width="48" height="42" fill="#DDD6FE" stroke="#7C3AED" stroke-width="2" rx="2" />
+              <!-- 中位數 -->
+              <line x1="-24" y1="62" x2="24" y2="62" stroke="#4C1D95" stroke-width="2.5" />
+              <text x="28" y="66" font-size="9" fill="#4C1D95" font-weight="800">中位數</text>
+              <text x="0" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">部門甲</text>
+            </g>
+            <!-- 組 B 箱形 + 離群點 -->
+            <g transform="translate(220, 0)">
+              <line x1="0" y1="110" x2="0" y2="45" stroke="#7C3AED" stroke-width="1.5" />
+              <line x1="-12" y1="110" x2="12" y2="110" stroke="#7C3AED" stroke-width="1.5" />
+              <line x1="-12" y1="45" x2="12" y2="45" stroke="#7C3AED" stroke-width="1.5" />
+              <rect x="-24" y="65" width="48" height="32" fill="#DDD6FE" stroke="#7C3AED" stroke-width="2" rx="2" />
+              <line x1="-24" y1="78" x2="24" y2="78" stroke="#4C1D95" stroke-width="2.5" />
+              <!-- 離群值 Outlier -->
+              <circle cx="0" cy="18" r="4.5" fill="#EF4444" stroke="#DC2626" stroke-width="1.5">
+                <animate attributeName="r" values="4; 6; 4" dur="1.2s" repeatCount="indefinite" />
+              </circle>
+              <text x="12" y="22" font-size="8.5" fill="#EF4444" font-weight="800">離群值!</text>
+              <text x="0" y="135" font-size="10" fill="#64748B" font-weight="700" text-anchor="middle">部門乙</text>
+            </g>
+          </svg>
+        `
+      },
+
+      // 4. 關係 (Relationship)
+      {
+        id: "scatter-plot",
+        category: "rel",
+        name: "散佈圖",
+        enName: "Scatter Plot",
+        badge: "二變數相關",
+        badgeClass: "pill-green",
+        conditions: ["two-continuous", "correlation"],
+        conditionText: "2 個成對連續數值，觀察點群正負相關方向",
+        caveat: "<strong>千萬不要用折線把點連起來</strong>！點群聚集看趨勢，若有時間順序才能連線。",
+        pythonCode: "sns.scatterplot(data=df, x='工時', y='成本')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="40" y1="120" x2="290" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <line x1="40" y1="20" x2="40" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <text x="290" y="135" font-size="9" fill="#64748B" text-anchor="end">X: 預估工時</text>
+            <text x="45" y="25" font-size="9" fill="#64748B">Y: 實際成本</text>
+            <!-- 散佈點群 -->
+            <g fill="#059669">
+              <circle cx="65" cy="108" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" fill="freeze"/></circle>
+              <circle cx="85" cy="98" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.05s" fill="freeze"/></circle>
+              <circle cx="110" cy="92" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.1s" fill="freeze"/></circle>
+              <circle cx="130" cy="78" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.15s" fill="freeze"/></circle>
+              <circle cx="155" cy="72" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.2s" fill="freeze"/></circle>
+              <circle cx="175" cy="60" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.25s" fill="freeze"/></circle>
+              <circle cx="205" cy="52" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.3s" fill="freeze"/></circle>
+              <circle cx="230" cy="40" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.35s" fill="freeze"/></circle>
+              <circle cx="260" cy="30" r="4.5"><animate attributeName="r" from="0" to="4.5" dur="0.4s" begin="0.4s" fill="freeze"/></circle>
+            </g>
+            <!-- 迴歸輔助線 -->
+            <line x1="55" y1="115" x2="270" y2="25" stroke="#10B981" stroke-width="1.5" stroke-dasharray="4,4" />
+            <text x="210" y="24" font-size="8.5" fill="#059669" font-weight="800">明顯正相關 (r=0.89)</text>
+          </svg>
+        `
+      },
+      {
+        id: "bubble-chart",
+        category: "rel",
+        name: "氣泡圖",
+        enName: "Bubble Chart",
+        badge: "三維指標",
+        badgeClass: "pill-green",
+        conditions: ["three-metrics"],
+        conditionText: "3 個連續數值指標（X 軸、Y 軸、氣泡面積大小）",
+        caveat: "<strong>面積非半徑</strong>！氣泡大小必須映射到面積而非半徑，否則視覺感官會平方級放大。",
+        pythonCode: "sns.scatterplot(data=df, x='廣告費', y='營收', size='利潤')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="40" y1="120" x2="290" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <line x1="40" y1="20" x2="40" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 氣泡 -->
+            <circle cx="80" cy="85" r="14" fill="rgba(5, 150, 105, 0.55)" stroke="#059669" stroke-width="1.5">
+              <animate attributeName="r" from="0" to="14" dur="0.5s" fill="freeze" />
+            </circle>
+            <circle cx="140" cy="65" r="24" fill="rgba(16, 185, 129, 0.55)" stroke="#059669" stroke-width="1.5">
+              <animate attributeName="r" from="0" to="24" dur="0.5s" begin="0.15s" fill="freeze" />
+            </circle>
+            <text x="140" y="69" font-size="9" fill="#064E3B" font-weight="800" text-anchor="middle">大客戶</text>
+            <circle cx="210" cy="45" r="18" fill="rgba(5, 150, 105, 0.55)" stroke="#059669" stroke-width="1.5">
+              <animate attributeName="r" from="0" to="18" dur="0.5s" begin="0.3s" fill="freeze" />
+            </circle>
+            <circle cx="260" cy="35" r="10" fill="rgba(52, 211, 153, 0.65)" stroke="#059669" stroke-width="1.5">
+              <animate attributeName="r" from="0" to="10" dur="0.5s" begin="0.45s" fill="freeze" />
+            </circle>
+            <text x="210" y="135" font-size="8.5" fill="#64748B">圓形面積 = 第三維度（利潤）</text>
+          </svg>
+        `
+      },
+      {
+        id: "heatmap",
+        category: "rel",
+        name: "相關係數熱力圖",
+        enName: "Correlation Heatmap",
+        badge: "全景多變數",
+        badgeClass: "pill-green",
+        conditions: ["many-continuous"],
+        conditionText: "3 個以上連續變數時，全景掃描兩兩相關係數",
+        caveat: "必須搭配數值註記 (Annot=True)，讓色階直觀呈現 -1 到 +1 的正負相關力道。",
+        pythonCode: "sns.heatmap(df.corr(), annot=True, cmap='coolwarm')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <!-- 3x3 矩陣格 -->
+            <g transform="translate(85, 20)">
+              <rect x="0" y="0" width="38" height="28" fill="#1E40AF" stroke="#FFF" />
+              <text x="19" y="18" font-size="9" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              <rect x="38" y="0" width="38" height="28" fill="#93C5FD" stroke="#FFF" />
+              <text x="57" y="18" font-size="9" fill="#1E293B" font-weight="700" text-anchor="middle">0.42</text>
+              <rect x="76" y="0" width="38" height="28" fill="#FCA5A5" stroke="#FFF" />
+              <text x="95" y="18" font-size="9" fill="#1E293B" font-weight="700" text-anchor="middle">-0.6</text>
+
+              <rect x="0" y="28" width="38" height="28" fill="#93C5FD" stroke="#FFF" />
+              <text x="19" y="46" font-size="9" fill="#1E293B" font-weight="700" text-anchor="middle">0.42</text>
+              <rect x="38" y="28" width="38" height="28" fill="#1E40AF" stroke="#FFF" />
+              <text x="57" y="46" font-size="9" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              <rect x="76" y="28" width="38" height="28" fill="#F87171" stroke="#FFF" />
+              <text x="95" y="46" font-size="9" fill="#FFF" font-weight="700" text-anchor="middle">-0.8</text>
+
+              <rect x="0" y="56" width="38" height="28" fill="#FCA5A5" stroke="#FFF" />
+              <text x="19" y="74" font-size="9" fill="#1E293B" font-weight="700" text-anchor="middle">-0.6</text>
+              <rect x="38" y="56" width="38" height="28" fill="#F87171" stroke="#FFF" />
+              <text x="57" y="74" font-size="9" fill="#FFF" font-weight="700" text-anchor="middle">-0.8</text>
+              <rect x="76" y="56" width="38" height="28" fill="#1E40AF" stroke="#FFF" />
+              <text x="95" y="74" font-size="9" fill="#FFF" font-weight="700" text-anchor="middle">1.0</text>
+              
+              <text x="-6" y="18" font-size="8.5" fill="#64748B" text-anchor="end">年資</text>
+              <text x="-6" y="46" font-size="8.5" fill="#64748B" text-anchor="end">薪資</text>
+              <text x="-6" y="74" font-size="8.5" fill="#64748B" text-anchor="end">缺勤</text>
+            </g>
+            <text x="142" y="128" font-size="8.5" fill="#64748B" text-anchor="middle">深藍：強正相關 ｜ 深紅：強負相關</text>
+          </svg>
+        `
+      },
+
+      // 5. 趨勢 (Trend)
+      {
+        id: "line-chart",
+        category: "trend",
+        name: "折線圖",
+        enName: "Line Chart",
+        badge: "長序列首選 ⭐",
+        badgeClass: "pill-red",
+        conditions: ["many-time-points"],
+        conditionText: "時間序列較長（> 5 個時間點，例如每月、每日走勢）",
+        caveat: "<strong>X 軸必須是嚴格由左至右的時間</strong>！非時間順序的類別嚴禁連線。",
+        pythonCode: "sns.lineplot(data=df, x='日期', y='營收')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 折線路徑動畫 -->
+            <path d="M 45 100 L 90 75 L 135 85 L 180 50 L 225 65 L 270 25" fill="none" stroke="#DC2626" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <animate attributeName="stroke-dasharray" from="0, 400" to="400, 0" dur="0.8s" fill="freeze" />
+            </path>
+            <!-- 節點 -->
+            <g fill="#DC2626">
+              <circle cx="45" cy="100" r="4" />
+              <circle cx="90" cy="75" r="4" />
+              <circle cx="135" cy="85" r="4" />
+              <circle cx="180" cy="50" r="4" />
+              <circle cx="225" cy="65" r="4" />
+              <circle cx="270" cy="25" r="5" fill="#991B1B" />
+            </g>
+            <text x="270" y="16" font-size="9" fill="#991B1B" font-weight="800" text-anchor="middle">創新高!</text>
+            <text x="45" y="135" font-size="8.5" fill="#64748B" text-anchor="middle">1月</text>
+            <text x="135" y="135" font-size="8.5" fill="#64748B" text-anchor="middle">3月</text>
+            <text x="225" y="135" font-size="8.5" fill="#64748B" text-anchor="middle">5月</text>
+            <text x="270" y="135" font-size="8.5" fill="#64748B" text-anchor="middle">6月</text>
+          </svg>
+        `
+      },
+      {
+        id: "time-bar",
+        category: "trend",
+        name: "時間長條圖",
+        enName: "Time-series Bar",
+        badge: "少時間點專用",
+        badgeClass: "pill-red",
+        conditions: ["few-time-points"],
+        conditionText: "時間點極少（僅 3~4 個季度或年份）",
+        caveat: "僅有少數時間點時，折線圖會顯得單薄懸空，改用長條圖更加穩重大方。",
+        pythonCode: "sns.barplot(data=df, x='年份', y='年營收')",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 柱 1 -->
+            <rect x="55" y="65" width="45" height="55" rx="3" fill="#DC2626">
+              <animate attributeName="height" from="0" to="55" dur="0.5s" fill="freeze" />
+              <animate attributeName="y" from="120" to="65" dur="0.5s" fill="freeze" />
+            </rect>
+            <text x="77" y="58" font-size="9" fill="#DC2626" font-weight="800" text-anchor="middle">1.2億</text>
+            <text x="77" y="135" font-size="9" fill="#64748B" font-weight="700" text-anchor="middle">2021</text>
+            <!-- 柱 2 -->
+            <rect x="135" y="45" width="45" height="75" rx="3" fill="#B91C1C">
+              <animate attributeName="height" from="0" to="75" dur="0.5s" begin="0.15s" fill="freeze" />
+              <animate attributeName="y" from="120" to="45" dur="0.5s" begin="0.15s" fill="freeze" />
+            </rect>
+            <text x="157" y="38" font-size="9" fill="#B91C1C" font-weight="800" text-anchor="middle">1.8億</text>
+            <text x="157" y="135" font-size="9" fill="#64748B" font-weight="700" text-anchor="middle">2022</text>
+            <!-- 柱 3 -->
+            <rect x="215" y="25" width="45" height="95" rx="3" fill="#991B1B">
+              <animate attributeName="height" from="0" to="95" dur="0.5s" begin="0.3s" fill="freeze" />
+              <animate attributeName="y" from="120" to="25" dur="0.5s" begin="0.3s" fill="freeze" />
+            </rect>
+            <text x="237" y="18" font-size="9" fill="#991B1B" font-weight="800" text-anchor="middle">2.5億</text>
+            <text x="237" y="135" font-size="9" fill="#64748B" font-weight="700" text-anchor="middle">2023</text>
+          </svg>
+        `
+      },
+      {
+        id: "stacked-area",
+        category: "trend",
+        name: "堆疊面積圖",
+        enName: "Stacked Area Chart",
+        badge: "累積量變化",
+        badgeClass: "pill-red",
+        conditions: ["few-cat", "many-time-points"],
+        conditionText: "多個類別隨時間演進的累積量變化（類別 ≤ 3 個）",
+        caveat: "類別過多時上方波浪層次會極度雜亂，難以分辨是哪一層在波動。",
+        pythonCode: "df.plot(kind='area', stacked=True)",
+        svgGenerator: () => `
+          <svg viewBox="0 0 320 150">
+            <line x1="30" y1="120" x2="300" y2="120" stroke="#CBD5E1" stroke-width="1.5" />
+            <!-- 底層面積 (門市) -->
+            <path d="M 40 120 L 40 85 Q 100 80 160 65 T 280 40 L 280 120 Z" fill="rgba(220, 38, 38, 0.6)" />
+            <!-- 頂層面積 (電商) -->
+            <path d="M 40 85 Q 100 80 160 65 T 280 40 L 280 20 Q 200 40 160 45 T 40 60 Z" fill="rgba(248, 113, 113, 0.65)" />
+            <text x="140" y="95" font-size="8.5" fill="#FFF" font-weight="800">實體門市</text>
+            <text x="170" y="48" font-size="8.5" fill="#FFF" font-weight="800">線上電商</text>
+            <text x="40" y="135" font-size="8.5" fill="#64748B">Q1</text>
+            <text x="160" y="135" font-size="8.5" fill="#64748B">Q2</text>
+            <text x="280" y="135" font-size="8.5" fill="#64748B">Q3</text>
+          </svg>
+        `
+      }
+    ];
+
+    // 分類資訊字典
+    const CATEGORIES_INFO = {
+      comp: {
+        title: "比較 (Comparison) 的圖表選用",
+        color: "var(--comp-color)",
+        border: "var(--comp-border)",
+        desc: "🎯 <strong>核心提問</strong>：「哪一個對象較高？」、「誰排第一名？」、「兩者差距多少？」",
+        matrixImg: "./images/matrix-comparison.svg",
+        conditions: [
+          { id: "all", label: "全部圖表" },
+          { id: "few-cat", label: "類別少 (≤ 7 個)" },
+          { id: "many-cat", label: "類別多 (≥ 7 個)" },
+          { id: "long-label", label: "標籤文字很長" },
+          { id: "two-metrics", label: "同類別比對 2 個指標" },
+          { id: "reduce-clutter", label: "項目極多想減輕色塊壓迫" }
+        ]
+      },
+      compst: {
+        title: "組成 (Composition) 的圖表選用",
+        color: "var(--compst-color)",
+        border: "var(--compst-border)",
+        desc: "🎯 <strong>核心提問</strong>：「各部分占整體的幾成？」、「全部加起來是 100% 嗎？」",
+        matrixImg: "./images/matrix-composition.svg",
+        conditions: [
+          { id: "all", label: "全部圖表" },
+          { id: "accurate-ratio", label: "精準比例長度 (首選)" },
+          { id: "highlight-dominant", label: "類別少且突顯主導份額" },
+          { id: "total-plus-parts", label: "掌握總量 + 成分" }
+        ]
+      },
+      dist: {
+        title: "分布 (Distribution) 的圖表選用",
+        color: "var(--dist-color)",
+        border: "var(--dist-border)",
+        desc: "🎯 <strong>核心提問</strong>：「數據大部分集中在哪裡？」、「有沒有極端爆表的異常個案？」",
+        matrixImg: "./images/matrix-distribution.svg",
+        conditions: [
+          { id: "all", label: "全部圖表" },
+          { id: "continuous-single", label: "單一連續變數 (看峰值)" },
+          { id: "detect-outliers", label: "揪出極端異常值 (Outliers)" },
+          { id: "five-number", label: "檢視 5 數概括與中位數" }
+        ]
+      },
+      rel: {
+        title: "關係 (Relationship) 的圖表選用",
+        color: "var(--rel-color)",
+        border: "var(--rel-border)",
+        desc: "🎯 <strong>核心提問</strong>：「A 數值增加時，B 數值也會跟著上升或下降嗎？」",
+        matrixImg: "./images/matrix-relationship.svg",
+        conditions: [
+          { id: "all", label: "全部圖表" },
+          { id: "two-continuous", label: "2 個連續變數 (正負相關)" },
+          { id: "three-metrics", label: "3 個連續變數 (含面積)" },
+          { id: "many-continuous", label: "多變數全景相關係數矩陣" }
+        ]
+      },
+      trend: {
+        title: "趨勢 (Trend) 的圖表選用",
+        color: "var(--trend-color)",
+        border: "var(--trend-border)",
+        desc: "🎯 <strong>核心提問</strong>：「隨時間推移，數值是在成長、衰退，還是有週期性變化？」",
+        matrixImg: "./images/matrix-trend.svg",
+        conditions: [
+          { id: "all", label: "全部圖表" },
+          { id: "many-time-points", label: "時間序列長 (> 5 點)" },
+          { id: "few-time-points", label: "極少時間點 (3~4 個年/季)" },
+          { id: "few-cat", label: "多類別累積量演進" }
+        ]
+      },
+      all: {
+        title: "視覺化選圖決策總矩陣（全 15 種圖表）",
+        color: "var(--slate-900)",
+        border: "var(--slate-400)",
+        desc: "🎯 <strong>全景視野</strong>：5 大問題類型與資料特徵決策矩陣一覽無遺。",
+        matrixImg: "./images/matrix-decision-overview.svg",
+        conditions: [
+          { id: "all", label: "顯示全部" },
+          { id: "few-cat", label: "類別少 (≤ 7)" },
+          { id: "many-cat", label: "類別多" },
+          { id: "detect-outliers", label: "抓異常值" },
+          { id: "two-continuous", label: "看雙變數相關" },
+          { id: "many-time-points", label: "長時間趨勢" }
+        ]
+      }
+    };
+
+    // 當前狀態
+    let currentCategory = "comp";
+    let currentCondition = "all";
+
+    // 初始化渲染
+    function init() {
+      setupTypeTabs();
+      setupMatrixModal();
+      setupQuiz();
+      renderCategory(currentCategory);
+    }
+
+    // 綁定頂部大類別 Tab
+    function setupTypeTabs() {
+      const tabs = document.querySelectorAll(".type-tab");
+      tabs.forEach(tab => {
+        tab.addEventListener("click", () => {
+          tabs.forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          currentCategory = tab.dataset.type;
+          currentCondition = "all";
+          renderCategory(currentCategory);
+        });
+      });
+    }
+
+    // 渲染指定分類
+    function renderCategory(catKey) {
+      const info = CATEGORIES_INFO[catKey];
+      
+      // 更新橫幅
+      const banner = document.getElementById("categoryBanner");
+      banner.style.borderLeftColor = info.color;
+      document.getElementById("bannerTitle").innerHTML = `<span>🧭</span> ${info.title}`;
+      document.getElementById("bannerDesc").innerHTML = info.desc;
+      
+      // 更新矩陣圖連結
+      document.getElementById("matrixDiagramImg").src = info.matrixImg;
+      document.getElementById("matrixDiagramTitle").textContent = `${info.title}・決策圖解`;
+      
+      // 更新條件過濾 Chip 按鈕
+      const chipsContainer = document.getElementById("filterChips");
+      chipsContainer.innerHTML = info.conditions.map(c => `
+        <button class="filter-chip ${c.id === currentCondition ? 'active' : ''}" data-cond="${c.id}">
+          ${c.label}
+        </button>
+      `).join("");
+
+      // 綁定 Chip 點選事件
+      chipsContainer.querySelectorAll(".filter-chip").forEach(chip => {
+        chip.addEventListener("click", () => {
+          chipsContainer.querySelectorAll(".filter-chip").forEach(ch => ch.classList.remove("active"));
+          chip.classList.add("active");
+          currentCondition = chip.dataset.cond;
+          filterCards();
+        });
+      });
+
+      // 渲染卡片
+      renderCards(catKey);
+    }
+
+    // 渲染卡片清單
+    function renderCards(catKey) {
+      const grid = document.getElementById("chartsGrid");
+      const list = catKey === "all" ? CHARTS_DATA : CHARTS_DATA.filter(c => c.category === catKey);
+
+      grid.innerHTML = list.map(chart => `
+        <div class="chart-card" id="card-${chart.id}" data-cat="${chart.category}" data-conditions="${chart.conditions.join(' ')}" style="--card-border: ${CATEGORIES_INFO[chart.category].border}; --card-accent: ${CATEGORIES_INFO[chart.category].color};">
+          <div class="card-head">
+            <div class="chart-names">
+              <h3>${chart.name}</h3>
+              <span>${chart.enName}</span>
+            </div>
+            <div class="badge-wrap">
+              <span class="pill-badge ${chart.badgeClass}">${chart.badge}</span>
+            </div>
+          </div>
+          
+          <div class="chart-preview-stage">
+            <button class="replay-chart-btn" onclick="replayCardAnimation('${chart.id}')">
+              <span>🔄</span> 重播
+            </button>
+            <div class="stage-svg-wrap" id="svg-wrap-${chart.id}">
+              ${chart.svgGenerator()}
+            </div>
+          </div>
+
+          <div class="card-body">
+            <div class="condition-box">
+              <div class="cond-title"><span>🎯</span> 適用資料特徵</div>
+              <div class="cond-desc">${chart.conditionText}</div>
+            </div>
+
+            <div class="caveat-box">
+              <span>⚠️</span> ${chart.caveat}
+            </div>
+
+            <div class="code-box">
+              <code>${chart.pythonCode}</code>
+              <span class="code-badge">Python</span>
+            </div>
+          </div>
+        </div>
+      `).join("");
+
+      filterCards();
+    }
+
+    // 根據條件高亮 / 過濾卡片
+    function filterCards() {
+      const cards = document.querySelectorAll(".chart-card");
+      if (currentCondition === "all") {
+        cards.forEach(c => {
+          c.classList.remove("highlighted", "dimmed");
+        });
+        return;
+      }
+
+      cards.forEach(card => {
+        const conds = card.dataset.conditions.split(" ");
+        if (conds.includes(currentCondition)) {
+          card.classList.add("highlighted");
+          card.classList.remove("dimmed");
+        } else {
+          card.classList.add("dimmed");
+          card.classList.remove("highlighted");
+        }
+      });
+    }
+
+    // 重播單張卡片的動畫
+    window.replayCardAnimation = function(chartId) {
+      const chart = CHARTS_DATA.find(c => c.id === chartId);
+      if (!chart) return;
+      const wrap = document.getElementById(`svg-wrap-${chartId}`);
+      if (wrap) {
+        wrap.innerHTML = chart.svgGenerator();
+      }
+    };
+
+    // 矩陣圖卡片收合 / 展開
+    function setupMatrixModal() {
+      const toggleBtn = document.getElementById("toggleMatrixBtn");
+      const closeBtn = document.getElementById("closeMatrixBtn");
+      const card = document.getElementById("matrixDiagramCard");
+
+      toggleBtn.addEventListener("click", () => {
+        card.classList.toggle("show");
+        if (card.classList.contains("show")) {
+          toggleBtn.innerHTML = "<span>✕</span> 收合決策圖解";
+          card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        } else {
+          toggleBtn.innerHTML = "<span>🗺️</span> 查看決策矩陣圖解";
+        }
+      });
+
+      closeBtn.addEventListener("click", () => {
+        card.classList.remove("show");
+        toggleBtn.innerHTML = "<span>🗺️</span> 查看決策矩陣圖解";
+      });
+    }
+
+    // 互動小測驗邏輯
+    function setupQuiz() {
+      const cards = document.querySelectorAll(".quiz-card");
+      cards.forEach(card => {
+        const correctAns = card.dataset.ans;
+        const btns = card.querySelectorAll(".quiz-btn");
+        const fb = card.querySelector(".quiz-feedback");
+
+        btns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            btns.forEach(b => b.classList.remove("correct", "wrong"));
+            const choice = btn.dataset.choice;
+            if (choice === correctAns) {
+              btn.classList.add("correct");
+              fb.className = "quiz-feedback show correct-fb";
+              if (correctAns === "b") {
+                fb.innerHTML = "🎉 <strong>答對了！</strong> 項目多且文字長時，「水平長條圖」文字由左至右水平排列最好讀，千萬不要用垂直長條圖將文字旋轉 45 度！";
+              } else if (correctAns === "a") {
+                fb.innerHTML = "🎉 <strong>答對了！</strong> 「箱形圖」包含 Q1、中位數、Q3 與離群值，能一眼看穿極端薪資是否把平均拉高！";
+              } else if (correctAns === "c") {
+                fb.innerHTML = "🎉 <strong>答對了！</strong> 只有 3 個年份時，用「時間長條圖」比折線圖更加大方穩重，折線圖在時間點過少時會顯得空蕩且斜率被過度放大。";
+              }
+            } else {
+              btn.classList.add("wrong");
+              fb.className = "quiz-feedback show wrong-fb";
+              fb.innerHTML = "❌ <strong>差一點點！</strong> 再想想看手邊的項目數量與標籤長度，或是觀察上面的圖表條件推薦！";
+            }
+          });
+        });
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", init);
+  </script>
+</body>
+</html>

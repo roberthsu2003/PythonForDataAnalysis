@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="趨勢類型的圖表選用與外觀示意">
+  <title>趨勢類型的圖表選用</title>
+  <defs>
+    <style>
+      .card-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.2; rx: 10px; }
+      .chart-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; fill: #0F172A; text-anchor: middle; }
+      .chart-en { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; fill: #64748B; text-anchor: middle; }
+      .desc-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700; fill: #334155; }
+      .desc-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #64748B; }
+      .warn-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #B91C1C; font-weight: 600; }
+      .rec-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #15803D; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- 外層背景 -->
+  <rect x="0" y="0" width="960" height="310" rx="12" fill="#FEF2F2" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- 頂部類別標題 -->
+  <g transform="translate(24, 28)">
+    <rect x="0" y="-14" width="70" height="24" rx="12" fill="#FEE2E2"/>
+    <text x="35" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="12" font-weight="700" fill="#B91C1C" text-anchor="middle">趨勢問題</text>
+    <text x="82" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="13" font-weight="600" fill="#334155">
+      核心目的：數據隨時間序列（日期、月份、季度）演變的方向與起伏規律
+    </text>
+  </g>
+
+  <!-- ======================== 卡片 1：折線圖 ======================== -->
+  <g transform="translate(24, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="36" y1="16" x2="36" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 連續折線與節點 (時間由左到右) -->
+    <polyline points="46,78 76,64 106,70 136,46 166,54 196,32 226,24" fill="none" stroke="#DC2626" stroke-width="2"/>
+    <circle cx="46" cy="78" r="3" fill="#DC2626"/>
+    <circle cx="76" cy="64" r="3" fill="#DC2626"/>
+    <circle cx="106" cy="70" r="3" fill="#DC2626"/>
+    <circle cx="136" cy="46" r="3" fill="#DC2626"/>
+    <circle cx="166" cy="54" r="3" fill="#DC2626"/>
+    <circle cx="196" cy="32" r="3" fill="#DC2626"/>
+    <circle cx="226" cy="24" r="3" fill="#DC2626"/>
+    <text x="46" y="98" font-size="8" fill="#94A3B8" text-anchor="middle">1月</text>
+    <text x="226" y="98" font-size="8" fill="#94A3B8" text-anchor="middle">7月</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">折線圖</text>
+    <text x="146" y="142" class="chart-en">Line Chart</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 連續時間序列且時間點較多（> 5 個）</text>
+    <text x="16" y="206" class="desc-text">• 強調走勢斜率與週期起伏</text>
+    <text x="16" y="226" class="warn-text">⚠️ X 軸非時間類別，嚴禁使用折線連接！</text>
+  </g>
+
+  <!-- ======================== 卡片 2：時間長條圖 ======================== -->
+  <g transform="translate(334, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <!-- 4 個季度的獨立長條 (Q1 到 Q4) -->
+    <rect x="52" y="46" width="32" height="42" rx="2" fill="#DC2626"/>
+    <text x="68" y="99" font-size="9" fill="#64748B" text-anchor="middle">Q1</text>
+    <rect x="100" y="38" width="32" height="50" rx="2" fill="#DC2626"/>
+    <text x="116" y="99" font-size="9" fill="#64748B" text-anchor="middle">Q2</text>
+    <rect x="148" y="54" width="32" height="34" rx="2" fill="#DC2626"/>
+    <text x="164" y="99" font-size="9" fill="#64748B" text-anchor="middle">Q3</text>
+    <rect x="196" y="24" width="32" height="64" rx="2" fill="#DC2626"/>
+    <text x="212" y="99" font-size="9" fill="#64748B" text-anchor="middle">Q4</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">時間長條圖</text>
+    <text x="146" y="142" class="chart-en">Time-series Bar</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 時間點極少（如 3~4 個季度或年份）</text>
+    <text x="16" y="206" class="desc-text">• 強調各期量體的離散獨立數值</text>
+    <text x="16" y="226" class="rec-text">💡 時間點少時，長條圖比折線更穩重</text>
+  </g>
+
+  <!-- ======================== 卡片 3：堆疊面積圖 ======================== -->
+  <g transform="translate(644, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <!-- 堆疊面積波浪 (2 層) -->
+    <!-- 下層面積 (深紅) -->
+    <path d="M 46 88 L 46 64 Q 100 50, 140 56 T 236 42 L 236 88 Z" fill="#DC2626" opacity="0.85"/>
+    <!-- 上層面積 (粉紅) -->
+    <path d="M 46 64 Q 100 50, 140 56 T 236 42 L 236 24 Q 160 30, 110 32 T 46 44 Z" fill="#F87171" opacity="0.85"/>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">堆疊面積圖</text>
+    <text x="146" y="142" class="chart-en">Stacked Area Chart</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 多個分類隨時間演進的累積量變化</text>
+    <text x="16" y="206" class="desc-text">• 如：線上 vs 實體通路每月營收變化</text>
+    <text x="16" y="226" class="warn-text">⚠️ 堆疊類別請控制在 3 個以內</text>
+  </g>
+</svg>

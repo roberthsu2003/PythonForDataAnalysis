@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="比較類型的圖表選用與外觀示意">
+  <title>比較類型的圖表選用</title>
+  <defs>
+    <style>
+      .card-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.2; rx: 10px; }
+      .badge-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700; fill: #1E40AF; }
+      .chart-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; fill: #0F172A; text-anchor: middle; }
+      .chart-en { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; fill: #64748B; text-anchor: middle; }
+      .desc-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700; fill: #334155; }
+      .desc-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #64748B; }
+      .warn-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #B91C1C; font-weight: 600; }
+    </style>
+  </defs>
+
+  <!-- 外層背景 -->
+  <rect x="0" y="0" width="960" height="310" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- 頂部類別標題 -->
+  <g transform="translate(24, 28)">
+    <rect x="0" y="-14" width="70" height="24" rx="12" fill="#DBEAFE"/>
+    <text x="35" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="12" font-weight="700" fill="#1E40AF" text-anchor="middle">比較問題</text>
+    <text x="82" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="13" font-weight="600" fill="#334155">
+      核心目的：比部門、品項、對象的高低排名與差距
+    </text>
+  </g>
+
+  <!-- ======================== 卡片 1：垂直長條圖 ======================== -->
+  <g transform="translate(24, 52)">
+    <rect width="216" height="240" class="card-bg"/>
+    <!-- 示意圖區 (寬 192, 高 90) -->
+    <rect x="12" y="12" width="192" height="92" rx="6" fill="#F1F5F9"/>
+    <!-- 座標軸與長條 -->
+    <line x1="26" y1="88" x2="186" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="26" y1="20" x2="26" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 4 根垂直長條 -->
+    <rect x="38" y="32" width="24" height="56" rx="2" fill="#2563EB"/>
+    <rect x="74" y="46" width="24" height="42" rx="2" fill="#3B82F6"/>
+    <rect x="110" y="58" width="24" height="30" rx="2" fill="#60A5FA"/>
+    <rect x="146" y="68" width="24" height="20" rx="2" fill="#93C5FD"/>
+    <text x="22" y="92" font-size="9" fill="#94A3B8" text-anchor="end">0</text>
+
+    <!-- 名稱 -->
+    <text x="108" y="126" class="chart-title">垂直長條圖</text>
+    <text x="108" y="142" class="chart-en">Column Chart</text>
+    <line x1="16" y1="152" x2="200" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 類別少於 7 個</text>
+    <text x="16" y="206" class="desc-text">• 類別名稱簡短不折行</text>
+    <text x="16" y="226" class="warn-text">⚠️ Y 軸必須從 0 起跳！</text>
+  </g>
+
+  <!-- ======================== 卡片 2：水平長條圖 ======================== -->
+  <g transform="translate(256, 52)">
+    <rect width="216" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="192" height="92" rx="6" fill="#F1F5F9"/>
+    <!-- 座標軸 -->
+    <line x1="50" y1="18" x2="50" y2="86" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="50" y1="86" x2="186" y2="86" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 4 根水平長條 -->
+    <rect x="50" y="24" width="126" height="11" rx="2" fill="#2563EB"/>
+    <text x="46" y="33" font-size="9" fill="#64748B" text-anchor="end">研發部</text>
+    <rect x="50" y="39" width="98" height="11" rx="2" fill="#3B82F6"/>
+    <text x="46" y="48" font-size="9" fill="#64748B" text-anchor="end">業務一部</text>
+    <rect x="50" y="54" width="70" height="11" rx="2" fill="#60A5FA"/>
+    <text x="46" y="63" font-size="9" fill="#64748B" text-anchor="end">市場推廣</text>
+    <rect x="50" y="69" width="46" height="11" rx="2" fill="#93C5FD"/>
+    <text x="46" y="78" font-size="9" fill="#64748B" text-anchor="end">客戶服務</text>
+
+    <!-- 名稱 -->
+    <text x="108" y="126" class="chart-title">水平長條圖</text>
+    <text x="108" y="142" class="chart-en">Bar Chart</text>
+    <line x1="16" y1="152" x2="200" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 類別 ≥ 7 個</text>
+    <text x="16" y="206" class="desc-text">• 標籤文字長、排版舒適</text>
+    <text x="16" y="226" class="warn-text">💡 務必依數值由大到小排序</text>
+  </g>
+
+  <!-- ======================== 卡片 3：分組長條圖 ======================== -->
+  <g transform="translate(488, 52)">
+    <rect width="216" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="192" height="92" rx="6" fill="#F1F5F9"/>
+    <!-- 座標軸 -->
+    <line x1="26" y1="88" x2="186" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <!-- 3 組分組長條 (深藍=今年, 淺橙=去年) -->
+    <rect x="42" y="36" width="14" height="52" rx="1" fill="#2563EB"/>
+    <rect x="58" y="48" width="14" height="40" rx="1" fill="#F97316"/>
+
+    <rect x="92" y="44" width="14" height="44" rx="1" fill="#2563EB"/>
+    <rect x="108" y="38" width="14" height="50" rx="1" fill="#F97316"/>
+
+    <rect x="142" y="56" width="14" height="32" rx="1" fill="#2563EB"/>
+    <rect x="158" y="64" width="14" height="24" rx="1" fill="#F97316"/>
+    <!-- 圖例 -->
+    <rect x="122" y="18" width="8" height="6" fill="#2563EB"/><text x="133" y="24" font-size="8" fill="#64748B">今年</text>
+    <rect x="155" y="18" width="8" height="6" fill="#F97316"/><text x="166" y="24" font-size="8" fill="#64748B">去年</text>
+
+    <!-- 名稱 -->
+    <text x="108" y="126" class="chart-title">分組長條圖</text>
+    <text x="108" y="142" class="chart-en">Grouped Bar</text>
+    <line x1="16" y1="152" x2="200" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 跨 2 指標（目標 vs 實際）</text>
+    <text x="16" y="206" class="desc-text">• 或跨 2 個群組對照</text>
+    <text x="16" y="226" class="warn-text">⚠️ 群組不要超過 3 個指標</text>
+  </g>
+
+  <!-- ======================== 卡片 4：點圖 / 棒棒糖圖 ======================== -->
+  <g transform="translate(720, 52)">
+    <rect width="216" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="192" height="92" rx="6" fill="#F1F5F9"/>
+    <!-- 座標軸 -->
+    <line x1="42" y1="18" x2="42" y2="86" stroke="#94A3B8" stroke-width="1.2"/>
+    <!-- 4 個棒棒糖點圖 -->
+    <line x1="42" y1="28" x2="168" y2="28" stroke="#CBD5E1" stroke-width="1.5"/>
+    <circle cx="168" cy="28" r="4.5" fill="#2563EB"/>
+
+    <line x1="42" y1="44" x2="140" y2="44" stroke="#CBD5E1" stroke-width="1.5"/>
+    <circle cx="140" cy="44" r="4.5" fill="#2563EB"/>
+
+    <line x1="42" y1="60" x2="108" y2="60" stroke="#CBD5E1" stroke-width="1.5"/>
+    <circle cx="108" cy="60" r="4.5" fill="#2563EB"/>
+
+    <line x1="42" y1="76" x2="78" y2="76" stroke="#CBD5E1" stroke-width="1.5"/>
+    <circle cx="78" cy="76" r="4.5" fill="#2563EB"/>
+
+    <!-- 名稱 -->
+    <text x="108" y="126" class="chart-title">點圖 / 棒棒糖圖</text>
+    <text x="108" y="142" class="chart-en">Dot / Lollipop Plot</text>
+    <line x1="16" y1="152" x2="200" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 項目眾多（> 15 個）</text>
+    <text x="16" y="206" class="desc-text">• 強調數值精確定位點</text>
+    <text x="16" y="226" class="warn-text">💡 減輕大面積色塊的壓迫感</text>
+  </g>
+</svg>

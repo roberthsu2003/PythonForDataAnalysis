@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="關係類型的圖表選用與外觀示意">
+  <title>關係類型的圖表選用</title>
+  <defs>
+    <style>
+      .card-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.2; rx: 10px; }
+      .chart-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; fill: #0F172A; text-anchor: middle; }
+      .chart-en { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; fill: #64748B; text-anchor: middle; }
+      .desc-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700; fill: #334155; }
+      .desc-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #64748B; }
+      .warn-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #B91C1C; font-weight: 600; }
+      .rec-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #15803D; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- 外層背景 -->
+  <rect x="0" y="0" width="960" height="310" rx="12" fill="#F0FDF4" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- 頂部類別標題 -->
+  <g transform="translate(24, 28)">
+    <rect x="0" y="-14" width="70" height="24" rx="12" fill="#DCFCE7"/>
+    <text x="35" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="12" font-weight="700" fill="#15803D" text-anchor="middle">關係問題</text>
+    <text x="82" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="13" font-weight="600" fill="#334155">
+      核心目的：兩個或多個連續變數之間是否共同變化、相互關聯
+    </text>
+  </g>
+
+  <!-- ======================== 卡片 1：散佈圖 ======================== -->
+  <g transform="translate(24, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="36" y1="16" x2="36" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 趨勢虛線 (正相關) -->
+    <line x1="50" y1="80" x2="230" y2="24" stroke="#10B981" stroke-width="1.5" stroke-dasharray="3 2"/>
+    <!-- 散佈點群 -->
+    <circle cx="56" cy="74" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="70" cy="78" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="85" cy="65" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="100" cy="70" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="115" cy="58" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="130" cy="52" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="145" cy="45" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="160" cy="50" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="175" cy="38" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="190" cy="42" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="210" cy="28" r="3" fill="#15803D" opacity="0.8"/>
+    <circle cx="225" cy="32" r="3" fill="#15803D" opacity="0.8"/>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">散佈圖</text>
+    <text x="146" y="142" class="chart-en">Scatter Plot</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 2 個連續數值欄位（成對數據）</text>
+    <text x="16" y="206" class="desc-text">• 觀察變數連動走向與集聚型態</text>
+    <text x="16" y="226" class="warn-text">⚠️ 絕對不要把散佈點用折線連起來！</text>
+  </g>
+
+  <!-- ======================== 卡片 2：氣泡圖 ======================== -->
+  <g transform="translate(334, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="36" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <line x1="36" y1="16" x2="36" y2="88" stroke="#CBD5E1" stroke-width="1"/>
+    <!-- 氣泡大小各異 (大小 = 第 3 維度) -->
+    <circle cx="65" cy="65" r="9" fill="#15803D" opacity="0.6"/>
+    <circle cx="105" cy="55" r="16" fill="#15803D" opacity="0.6"/>
+    <circle cx="155" cy="40" r="22" fill="#15803D" opacity="0.6"/>
+    <circle cx="195" cy="68" r="7" fill="#15803D" opacity="0.6"/>
+    <circle cx="215" cy="30" r="12" fill="#15803D" opacity="0.6"/>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">氣泡圖</text>
+    <text x="146" y="142" class="chart-en">Bubble Chart</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 2 個數值座標軸 + 第 3 個體積指標</text>
+    <text x="16" y="206" class="desc-text">• 如：廣告費 (X)、營收 (Y)、利潤 (大小)</text>
+    <text x="16" y="226" class="warn-text">💡 氣泡應以「面積」縮放而非半徑</text>
+  </g>
+
+  <!-- ======================== 卡片 3：相關係數熱力圖 ======================== -->
+  <g transform="translate(644, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 (3x3 矩陣) -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 矩陣方格 -->
+    <!-- Row 1 -->
+    <rect x="80" y="22" width="36" height="20" fill="#15803D"/><text x="98" y="36" font-size="9" fill="#FFFFFF" text-anchor="middle">1.0</text>
+    <rect x="118" y="22" width="36" height="20" fill="#86EFAC"/><text x="136" y="36" font-size="9" fill="#1E293B" text-anchor="middle">0.72</text>
+    <rect x="156" y="22" width="36" height="20" fill="#FCA5A5"/><text x="174" y="36" font-size="9" fill="#1E293B" text-anchor="middle">-0.4</text>
+    <!-- Row 2 -->
+    <rect x="80" y="44" width="36" height="20" fill="#86EFAC"/><text x="98" y="58" font-size="9" fill="#1E293B" text-anchor="middle">0.72</text>
+    <rect x="118" y="44" width="36" height="20" fill="#15803D"/><text x="136" y="58" font-size="9" fill="#FFFFFF" text-anchor="middle">1.0</text>
+    <rect x="156" y="44" width="36" height="20" fill="#F1F5F9"/><text x="174" y="58" font-size="9" fill="#64748B" text-anchor="middle">0.05</text>
+    <!-- Row 3 -->
+    <rect x="80" y="66" width="36" height="20" fill="#FCA5A5"/><text x="98" y="80" font-size="9" fill="#1E293B" text-anchor="middle">-0.4</text>
+    <rect x="118" y="66" width="36" height="20" fill="#F1F5F9"/><text x="136" y="80" font-size="9" fill="#64748B" text-anchor="middle">0.05</text>
+    <rect x="156" y="66" width="36" height="20" fill="#15803D"/><text x="174" y="80" font-size="9" fill="#FFFFFF" text-anchor="middle">1.0</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">相關係數熱力圖</text>
+    <text x="146" y="142" class="chart-en">Correlation Heatmap</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 多個連續數值欄位（≥ 3 個變數）</text>
+    <text x="16" y="206" class="desc-text">• 全景掃描哪些變數高度正相關或負相關</text>
+    <text x="16" y="226" class="rec-text">💡 搭配雙極色階（如藍/綠-白-紅）</text>
+  </g>
+</svg>

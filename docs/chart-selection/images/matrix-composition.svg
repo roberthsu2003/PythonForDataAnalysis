@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="310" viewBox="0 0 960 310" role="img" aria-label="組成類型的圖表選用與外觀示意">
+  <title>組成類型的圖表選用</title>
+  <defs>
+    <style>
+      .card-bg { fill: #FFFFFF; stroke: #E2E8F0; stroke-width: 1.2; rx: 10px; }
+      .chart-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 14px; font-weight: 700; fill: #0F172A; text-anchor: middle; }
+      .chart-en { font-family: 'SFMono-Regular', Consolas, Menlo, monospace; font-size: 11px; fill: #64748B; text-anchor: middle; }
+      .desc-title { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; font-weight: 700; fill: #334155; }
+      .desc-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #64748B; }
+      .warn-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #B91C1C; font-weight: 600; }
+      .rec-text { font-family: -apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif; font-size: 11px; fill: #15803D; font-weight: 700; }
+    </style>
+  </defs>
+
+  <!-- 外層背景 -->
+  <rect x="0" y="0" width="960" height="310" rx="12" fill="#FDFCFB" stroke="#E2E8F0" stroke-width="1"/>
+
+  <!-- 頂部類別標題 -->
+  <g transform="translate(24, 28)">
+    <rect x="0" y="-14" width="70" height="24" rx="12" fill="#FFEDD5"/>
+    <text x="35" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="12" font-weight="700" fill="#C2410C" text-anchor="middle">組成問題</text>
+    <text x="82" y="2" font-family="-apple-system, BlinkMacSystemFont, 'Noto Sans TC', sans-serif" font-size="13" font-weight="600" fill="#334155">
+      核心目的：各部分占整體的比重分配（合計為 100% 或總額）
+    </text>
+  </g>
+
+  <!-- ======================== 卡片 1：百分比長條圖 ======================== -->
+  <g transform="translate(24, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 (寬 268, 高 92) -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 2 條百分比長條 (100%) -->
+    <rect x="36" y="26" width="100" height="22" rx="2" fill="#EA580C"/>
+    <rect x="136" y="26" width="60" height="22" rx="0" fill="#FB923C"/>
+    <rect x="196" y="26" width="40" height="22" rx="2" fill="#FED7AA"/>
+    <text x="86" y="41" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">50%</text>
+    <text x="166" y="41" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">30%</text>
+    <text x="216" y="41" font-size="10" fill="#7C2D12" font-weight="bold" text-anchor="middle">20%</text>
+
+    <rect x="36" y="56" width="80" height="22" rx="2" fill="#EA580C"/>
+    <rect x="116" y="56" width="70" height="22" rx="0" fill="#FB923C"/>
+    <rect x="186" y="56" width="50" height="22" rx="2" fill="#FED7AA"/>
+    <text x="76" y="71" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">40%</text>
+    <text x="151" y="71" font-size="10" fill="#FFFFFF" font-weight="bold" text-anchor="middle">35%</text>
+    <text x="211" y="71" font-size="10" fill="#7C2D12" font-weight="bold" text-anchor="middle">25%</text>
+    
+    <text x="236" y="90" font-size="9" fill="#94A3B8" text-anchor="end">100%</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">百分比長條圖</text>
+    <text x="146" y="142" class="chart-en">100% Stacked Bar</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 類別 > 4 個，或跨群組比較結構</text>
+    <text x="16" y="206" class="desc-text">• 強調精準百分比比較</text>
+    <text x="16" y="226" class="rec-text">✅ 首選！易讀性高、版面節省</text>
+  </g>
+
+  <!-- ======================== 卡片 2：甜甜圈圖 / 圓餅圖 ======================== -->
+  <g transform="translate(334, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 甜甜圈圖 (中心 (146, 58), 半徑 36, 內徑 18) -->
+    <!-- 扇區 1: 50% (右半圓) -->
+    <path d="M 146 22 A 36 36 0 0 1 146 94 L 146 76 A 18 18 0 0 0 146 40 Z" fill="#EA580C"/>
+    <!-- 扇區 2: 30% -->
+    <path d="M 146 94 A 36 36 0 0 1 112 44 L 129 51 A 18 18 0 0 0 146 76 Z" fill="#FB923C"/>
+    <!-- 扇區 3: 20% -->
+    <path d="M 112 44 A 36 36 0 0 1 146 22 L 146 40 A 18 18 0 0 0 129 51 Z" fill="#FED7AA"/>
+    <!-- 標籤 -->
+    <text x="195" y="58" font-size="10" fill="#EA580C" font-weight="bold">50%</text>
+    <text x="96" y="80" font-size="10" fill="#C2410C" font-weight="bold">30%</text>
+    <text x="96" y="38" font-size="10" fill="#9A3412" font-weight="bold">20%</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">甜甜圈圖 / 圓餅圖</text>
+    <text x="146" y="142" class="chart-en">Donut / Pie Chart</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 類別極少（≤ 4 個）</text>
+    <text x="16" y="206" class="desc-text">• 強調單一核心份額（如過半與否）</text>
+    <text x="16" y="226" class="warn-text">⚠️ 切忌切成 6 塊以上碎披薩！</text>
+  </g>
+
+  <!-- ======================== 卡片 3：堆疊長條圖 ======================== -->
+  <g transform="translate(644, 52)">
+    <rect width="292" height="240" class="card-bg"/>
+    <!-- 示意圖區 -->
+    <rect x="12" y="12" width="268" height="92" rx="6" fill="#F8FAFC"/>
+    <!-- 座標軸 -->
+    <line x1="42" y1="88" x2="246" y2="88" stroke="#94A3B8" stroke-width="1.2"/>
+    <!-- 3 根絕對數值堆疊直條 -->
+    <rect x="66" y="44" width="28" height="24" fill="#EA580C"/>
+    <rect x="66" y="68" width="28" height="20" fill="#FB923C"/>
+    <text x="80" y="38" font-size="9" fill="#64748B" text-anchor="middle">總數 80</text>
+
+    <rect x="126" y="26" width="28" height="34" fill="#EA580C"/>
+    <rect x="126" y="60" width="28" height="28" fill="#FB923C"/>
+    <text x="140" y="20" font-size="9" fill="#64748B" text-anchor="middle">總數 120</text>
+
+    <rect x="186" y="52" width="28" height="18" fill="#EA580C"/>
+    <rect x="186" y="70" width="28" height="18" fill="#FB923C"/>
+    <text x="200" y="46" font-size="9" fill="#64748B" text-anchor="middle">總數 65</text>
+
+    <!-- 名稱 -->
+    <text x="146" y="126" class="chart-title">堆疊長條圖</text>
+    <text x="146" y="142" class="chart-en">Stacked Bar Chart</text>
+    <line x1="16" y1="152" x2="276" y2="152" stroke="#F1F5F9" stroke-width="1"/>
+
+    <!-- 條件與提醒 -->
+    <text x="16" y="172" class="desc-title">適用條件：</text>
+    <text x="16" y="190" class="desc-text">• 既看總額高低、又看內部成分</text>
+    <text x="16" y="206" class="desc-text">• 類別控制在 2~3 個以內</text>
+    <text x="16" y="226" class="warn-text">⚠️ 中間色塊基線浮動，難精確比較</text>
+  </g>
+</svg>
