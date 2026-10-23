@@ -19,6 +19,20 @@
 
 ---
 
+## ✋ 課堂互動：三份 Colab 提問練習
+
+請學生先執行筆記本中的程式碼、觀察資料表，再自行寫下問題與所需欄位。**最後才把自己的問題貼給 Colab Gemini 檢查**；每份筆記本的最後一格都附有對應的提示詞。
+
+| 順序 | 資料與練習重點 | 筆記本 |
+| :---: | :--- | :--- |
+| 1 | 辦公室採購：欄位角色、積木 A／B／C／E、缺少審核欄位的邊界 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E6%AC%84%E4%BD%8D%E8%88%87%E6%8F%90%E5%95%8F%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/%E7%AF%84%E4%BE%8B1_%E8%BE%A6%E5%85%AC%E5%AE%A4%E6%8E%A1%E8%B3%BC_%E5%BE%9E%E6%AC%84%E4%BD%8D%E5%88%B0%E5%95%8F%E9%A1%8C.ipynb) · [檢視檔案](./範例1_辦公室採購_從欄位到問題.ipynb) |
+| 2 | 茶語時光：多指標、時間分組、關聯與因果的區別 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E6%AC%84%E4%BD%8D%E8%88%87%E6%8F%90%E5%95%8F%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/%E7%AF%84%E4%BE%8B2_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%A4%9A%E6%8C%87%E6%A8%99%E6%8F%90%E5%95%8F.ipynb) · [檢視檔案](./範例2_茶語時光_多指標提問.ipynb) |
+| 3 | 空氣品質：單一時間快照、能問與不能問的界線 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%95%B8%E6%93%9A%E6%AC%84%E4%BD%8D%E8%88%87%E6%8F%90%E5%95%8F%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/%E7%AF%84%E4%BE%8B3_%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA_%E8%B3%87%E6%96%99%E9%82%8A%E7%95%8C%E6%8C%91%E6%88%B0.ipynb) · [檢視檔案](./範例3_空氣品質_資料邊界挑戰.ipynb) |
+
+> Colab 連結指向 GitHub `master` 分支；新增的筆記本推送到 GitHub 後，學生才能透過連結開啟。
+
+---
+
 ## 🧭 數據提問思考決策圖
 
 面對任何數據表，請依序執行以下三個思考步驟：
