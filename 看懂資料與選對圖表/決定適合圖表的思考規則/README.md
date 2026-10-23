@@ -22,32 +22,6 @@
 
 ---
 
-## ✋ 15 種圖表 Colab 實作
-
-每份筆記本自帶簡單的示意資料，依序執行「繁體中文字型設定」與「顯示資料、畫圖」兩格程式碼；圖的下一格就是「看圖表說商業分析」。
-
-| 類別 | 圖表 | Colab |
-| :--- | :--- | :--- |
-| 比較 | 01. 垂直長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/01_%E5%9E%82%E7%9B%B4%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/01_垂直長條圖.ipynb) |
-| 比較 | 02. 水平長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/02_%E6%B0%B4%E5%B9%B3%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/02_水平長條圖.ipynb) |
-| 比較 | 03. 分組長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/03_%E5%88%86%E7%B5%84%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/03_分組長條圖.ipynb) |
-| 比較 | 04. 點圖與棒棒糖圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/04_%E9%BB%9E%E5%9C%96%E8%88%87%E6%A3%92%E6%A3%92%E7%B3%96%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/04_點圖與棒棒糖圖.ipynb) |
-| 組成 | 05. 百分比長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/05_%E7%99%BE%E5%88%86%E6%AF%94%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/05_百分比長條圖.ipynb) |
-| 組成 | 06. 甜甜圈圖與圓餅圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/06_%E7%94%9C%E7%94%9C%E5%9C%88%E5%9C%96%E8%88%87%E5%9C%93%E9%A4%85%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/06_甜甜圈圖與圓餅圖.ipynb) |
-| 組成 | 07. 堆疊長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/07_%E5%A0%86%E7%96%8A%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/07_堆疊長條圖.ipynb) |
-| 分布 | 08. 直方圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/08_%E7%9B%B4%E6%96%B9%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/08_直方圖.ipynb) |
-| 分布 | 09. 箱形圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/09_%E7%AE%B1%E5%BD%A2%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/09_箱形圖.ipynb) |
-| 關係 | 10. 散佈圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/10_%E6%95%A3%E4%BD%88%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/10_散佈圖.ipynb) |
-| 關係 | 11. 相關係數熱力圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/11_%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E7%86%B1%E5%8A%9B%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/11_相關係數熱力圖.ipynb) |
-| 關係 | 12. 氣泡圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/12_%E6%B0%A3%E6%B3%A1%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/12_氣泡圖.ipynb) |
-| 趨勢 | 13. 折線圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/13_%E6%8A%98%E7%B7%9A%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/13_折線圖.ipynb) |
-| 趨勢 | 14. 時間長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/14_%E6%99%82%E9%96%93%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/14_時間長條圖.ipynb) |
-| 趨勢 | 15. 堆疊面積圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/15_%E5%A0%86%E7%96%8A%E9%9D%A2%E7%A9%8D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/15_堆疊面積圖.ipynb) |
-
-> 上述 Colab 連結會在筆記本推送至 GitHub `master` 分支後生效。
-
----
-
 ## 🗺️ 全景圖表決策樹
 
 確定問題類型後，請依照手邊的資料條件特徵進行分流篩選：
@@ -106,15 +80,15 @@ graph TD
 
 [![比較圖表選用](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E6%AF%94%E8%BC%83.svg)](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E6%AF%94%E8%BC%83.svg)
 
-- **水平長條圖 (Bar Chart)**：
+- **水平長條圖 (Bar Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/02_%E6%B0%B4%E5%B9%B3%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **適用條件**：類別數量多（$\ge 7$ 個）或項目名稱較長（如「智慧型手機零件採購部」）。
   - **優點**：文字水平排列，閱讀最自然；請**務必由大到小排序**。
-- **垂直長條圖 (Column Chart)**：
+- **垂直長條圖 (Column Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/01_%E5%9E%82%E7%9B%B4%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **適用條件**：類別數量少（$\le 6$ 個）且標籤簡短。
   - **防呆底線**：**Y 軸絕對要從 0 開始**，不可截斷基準線！
-- **分組長條圖 (Grouped Bar)**：
+- **分組長條圖 (Grouped Bar)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/03_%E5%88%86%E7%B5%84%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **適用條件**：同一個類別內同時比對 2 個指標（例如「預算 vs 實際」或「今年 vs 去年」）。
-- **點圖 / 棒棒糖圖 (Dot / Lollipop Plot)**：
+- **點圖 / 棒棒糖圖 (Dot / Lollipop Plot)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/04_%E9%BB%9E%E5%9C%96%E8%88%87%E6%A3%92%E6%A3%92%E7%B3%96%E5%9C%96.ipynb)）：
   - **適用條件**：當比較項目極多（例如 20 個門市）且想突顯精準數值時，能大幅減少長條圖大面積色塊的視覺壓迫感。
 
 ---
@@ -125,12 +99,12 @@ graph TD
 
 [![組成圖表選用](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E7%B5%84%E6%88%90.svg)](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E7%B5%84%E6%88%90.svg)
 
-- **百分比長條圖 (100% Stacked Bar)**：
+- **百分比長條圖 (100% Stacked Bar)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/05_%E7%99%BE%E5%88%86%E6%AF%94%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **首選推薦！** 比圓餅圖更容易讓眼睛精準比對長度差距，不管單一總體或跨群組比較結構都非常清晰。
-- **甜甜圈圖 / 圓餅圖 (Donut / Pie Chart)**：
+- **甜甜圈圖 / 圓餅圖 (Donut / Pie Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/06_%E7%94%9C%E7%94%9C%E5%9C%88%E5%9C%96%E8%88%87%E5%9C%93%E9%A4%85%E5%9C%96.ipynb)）：
   - **限制條件**：**僅限於類別極少（$\le 4$ 個）**且想強調某個主導份額（例如「線上訂單已超過半數」）。
   - **禁忌**：切勿切成 5 塊以上的細碎披薩，嚴禁使用 3D 傾斜視角。
-- **堆疊長條圖 (Stacked Bar Chart)**：
+- **堆疊長條圖 (Stacked Bar Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/07_%E5%A0%86%E7%96%8A%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **適用條件**：需要同時掌握「各類別總額」與「內部各成分份額」的情境（注意：除最底層外，上方色塊基準線浮動，較難精確比較高低）。
 
 ---
@@ -141,10 +115,10 @@ graph TD
 
 [![分布圖表選用](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E5%88%86%E5%B8%83.svg)](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E5%88%86%E5%B8%83.svg)
 
-- **直方圖 (Histogram)**：
+- **直方圖 (Histogram)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/08_%E7%9B%B4%E6%96%B9%E5%9C%96.ipynb)）：
   - **適用條件**：單一連續數值（如 300 筆薪資、通勤時間），觀察波峰是在中間（常態分布）還是偏向某一側。
   - **關鍵**：柱子與柱子之間是緊密相連的（代表連續區間 Bin），切勿與類別長條圖搞混。
-- **箱形圖 / 盒鬚圖 (Box Plot)**：
+- **箱形圖 / 盒鬚圖 (Box Plot)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/09_%E7%AE%B1%E5%BD%A2%E5%9C%96.ipynb)）：
   - **適用條件**：檢視數據 5 數概括（最小值、Q1、中位數、Q3、最大值）與抓出極端離群值 (Outliers) 的最強工具。
   - **商業價值**：一眼看穿「平均數是否被少數極端高薪拉偏」。
 
@@ -156,12 +130,12 @@ graph TD
 
 [![關係圖表選用](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E9%97%9C%E4%BF%82.svg)](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E9%97%9C%E4%BF%82.svg)
 
-- **散佈圖 (Scatter Plot)**：
+- **散佈圖 (Scatter Plot)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/10_%E6%95%A3%E4%BD%88%E5%9C%96.ipynb)）：
   - **適用條件**：2 個連續數值（例如「預估工時」與「實際工時」），觀察點群的集聚方向（正相關、負相關、無關）。
   - **禁忌**：**千萬不要用折線將散佈點連起來**！
-- **相關係數熱力圖 (Correlation Heatmap)**：
+- **相關係數熱力圖 (Correlation Heatmap)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/11_%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E7%86%B1%E5%8A%9B%E5%9C%96.ipynb)）：
   - **適用條件**：欄位有 3 個以上的連續數值變數時，用色彩矩陣全景掃描兩兩之間的相關係數數值。
-- **氣泡圖 (Bubble Chart)**：
+- **氣泡圖 (Bubble Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/12_%E6%B0%A3%E6%B3%A1%E5%9C%96.ipynb)）：
   - **適用條件**：散佈圖的延伸，以氣泡的「圓形面積」表達第 3 個連續數值指標（例如 X 軸為廣告費、Y 軸為營收、氣泡大小代表利潤）。
 
 ---
@@ -172,12 +146,12 @@ graph TD
 
 [![趨勢圖表選用](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E8%B6%A8%E5%8B%A2.svg)](../圖解/%E9%81%B8%E5%9C%96%E7%9F%A9%E9%99%A3_%E8%B6%A8%E5%8B%A2.svg)
 
-- **折線圖 (Line Chart)**：
+- **折線圖 (Line Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/13_%E6%8A%98%E7%B7%9A%E5%9C%96.ipynb)）：
   - **適用條件**：時間序列較長（$> 5$ 個時間點，例如每月、每日），透過斜率展示走勢變化。
   - **防呆底線**：**X 軸必須是時間型態且嚴格由左至右遞增，非時間類別嚴禁連線**。
-- **時間長條圖 (Time-series Bar)**：
+- **時間長條圖 (Time-series Bar)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/14_%E6%99%82%E9%96%93%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb)）：
   - **適用條件**：時間點極少時（例如僅有 3~4 個季度或年份），用長條圖比折線圖更加穩重大方。
-- **堆疊面積圖 (Stacked Area Chart)**：
+- **堆疊面積圖 (Stacked Area Chart)**（[💻 開啟 Colab 範例](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/15_%E5%A0%86%E7%96%8A%E9%9D%A2%E7%A9%8D%E5%9C%96.ipynb)）：
   - **適用條件**：多個類別隨時間演進的累積量變化，類別應控制在 3 個以內以防視線混亂。
 
 ---
