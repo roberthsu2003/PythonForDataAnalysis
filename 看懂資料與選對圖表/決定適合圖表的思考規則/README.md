@@ -22,6 +22,32 @@
 
 ---
 
+## ✋ 15 種圖表 Colab 實作
+
+每份筆記本自帶簡單的示意資料，依序執行「繁體中文字型設定」與「顯示資料、畫圖」兩格程式碼；圖的下一格就是「看圖表說商業分析」。
+
+| 類別 | 圖表 | Colab |
+| :--- | :--- | :--- |
+| 比較 | 01. 垂直長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/01_%E5%9E%82%E7%9B%B4%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/01_垂直長條圖.ipynb) |
+| 比較 | 02. 水平長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/02_%E6%B0%B4%E5%B9%B3%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/02_水平長條圖.ipynb) |
+| 比較 | 03. 分組長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/03_%E5%88%86%E7%B5%84%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/03_分組長條圖.ipynb) |
+| 比較 | 04. 點圖與棒棒糖圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/04_%E9%BB%9E%E5%9C%96%E8%88%87%E6%A3%92%E6%A3%92%E7%B3%96%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/04_點圖與棒棒糖圖.ipynb) |
+| 組成 | 05. 百分比長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/05_%E7%99%BE%E5%88%86%E6%AF%94%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/05_百分比長條圖.ipynb) |
+| 組成 | 06. 甜甜圈圖與圓餅圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/06_%E7%94%9C%E7%94%9C%E5%9C%88%E5%9C%96%E8%88%87%E5%9C%93%E9%A4%85%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/06_甜甜圈圖與圓餅圖.ipynb) |
+| 組成 | 07. 堆疊長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/07_%E5%A0%86%E7%96%8A%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/07_堆疊長條圖.ipynb) |
+| 分布 | 08. 直方圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/08_%E7%9B%B4%E6%96%B9%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/08_直方圖.ipynb) |
+| 分布 | 09. 箱形圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/09_%E7%AE%B1%E5%BD%A2%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/09_箱形圖.ipynb) |
+| 關係 | 10. 散佈圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/10_%E6%95%A3%E4%BD%88%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/10_散佈圖.ipynb) |
+| 關係 | 11. 相關係數熱力圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/11_%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E7%86%B1%E5%8A%9B%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/11_相關係數熱力圖.ipynb) |
+| 關係 | 12. 氣泡圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/12_%E6%B0%A3%E6%B3%A1%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/12_氣泡圖.ipynb) |
+| 趨勢 | 13. 折線圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/13_%E6%8A%98%E7%B7%9A%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/13_折線圖.ipynb) |
+| 趨勢 | 14. 時間長條圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/14_%E6%99%82%E9%96%93%E9%95%B7%E6%A2%9D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/14_時間長條圖.ipynb) |
+| 趨勢 | 15. 堆疊面積圖 | [在 Colab 開啟](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9C%8B%E6%87%82%E8%B3%87%E6%96%99%E8%88%87%E9%81%B8%E5%B0%8D%E5%9C%96%E8%A1%A8/%E6%B1%BA%E5%AE%9A%E9%81%A9%E5%90%88%E5%9C%96%E8%A1%A8%E7%9A%84%E6%80%9D%E8%80%83%E8%A6%8F%E5%89%87/Colab%E7%AF%84%E4%BE%8B/15_%E5%A0%86%E7%96%8A%E9%9D%A2%E7%A9%8D%E5%9C%96.ipynb) · [檢視筆記本](./Colab範例/15_堆疊面積圖.ipynb) |
+
+> 上述 Colab 連結會在筆記本推送至 GitHub `master` 分支後生效。
+
+---
+
 ## 🗺️ 全景圖表決策樹
 
 確定問題類型後，請依照手邊的資料條件特徵進行分流篩選：
