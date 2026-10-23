@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="250" viewBox="0 0 700 250" role="img" aria-label="百分比長條圖將總採購金額當作百分之百，四種採購類別合計百分之百。示意資料。">
+  <title>組成｜百分比長條圖</title><desc>百分比長條圖將總採購金額當作百分之百，四種採購類別合計百分之百。示意資料。</desc>
+  <style>
+  text { font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #172033; }
+  .title { font-size: 23px; font-weight: 800; }
+  .question { font-size: 17px; font-weight: 600; fill: #475569; }
+  .axis { font-size: 15px; fill: #475569; }
+  .note { font-size: 15px; font-weight: 700; fill: #334155; }
+  .inverse { fill: #ffffff; }
+</style>
+  <rect x="1" y="1" width="698" height="248" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="20" y="20" width="6" height="43" rx="3" fill="#2563eb"/>
+  <text x="39" y="40" class="title">組成｜百分比長條圖</text>
+  <text x="39" y="65" class="question">各採購類別占總採購金額多少？</text>
+  <text x="39" y="110" class="axis">總額 100%</text>
+  <rect x="39" y="121" width="248" height="54" rx="5" fill="#1d4ed8"/>
+  <rect x="287" y="121" width="186" height="54" fill="#3b82f6"/>
+  <rect x="473" y="121" width="124" height="54" fill="#60a5fa"/>
+  <rect x="597" y="121" width="62" height="54" rx="5" fill="#93c5fd"/>
+  <text x="119" y="154" class="inverse" font-size="18" font-weight="800">設備 40%</text>
+  <text x="331" y="154" class="inverse" font-size="18" font-weight="800">軟體 30%</text>
+  <text x="481" y="154" font-size="17" font-weight="800" fill="#0f172a">差旅 20%</text>
+  <text x="611" y="154" font-size="16" font-weight="800" fill="#0f172a">10%</text>
+  <text x="550" y="197" class="axis">耗材 10%</text>
+  <text x="34" y="232" class="note">看各區塊占比：分母是「全部採購金額」。</text>
+</svg>

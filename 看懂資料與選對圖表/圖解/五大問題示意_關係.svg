@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="250" viewBox="0 0 700 250" role="img" aria-label="散佈圖每個點是一個專案，橫軸預估工時、縱軸實際工時；多數點朝右上方分布，另有一個特例。示意資料。">
+  <title>關係｜散佈圖</title><desc>散佈圖每個點是一個專案，橫軸預估工時、縱軸實際工時；多數點朝右上方分布，另有一個特例。示意資料。</desc>
+  <style>
+  text { font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #172033; }
+  .title { font-size: 23px; font-weight: 800; }
+  .question { font-size: 17px; font-weight: 600; fill: #475569; }
+  .axis { font-size: 15px; fill: #475569; }
+  .note { font-size: 15px; font-weight: 700; fill: #334155; }
+  .inverse { fill: #ffffff; }
+</style>
+  <rect x="1" y="1" width="698" height="248" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="20" y="20" width="6" height="43" rx="3" fill="#2563eb"/>
+  <text x="39" y="40" class="title">關係｜散佈圖</text>
+  <text x="39" y="65" class="question">預估工時越長，實際工時也越長嗎？</text>
+  <line x1="83" y1="192" x2="645" y2="192" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="83" y1="88" x2="83" y2="192" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="105" y1="178" x2="615" y2="104" stroke="#93c5fd" stroke-width="3" stroke-dasharray="8 6"/>
+  <g fill="#2563eb"><circle cx="115" cy="174" r="6"/><circle cx="164" cy="165" r="6"/>
+    <circle cx="211" cy="161" r="6"/><circle cx="260" cy="150" r="6"/><circle cx="303" cy="153" r="6"/>
+    <circle cx="352" cy="133" r="6"/><circle cx="397" cy="139" r="6"/><circle cx="448" cy="121" r="6"/>
+    <circle cx="505" cy="119" r="6"/><circle cx="554" cy="106" r="6"/><circle cx="605" cy="99" r="6"/></g>
+  <circle cx="190" cy="109" r="8" fill="#f97316"/>
+  <text x="203" y="104" class="axis">特例</text>
+  <text x="29" y="105" class="axis">實際</text>
+  <text x="303" y="210" class="axis">預估工時</text>
+  <text x="34" y="232" class="note">看點的方向：往右上是正向關聯；相關不等於因果。</text>
+</svg>

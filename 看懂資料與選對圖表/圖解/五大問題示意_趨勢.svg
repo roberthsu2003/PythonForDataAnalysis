@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="250" viewBox="0 0 700 250" role="img" aria-label="折線圖按一月至十二月順序連接月支出；線條有起伏，九月為高點。示意資料。">
+  <title>趨勢｜折線圖</title><desc>折線圖按一月至十二月順序連接月支出；線條有起伏，九月為高點。示意資料。</desc>
+  <style>
+  text { font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", sans-serif; fill: #172033; }
+  .title { font-size: 23px; font-weight: 800; }
+  .question { font-size: 17px; font-weight: 600; fill: #475569; }
+  .axis { font-size: 15px; fill: #475569; }
+  .note { font-size: 15px; font-weight: 700; fill: #334155; }
+  .inverse { fill: #ffffff; }
+</style>
+  <rect x="1" y="1" width="698" height="248" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+  <rect x="20" y="20" width="6" height="43" rx="3" fill="#2563eb"/>
+  <text x="39" y="40" class="title">趨勢｜折線圖</text>
+  <text x="39" y="65" class="question">全公司每月支出怎麼變化？</text>
+  <line x1="78" y1="191" x2="648" y2="191" stroke="#94a3b8" stroke-width="2"/>
+  <line x1="78" y1="88" x2="78" y2="191" stroke="#94a3b8" stroke-width="2"/>
+  <polyline points="105,167 152,158 199,162 246,147 293,151 340,133 387,139 434,122 481,102 528,123 575,116 622,109" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#2563eb"><circle cx="105" cy="167" r="5"/><circle cx="152" cy="158" r="5"/>
+    <circle cx="199" cy="162" r="5"/><circle cx="246" cy="147" r="5"/><circle cx="293" cy="151" r="5"/>
+    <circle cx="340" cy="133" r="5"/><circle cx="387" cy="139" r="5"/><circle cx="434" cy="122" r="5"/>
+    <circle cx="481" cy="102" r="6"/><circle cx="528" cy="123" r="5"/><circle cx="575" cy="116" r="5"/><circle cx="622" cy="109" r="5"/></g>
+  <text x="35" y="104" class="axis">支出</text>
+  <text x="91" y="210" class="axis">1 月</text><text x="279" y="210" class="axis">5 月</text>
+  <text x="467" y="210" class="axis">9 月</text><text x="604" y="210" class="axis">12 月</text>
+  <text x="34" y="232" class="note">看時間順序與線的起伏：9 月較高。</text>
+</svg>
