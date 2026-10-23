@@ -484,6 +484,34 @@
       line-height: 1.5;
     }
 
+    .example-chart {
+      border: 1px solid var(--slate-200);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 18px;
+      background: #FFFFFF;
+      overflow-x: auto;
+    }
+    .example-chart-title {
+      color: var(--slate-800);
+      font-size: 0.88rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .example-chart svg {
+      display: block;
+      width: 100%;
+      min-width: 320px;
+      height: auto;
+      max-height: 230px;
+    }
+    .example-chart-note {
+      color: var(--slate-500);
+      font-size: 0.76rem;
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
     .metric-tips {
       background: #F1F5F9;
       border-radius: var(--radius-sm);
@@ -1054,6 +1082,11 @@
                   「這批訂單平均金額是多少？中位數是多少？是否有高得離譜的大單拉高了平均？」
                 </div>
               </div>
+              <div class="example-chart" role="group" aria-label="對應提問積木的圖表範例">
+                <div class="example-chart-title" id="blockChartTitle"></div>
+                <div id="blockChartVisual"></div>
+                <div class="example-chart-note">示意資料，僅用來認識圖表；不是上方 Colab 資料的分析結果。</div>
+              </div>
             </div>
             <div style="font-size: 0.85rem; color: var(--slate-600); border-top: 1px solid var(--slate-100); padding-top: 12px;">
               <strong>推薦搭配圖表：</strong><span id="blockRecommendedChart">直方圖 (Histogram) 或 箱形圖 (Box Plot)</span>
@@ -1377,6 +1410,81 @@
       }
     };
 
+    // 示意圖與右側範例欄位一一對應；不使用外部圖表套件，切換時直接更新 SVG。
+    const blockCharts = {
+      A: {
+        title: '直方圖｜單筆訂單金額分布',
+        label: '訂單金額直方圖：多數訂單集中在低金額區間，右側有少量高金額訂單',
+        drawing: `
+          <line x1="42" y1="175" x2="420" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="42" y1="20" x2="42" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <g fill="#3b82f6">
+            <rect x="57" y="126" width="40" height="49" rx="3"/><rect x="102" y="76" width="40" height="99" rx="3"/>
+            <rect x="147" y="43" width="40" height="132" rx="3"/><rect x="192" y="91" width="40" height="84" rx="3"/>
+            <rect x="237" y="133" width="40" height="42" rx="3"/><rect x="282" y="151" width="40" height="24" rx="3"/>
+            <rect x="327" y="162" width="40" height="13" rx="3"/><rect x="372" y="166" width="40" height="9" rx="3"/>
+          </g>
+          <text x="22" y="27" class="axis-label">筆數</text>
+          <text x="44" y="196" class="axis-label">低</text><text x="371" y="196" class="axis-label">高</text>
+          <text x="169" y="218" class="axis-label">訂單金額（元）</text>`
+      },
+      B: {
+        title: '長條圖｜各產品類別營收比較',
+        label: '產品類別營收長條圖：產品 A 最高，產品 B 次之',
+        drawing: `
+          <line x1="42" y1="175" x2="420" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="42" y1="20" x2="42" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <rect x="72" y="41" width="54" height="134" rx="4" fill="#2563eb"/>
+          <rect x="157" y="66" width="54" height="109" rx="4" fill="#3b82f6"/>
+          <rect x="242" y="111" width="54" height="64" rx="4" fill="#93c5fd"/>
+          <rect x="327" y="133" width="54" height="42" rx="4" fill="#bfdbfe"/>
+          <text x="20" y="27" class="axis-label">營收</text>
+          <text x="89" y="195" class="axis-label">A</text><text x="174" y="195" class="axis-label">B</text>
+          <text x="259" y="195" class="axis-label">C</text><text x="344" y="195" class="axis-label">D</text>
+          <text x="189" y="218" class="axis-label">產品類別</text>`
+      },
+      C: {
+        title: '折線圖｜每月營收走勢',
+        label: '每月營收折線圖：營收有波動，年末明顯上升',
+        drawing: `
+          <line x1="42" y1="175" x2="420" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="42" y1="20" x2="42" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <polyline points="57,145 87,130 117,138 147,112 177,118 207,95 237,105 267,86 297,104 327,72 357,62 387,40" fill="none" stroke="#2563eb" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <g fill="#2563eb"><circle cx="57" cy="145" r="4"/><circle cx="147" cy="112" r="4"/><circle cx="237" cy="105" r="4"/><circle cx="327" cy="72" r="4"/><circle cx="387" cy="40" r="4"/></g>
+          <text x="20" y="27" class="axis-label">營收</text>
+          <text x="51" y="196" class="axis-label">1 月</text><text x="170" y="196" class="axis-label">5 月</text>
+          <text x="290" y="196" class="axis-label">9 月</text><text x="374" y="196" class="axis-label">12 月</text>
+          <text x="205" y="218" class="axis-label">月份</text>`
+      },
+      D: {
+        title: '散佈圖｜預估工時與實際工時',
+        label: '預估與實際工時散佈圖：多數點呈正向關聯，另有一個預估短但實際工時長的特例',
+        drawing: `
+          <line x1="42" y1="175" x2="420" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="42" y1="20" x2="42" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="66" y1="157" x2="391" y2="43" stroke="#93c5fd" stroke-width="2" stroke-dasharray="6 5"/>
+          <g fill="#2563eb"><circle cx="74" cy="150" r="5"/><circle cx="110" cy="146" r="5"/><circle cx="132" cy="129" r="5"/><circle cx="167" cy="126" r="5"/><circle cx="185" cy="111" r="5"/><circle cx="221" cy="108" r="5"/><circle cx="245" cy="87" r="5"/><circle cx="285" cy="94" r="5"/><circle cx="315" cy="67" r="5"/><circle cx="350" cy="62" r="5"/><circle cx="382" cy="46" r="5"/></g>
+          <circle cx="112" cy="58" r="8" fill="#f97316" stroke="#fff" stroke-width="2"/>
+          <text x="121" y="48" class="axis-label" fill="#c2410c">特例</text>
+          <text x="4" y="27" class="axis-label">實際工時</text>
+          <text x="154" y="205" class="axis-label">專案預估工時</text>`
+      },
+      E: {
+        title: '多線折線圖｜各部門每月加班時數',
+        label: '資訊部與業務部加班時數折線圖：兩個部門的月度走勢不同，業務部年底上升',
+        drawing: `
+          <line x1="42" y1="175" x2="420" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <line x1="42" y1="20" x2="42" y2="175" stroke="#94a3b8" stroke-width="2"/>
+          <polyline points="57,126 87,120 117,131 147,112 177,118 207,103 237,109 267,96 297,102 327,94 357,99 387,90" fill="none" stroke="#2563eb" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="57,147 87,142 117,151 147,139 177,134 207,132 237,125 267,120 297,111 327,91 357,65 387,40" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="4" y="27" class="axis-label">加班時數</text>
+          <text x="51" y="196" class="axis-label">1 月</text><text x="170" y="196" class="axis-label">5 月</text>
+          <text x="290" y="196" class="axis-label">9 月</text><text x="374" y="196" class="axis-label">12 月</text>
+          <line x1="135" y1="216" x2="157" y2="216" stroke="#2563eb" stroke-width="3"/><text x="163" y="220" class="axis-label">資訊部</text>
+          <line x1="239" y1="216" x2="261" y2="216" stroke="#f97316" stroke-width="3"/><text x="267" y="220" class="axis-label">業務部</text>`
+      }
+    };
+
     function selectBlock(key, btn) {
       document.querySelectorAll('#blockBtnGroup .block-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
@@ -1388,6 +1496,9 @@
       document.getElementById('blockExampleFields').innerHTML = `<strong>挑選欄位：</strong>${data.fields}`;
       document.getElementById('blockExampleQ').innerText = data.question;
       document.getElementById('blockRecommendedChart').innerText = data.chart;
+      const chart = blockCharts[key];
+      document.getElementById('blockChartTitle').innerText = chart.title;
+      document.getElementById('blockChartVisual').innerHTML = `<svg viewBox="0 0 440 230" role="img" aria-label="${chart.label}" xmlns="http://www.w3.org/2000/svg"><style>.axis-label{font:12px system-ui,sans-serif;fill:#475569}</style>${chart.drawing}</svg>`;
 
       const pList = document.getElementById('blockPatternList');
       pList.innerHTML = data.patterns.map((p, idx) => `
