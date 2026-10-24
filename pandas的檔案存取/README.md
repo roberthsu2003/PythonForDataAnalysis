@@ -20,20 +20,23 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **📥 茶語時光：搞定五種難搞的資料檔**
+> **📥 政府資料的七種難搞格式：用 pandas 一次搞定**
 >
-> 月初結帳日，各部門丟來五種格式的檔案：POS 系統匯出的「髒」CSV、每家店一個工作表的 Excel、外送平台的巢狀 JSON、IT 部門的會員資料庫，還有一個 10 萬筆、用 Excel 打開會卡住的交易檔。你要用 pandas 一一讀進來，最後整理成一份多工作表的 Excel 交給主管。
+> 你接下市政府的資料整理工作，第一天就收到一個資料夾：Big5 編碼還用民國年的 CSV、數字有逗號的 CSV、一層包一層的 JSON、一年一張工作表的 Excel、一個 SQLite 資料庫，還有一個大到 Excel 打開會卡住的檔案。這些都是**政府開放資料的真實樣貌**。今天的任務是：**每一種都用 pandas 一兩行讀進來，最後整理成一份 Excel 交差。**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb)　｜　[⬇️ 下載本章素材 pandas的檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E7%9A%84%E4%B8%83%E7%A8%AE%E9%9B%A3%E6%90%9E%E6%A0%BC%E5%BC%8F.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E7%9A%84%E4%B8%83%E7%A8%AE%E9%9B%A3%E6%90%9E%E6%A0%BC%E5%BC%8F.ipynb)　｜　[⬇️ 下載本章素材 pandas的檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `POS匯出_信義店_2024-03.csv` | POS 匯出的日報：有註解行、千分位逗號、`--` 缺值、最後一列是合計 |
-| `各店月報_2024.xlsx` | 5 個工作表（每店一張），前兩列是標題 |
-| `外送平台訂單_2024-03.json` | 外送平台的巢狀 JSON：一筆訂單裡有多個品項 |
-| `會員資料庫.db` | SQLite 資料庫，內有「會員」資料表（800 位） |
-| `全年交易紀錄_2024.csv` | 10 萬筆交易紀錄（用來練習分批讀取） |
+| `臺北市各區資源回收量.csv` | 臺北市各區清潔隊每月資源回收量（**Big5 編碼**，年度是**民國年**） |
+| `台電各縣市用電統計.csv` | 台電各縣市每月售電量（數字有**千分位逗號**、最後有空白列和多餘的空欄） |
+| `全國電影票房_2016至今.json` | 文化部全國電影票房（**巢狀 JSON**） |
+| `臺北捷運各站分時進出量_202603.csv` | 臺北捷運 2026 年 3 月各站每小時進出站人次（約 8 萬列，練習**分批讀取**） |
+| `台電縣市年度用電.xlsx` | 整理自台電縣市用電：一年一張工作表、**第 1 列是報表標題** |
+| `空氣品質.db` | 整理自環境部日 AQI：一年份、80 個測站的 **SQLite 資料庫** |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[臺北市各區清潔隊資源回收量](https://data.gov.tw/dataset/121705)（臺北市政府環境保護局）、[台灣電力公司各縣市住宅、服務業及機關用電統計資料](https://data.gov.tw/dataset/29935)（台灣電力股份有限公司）、[全國電影票房統計數據](https://data.gov.tw/dataset/94224)（文化部）、[日空氣品質指標(AQI)](https://data.gov.tw/dataset/40507)（環境部）、[臺北捷運各站分時進出量統計](https://data.gov.tw/dataset/128506)（臺北大眾捷運股份有限公司）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

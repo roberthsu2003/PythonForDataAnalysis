@@ -252,3 +252,14 @@ def order_lines(start='2024-01-01', end='2024-03-31', scale=1.0, offset=0):
                 cups += qty
     return pd.DataFrame(rows, columns=['訂單編號', '訂單時間', '門市代碼', '門市', '品項代碼', '品項', '類別', '尺寸',
                                        '甜度', '冰塊', '數量', '單價', '金額', '會員', '付款方式'])
+
+
+def expected_items(daily):
+    """依每日氣溫把杯數分配到各品項。"""
+    r = rng(31)
+    rows = []
+    for _, d in daily.iterrows():
+        w = item_weights(d['最高溫'], d['日期'], d['門市代碼'])
+        noise = r.lognormal(0, 0.12, len(w))                         # 每天每個品項的自然波動
+        rows.append((d['日期'], d['門市'], *(np.round(w.values * noise * d['杯數']).astype(int))))
+    return pd.DataFrame(rows, columns=['日期', '門市', *MENU.set_index('品項代碼').loc[w.index, '品項']])

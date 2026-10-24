@@ -32,7 +32,7 @@
   <main class="chapter">
     <p class="crumb"><a href="../index.html">課程首頁</a> › 第 5 章</p>
     <h1 class="chapter-title">📊 🐼 初見 pandas：把資料變成「會說話的 Excel 表」，分析從這裡起飛</h1>
-    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🐼 新品上市週的第一份 pandas 報表</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%88%9D%E8%A6%8Bpandas" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🎬 台灣人最愛看什麼電影？</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%88%9D%E8%A6%8Bpandas" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
     <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
     <article class="md"><blockquote class="alert alert-important">
 <p class="alert-title">📌 重點</p>
@@ -54,9 +54,9 @@
 <h2 id="學生素材下載">📦 學生素材下載</h2>
 <blockquote class="alert alert-tip">
 <p class="alert-title">💡 提示</p>
-<p><strong>🐼 茶語時光：新品上市週的第一份 pandas 報表</strong></p>
-<p>2024 年 4 月 1 日，新品「芋頭鮮奶」上市！行銷部想知道：新品賣得怎樣？有沒有搶走其他飲料的生意？每杯賺多少？你第一次用 pandas，把菜單、門市資料與兩週的銷量做成表格來回答。</p>
-<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 初見pandas_學生素材.zip</a></p>
+<p><strong>🎬 台灣人最愛看什麼電影？用 pandas 做第一份票房報表</strong></p>
+<p>你在影評社團負責「年度回顧」專題。文化部公開了<strong>全國每一部電影的票房</strong>——從 2016 年到現在，7,000 多部電影。用 Python 的清單和字典處理這麼多資料太辛苦了，今天換上新武器 <strong>pandas</strong>：它會把資料變成一張「會說話的 Excel 表」，讓你一行程式就回答「<strong>2025 年最賣座的是誰？國片表現如何？</strong>」</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 初見pandas_學生素材.zip</a></p>
 </blockquote>
 <div class="table-wrap"><table>
 <thead>
@@ -67,20 +67,8 @@
 </thead>
 <tbody>
 <tr>
-<td><code>菜單.csv</code></td>
-<td>10 個品項的價格與成本</td>
-</tr>
-<tr>
-<td><code>門市.csv</code></td>
-<td>5 家門市的基本資料</td>
-</tr>
-<tr>
-<td><code>兩週品項銷量.json</code></td>
-<td>芋頭鮮奶上市前一週與上市當週，全品牌各品項杯數</td>
-</tr>
-<tr>
-<td><code>信義店日報_新品週.json</code></td>
-<td>信義店新品週每天的杯數、營收、來客數</td>
+<td><code>全國電影票房_2016至今.json</code></td>
+<td>文化部全國電影票房：2016 年至今 7,000 多部電影的國別、上映日、戲院數、票數與票房金額（JSON）</td>
 </tr>
 <tr>
 <td><code>課程原始資料/</code></td>
@@ -88,6 +76,7 @@
 </tr>
 </tbody>
 </table></div>
+<p><strong>📡 資料來源</strong>（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：<a href="https://data.gov.tw/dataset/94224" target="_blank" rel="noopener">全國電影票房統計數據</a>（文化部）</p>
 <p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
 <hr />
 <h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>

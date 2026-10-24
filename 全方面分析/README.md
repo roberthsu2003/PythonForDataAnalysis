@@ -22,12 +22,13 @@
 >
 > 這次不是茶語時光，而是**真實的政府開放資料**：台鐵 2023 年 241 個車站、每天的進出站人數。你是交通部委託的分析師，要回答四個問題：①哪些車站是「上班族通勤站」、哪些是「假日觀光站」？②春節期間，哪些車站人潮暴增、哪些變成空城？③哪幾天全台運量最低，發生了什麼事？④寫一份給長官的三點摘要。這是一個完整的分析流程，每一步都附上「指揮 AI」的範本，請試著自己完成，再對照參考程式。
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb) [開啟範例 Notebook](./學生素材/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb)　｜　[⬇️ 下載本章素材 全方面分析_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb)　｜　[⬇️ 下載本章素材 全方面分析_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
 | `課程原始資料/每日各站進出站人數2023.csv` | 台鐵 2023 年每日各站進出站人數（真實資料，86,609 筆） |
 | `台鐵車站資訊.csv` | 車站代碼與站名、地址對照表 |
+| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

@@ -20,20 +20,19 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **📈 茶語時光：做出老闆最愛的五張圖**
+> **⚡ 夏天電費為什麼暴增？用台電真實資料畫出五張圖**
 >
-> 年終檢討會議就在明天，老闆說：「我不要看密密麻麻的表格，給我幾張圖，一眼就知道今年哪家店最好、什麼最好賣、客人是誰、天氣對生意有沒有影響。」你決定用 Matplotlib 做出五張圖，再組成一頁儀表板。
+> 每年夏天，爸媽看到電費單都會嚇一跳：「冷氣也沒多開啊，怎麼貴這麼多？」台灣電力公司在政府資料開放平台公布了**全台住宅每戶每月平均用電與電費**。今天你要用 Matplotlib 畫出五張圖，用數據回答：**電費暴增，只是因為用得多，還是每一度電也變貴了？**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb)　｜　[⬇️ 下載本章素材 繪圖和視覺展示_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%A4%8F%E5%A4%A9%E9%9B%BB%E8%B2%BB%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9A%B4%E5%A2%9E_%E5%8F%B0%E9%9B%BB%E7%94%A8%E9%9B%BB%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%A4%8F%E5%A4%A9%E9%9B%BB%E8%B2%BB%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9A%B4%E5%A2%9E_%E5%8F%B0%E9%9B%BB%E7%94%A8%E9%9B%BB%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb)　｜　[⬇️ 下載本章素材 繪圖和視覺展示_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `門市月營收_2024.csv` | 5 家門市 2024 年每月營收（萬元） |
-| `品項年銷量_2024.csv` | 10 個品項全年銷量 |
-| `西門店每日氣溫與銷量_2024.csv` | 西門店每天的最高溫與芒果冰沙、熱可可杯數 |
-| `會員年齡.csv` | 700 位會員的年齡 |
-| `甜度偏好_2024.csv` | 一年來各甜度的杯數（抽樣） |
+| `台電住宅每戶平均用電與電費.csv` | 台電住宅用戶「每戶」每月平均用電度數與電費（2018 年起，日期是民國年月，例如 10701） |
+| `台電各縣市用電統計.csv` | 台電各縣市每月售電量，分成住宅、服務業、工業、農林漁牧（數字有千分位逗號） |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[台灣電力公司住宅用戶每月平均用電度數及電費](https://data.gov.tw/dataset/17062)（台灣電力股份有限公司）、[台灣電力公司各縣市住宅、服務業及機關用電統計資料](https://data.gov.tw/dataset/29935)（台灣電力股份有限公司）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

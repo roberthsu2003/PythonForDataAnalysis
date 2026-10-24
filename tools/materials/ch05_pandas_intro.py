@@ -1,200 +1,186 @@
-"""第 5 章 初見 pandas：Series、DataFrame、新增欄位、篩選、索引對齊與 NaN。"""
-import json
-
-import numpy as np
-
-from common import MENU, STORES, daily_sales, item_weights, rng
-from nbtools import md, code, setup_cell, header, exercises
+"""第 5 章 初見 pandas：用文化部真實電影票房練習 Series、DataFrame、新增欄位、篩選、索引對齊與 NaN。"""
+from nbtools import md, code, setup_cell, header, exercises, copy_real, latest
 
 CHAPTER = '初見pandas'
-NOTEBOOK = '範例_茶語時光_新品上市週的第一份報表.ipynb'
-
-
-def week_items(daily, r, cannibal=1.0):
-    """一週各品項杯數；cannibal < 1 表示鮮奶系列被新品分走部分客人。"""
-    total = {}
-    for _, d in daily.iterrows():
-        w = item_weights(d['最高溫'], d['日期'], d['門市代碼'])
-        for code_, share in w.items():
-            name = MENU.set_index('品項代碼').loc[code_, '品項']
-            factor = cannibal if code_ in ('003', '006') else 1.0
-            total[name] = total.get(name, 0) + share * factor * d['杯數'] * r.lognormal(0, 0.05)
-    return {k: int(round(v)) for k, v in total.items() if v > 0}
+NOTEBOOK = '範例_台灣人最愛看什麼電影_第一份pandas報表.ipynb'
+SOURCES = ['boxoffice']
 
 
 def build(out):
-    r = rng(50)
-    MENU[['品項代碼', '品項', '類別', '中杯價', '成本']].to_csv(out / '菜單.csv', index=False, encoding='utf-8-sig')
-    STORES[['門市代碼', '門市', '縣市', '開幕日', '座位數', '月租金', '特色']].to_csv(out / '門市.csv', index=False, encoding='utf-8-sig')
-
-    daily = daily_sales('2024-03-25', '2024-04-07')
-    last = daily[daily['日期'] <= '2024-03-31']
-    this = daily[daily['日期'] >= '2024-04-01']
-    sales = {'上週(3/25-3/31)': week_items(last, r), '本週(4/1-4/7)': week_items(this, r, cannibal=0.82)}
-    (out / '兩週品項銷量.json').write_text(json.dumps(sales, ensure_ascii=False, indent=2), encoding='utf-8')
-
-    xinyi = this[this['門市'] == '台北信義店']
-    weather = ['晴', '多雲', '晴', '雨', '晴', '多雲', '晴']
-    report = [{'日期': d['日期'].strftime('%Y-%m-%d'), '天氣': w, '杯數': int(d['杯數']), '營收': int(d['營收']),
-               '來客數': int(d['杯數'] / r.uniform(1.45, 1.65))} for (_, d), w in zip(xinyi.iterrows(), weather)]
-    (out / '信義店日報_新品週.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
-
-    files = ['菜單.csv', '門市.csv', '兩週品項銷量.json', '信義店日報_新品週.json']
-    desc = [('菜單.csv', '10 個品項的價格與成本'), ('門市.csv', '5 家門市的基本資料'),
-            ('兩週品項銷量.json', '芋頭鮮奶上市前一週與上市當週，全品牌各品項杯數'),
-            ('信義店日報_新品週.json', '信義店新品週每天的杯數、營收、來客數')]
+    files = [copy_real(out, 'boxoffice')]
+    desc = [(files[0], '文化部全國電影票房：2016 年至今 7,000 多部電影的國別、上映日、戲院數、票數與票房金額（JSON）')]
 
     cells = [
-        header(CHAPTER, NOTEBOOK, '🐼 茶語時光：新品上市週的第一份 pandas 報表',
-               '2024 年 4 月 1 日，新品「芋頭鮮奶」上市！行銷部想知道：新品賣得怎樣？有沒有搶走其他飲料的生意？'
-               '每杯賺多少？你第一次用 pandas，把菜單、門市資料與兩週的銷量做成表格來回答。', desc),
+        header(CHAPTER, NOTEBOOK, '🎬 台灣人最愛看什麼電影？用 pandas 做第一份票房報表',
+               '你在影評社團負責「年度回顧」專題。文化部公開了**全國每一部電影的票房**——從 2016 年到現在，7,000 多部電影。'
+               '用 Python 的清單和字典處理這麼多資料太辛苦了，今天換上新武器 **pandas**：'
+               '它會把資料變成一張「會說話的 Excel 表」，讓你一行程式就回答「**2025 年最賣座的是誰？國片表現如何？**」',
+               desc, SOURCES),
         setup_cell(CHAPTER, files),
         md('''
-## 任務 1：Series——有名牌的一欄數字
+## 任務 1：Series——一欄有「名牌」的數字
 
-**老闆的問題**：「每杯中杯賣多少錢？超過 60 元的有哪些？如果全面漲 5%，會變多少？」
-
-**白話說明**：Series 像 Excel 的一欄，左邊是名牌（品項），右邊是數值（價格）。
+**白話說明**：`Series` 就像 Excel 的**一欄**，但每個值都掛著一個名牌（index）。用名牌取值，比記「第幾個」直覺多了。
 '''),
         code('''
 import pandas as pd
 
-menu = pd.read_csv('菜單.csv', dtype={'品項代碼': str})     # 品項代碼當文字讀，才不會把 001 變成 1
-price = pd.Series(menu['中杯價'].values, index=menu['品項'], name='中杯價')   # 名牌＝品項，值＝價格
-display(price)
-print('\\n珍珠奶茶的價格：', price['珍珠奶茶'])               # 用名牌查詢
-print('\\n超過 60 元的品項：\\n', price[price > 60])           # 篩選
-print('\\n全面漲 5% 後：\\n', (price * 1.05).round())         # 整欄一起運算
+top5 = pd.Series([8.57, 7.75, 7.57, 5.74, 4.93],                 # 2025 年前 5 名的票房（億元）
+                 index=['鬼滅之刃 無限城篇', '陽光女子合唱團', '動物方城市2', 'F1電影', '阿凡達：火與燼'],
+                 name='票房(億)')
+display(top5)
+print('陽光女子合唱團：', top5['陽光女子合唱團'], '億')          # 用名牌取值
+print('前 5 名合計：', top5.sum().round(2), '億；平均：', top5.mean().round(2), '億')
+print('破 6 億的：', top5[top5 > 6].index.tolist())              # 條件篩選
 '''),
         md('''
-## 任務 2：DataFrame——加上毛利欄位，找出「最會賺」的飲料
+## 任務 2：DataFrame——把 7,000 多部電影變成一張表
 
-**白話說明**：DataFrame 就是整張 Excel 表。新增欄位就像在 Excel 插入一欄、填入公式。
-'''),
-        code('''
-menu['毛利'] = menu['中杯價'] - menu['成本']                 # 新增欄位：每杯賺多少
-menu['毛利率'] = (menu['毛利'] / menu['中杯價'] * 100).round(1)
-display(menu)
-
-print('\\n形狀：', menu.shape)                                # (列數, 欄數)
-print('\\n毛利率 > 70% 的品項：')
-display(menu[menu['毛利率'] > 70][['品項', '中杯價', '毛利', '毛利率']])
-'''),
-        md('''
-> 💡 **看懂結果**：純茶、果茶的毛利率最高（成本低），鮮奶系列單價高、每杯賺得多但毛利率較低。**促銷要推哪一杯，取決於你要衝「營收」還是衝「利潤率」。**
->
-> 🤖 **換你問 AI**：「這是我的菜單 DataFrame（欄位：品項、中杯價、成本），請新增毛利與毛利率欄，並列出毛利率超過 70% 的品項。」
-'''),
-        md('''
-## 任務 3：從 JSON 建立 DataFrame——信義店新品週日報
-
-**白話說明**：「清單裡放字典」（一天一個字典）的 JSON，用 `pd.DataFrame()` 一行就變成表格。
+**白話說明**：`DataFrame` 就是一整張表格：每一欄都是一個 Series。JSON 裡的電影清單是「一部電影一個字典」，直接丟給 `pd.DataFrame()` 就變成表格。
 '''),
         code('''
 import json
 
-with open('信義店日報_新品週.json', encoding='utf-8') as f:
-    records = json.load(f)
-print('原始資料第一筆：', records[0])
+with open('全國電影票房_2016至今.json', encoding='utf-8-sig') as f:
+    data = json.load(f)
 
-report = pd.DataFrame(records)                               # 一個字典 → 一列
-report = report.set_index('日期')                             # 用日期當列名牌
-report['客單價'] = (report['營收'] / report['來客數']).round(1) # 平均每位客人花多少錢
-display(report)
-print('\\n新品週總營收：', report['營收'].sum(), '元')
-print('雨天那天：\\n', report.loc[report['天氣'] == '雨'])
-'''),
-        md('''
-## 任務 4：新品有沒有搶走其他飲料的生意？——索引對齊與 NaN
-
-**老闆的問題**：「芋頭鮮奶上市後，其他飲料有沒有變少？」
-
-**白話說明**：兩個 Series 相減時，pandas 會「按名牌配對」。芋頭鮮奶上週還沒上市、沒有名牌，配不到就會出現 **NaN**（空值）——這正是新品！
+movies = pd.DataFrame(data['List'])                                # 字典的清單 → 表格（一個字典 = 一列）
+print('幾列 × 幾欄：', movies.shape)
+movies.head()
 '''),
         code('''
-with open('兩週品項銷量.json', encoding='utf-8') as f:
-    sales = json.load(f)
-
-last_week = pd.Series(sales['上週(3/25-3/31)'])               # 上週：沒有芋頭鮮奶
-this_week = pd.Series(sales['本週(4/1-4/7)'])                 # 本週：多了芋頭鮮奶
-
-compare = pd.DataFrame({'上週': last_week, '本週': this_week})  # 依品項名稱自動對齊
-compare['變化'] = compare['本週'] - compare['上週']             # 上週沒有的 → NaN
-compare['變化率%'] = (compare['變化'] / compare['上週'] * 100).round(1)
-display(compare.sort_values('變化'))
-print('\\n上週沒有資料（新品）：', list(compare[compare['上週'].isnull()].index))
+movies.describe()                                                  # 數字欄位的統計摘要
 '''),
         md('''
-> 💡 **看懂結果**：
-> - 芋頭鮮奶的「變化」是 NaN，因為上週根本還沒賣；熱可可則相反，天氣變熱、本週沒人點。**NaN 不是錯誤，而是在告訴你「這裡沒有資料可以比」**。
-> - 同樣是鮮奶系列的「黑糖珍珠鮮奶」、「鮮奶綠」是衰退最多的兩杯——客人很可能改點新品了，這叫「**自我侵蝕**」。新品賣得好，不代表品牌整體多賺了這麼多。
+> 🕵️ **仔細看 `describe()` 的結果**，你會發現兩個「真實資料的怪現象」：
+> 1. `TicketChangeRate`（票房變動率）**全部都是 0**——這一欄沒有任何資訊。
+> 2. `Tickets` 和 `TotalTickets`、`Amounts` 和 `TotalAmounts` 的數字**一模一樣**——重複了。
+> 3. 票數、票房的最小值（min）是 **-1**——票房不可能是負的！這是系統用 -1 代表「沒有資料」。
 >
-> 🤖 **換你問 AI**：「我有上週與本週各品項銷量兩個 Series，請合併成一張比較表，計算變化量與變化率，並說明 NaN 代表什麼。」
-'''),
-        md('''
-## 任務 5：門市資料表——每個座位要負擔多少租金？
+> 真實資料常常有沒用、重複或「假數字」的欄位，**先看懂、再處理**，算出來的結果才可信。
 '''),
         code('''
-stores = pd.read_csv('門市.csv')
-stores['每座位月租金'] = (stores['月租金'] / stores['座位數']).round(0)   # 新增欄位
-display(stores[['門市', '縣市', '座位數', '月租金', '每座位月租金']].sort_values('每座位月租金', ascending=False))
+movies = movies.drop(columns=['TicketChangeRate', 'Tickets', 'Amounts', 'Produce'])   # 刪掉沒用、重複、幾乎空白的欄位
+movies = movies.rename(columns={'Country': '國別', 'Name': '片名', 'ReleaseDate': '上映日', 'Issue': '發行商',
+                                'TheaterCount': '戲院數', 'TotalTickets': '票數', 'TotalAmounts': '票房'})
+print('票房是 -1（沒有資料）的電影：', (movies['票房'] < 0).sum(), '部')
+movies = movies[movies['票房'] > 0]                                # 只留下有票房資料的電影
+print('清理後：', movies.shape)
+movies.head()
 '''),
         md('''
-> 💡 **看懂結果**：台北的門市每個座位的租金是台南的好幾倍——這也是為什麼台北店更重視「外帶」與「翻桌率」。
-''')
+## 任務 3：新增欄位——讓表格回答更多問題
+
+**白話說明**：`表格['新欄位'] = 計算式`，整欄一次算完，不用寫迴圈。`.str[:4]` 取文字的前 4 個字。
+'''),
+        code('''
+movies['年'] = movies['上映日'].str[:4].astype(int)                # '2025-08-06T00:00:00' → 2025
+movies['票房(億)'] = (movies['票房'] / 1e8).round(2)
+movies['平均票價'] = (movies['票房'] / movies['票數']).round(0)   # 一張票平均多少錢
+
+movies.sort_values('票房', ascending=False).head(10)[['片名', '國別', '年', '戲院數', '票數', '票房(億)', '平均票價']]
+'''),
+        md('''
+> 💡 **看懂結果**：平均票價大多在 240～330 元之間——這就是你去電影院買一張票的價錢。前 10 名幾乎都在 **90 家以上的戲院**同時上映，大片的「排片優勢」非常明顯。
+'''),
+        md('''
+## 任務 4：篩選——2025 年的國片表現如何？
+
+**白話說明**：`表格[條件]` 只留下符合條件的列；兩個條件用 `&`（而且）連接，**每個條件都要加括號**。
+'''),
+        code('''
+tw2025 = movies[(movies['國別'] == '中華民國') & (movies['年'] == 2025)]          # 國片 而且 2025 年
+print('2025 年國片數量：', len(tw2025), '部')
+print('2025 年國片總票房：', round(tw2025['票房'].sum() / 1e8, 1), '億')
+tw2025.sort_values('票房', ascending=False).head(5)[['片名', '上映日', '戲院數', '票房(億)']]
+'''),
+        md('''
+> 💡 **看懂結果**：2025 年國片前兩名《陽光女子合唱團》、《96分鐘》都破 2 億，前者更衝到 7.75 億、擠進全年第 2 名，是近年國片最好的成績之一。
+>
+> 🤖 **換你問 AI**：「我有一個電影票房的 DataFrame，欄位有片名、國別、年、票房。請篩選出 2025 年的國片，依票房由高到低列出前 5 名。」
+'''),
+        md('''
+## 任務 5：索引對齊——2024 年和 2025 年，哪些國家的電影變多了？
+
+**白話說明**：`value_counts()` 數出每個國別有幾部電影，結果是一個以「國別」當名牌的 Series。
+兩個 Series 相減時，pandas 會**依照名牌自動對齊**，不是依照順序——只出現在一邊的名牌，結果會是 `NaN`（沒有資料）。
+'''),
+        code('''
+count2024 = movies.loc[movies['年'] == 2024, '國別'].value_counts()
+count2025 = movies.loc[movies['年'] == 2025, '國別'].value_counts()
+
+compare = pd.DataFrame({'2024年': count2024, '2025年': count2025})   # 依「國別」自動對齊
+compare['變化'] = compare['2025年'] - compare['2024年']
+compare.sort_values('2025年', ascending=False).head(12)
+'''),
+        code('''
+no_pair = compare[compare['變化'].isna()]                           # 哪些國家出現 NaN？
+print('只在其中一年出現的國別：', len(no_pair), '個')
+no_pair.head(8)
+'''),
+        md('''
+> 💡 **看懂結果**：有些國家只在其中一年有電影上映，另一年沒有名牌，所以「變化」算不出來，變成 `NaN`。
+> 這不是錯誤，而是 pandas 很誠實地告訴你「**這裡沒有資料**」——下一步要決定：把 NaN 當成 0？還是刪掉？（練習 3 會用到）
+>
+> 🕵️ **再仔細看國別**：同一個地方有兩種寫法（「台灣」和「中華民國」、「中國」和「中國大陸」），合拍片還寫成「中國大陸/法國」。這種「寫法不統一」是真實資料最常見的問題，第 8 章「資料整理」會教你怎麼統一。
+'''),
+        latest('''
+import pandas as pd, urllib.request, json
+raw = urllib.request.urlopen('https://boxofficetw.tfai.org.tw/OpenData/statistic/since2016').read()
+latest_movies = pd.DataFrame(json.loads(raw.decode('utf-8-sig'))['List'])
+latest_movies.sort_values('ReleaseDate', ascending=False).head()     # 最近上映的電影
+'''),
     ] + exercises(
-        dict(title='鮮奶系列有哪些品項？平均每杯賺多少？',
-             hint='篩選列的寫法是 `表格[表格[\'欄位\'] == 值]`；平均用 `.mean()`。',
+        dict(title='日本電影的平均票價是多少？',
+             hint='先用 `movies[\'國別\'] == \'日本\'` 篩選，再取出「平均票價」那一欄，最後 `.mean()`。',
              starter='''
-milk = menu[menu[___] == '鮮奶']                    # 只留下類別是「鮮奶」的品項
-milk_profit = milk['毛利'].___()                     # 平均毛利
-display(milk[['品項', '毛利']])
-print('平均毛利：', milk_profit)
+japan = movies[movies[___] == '日本']
+japan_price = japan['平均票價'].___()
+print('日本片平均票價：', round(japan_price), '元，共', len(japan), '部')
 ''',
              check='''
-check('milk_profit', menu.loc[menu['類別'] == '鮮奶', '毛利'].mean())
+check('japan_price', movies.loc[movies['國別'] == '日本', '平均票價'].mean())
 ''',
              solution='''
-milk = menu[menu['類別'] == '鮮奶']
-milk_profit = milk['毛利'].mean()
-display(milk[['品項', '毛利']])
-print('平均毛利：', milk_profit)
+japan = movies[movies['國別'] == '日本']
+japan_price = japan['平均票價'].mean()
+print('日本片平均票價：', round(japan_price), '元，共', len(japan), '部')
 '''),
-        dict(title='新增「每杯平均價」＝營收 ÷ 杯數，哪一天最高？',
-             hint='兩欄相除會「逐列」計算；`idxmax()` 回傳最大值所在的列名牌（日期）。',
+        dict(title='哪一部電影「平均每家戲院」賣最多錢？',
+             hint='新增一欄「每家戲院票房」= 票房 ÷ 戲院數；`idxmax()` 回傳最大值的列名牌，再用 `movies.loc[名牌, \'片名\']` 查片名。',
              starter='''
-report['每杯平均價'] = (report['營收'] / report[___]).round(1)
-best_day = report['每杯平均價'].___()                # 最高的是哪一天？
-display(report[['營收', '杯數', '每杯平均價']])
-print('每杯平均價最高：', best_day)
+movies['每家戲院票房'] = movies['票房'] / movies[___]
+best_idx = movies['每家戲院票房'].___()
+best_movie = movies.loc[best_idx, '片名']
+print('平均每家戲院最會賺：', best_movie, round(movies.loc[best_idx, '每家戲院票房'] / 1e4), '萬元')
 ''',
              check='''
-check('best_day', (report['營收'] / report['杯數']).idxmax())
+check('best_movie', movies.loc[(movies['票房'] / movies['戲院數']).idxmax(), '片名'])
 ''',
              solution='''
-report['每杯平均價'] = (report['營收'] / report['杯數']).round(1)
-best_day = report['每杯平均價'].idxmax()
-display(report[['營收', '杯數', '每杯平均價']])
-print('每杯平均價最高：', best_day)
+movies['每家戲院票房'] = movies['票房'] / movies['戲院數']
+best_idx = movies['每家戲院票房'].idxmax()
+best_movie = movies.loc[best_idx, '片名']
+print('平均每家戲院最會賺：', best_movie, round(movies.loc[best_idx, '每家戲院票房'] / 1e4), '萬元')
 '''),
-        dict(title='把上週的 NaN 補成 0，重新計算芋頭鮮奶的「變化」',
-             hint='`fillna(0)` 把缺值補 0；補完後「變化」= 本週 − 上週，芋頭鮮奶就不會是 NaN 了。',
+        dict(title='把 NaN 補成 0，重新計算「變化」，找出 2025 年電影變最多的國家',
+             hint='某國在某一年沒有電影，代表「0 部」，所以可以用 `fillna(0)` 補 0。補好之後再算一次「變化」，用 `idxmax()` 找最大。',
              starter='''
-compare['上週'] = compare['上週'].___(0)
-compare['變化'] = compare['本週'] - compare['上週']
-taro_change = compare.loc['芋頭鮮奶', '變化']
-display(compare)
-print('芋頭鮮奶的變化：', taro_change)
+compare = compare.___(0)                           # 沒有電影 = 0 部
+compare['變化'] = compare['2025年'] - compare['2024年']
+most_up = compare['變化'].idxmax()
+print('2025 年電影數增加最多的國家：', most_up, '，多了', int(compare.loc[most_up, '變化']), '部')
 ''',
              check='''
-check('taro_change', compare.loc['芋頭鮮奶', '本週'] - 0)
+_c = pd.DataFrame({'2024年': movies.loc[movies['年'] == 2024, '國別'].value_counts(),
+                   '2025年': movies.loc[movies['年'] == 2025, '國別'].value_counts()}).fillna(0)
+check('most_up', (_c['2025年'] - _c['2024年']).idxmax())
 ''',
              solution='''
-compare['上週'] = compare['上週'].fillna(0)
-compare['變化'] = compare['本週'] - compare['上週']
-taro_change = compare.loc['芋頭鮮奶', '變化']
-display(compare)
-print('芋頭鮮奶的變化：', taro_change)
+compare = compare.fillna(0)
+compare['變化'] = compare['2025年'] - compare['2024年']
+most_up = compare['變化'].idxmax()
+print('2025 年電影數增加最多的國家：', most_up, '，多了', int(compare.loc[most_up, '變化']), '部')
 '''),
     )
     return NOTEBOOK, files, cells

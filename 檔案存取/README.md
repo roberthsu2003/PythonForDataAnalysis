@@ -22,19 +22,19 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🧋 茶語時光：用 Python 讀懂顧客評論與菜單檔案**
+> **🚲 YouBike 與電影票房：用 Python 讀懂真實的政府開放資料**
 >
-> 你是「茶語時光」總部新來的資料小幫手。店長丟給你一堆檔案：一份顧客評論文字檔、一份菜單 CSV、一份門市資訊 JSON，還有一份從舊電腦匯出、打開全是亂碼的會員名單。今天的任務是：**不用 Excel，用 Python 把這些檔案讀懂、整理好、再存成店長要的檔案。**
+> 你在市政府實習，主管丟給你兩份從**政府資料開放平台**下載的檔案：一份是臺北市 YouBike 每個月被騎了幾次，一份是全台灣每一部電影賣了多少票房。第一份一打開就是亂碼，第二份是一大坨 JSON。今天的任務是：**不用 Excel，只用 Python 內建功能把它們讀懂，回答「YouBike 騎乘量變幾倍了？」和「台灣人最愛看哪部電影？」**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb)　｜　[⬇️ 下載本章素材 檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_YouBike%E8%88%87%E9%9B%BB%E5%BD%B1%E7%A5%A8%E6%88%BF_%E8%AE%80%E6%87%82%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_YouBike%E8%88%87%E9%9B%BB%E5%BD%B1%E7%A5%A8%E6%88%BF_%E8%AE%80%E6%87%82%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99.ipynb)　｜　[⬇️ 下載本章素材 檔案存取_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `菜單.csv` | 10 個品項的價格與成本 |
-| `門市資訊.json` | 5 家門市的營業時間、外送、熱銷品項（巢狀 JSON） |
-| `顧客評論.txt` | 3 月份 120 則顧客評論 |
-| `舊系統會員_big5.csv` | 舊 POS 系統匯出的會員檔（Big5 編碼，會亂碼！） |
+| `臺北市YouBike每月使用量.csv` | 臺北市 YouBike 每月騎乘次數（2020 年 11 月起；**Big5 編碼**，直接打開會亂碼！） |
+| `全國電影票房_2016至今.json` | 文化部全國電影票房（2016 年至今、7,000 多部電影，JSON 格式） |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[YouBike臺北市站位每月使用量](https://data.gov.tw/dataset/135775)（臺北市政府交通局）、[全國電影票房統計數據](https://data.gov.tw/dataset/94224)（文化部）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

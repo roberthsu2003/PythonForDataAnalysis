@@ -2,8 +2,7 @@
 import numpy as np
 import pandas as pd
 
-from common import STORES, daily_sales, rng
-from ch03_plot import expected_items
+from common import STORES, daily_sales, expected_items, rng
 from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '視覺化表格'

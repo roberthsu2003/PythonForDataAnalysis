@@ -41,17 +41,17 @@
 | 章 | 主題 | 你會學到 | 🧋 本章任務（點了直接開 Colab） |
 | :---: | :--- | :--- | :--- |
 | 1 | [Python](https://github.com/roberthsu2003/python) | Python 基礎語法（另一個 repo） | — |
-| 2 | [檔案存取](./檔案存取/README.md) | 讀取 CSV 與 JSON，認識 UTF-8 編碼與中文亂碼 | [🧋 用 Python 讀懂顧客評論與菜單檔案](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb) |
-| 3 | [繪圖和視覺展示](./繪圖和視覺展示/README.md) | Matplotlib 的畫布結構，折線、長條、直方、圓餅圖 | [📈 做出老闆最愛的五張圖](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) |
-| 4 | [Numpy建立與計算](./Numpy建立與計算/README.md) | 用陣列整批計算總和、平均、最高最低與累計 | [🧮 一年 366 天的杯數矩陣](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb) |
+| 2 | [檔案存取](./檔案存取/README.md) | 讀取 CSV 與 JSON，認識 UTF-8 編碼與中文亂碼 | [🚲 YouBike 與電影票房](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_YouBike%E8%88%87%E9%9B%BB%E5%BD%B1%E7%A5%A8%E6%88%BF_%E8%AE%80%E6%87%82%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99.ipynb) |
+| 3 | [繪圖和視覺展示](./繪圖和視覺展示/README.md) | Matplotlib 的畫布結構，折線、長條、直方、圓餅圖 | [⚡ 夏天電費為什麼暴增？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%A4%8F%E5%A4%A9%E9%9B%BB%E8%B2%BB%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9A%B4%E5%A2%9E_%E5%8F%B0%E9%9B%BB%E7%94%A8%E9%9B%BB%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) |
+| 4 | [Numpy建立與計算](./Numpy建立與計算/README.md) | 用陣列整批計算總和、平均、最高最低與累計 | [🌫️ 你家附近的空氣好嗎？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%BD%A0%E5%AE%B6%E9%99%84%E8%BF%91%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%A5%BD%E5%97%8E_365%E5%A4%A9AQI%E7%9F%A9%E9%99%A3.ipynb) |
 
 ### 🐼 階段二｜pandas 入門
 
 | 章 | 主題 | 你會學到 | 🧋 本章任務（點了直接開 Colab） |
 | :---: | :--- | :--- | :--- |
-| 5 | [初見pandas](./初見pandas/README.md) | Series 與 DataFrame，把資料變成「會說話的 Excel 表」 | [🐼 新品上市週的第一份 pandas 報表](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb) |
-| 6 | [pandas的基礎功能](./pandas的基礎功能/README.md) | 選取、排序、排名、批次加工與描述統計 | [🏆 店員排行榜與天氣分析](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb) |
-| 7 | [pandas的檔案存取](./pandas的檔案存取/README.md) | 一行讀寫 CSV、Excel、JSON、API 與資料庫 | [📥 搞定五種難搞的資料檔](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb) |
+| 5 | [初見pandas](./初見pandas/README.md) | Series 與 DataFrame，把資料變成「會說話的 Excel 表」 | [🎬 台灣人最愛看什麼電影？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb) |
+| 6 | [pandas的基礎功能](./pandas的基礎功能/README.md) | 選取、排序、排名、批次加工與描述統計 | [🏆 票房排行榜與爆紅的秘密](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E7%A5%A8%E6%88%BF%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E7%88%86%E7%B4%85%E7%9A%84%E7%A7%98%E5%AF%86.ipynb) |
+| 7 | [pandas的檔案存取](./pandas的檔案存取/README.md) | 一行讀寫 CSV、Excel、JSON、API 與資料庫 | [📥 政府資料的七種難搞格式](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E7%9A%84%E4%B8%83%E7%A8%AE%E9%9B%A3%E6%90%9E%E6%A0%BC%E5%BC%8F.ipynb) |
 
 ### 🧹 階段三｜整理資料
 
@@ -73,7 +73,7 @@
 
 | 章 | 主題 | 你會學到 | 🧋 本章任務（點了直接開 Colab） |
 | :---: | :--- | :--- | :--- |
-| 14 | [全方面分析](./全方面分析/README.md) | 用台鐵 2023 年進出站資料走完一次完整分析流程 | [🚆 台鐵 2023——誰是通勤站？誰是觀光站？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb) |
+| 14 | [全方面分析](./全方面分析/README.md) | 用台鐵 2023 年進出站資料走完一次完整分析流程 | [🚆 期末實戰](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb) |
 | 15 | [資料分析範例](./資料分析範例/README.md) | 政府開放資料、股票、網路紀錄等延伸範例 | 自選延伸練習 |
 
 ---

@@ -18,15 +18,17 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🧮 茶語時光：一年 366 天的杯數矩陣**
+> **🌫️ 你家附近的空氣好嗎？365 天 × 14 個測站的 AQI 矩陣**
 >
-> 總部拿到一張大表：2024 年每一天、每一家門市賣了幾杯。這是 366 列 × 5 欄、共 1,830 個數字。用 Excel 一格一格拉公式太累，你決定把它裝進 NumPy 陣列，一次算完老闆想知道的所有數字。
+> 早上出門前，你會看手機上的空氣品質嗎？環境部全台有 80 多個測站，每天公布空氣品質指標 AQI（0～50 良好、51～100 普通、101 以上對敏感族群不健康）。你拿到其中 14 個測站、整整一年的資料，一共 5,000 多個數字。今天要用 **NumPy 一次算完整張表**，回答：**哪裡的空氣最差？什麼季節最糟？**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb)　｜　[⬇️ 下載本章素材 Numpy建立與計算_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%BD%A0%E5%AE%B6%E9%99%84%E8%BF%91%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%A5%BD%E5%97%8E_365%E5%A4%A9AQI%E7%9F%A9%E9%99%A3.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%BD%A0%E5%AE%B6%E9%99%84%E8%BF%91%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%A5%BD%E5%97%8E_365%E5%A4%A9AQI%E7%9F%A9%E9%99%A3.ipynb)　｜　[⬇️ 下載本章素材 Numpy建立與計算_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `每日杯數_2024.csv` | 2024 年 366 天 × 5 家門市的每日杯數 |
+| `每日AQI_14測站.csv` | 近一年（2025-09-30～2026-10-23）14 個測站的每日空氣品質指標 AQI；整理自環境部「日空氣品質指標」，**空白代表那天測站沒有資料** |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[日空氣品質指標(AQI)](https://data.gov.tw/dataset/40507)（環境部）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

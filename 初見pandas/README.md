@@ -20,19 +20,18 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🐼 茶語時光：新品上市週的第一份 pandas 報表**
+> **🎬 台灣人最愛看什麼電影？用 pandas 做第一份票房報表**
 >
-> 2024 年 4 月 1 日，新品「芋頭鮮奶」上市！行銷部想知道：新品賣得怎樣？有沒有搶走其他飲料的生意？每杯賺多少？你第一次用 pandas，把菜單、門市資料與兩週的銷量做成表格來回答。
+> 你在影評社團負責「年度回顧」專題。文化部公開了**全國每一部電影的票房**——從 2016 年到現在，7,000 多部電影。用 Python 的清單和字典處理這麼多資料太辛苦了，今天換上新武器 **pandas**：它會把資料變成一張「會說話的 Excel 表」，讓你一行程式就回答「**2025 年最賣座的是誰？國片表現如何？**」
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb)　｜　[⬇️ 下載本章素材 初見pandas_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%8F%B0%E7%81%A3%E4%BA%BA%E6%9C%80%E6%84%9B%E7%9C%8B%E4%BB%80%E9%BA%BC%E9%9B%BB%E5%BD%B1_%E7%AC%AC%E4%B8%80%E4%BB%BDpandas%E5%A0%B1%E8%A1%A8.ipynb)　｜　[⬇️ 下載本章素材 初見pandas_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `菜單.csv` | 10 個品項的價格與成本 |
-| `門市.csv` | 5 家門市的基本資料 |
-| `兩週品項銷量.json` | 芋頭鮮奶上市前一週與上市當週，全品牌各品項杯數 |
-| `信義店日報_新品週.json` | 信義店新品週每天的杯數、營收、來客數 |
+| `全國電影票房_2016至今.json` | 文化部全國電影票房：2016 年至今 7,000 多部電影的國別、上映日、戲院數、票數與票房金額（JSON） |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[全國電影票房統計數據](https://data.gov.tw/dataset/94224)（文化部）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

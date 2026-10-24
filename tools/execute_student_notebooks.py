@@ -67,8 +67,8 @@ def run(chapter, verify):
         return not bad
     for cell in nb.cells:
         cell.metadata.pop('execution', None)               # 執行時間戳記：不需要，避免每次重跑都產生差異
-        if is_starter(cell) or is_check(cell):
-            cell.outputs, cell.execution_count = [], None
+        if is_starter(cell) or is_check(cell) or cell.source.startswith('# --- 設定 Matplotlib 中文字型'):
+            cell.outputs, cell.execution_count = [], None   # 練習格保持乾淨；字型設定格的安裝訊息對學生沒有意義
     nbformat.write(nb, str(path))
     print(f'💾 {chapter}: 已存入輸出 {path.name}')
     return True

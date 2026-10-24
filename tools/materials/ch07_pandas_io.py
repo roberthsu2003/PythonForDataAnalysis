@@ -1,282 +1,228 @@
-"""第 7 章 pandas 檔案存取：髒 CSV、多工作表 Excel、巢狀 JSON、SQLite、大檔分批、輸出多工作表。"""
-import json
+"""第 7 章 pandas 檔案存取：真實政府資料的各種格式——Big5＋民國年、千分位＋空欄、巢狀 JSON、多工作表 Excel、SQLite、大檔分批、輸出 Excel。"""
 import sqlite3
 
-import numpy as np
 import pandas as pd
 
-from common import MENU, PAYMENTS, PAY_P, STORES, daily_sales, names, rng
-from nbtools import md, code, setup_cell, header, exercises
+from nbtools import md, code, setup_cell, header, exercises, copy_real, read_real, latest
 
 CHAPTER = 'pandas的檔案存取'
-NOTEBOOK = '範例_茶語時光_五種難搞的資料檔.ipynb'
+NOTEBOOK = '範例_政府資料的七種難搞格式.ipynb'
+SOURCES = ['recycle', 'power_city', 'boxoffice', 'aqi', 'mrt']
 
 
 def build(out):
-    r = rng(70)
-    d = daily_sales('2024-01-01', '2024-12-31')
+    files = [copy_real(out, 'recycle'), copy_real(out, 'power_city'), copy_real(out, 'boxoffice'), copy_real(out, 'mrt')]
 
-    # 1) 髒 CSV：POS 匯出
-    x = d[(d['門市代碼'] == 'S01') & (d['日期'].dt.month == 3)].copy()
-    lines = ['# 茶語時光 POS 系統匯出報表', '# 門市：台北信義店　期間：2024-03-01 ~ 2024-03-31',
-             '# 匯出時間：2024-04-01 09:12:33', '日期,來客數,杯數,營收,現金,電子支付,備註']
-    tot = [0, 0, 0, 0, 0]
-    for _, row in x.iterrows():
-        ds = row['日期'].strftime('%Y-%m-%d')
-        if ds in ('2024-03-08', '2024-03-19'):
-            lines.append(f'{ds},--,--,--,--,--,系統當機未記錄')
-            continue
-        guests = int(row['杯數'] / r.uniform(1.45, 1.65))
-        cash = int(row['營收'] * r.uniform(0.25, 0.4))
-        vals = [guests, row['杯數'], row['營收'], cash, row['營收'] - cash]
-        tot = [a + b for a, b in zip(tot, vals)]
-        note = '白色情人節活動' if ds == '2024-03-14' else ''
-        lines.append(ds + ',' + ','.join(f'"{v:,}"' for v in vals) + f',{note}')
-    lines.append('合計,' + ','.join(f'"{v:,}"' for v in tot) + ',')
-    (out / 'POS匯出_信義店_2024-03.csv').write_text('\n'.join(lines) + '\n', encoding='utf-8-sig')
+    # 多工作表 Excel：把台電縣市用電整理成「一年一張工作表」，第 1 列是標題（機關報表常見的格式）
+    city = pd.read_csv(read_real('power_city'), thousands=',').dropna(subset=['年月'])
+    city['年'] = (city['年月'] // 100 + 1911).astype(int)
+    with pd.ExcelWriter(out / '台電縣市年度用電.xlsx') as w:
+        for year in (2023, 2024, 2025):
+            t = city[city['年'] == year].pivot_table(index='縣市', columns='用電性質', values='售電量(度)', aggfunc='sum')
+            t = (t / 1e8).round(2).reset_index()
+            pd.DataFrame([[f'{year} 年各縣市售電量（單位：億度）']]).to_excel(w, sheet_name=f'{year}年', index=False, header=False)
+            t.to_excel(w, sheet_name=f'{year}年', index=False, startrow=1)
+    files.append('台電縣市年度用電.xlsx')
 
-    # 2) 多工作表 Excel：各店月報
-    with pd.ExcelWriter(out / '各店月報_2024.xlsx', engine='openpyxl') as w:
-        for _, s in STORES.iterrows():
-            m = d[d['門市代碼'] == s['門市代碼']].groupby(d['日期'].dt.month).agg(營收=('營收', 'sum'), 杯數=('杯數', 'sum'))
-            m.insert(0, '月份', [f'{i}月' for i in m.index])
-            title = pd.DataFrame([[f'茶語時光 {s["門市"]} 2024 年月報', '', ''], ['單位：元／杯', '', '']])
-            title.to_excel(w, sheet_name=s['門市'], index=False, header=False)
-            m.to_excel(w, sheet_name=s['門市'], index=False, startrow=2)
-
-    # 3) 巢狀 JSON：外送平台訂單
-    menu = MENU.set_index('品項代碼')
-    orders = []
-    ts = pd.date_range('2024-03-01', '2024-03-31 23:00', freq='h')
-    for i in range(1, 361):
-        s = STORES[STORES['門市代碼'] != 'S04'].sample(1, random_state=int(r.integers(1e9))).iloc[0]   # 台南店沒有外送
-        t = ts[int(r.integers(len(ts)))] + pd.Timedelta(minutes=int(r.integers(60)))
-        items = []
-        for _ in range(int(r.integers(1, 4))):
-            c = r.choice(['001', '002', '003', '004', '005', '006', '009'])
-            items.append({'品項': menu.loc[c, '品項'], '數量': int(r.integers(1, 4)), '單價': int(menu.loc[c, '中杯價'])})
-        orders.append({'訂單編號': f'FR{i:05d}', '下單時間': t.strftime('%Y-%m-%d %H:%M'),
-                       '門市': {'代碼': s['門市代碼'], '名稱': s['門市']},
-                       '外送員評分': int(r.choice([3, 4, 5], p=[0.1, 0.3, 0.6])), '品項': items})
-    data = {'平台': 'FoodRun 外送', '月份': '2024-03', '抽成比例': 0.3, '訂單': orders}
-    (out / '外送平台訂單_2024-03.json').write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding='utf-8')
-
-    # 4) SQLite：會員資料庫
-    n = 800
-    join = pd.to_datetime('2022-06-01') + pd.to_timedelta(r.integers(0, 945, n), unit='D')
-    members = pd.DataFrame({
-        '會員編號': [f'M{i:05d}' for i in range(1, n + 1)], '姓名': names(n, 7),
-        '性別': r.choice(['女', '男'], n, p=[0.62, 0.38]),
-        '生日': (pd.to_datetime('1965-01-01') + pd.to_timedelta(r.integers(0, 15000, n), unit='D')).strftime('%Y-%m-%d'),
-        '加入日期': join.strftime('%Y-%m-%d'), '常去門市': r.choice(STORES['門市'], n),
-        '累積點數': r.gamma(1.6, 180, n).round().astype(int),
-    })
-    db = out / '會員資料庫.db'
-    if db.exists():
-        db.unlink()
+    # SQLite：把一年份的日 AQI 存成資料庫
+    aqi = pd.read_csv(read_real('aqi'))[['sitename', 'monitordate', 'aqi', 'pm25subindex']]
+    aqi.columns = ['測站', '日期', 'AQI', 'PM25副指標']
+    db = out / '空氣品質.db'
+    db.unlink(missing_ok=True)
     with sqlite3.connect(db) as con:
-        members.to_sql('會員', con, index=False)
+        aqi.to_sql('日空品', con, index=False)
+    files.append('空氣品質.db')
 
-    # 5) 大檔：全年交易紀錄（10 萬筆）
-    n = 100_000
-    t = pd.to_datetime('2024-01-01 10:00') + pd.to_timedelta(r.integers(0, 366, n), unit='D') \
-        + pd.to_timedelta(r.integers(0, 12 * 3600, n), unit='s')
-    big = pd.DataFrame({'交易編號': [f'X{i:07d}' for i in range(1, n + 1)], '交易時間': np.sort(t.values),
-                        '門市': r.choice(STORES['門市'], n, p=[0.19, 0.21, 0.24, 0.17, 0.19]),
-                        '金額': (r.gamma(2.2, 40, n) + 35).round().astype(int),
-                        '付款方式': r.choice(PAYMENTS, n, p=PAY_P)})
-    big['交易時間'] = pd.to_datetime(big['交易時間']).dt.strftime('%Y-%m-%d %H:%M:%S')
-    big.to_csv(out / '全年交易紀錄_2024.csv', index=False, encoding='utf-8')
-
-    files = ['POS匯出_信義店_2024-03.csv', '各店月報_2024.xlsx', '外送平台訂單_2024-03.json', '會員資料庫.db', '全年交易紀錄_2024.csv']
-    desc = [('POS匯出_信義店_2024-03.csv', 'POS 匯出的日報：有註解行、千分位逗號、`--` 缺值、最後一列是合計'),
-            ('各店月報_2024.xlsx', '5 個工作表（每店一張），前兩列是標題'),
-            ('外送平台訂單_2024-03.json', '外送平台的巢狀 JSON：一筆訂單裡有多個品項'),
-            ('會員資料庫.db', 'SQLite 資料庫，內有「會員」資料表（800 位）'),
-            ('全年交易紀錄_2024.csv', '10 萬筆交易紀錄（用來練習分批讀取）')]
+    desc = [(files[0], '臺北市各區清潔隊每月資源回收量（**Big5 編碼**，年度是**民國年**）'),
+            (files[1], '台電各縣市每月售電量（數字有**千分位逗號**、最後有空白列和多餘的空欄）'),
+            (files[2], '文化部全國電影票房（**巢狀 JSON**）'),
+            (files[3], '臺北捷運 2026 年 3 月各站每小時進出站人次（約 8 萬列，練習**分批讀取**）'),
+            ('台電縣市年度用電.xlsx', '整理自台電縣市用電：一年一張工作表、**第 1 列是報表標題**'),
+            ('空氣品質.db', '整理自環境部日 AQI：一年份、80 個測站的 **SQLite 資料庫**')]
 
     cells = [
-        header(CHAPTER, NOTEBOOK, '📥 茶語時光：搞定五種難搞的資料檔',
-               '月初結帳日，各部門丟來五種格式的檔案：POS 系統匯出的「髒」CSV、每家店一個工作表的 Excel、'
-               '外送平台的巢狀 JSON、IT 部門的會員資料庫，還有一個 10 萬筆、用 Excel 打開會卡住的交易檔。'
-               '你要用 pandas 一一讀進來，最後整理成一份多工作表的 Excel 交給主管。', desc),
+        header(CHAPTER, NOTEBOOK, '📥 政府資料的七種難搞格式：用 pandas 一次搞定',
+               '你接下市政府的資料整理工作，第一天就收到一個資料夾：Big5 編碼還用民國年的 CSV、數字有逗號的 CSV、'
+               '一層包一層的 JSON、一年一張工作表的 Excel、一個 SQLite 資料庫，還有一個大到 Excel 打開會卡住的檔案。'
+               '這些都是**政府開放資料的真實樣貌**。今天的任務是：**每一種都用 pandas 一兩行讀進來，最後整理成一份 Excel 交差。**',
+               desc, SOURCES),
         setup_cell(CHAPTER, files),
         md('''
-## 任務 1：POS 匯出的「髒」CSV——讀檔時就順便清乾淨
+## 任務 1：Big5 編碼＋民國年——臺北市哪一區最會做資源回收？
 
-**先用文字方式看看原始檔長什麼樣子**：
-'''),
-        code('''
-print(open('POS匯出_信義店_2024-03.csv', encoding='utf-8-sig').read()[:600])
-'''),
-        md('''
-**問題**：前 3 行是說明、數字有千分位逗號、`--` 代表當機沒記錄、最後一列是「合計」。直接讀會一團亂，我們用參數一次處理：
+**白話說明**：`encoding='cp950'` 解決亂碼；`年度` 是民國年，**加 1911** 就是西元年。
 '''),
         code('''
 import pandas as pd
 
-pos = pd.read_csv('POS匯出_信義店_2024-03.csv',
-                  encoding='utf-8-sig',     # 檔案開頭有 BOM，用 utf-8-sig 讀
-                  comment='#',              # # 開頭的說明行略過
-                  thousands=',',            # "28,560" → 28560
-                  na_values=['--'],         # -- 視為缺值
-                  skipfooter=1,             # 最後一列「合計」不要
-                  engine='python',          # 使用 skipfooter 需要 python 引擎
-                  parse_dates=['日期'])      # 日期欄轉成時間型態
-display(pos.dtypes)
-print('\\n缺資料的日子：\\n', pos[pos['營收'].isnull()][['日期', '備註']])
-print('\\n3 月營收合計（不含當機日）：', f"{pos['營收'].sum():,.0f}")
-'''),
-        md('''
-> 🤖 **換你問 AI**：「這是 CSV 的前 8 行（貼上），請用 pandas read_csv 讀取，跳過說明行、處理千分位、把 -- 當成缺值、不要讀最後的合計列。」
-'''),
-        md('''
-## 任務 2：每家店一個工作表的 Excel——一次讀完再合併
+recycle = pd.read_csv('臺北市各區資源回收量.csv', encoding='cp950')   # Big5 檔案要指定 cp950
+recycle.columns = ['年度', '月', '行政區代碼', '區隊', '回收量(噸)']       # 原始欄名有全形括號，改成好打的名字
+recycle['西元年'] = recycle['年度'] + 1911                                  # 民國 → 西元
+display(recycle.head())
 
-**白話說明**：`sheet_name=None` 會一次讀進「所有工作表」，得到一個「工作表名稱 → 表格」的字典；`header=2` 表示第 3 列才是欄位名稱。
+y2025 = recycle[recycle['西元年'] == 2025]
+y2025.groupby('區隊')['回收量(噸)'].sum().sort_values(ascending=False).round(0)
+'''),
+        md('''
+> 💡 **看懂結果**：2025 年回收量最多的是**大安區**（將近 8,000 噸），最少的是大同區。不過大安區人口本來就多——**要比「誰最會回收」，應該比「每個人」回收多少**。這需要把人口資料合併進來，第 10 章會教。
+'''),
+        md('''
+## 任務 2：千分位逗號＋空欄＋空白列——台電縣市用電
+
+**白話說明**：
+- `thousands=','`：把 `"636,471,432"` 讀成數字。
+- 檔案最右邊有兩個沒有名字的空欄（`Unnamed: 5`、`Unnamed: 6`），最後還有一列全空白——用 `usecols` 只讀需要的欄，用 `dropna` 去掉空白列。
 '''),
         code('''
-sheets = pd.read_excel('各店月報_2024.xlsx', sheet_name=None, header=2)   # 所有工作表、第 3 列是標題
-print('工作表：', list(sheets.keys()))
-
-yearly = pd.concat(sheets, names=['門市', '列'])                            # 把 5 張表上下合併，工作表名稱變成「門市」欄
-yearly = yearly.reset_index(level='門市').reset_index(drop=True)
-display(yearly.head())
-
-summary = yearly.pivot_table(index='月份', columns='門市', values='營收', sort=False)   # 月份 × 門市 的營收總表
-display((summary / 10000).round(1))
+raw = pd.read_csv('台電各縣市用電統計.csv')
+print('不加任何參數讀進來：')
+print(raw.dtypes)                                                   # 售電量是 str（文字）！因為有逗號
+print('最後兩列：'); display(raw.tail(2))
+'''),
+        code('''
+power = pd.read_csv('台電各縣市用電統計.csv', thousands=',', usecols=range(5))   # 只讀前 5 欄
+power = power.dropna(subset=['年月'])                                             # 去掉空白列
+power['年月'] = power['年月'].astype(int)
+print(power.dtypes)
+power.head()
 '''),
         md('''
-## 任務 3：外送平台的巢狀 JSON——攤平成表格
+> 🤖 **換你問 AI**：「我的 CSV 數字欄位有千分位逗號，最右邊還有空欄、最後一列是空白。請用 pandas 讀取並清理，讓數字欄位變成數值型態。」
+'''),
+        md('''
+## 任務 3：巢狀 JSON——用 `json_normalize` 攤平
 
-**白話說明**：一筆訂單裡有好幾個品項（清單包清單）。`pd.json_normalize` 可以「攤平」：每個品項一列，並把訂單編號、門市等外層資訊帶下來。
+**白話說明**：票房 JSON 的最外層是 `{'Start': ..., 'End': ..., 'List': [電影, 電影, ...]}`。`pd.json_normalize(data, record_path='List', meta=['End'])` 會把 `List` 裡的每部電影攤成一列，再把外層的 `End`（資料截止日）貼到每一列上。
 '''),
         code('''
 import json
 
-with open('外送平台訂單_2024-03.json', encoding='utf-8') as f:
-    raw = json.load(f)
-print('平台：', raw['平台'], '｜抽成：', raw['抽成比例'], '｜訂單數：', len(raw['訂單']))
+with open('全國電影票房_2016至今.json', encoding='utf-8-sig') as f:
+    data = json.load(f)
 
-items = pd.json_normalize(raw['訂單'],
-                          record_path='品項',                                  # 要攤開的清單
-                          meta=['訂單編號', '下單時間', ['門市', '名稱'], '外送員評分'])   # 一起帶下來的外層欄位
-items['小計'] = items['數量'] * items['單價']
-display(items.head())
-
-by_store = items.groupby('門市.名稱')['小計'].sum()
-print('\\n各店外送營收：\\n', by_store)
-print('\\n扣掉 30% 平台抽成，實拿：', f"{by_store.sum() * (1 - raw['抽成比例']):,.0f}", '元')
+movies = pd.json_normalize(data, record_path='List', meta=['End'])   # List 攤平成表格，外層的 End 也一起帶進來
+print(movies.shape)
+movies[['Name', 'Country', 'TotalAmounts', 'End']].head(3)
 '''),
         md('''
-> 💡 **看懂結果**：外送營收看起來不少，但平台要抽 30%——這就是為什麼很多飲料店的外送價格比店內貴。
->
-> 🤖 **換你問 AI**：「這是外送平台 JSON 的前 30 行（貼上），請用 json_normalize 把每個品項攤成一列，並帶上訂單編號與門市名稱。」
+## 任務 4：一年一張工作表的 Excel
+
+**白話說明**：`sheet_name=None` 一次讀**所有**工作表，得到一個「工作表名稱 → 表格」的字典。這份 Excel 第 1 列是報表標題，真正的欄名在第 2 列，所以 `header=1`。最後用 `pd.concat` 上下接成一張表。
+'''),
+        code('''
+sheets = pd.read_excel('台電縣市年度用電.xlsx', sheet_name=None, header=1)   # 全部工作表；第 2 列才是欄名
+print('工作表：', list(sheets.keys()))
+
+yearly = pd.concat(sheets, names=['年度', '列']).reset_index(level='年度').reset_index(drop=True)
+display(yearly.head())
+
+yearly.pivot_table(index='縣市', columns='年度', values='住宅').sort_values('2025年', ascending=False).head(6)
 '''),
         md('''
-## 任務 4：IT 部門的會員資料庫——用 SQL 撈資料
+> 💡 **看懂結果**：住宅用電最多的是新北市、台中市、高雄市——人口最多的縣市。而且**大多數縣市一年比一年多**（只有高雄 2025 年略降）：家家戶戶的冷氣、電器越來越多。
+'''),
+        md('''
+## 任務 5：SQLite 資料庫——用 SQL 問問題
+
+**白話說明**：`sqlite3.connect` 連線到資料庫檔案，`pd.read_sql(SQL 指令, 連線)` 把查詢結果直接變成 DataFrame。SQL 的 `GROUP BY` 就是 pandas 的 `groupby`。
 '''),
         code('''
 import sqlite3
 
-con = sqlite3.connect('會員資料庫.db')                                       # 連線到資料庫檔案
-display(pd.read_sql("SELECT name FROM sqlite_master WHERE type='table'", con))  # 資料庫裡有哪些資料表
+con = sqlite3.connect('空氣品質.db')
+display(pd.read_sql("SELECT name FROM sqlite_master WHERE type='table'", con))   # 資料庫裡有哪些資料表
 
-new_2024 = pd.read_sql("""
-    SELECT 常去門市, COUNT(*) AS 新會員數, ROUND(AVG(累積點數), 1) AS 平均點數
-    FROM 會員
-    WHERE 加入日期 >= '2024-01-01'
-    GROUP BY 常去門市
-    ORDER BY 新會員數 DESC
-""", con)                                                                      # 2024 年加入的新會員，依門市統計
-con.close()
-display(new_2024)
+worst = pd.read_sql("""
+    SELECT 測站, ROUND(AVG(AQI), 1) AS 平均AQI, SUM(AQI > 100) AS 不健康天數
+    FROM 日空品
+    GROUP BY 測站
+    ORDER BY 平均AQI DESC
+    LIMIT 8
+""", con)
+worst
 '''),
         md('''
-## 任務 5：10 萬筆大檔——分批讀取不卡頓
+## 任務 6：大檔分批讀——捷運哪一站最多人進站？
+
+**白話說明**：遇到幾百萬列的大檔，一次讀進來可能會讓電腦當掉。`chunksize=20_000` 讓 `read_csv` **一次只給你 2 萬列**；每一批各自加總，最後再合起來。
 '''),
         code('''
-display(pd.read_csv('全年交易紀錄_2024.csv', nrows=5))                         # 先偷看前 5 筆
-
 total = pd.Series(dtype=float)
-for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['付款方式', '金額'], chunksize=20_000):   # 每次只讀 2 萬筆、2 個欄位
-    total = total.add(chunk.groupby('付款方式')['金額'].sum(), fill_value=0)      # 逐批累加
-share = (total / total.sum() * 100).round(1).sort_values(ascending=False)
-print('\\n各付款方式金額占比 %：\\n', share)
+for chunk in pd.read_csv('臺北捷運各站分時進出量_202603.csv', chunksize=20_000):   # 每次 2 萬列
+    total = total.add(chunk.groupby('車站')['進站人次'].sum(), fill_value=0)          # 這一批的結果累加上去
+
+top = (total / 1e4).round(1).sort_values(ascending=False).rename('3月進站人次(萬)')
+top.head(10)
 '''),
         md('''
-> 💡 **看懂結果**：電子支付（LINE Pay、悠遊卡、街口、信用卡、Apple Pay）加起來已經超過現金——櫃台是不是該加裝感應設備、推出電子支付優惠？
+> 💡 **看懂結果**：2026 年 3 月，**台北車站**一個月有 481 萬人次進站，是第二名西門的兩倍多。仔細看車站名稱，有些前面多了路線代碼（例如 `BL板橋`、`G大坪林`）——這也是真實資料的「小髒」，第 8 章會處理。
 '''),
         md('''
-## 任務 6：整理成一份多工作表 Excel 交給主管
+## 任務 7：整理好了，輸出成一份 Excel 交給主管
+
+**白話說明**：`pd.ExcelWriter` 可以把好幾張表寫進**同一個 Excel 的不同工作表**。存 CSV 給 Excel 開時，用 `encoding='utf-8-sig'` 才不會亂碼。
 '''),
         code('''
-with pd.ExcelWriter('三月結帳報告.xlsx') as writer:                           # 一個 Excel 檔、多個工作表
-    pos.to_excel(writer, sheet_name='信義店3月日報', index=False)
-    (summary / 10000).round(1).to_excel(writer, sheet_name='各店月營收(萬)')
-    by_store.to_frame('外送營收').to_excel(writer, sheet_name='外送營收')
-    new_2024.to_excel(writer, sheet_name='2024新會員', index=False)
-    share.to_frame('占比%').to_excel(writer, sheet_name='付款方式')
-print('✅ 已輸出 三月結帳報告.xlsx：', list(pd.read_excel('三月結帳報告.xlsx', sheet_name=None).keys()))
+with pd.ExcelWriter('資料整理成果.xlsx') as writer:
+    y2025.groupby('區隊')['回收量(噸)'].sum().round(0).to_excel(writer, sheet_name='2025各區回收量')
+    worst.to_excel(writer, sheet_name='空品最差測站', index=False)
+    top.head(20).to_excel(writer, sheet_name='捷運進站前20名')
 
-items.to_csv('外送品項明細.csv', index=False, encoding='utf-8-sig')            # utf-8-sig：用 Excel 開也不會亂碼
-''')
+top.to_csv('捷運進站排行.csv', encoding='utf-8-sig')                  # utf-8-sig：Excel 打開不會亂碼
+print('已輸出：資料整理成果.xlsx、捷運進站排行.csv')
+print(pd.read_excel('資料整理成果.xlsx', sheet_name=None).keys())
+'''),
+        latest('''
+import pandas as pd
+url = ('https://data.moenv.gov.tw/api/v2/aqx_p_432?api_key=b7df779e-71a6-4148-8379-5afbd441d803'
+       '&format=JSON&limit=100')
+now = pd.read_json(url)                                    # 環境部 API：全台各測站「現在這一小時」的 AQI
+now[['sitename', 'county', 'aqi', 'status', 'publishtime']].sort_values('aqi', ascending=False).head(10)
+''', note='環境部有提供 API，可以直接抓「這一小時」的空氣品質。把這段貼到新的一格執行（需要網路）：'),
     ] + exercises(
-        dict(title='只讀「台南成大店」這一個工作表，找出杯數最多的月份',
-             hint='`sheet_name=` 填工作表名稱；這份月報的標題在第 3 列，所以 `header=2`（從 0 開始數）。',
+        dict(title='只讀「2024年」這一張工作表，哪個縣市的工業用電最多？',
+             hint='`sheet_name=\'2024年\'` 只讀一張；別忘了 `header=1`。再用 `idxmax()` 找出「工業」最大的那一列，取出「縣市」。',
              starter='''
-tn = pd.read_excel('各店月報_2024.xlsx', sheet_name=___, header=2)
-best_month = tn.loc[tn['杯數'].idxmax(), ___]        # 杯數最多那一列的「月份」
-display(tn)
-print('杯數最多的月份：', best_month)
+t2024 = pd.read_excel('台電縣市年度用電.xlsx', sheet_name=___, header=___)
+industry_top = t2024.loc[t2024['工業'].idxmax(), '縣市']
+print('2024 年工業用電最多的縣市：', industry_top)
 ''',
              check='''
-_tn = pd.read_excel('各店月報_2024.xlsx', sheet_name='台南成大店', header=2)
-check('best_month', _tn.loc[_tn['杯數'].idxmax(), '月份'])
+_t = pd.read_excel('台電縣市年度用電.xlsx', sheet_name='2024年', header=1)
+check('industry_top', _t.loc[_t['工業'].idxmax(), '縣市'])
 ''',
              solution='''
-tn = pd.read_excel('各店月報_2024.xlsx', sheet_name='台南成大店', header=2)
-best_month = tn.loc[tn['杯數'].idxmax(), '月份']
-display(tn)
-print('杯數最多的月份：', best_month)
+t2024 = pd.read_excel('台電縣市年度用電.xlsx', sheet_name='2024年', header=1)
+industry_top = t2024.loc[t2024['工業'].idxmax(), '縣市']
+print('2024 年工業用電最多的縣市：', industry_top)
 '''),
-        dict(title='用 SQL 撈出「累積點數前 10 名」的會員',
-             hint='SQL 的排序是 `ORDER BY 欄位 DESC`（由大到小），只取前幾筆是 `LIMIT 數字`。',
+        dict(title='用 SQL 查：金門有幾天 AQI 超過 100？',
+             hint='`WHERE 測站 = \'金門\' AND AQI > 100`；`COUNT(*)` 數有幾列。查詢結果是一個表格，用 `.iloc[0, 0]` 取出那個數字。',
              starter='''
-con = sqlite3.connect('會員資料庫.db')
-top10 = pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 ___ LIMIT ___', con)
-con.close()
-display(top10)
+sql = "SELECT COUNT(*) FROM 日空品 WHERE 測站 = ___ AND AQI > ___"
+kinmen_days = pd.read_sql(sql, con).iloc[0, 0]
+print('金門 AQI > 100 的天數：', kinmen_days)
 ''',
              check='''
-_con = sqlite3.connect('會員資料庫.db')
-check('top10', pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 DESC LIMIT 10', _con), ordered=True)
-_con.close()
+check('kinmen_days', pd.read_sql("SELECT COUNT(*) FROM 日空品 WHERE 測站 = '金門' AND AQI > 100", con).iloc[0, 0])
 ''',
              solution='''
-con = sqlite3.connect('會員資料庫.db')
-top10 = pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 DESC LIMIT 10', con)
-con.close()
-display(top10)
+sql = "SELECT COUNT(*) FROM 日空品 WHERE 測站 = '金門' AND AQI > 100"
+kinmen_days = pd.read_sql(sql, con).iloc[0, 0]
+print('金門 AQI > 100 的天數：', kinmen_days)
 '''),
-        dict(title='檔案太大一次讀不完：分批讀取，算出每家門市的交易筆數',
-             hint='`chunksize=20_000` 會讓 `read_csv` 一次給你 2 萬列；每一批用 `value_counts()` 數完，再用 `add(..., fill_value=0)` 累加起來。',
+        dict(title='臺北市 2024 年（民國 113 年）總共回收了幾噸？',
+             hint='可以用任務 1 做好的「西元年」欄位篩選 2024，也可以直接用民國的「年度」欄位篩選 113。最後對「回收量(噸)」加總。',
              starter='''
-store_count = pd.Series(dtype=float)
-for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'], chunksize=___):
-    store_count = store_count.add(chunk['門市'].___(), fill_value=0)
-store_count = store_count.astype(int).sort_values(ascending=False)
-display(store_count)
+total_2024 = recycle.loc[recycle[___] == 2024, '回收量(噸)'].___()
+print(f'2024 年臺北市資源回收量：{total_2024:,.0f} 噸')
 ''',
              check='''
-check('store_count', pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'])['門市'].value_counts())
+check('total_2024', recycle.loc[recycle['年度'] == 113, '回收量(噸)'].sum())
 ''',
              solution='''
-store_count = pd.Series(dtype=float)
-for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'], chunksize=20_000):
-    store_count = store_count.add(chunk['門市'].value_counts(), fill_value=0)
-store_count = store_count.astype(int).sort_values(ascending=False)
-display(store_count)
+total_2024 = recycle.loc[recycle['西元年'] == 2024, '回收量(噸)'].sum()
+print(f'2024 年臺北市資源回收量：{total_2024:,.0f} 噸')
 '''),
     )
     return NOTEBOOK, files, cells

@@ -12,14 +12,16 @@
 需要套件：pandas、numpy、nbformat、openpyxl
 """
 import importlib
+import re
 import shutil
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent / 'materials'))
 
-from nbtools import build_zip, finalize, save_notebook  # noqa: E402
+from nbtools import LAST_HEADER, build_zip, colab_url, finalize, save_notebook, sources_meta, zip_url  # noqa: E402
 
 # 章節資料夾 → (產生器模組, 要一併放進壓縮檔的課程原始資料)
 CHAPTERS = {
@@ -44,8 +46,9 @@ CHAPTERS = {
 
 
 def readme_text(chapter, notebook, extras):
+    sources = getattr(importlib.import_module(CHAPTERS[chapter][0]), 'SOURCES', None)   # 使用真實資料的章節會宣告 SOURCES
     lines = [
-        f'茶語時光｜{chapter} 學生素材',
+        f'Python 資料分析｜{chapter} 學生素材',
         '=' * 40,
         '',
         '【使用方式】',
@@ -54,13 +57,64 @@ def readme_text(chapter, notebook, extras):
         '3. 資料檔請和 Notebook 放在同一個資料夾。',
         '',
         '【說明】',
-        '「茶語時光」是課程虛構的手搖飲品牌，範例資料為模擬資料；',
-        '節日與颱風假的日期參考台灣實際情況。',
     ]
+    if sources:
+        lines += ['本章資料為政府資料開放平台的真實資料，依「政府資料開放授權條款－第1版」使用：']
+        lines += [f"  - {m['title']}（{m['publisher']}，{m['fetched']} 下載）{m['page']}" for m in sources_meta(sources)]
+    else:
+        lines += ['「茶語時光」是課程虛構的手搖飲品牌，範例資料為模擬資料；', '節日與颱風假的日期參考台灣實際情況。']
     if extras:
         lines += ['', '【課程原始資料】', '「課程原始資料」資料夾內是本章課堂 Notebook 使用的原始檔案：']
         lines += [f'  - {p}' for p in extras]
     return '\r\n'.join(lines) + '\r\n'
+
+
+def update_readme(chapter_dir, extras):
+    """依範例 Notebook 的標題、情境與素材清單，重寫章節 README 的「📦 學生素材下載」區塊。"""
+    h = LAST_HEADER
+    readme = chapter_dir / 'README.md'
+    text = readme.read_text(encoding='utf-8')
+    start = text.index('## 📦 學生素材下載')
+    end = text.index('\n---', start)
+    rows = '\n'.join(f'| `{f}` | {d} |' for f, d in h['files_desc'])
+    if extras:
+        rows += '\n| `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |'
+    nb = quote(f"學生素材/{h['notebook']}")
+    src = ''
+    if h.get('sources'):
+        src = '\n\n**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：' + '、'.join(
+            f"[{m['title']}]({m['page']})（{m['publisher']}）" for m in sources_meta(h['sources']))
+    block = f'''## 📦 學生素材下載
+
+> [!TIP]
+> **{h['title']}**
+>
+> {h['story']}
+>
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({colab_url(chapter_dir.name, h['notebook'])}) [開啟範例 Notebook](./{nb})　｜　[⬇️ 下載本章素材 {chapter_dir.name}_學生素材.zip]({zip_url(chapter_dir.name)})
+
+| 素材檔案 | 內容 |
+| --- | --- |
+{rows}{src}
+
+**使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
+'''
+    readme.write_text(text[:start] + block + text[end:], encoding='utf-8')
+
+
+def update_root_readme(chapter_dir):
+    """把根目錄 README 學習路徑表格中，這一章的「本章任務」連結換成最新的範例 Notebook。"""
+    h = LAST_HEADER
+    title = h['title']
+    title = title.replace('茶語時光：', '') if '茶語時光：' in title else re.split(r'(?<=？)|：', title)[0]   # 取到第一個問號或冒號
+    readme = ROOT / 'README.md'
+    lines = readme.read_text(encoding='utf-8').split('\n')
+    for i, line in enumerate(lines):
+        if f'](./{chapter_dir.name}/README.md)' in line and line.startswith('| '):
+            cells = line.split(' | ')
+            cells[-1] = f"[{title}]({colab_url(chapter_dir.name, h['notebook'])}) |"
+            lines[i] = ' | '.join(cells)
+    readme.write_text('\n'.join(lines), encoding='utf-8')
 
 
 def build(chapter):
@@ -81,6 +135,8 @@ def build(chapter):
         return (material_dir / f).exists()
     missing = [f for f in files if not exists(f)]
     assert not missing, f'{chapter} 缺少素材檔：{missing}'
+    update_readme(chapter_dir, extras)
+    update_root_readme(chapter_dir)
     out = build_zip(chapter_dir, material_dir, extras, readme_text(chapter, notebook, extras))
     print(f'✅ {chapter}: {notebook}，素材 {len(files)} 個，壓縮檔 {out.stat().st_size / 1024:.0f} KB')
 

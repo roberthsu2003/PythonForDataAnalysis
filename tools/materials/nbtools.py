@@ -1,6 +1,8 @@
 """產生學生範例 Notebook 與打包素材的共用工具。"""
+import json
 import os
 import re
+import shutil
 import zipfile
 from pathlib import Path
 from urllib.parse import quote
@@ -9,6 +11,46 @@ import nbformat
 
 REPO_RAW = 'https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/'
 REPO_BLOB = 'https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/'
+REAL_DATA = Path(__file__).resolve().parent.parent / 'real_data'
+LAST_HEADER = {}            # 最近一次 header() 的內容，build_student_materials.py 用來同步更新章節 README
+
+
+def sources_meta(names):
+    meta = json.loads((REAL_DATA / 'SOURCES.json').read_text(encoding='utf-8'))
+    return [meta[n] for n in names]
+
+
+def copy_real(out, name, dest=None):
+    """把 tools/real_data 的真實資料快照複製到學生素材資料夾，回傳檔名。"""
+    src = sources_meta([name])[0]['file']
+    shutil.copy(REAL_DATA / src, out / (dest or src))
+    return dest or src
+
+
+def read_real(name):
+    return REAL_DATA / sources_meta([name])[0]['file']
+
+
+def sources_table(names):
+    rows = '\n'.join(f"| [{m['title']}]({m['page']}) | {m['publisher']} | {m['fetched']} |" for m in sources_meta(names))
+    return f'''| 📡 資料來源（政府資料開放平台） | 提供機關 | 下載日期 |
+| --- | --- | --- |
+{rows}'''
+
+
+def latest(code_text, note='資料每天、每月都在更新。想用今天的數字重跑一次，可以把這段程式貼到新的一格執行：'):
+    """「抓最新資料」的折疊區：課堂上用快照，想看最新數字的同學自己展開。"""
+    return md(f'''<details><summary>🔄 想看最新資料？點我</summary>
+
+{note}
+
+```python
+{code_text.strip()}
+```
+
+> ⚠️ 開放資料的欄位偶爾會改名或調整，如果最新資料跑出錯誤，正好練習看懂錯誤訊息、對照欄位名稱修正程式。
+
+</details>''')
 
 
 def zip_name(chapter):
@@ -73,21 +115,28 @@ use_font("Noto Sans CJK SC")              # 套用思源黑體，負號也會一
 ''')
 
 
-def header(chapter, notebook, title, story, files_desc):
+def header(chapter, notebook, title, story, files_desc, sources=None):
+    LAST_HEADER.clear()
+    LAST_HEADER.update(chapter=chapter, notebook=notebook, title=title, story=story, files_desc=files_desc, sources=sources)
     badge = f'[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]({colab_url(chapter, notebook)})'
     rows = '\n'.join(f'| `{f}` | {d} |' for f, d in files_desc)
+    if sources:
+        note = (sources_table(sources) + '\n\n> ✅ 這些都是**真實的政府開放資料**，依「政府資料開放授權條款－第1版」使用。'
+                '課堂上統一使用上表日期的快照，所以每個人跑出來的數字都一樣。')
+    else:
+        note = '> ⚠️ 「茶語時光」是課程虛構的品牌，資料為模擬資料；節日與颱風假的日期參考台灣實際情況，方便你對照生活經驗。'
     return md(f'''
 {badge}
 
 # {title}
 
-> 🧋 **情境**：{story}
+> 🎯 **情境**：{story}
 
 | 素材檔案 | 內容 |
 | --- | --- |
 {rows}
 
-> ⚠️ 「茶語時光」是課程虛構的品牌，資料為模擬資料；節日與颱風假的日期參考台灣實際情況，方便你對照生活經驗。
+{note}
 ''')
 
 

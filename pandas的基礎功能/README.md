@@ -20,17 +20,18 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🏆 茶語時光：店員排行榜與天氣分析**
+> **🏆 票房排行榜與爆紅的秘密：排序、排名、分級與相關係數**
 >
-> 第一季結束，人資要發績效獎金，請你做一份「店員排行榜」並幫每個人打績效等級；營運長則想知道：「天氣真的會影響生意嗎？要不要看氣象預報排班？」
+> 上一章你做出了第一份票房報表。這次電影公司的行銷經理來問你三個問題：「**每一年的冠軍是誰？**」「**一部電影的票房『通常』有多少——平均數可以相信嗎？**」「**上映的戲院越多，票房就越高嗎？**」用 pandas 的排序、排名、分級與統計功能，一次回答。
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb) [開啟範例 Notebook](./學生素材/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb)　｜　[⬇️ 下載本章素材 pandas的基礎功能_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E7%A5%A8%E6%88%BF%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E7%88%86%E7%B4%85%E7%9A%84%E7%A7%98%E5%AF%86.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E7%A5%A8%E6%88%BF%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E7%88%86%E7%B4%85%E7%9A%84%E7%A7%98%E5%AF%86.ipynb)　｜　[⬇️ 下載本章素材 pandas的基礎功能_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `店員業績_2024Q1.csv` | 25 位店員第一季的出勤、銷售杯數、加購率、顧客評分、客訴數 |
-| `信義店每日天氣與銷量_2024.csv` | 信義店 2024 年每天的氣溫、降雨量、杯數、營收 |
+| `全國電影票房_2016至今.json` | 文化部全國電影票房：2016 年至今 7,000 多部電影的國別、上映日、戲院數、票數與票房金額（JSON） |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[全國電影票房統計數據](https://data.gov.tw/dataset/94224)（文化部）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

@@ -1,274 +1,208 @@
-"""第 2 章 檔案存取：純 Python 讀寫 TXT、CSV、JSON 與編碼問題。"""
-import csv
-import json
-
-from common import MENU, STORES, LARGE_EXTRA, rng
-from nbtools import md, code, setup_cell, header, exercises
+"""第 2 章 檔案存取：用純 Python 讀寫真實的政府開放資料——Big5 編碼的 CSV、文字檔與 JSON。"""
+from nbtools import md, code, setup_cell, header, exercises, copy_real, latest
 
 CHAPTER = '檔案存取'
-NOTEBOOK = '範例_茶語時光_顧客評論與菜單檔案.ipynb'
-
-GOOD = ['珍珠QQ的，甜度剛好', '店員很親切，還記得我的甜度', '鮮奶很濃，值得這個價錢', '出餐很快，下班買剛好',
-        '芋頭鮮奶料超多，會回購', '冬瓜檸檬很解渴', '四季春很香，無糖也好喝', '外送送到還是冰的', '黑糖珍珠鮮奶是我的最愛']
-MID = ['味道普通，價格有點高', '排隊排很久，但飲料還可以', '冰塊有點多', '珍珠今天偏硬', '假日人太多，座位不夠']
-BAD = ['半糖還是太甜了', '等了快 30 分鐘才拿到', '飲料灑出來，杯子沒封好', '點無糖卻做成全糖，太甜',
-       '店員態度很差', '外送超時一小時，冰塊都融了', '珍珠沒煮熟']
+NOTEBOOK = '範例_YouBike與電影票房_讀懂政府開放資料.ipynb'
+SOURCES = ['youbike', 'boxoffice']
 
 
 def build(out):
-    r = rng(20)
-    # 1) 菜單.csv
-    with open(out / '菜單.csv', 'w', newline='', encoding='utf-8') as f:
-        w = csv.writer(f)
-        w.writerow(['品項代碼', '品項', '類別', '中杯價', '大杯價', '成本'])
-        for _, m in MENU.iterrows():
-            w.writerow([m['品項代碼'], m['品項'], m['類別'], m['中杯價'], m['中杯價'] + LARGE_EXTRA, m['成本']])
-
-    # 2) 門市資訊.json（像 API 回傳的巢狀結構）
-    hot = {'S01': ['鮮奶綠', '四季春青茶'], 'S02': ['珍珠奶茶', '芒果冰沙'], 'S03': ['黑糖珍珠鮮奶', '珍珠奶茶'],
-           'S04': ['珍珠奶茶', '冬瓜檸檬'], 'S05': ['多多綠', '芋頭鮮奶']}
-    stores = []
-    for _, s in STORES.iterrows():
-        stores.append({
-            '門市代碼': s['門市代碼'], '門市': s['門市'], '縣市': s['縣市'], '開幕日': s['開幕日'],
-            '營業時間': {'平日': '10:00-22:00', '假日': '10:00-23:00' if s['門市代碼'] in ('S02', 'S03') else '10:00-22:00'},
-            '外送': s['門市代碼'] != 'S04',
-            '熱銷品項': hot[s['門市代碼']],
-        })
-    data = {'status': 'success', 'updated': '2024-04-01 09:00', 'result': {'count': len(stores), 'stores': stores}}
-    (out / '門市資訊.json').write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding='utf-8')
-
-    # 3) 顧客評論.txt：日期|門市|星等|評論
-    lines = []
-    star_bias = {'S01': 4.3, 'S02': 3.6, 'S03': 4.0, 'S04': 4.4, 'S05': 3.8}
-    for i in range(120):
-        s = STORES.iloc[r.integers(0, 5)]
-        star = int(min(5, max(1, round(r.normal(star_bias[s['門市代碼']], 1.0)))))
-        text = r.choice(GOOD if star >= 4 else MID if star == 3 else BAD)
-        day = f'2024-03-{1 + i % 31:02d}'
-        lines.append(f'{day}|{s["門市"]}|{star}|{text}')
-    (out / '顧客評論.txt').write_text('# 茶語時光 2024 年 3 月顧客評論（格式：日期|門市|星等|評論）\n' + '\n'.join(lines) + '\n',
-                                    encoding='utf-8')
-
-    # 4) 舊系統會員_big5.csv：用 Big5（cp950）編碼，示範亂碼問題
-    names = ['陳怡君', '林家豪', '黃雅婷', '張志明', '李淑芬', '王冠宇', '吳宜庭', '劉俊傑']
-    with open(out / '舊系統會員_big5.csv', 'w', newline='', encoding='cp950') as f:
-        w = csv.writer(f)
-        w.writerow(['會員編號', '姓名', '常去門市', '累積點數'])
-        for i, n in enumerate(names, 1):
-            w.writerow([f'M{i:04d}', n, STORES.iloc[i % 5]['門市'], int(r.integers(20, 900))])
-
-    files = ['菜單.csv', '門市資訊.json', '顧客評論.txt', '舊系統會員_big5.csv']
-    desc = [('菜單.csv', '10 個品項的價格與成本'), ('門市資訊.json', '5 家門市的營業時間、外送、熱銷品項（巢狀 JSON）'),
-            ('顧客評論.txt', '3 月份 120 則顧客評論'), ('舊系統會員_big5.csv', '舊 POS 系統匯出的會員檔（Big5 編碼，會亂碼！）')]
+    files = [copy_real(out, 'youbike'), copy_real(out, 'boxoffice')]
+    desc = [(files[0], '臺北市 YouBike 每月騎乘次數（2020 年 11 月起；**Big5 編碼**，直接打開會亂碼！）'),
+            (files[1], '文化部全國電影票房（2016 年至今、7,000 多部電影，JSON 格式）')]
 
     cells = [
-        header(CHAPTER, NOTEBOOK, '🧋 茶語時光：用 Python 讀懂顧客評論與菜單檔案',
-               '你是「茶語時光」總部新來的資料小幫手。店長丟給你一堆檔案：一份顧客評論文字檔、一份菜單 CSV、'
-               '一份門市資訊 JSON，還有一份從舊電腦匯出、打開全是亂碼的會員名單。今天的任務是：**不用 Excel，用 Python 把這些檔案讀懂、整理好、再存成店長要的檔案。**',
-               desc),
+        header(CHAPTER, NOTEBOOK, '🚲 YouBike 與電影票房：用 Python 讀懂真實的政府開放資料',
+               '你在市政府實習，主管丟給你兩份從**政府資料開放平台**下載的檔案：一份是臺北市 YouBike 每個月被騎了幾次，'
+               '一份是全台灣每一部電影賣了多少票房。第一份一打開就是亂碼，第二份是一大坨 JSON。'
+               '今天的任務是：**不用 Excel，只用 Python 內建功能把它們讀懂，回答「YouBike 騎乘量變幾倍了？」和「台灣人最愛看哪部電影？」**',
+               desc, SOURCES),
         setup_cell(CHAPTER, files),
         md('''
-## 任務 1：顧客到底滿不滿意？——讀取文字檔
+## 任務 1：打開就是亂碼！先搞定編碼
 
-**老闆的問題**：「3 月的評論有幾則？平均幾顆星？有多少人抱怨『太甜』？把一、二星的負評整理給我。」
+**你想知道**：政府的 CSV 為什麼常常打開是亂碼？要怎麼救？
 
-**白話說明**：用 `with open()` 打開文字檔，一行一行讀進來；每一行用 `|` 切開，就能拿到日期、門市、星等、評論。
+**白話說明**：電腦存中文時要選一本「翻譯字典」（編碼）。台灣很多政府系統還在用舊的 **Big5（cp950）**，新系統用 **UTF-8**。用錯字典讀，Python 會直接報錯 `UnicodeDecodeError`。我們用 `try / except`：先試 UTF-8，失敗就換 cp950。
 '''),
         code('''
-reviews = []                                          # 準備一個空清單，裝每一則評論
-with open('顧客評論.txt', 'r', encoding='utf-8') as f:  # 用 UTF-8 打開文字檔
-    for line in f:                                    # 一次讀一行
-        line = line.strip()                           # 去掉頭尾空白與換行
-        if not line or line.startswith('#'):          # 空行或 # 開頭的說明行就跳過
-            continue
-        date, store, star, text = line.split('|')     # 用 | 切成四個欄位
-        reviews.append({'日期': date, '門市': store, '星等': int(star), '評論': text})
+path = '臺北市YouBike每月使用量.csv'
 
-print('評論總數：', len(reviews))
-print('平均星等：', round(sum(r['星等'] for r in reviews) / len(reviews), 2))
-print('提到「甜」的評論：', sum('甜' in r['評論'] for r in reviews), '則')
-print('第一則評論：', reviews[0])
+try:
+    with open(path, encoding='utf-8') as f:     # 先用 UTF-8 試試看
+        text = f.read()
+except UnicodeDecodeError as e:
+    print('❌ 用 UTF-8 讀失敗：', e)
+    with open(path, encoding='cp950') as f:     # 換成 Big5（cp950）
+        text = f.read()
+    print('✅ 改用 cp950 成功！')
+
+print(text[:200])                               # 印出前 200 個字確認
 '''),
         code('''
-# 把一、二星的負評寫成新的文字檔，交給店長
-bad = [r for r in reviews if r['星等'] <= 2]           # 篩出星等 ≤ 2 的評論
-with open('負評整理.txt', 'w', encoding='utf-8') as f:   # 'w' 寫入模式：建立新檔（已存在會覆蓋）
-    f.write(f'3 月負評共 {len(bad)} 則\\n')
-    for r in bad:
-        f.write(f"{r['日期']}  {r['門市']}  {r['星等']}★  {r['評論']}\\n")
-
-print(open('負評整理.txt', encoding='utf-8').read()[:300])   # 印出前 300 個字確認內容
+# 轉存成 UTF-8：之後所有程式都用 UTF-8 讀，再也不會亂碼
+with open('YouBike_utf8.csv', 'w', encoding='utf-8', newline='') as f:
+    f.write(text)
+print('已另存為 YouBike_utf8.csv')
 '''),
         md('''
-> 💡 **看懂結果**：負評集中在「太甜（甜度做錯）」、「等太久」、「外送超時」、「服務態度」幾類——把負評分類統計，就是店長下週開會的討論重點。
+> 💡 **看懂結果**：錯誤訊息說「`0xa5` 這個位元組不是合法的 UTF-8」——這就是 Big5 檔案的典型症狀。以後看到 `UnicodeDecodeError`，第一個念頭就是「換 `cp950` 試試」。
 >
-> 🤖 **換你問 AI**：「我有一個文字檔，每行格式是『日期|門市|星等|評論』，請用 Python 內建的 open 讀取，統計每家門市的評論數與平均星等，並把 1～2 星的評論另存成文字檔。」
+> 🤖 **換你問 AI**：「我從政府資料開放平台下載的 CSV 用 UTF-8 打開是亂碼，可能是 Big5。請寫一段 Python 自動嘗試 utf-8、utf-8-sig、cp950，成功後轉存成 UTF-8。」
 '''),
         md('''
-## 任務 2：哪一杯最賺錢？——讀取 CSV 菜單
+## 任務 2：YouBike 騎乘量，這幾年變幾倍了？
 
-**老闆的問題**：「每一杯中杯賣出去，扣掉成本可以賺多少？哪一杯最賺？」
+**你想知道**：每一年總共被騎了幾次？哪一個月最多人騎？
 
-**白話說明**：`csv.DictReader` 會把第一列當欄位名稱，每一列變成一個字典。⚠️ CSV 讀進來的數字都是**文字**，要先用 `int()` 轉成數字才能相減。
+**白話說明**：`csv.DictReader` 會把第一列當欄位名稱，每一列變成一個字典。⚠️ CSV 讀進來的數字都是**文字**，要先用 `int()` 轉成數字才能相加。
 '''),
         code('''
 import csv
 
-menu = []
-with open('菜單.csv', 'r', encoding='utf-8') as f:
-    for row in csv.DictReader(f):                     # 每一列變成 {'品項': '珍珠奶茶', '中杯價': '55', ...}
-        row['毛利'] = int(row['中杯價']) - int(row['成本'])   # 文字轉數字後再相減
-        row['毛利率'] = round(row['毛利'] / int(row['中杯價']) * 100, 1)
-        menu.append(row)
+COUNT = '臺北市YouBike每月使用量（次數）'           # 欄位名稱很長，先存成變數
 
-for m in sorted(menu, key=lambda m: m['毛利'], reverse=True):   # 依毛利由高到低排序
-    print(f"{m['品項']:　<6}  售價 {m['中杯價']:>3}  成本 {m['成本']:>3}  毛利 {m['毛利']:>3}  毛利率 {m['毛利率']}%")
+rows = []
+with open('YouBike_utf8.csv', encoding='utf-8') as f:
+    for row in csv.DictReader(f):                  # 每一列：{'西元年': '2021', '月份': '1', ...}
+        row[COUNT] = int(row[COUNT])               # 文字 → 數字
+        rows.append(row)
+
+yearly = {}                                        # 用字典累加：{'2021': 27537119, ...}
+for r in rows:
+    yearly[r['西元年']] = yearly.get(r['西元年'], 0) + r[COUNT]
+
+for year, total in yearly.items():
+    months = sum(1 for r in rows if r['西元年'] == year)
+    print(f'{year} 年：{total:>12,} 次（{months} 個月的資料）')
+
+best = max(rows, key=lambda r: r[COUNT])           # 找出次數最多的那一列
+print(f"\\n🏆 史上最多人騎的月份：{best['西元年']} 年 {best['月份']} 月，{best[COUNT]:,} 次")
 '''),
         md('''
-> 💡 **看懂結果**：毛利「金額」最高的是高單價的鮮奶系列，但毛利「率」最高的是成本很低的純茶——**賺得多**和**賺得有效率**是兩件事，報告時要說清楚用哪一個指標。
+> 💡 **看懂結果**：2021 年約 2,750 萬次，2025 年接近 8,000 萬次——**四年變成將近 3 倍**！這段期間正是 YouBike 2.0 全面上路、站點大量增加的時候。
 >
-> 🤖 **換你問 AI**：「這是菜單 CSV 的前三行：（貼上），請用 csv 模組計算每個品項的毛利與毛利率，並依毛利率排序。」
+> ⚠️ **小心陷阱**：2020 年只有 11、12 兩個月、今年也還沒過完——**資料月份不一樣多，就不能直接比「年總數」**。報告時一定要註明。
+>
+> 🤖 **換你問 AI**：「這是一份 CSV 的前 5 行（貼上），請用 Python 內建的 csv 模組依年份加總次數，並找出次數最多的月份。」
 '''),
         md('''
-## 任務 3：哪些門市有外送？——讀取巢狀 JSON
+## 任務 3：把結果寫成文字報告
 
-**老闆的問題**：「幫我列出每家店的假日營業時間、有沒有外送，以及熱銷品項。」
+**你想知道**：主管說「整理成一份文字檔給我，我要貼到週報裡」。
 
-**白話說明**：JSON 就像一層一層的資料夾。先找到真正的資料在哪一層：`data['result']['stores']`。
+**白話說明**：`open(檔名, 'w')` 是**寫入模式**（檔案存在會被覆蓋）；`f.write()` 不會自動換行，要自己加 `\\n`。
+'''),
+        code('''
+with open('YouBike年度報告.txt', 'w', encoding='utf-8') as f:
+    f.write('臺北市 YouBike 年度騎乘次數\\n')
+    f.write('=' * 24 + '\\n')
+    for year, total in yearly.items():
+        f.write(f'{year} 年  {total:>12,} 次\\n')
+    f.write('\\n資料來源：政府資料開放平台（臺北市政府交通局）\\n')
+
+print(open('YouBike年度報告.txt', encoding='utf-8').read())
+'''),
+        latest('''
+import urllib.request
+url = 'https://data.taipei/api/dataset/d8cefb03-aba2-41ca-9996-d8774313cdc6/resource/8f690548-61bc-4bff-8baa-01d465eb672c/download'
+urllib.request.urlretrieve(url, '臺北市YouBike每月使用量.csv')   # 下載後，從任務 1 重新執行即可
+'''),
+        md('''
+## 任務 4：台灣人最愛看哪部電影？——讀取 JSON
+
+**你想知道**：2016 年到現在，票房最高的電影是哪幾部？
+
+**白話說明**：JSON 就像一層一層的資料夾。先用 `json.load` 讀進來，再看最外層有哪些「鍵」，找到真正的資料在哪一層：這份檔案的電影清單在 `data['List']`。
+
+> ⚠️ 這個 JSON 檔開頭有一個看不見的 BOM 標記，所以編碼要用 `utf-8-sig`（多了 `-sig`），不然會報錯。
 '''),
         code('''
 import json
 
-with open('門市資訊.json', 'r', encoding='utf-8') as f:
-    data = json.load(f)                               # JSON 檔 → Python 的字典與清單
+with open('全國電影票房_2016至今.json', encoding='utf-8-sig') as f:
+    data = json.load(f)                            # JSON → Python 的字典與清單
 
-print('最外層有哪些鍵：', list(data.keys()))
-stores = data['result']['stores']                     # 真正的門市清單在 result → stores 這一層
-
-for s in stores:
-    delivery = '✅ 有外送' if s['外送'] else '❌ 無外送'
-    print(f"{s['門市']}｜假日 {s['營業時間']['假日']}｜{delivery}｜熱銷：{'、'.join(s['熱銷品項'])}")
-'''),
-        md('''
-> 🤖 **換你問 AI**：「這是一份 JSON 的前 20 行（貼上），請告訴我門市資料在哪一層，並用 Python 列出每家門市的假日營業時間。」
-'''),
-        md('''
-## 任務 4：舊系統的會員檔打開全是亂碼！——處理編碼
-
-**老闆的問題**：「舊電腦匯出的會員名單打開都是怪字，救得回來嗎？」
-
-**白話說明**：台灣舊系統常用 **Big5（cp950）** 編碼，新系統用 **UTF-8**。用錯「翻譯字典」就會亂碼或直接報錯。我們用 `try / except`：先試 UTF-8，失敗就改用 cp950。
+print('最外層的鍵：', list(data.keys()))
+movies = data['List']                              # 真正的電影清單
+print('電影數量：', len(movies))
+print('第一部電影長這樣：', movies[0])
 '''),
         code('''
-def read_text_any(path):
-    """先用 UTF-8 讀，失敗就改用 Big5（cp950）。"""
-    for enc in ['utf-8', 'cp950']:
-        try:
-            with open(path, 'r', encoding=enc) as f:
-                return f.read(), enc
-        except UnicodeDecodeError:                    # 解碼失敗：這本字典不對，換下一本
-            print(f'用 {enc} 讀取失敗，換下一種編碼…')
-    raise ValueError('無法判斷編碼')
+top = sorted(movies, key=lambda m: m['TotalAmounts'], reverse=True)[:10]   # 依總票房由高到低，取前 10
 
-text, enc = read_text_any('舊系統會員_big5.csv')
-print('成功的編碼：', enc)
-print(text)
-
-# 轉存成 UTF-8，之後所有程式都用 UTF-8 讀
-with open('會員_utf8.csv', 'w', encoding='utf-8', newline='') as f:
-    f.write(text)
-print('已另存為 會員_utf8.csv')
+print('🎬 2016 年至今台灣票房前 10 名')
+for i, m in enumerate(top, 1):
+    print(f"{i:>2}. {m['Name']}（{m['Country']}，{m['ReleaseDate'][:4]}）  {m['TotalAmounts'] / 1e8:.2f} 億元")
 '''),
         md('''
-> 💡 **看懂結果**：第一次用 UTF-8 讀會失敗，改用 cp950 才成功。轉存成 UTF-8 之後，這份檔案就「修好」了。
+> 💡 **看懂結果**：第一名是《復仇者聯盟：終局之戰》（9.1 億），緊追在後的是 2025 年的《鬼滅之刃 無限城篇》。前 10 名幾乎都是美國和日本片——但 2025 年的國片《陽光女子合唱團》也擠進來了！
 >
-> 🤖 **換你問 AI**：「我的 CSV 用 UTF-8 打開是亂碼，可能是 Big5 編碼。請寫一段程式自動嘗試 utf-8、utf-8-sig、cp950，成功後轉存成 UTF-8。」
+> 🤖 **換你問 AI**：「這是一份 JSON 的前 30 行（貼上），請告訴我電影清單在哪一層，並用 Python 依 TotalAmounts 排序列出前 10 名。」
 '''),
         md('''
-## 任務 5：把整理結果存成 JSON，交給工程師做網站
+## 任務 5：把「2025 年賣座前 10 名」存成 JSON，交給做網站的同學
 
-**老闆的問題**：「官網要顯示每家店的平均評分，工程師說給他 JSON 就好。」
+**你想知道**：網站要放一個「年度賣座排行榜」，工程師說給他 JSON 就好。
 '''),
         code('''
-import json
+top2025 = sorted([m for m in movies if m['ReleaseDate'].startswith('2025')],
+                 key=lambda m: m['TotalAmounts'], reverse=True)[:10]
 
-summary = {}
-for r in reviews:                                     # 依門市累加星等與評論數
-    s = summary.setdefault(r['門市'], {'評論數': 0, '星等總和': 0})
-    s['評論數'] += 1
-    s['星等總和'] += r['星等']
+result = [{'名次': i, '片名': m['Name'], '國別': m['Country'], '票房(億)': round(m['TotalAmounts'] / 1e8, 2)}
+          for i, m in enumerate(top2025, 1)]
 
-result = [{'門市': name, '評論數': s['評論數'], '平均星等': round(s['星等總和'] / s['評論數'], 2)}
-          for name, s in summary.items()]
-result.sort(key=lambda x: x['平均星等'], reverse=True)
-
-with open('門市評分.json', 'w', encoding='utf-8') as f:
+with open('2025賣座前10名.json', 'w', encoding='utf-8') as f:
     json.dump(result, f, ensure_ascii=False, indent=2)   # ensure_ascii=False：中文正常顯示；indent=2：排版好讀
 
-print(open('門市評分.json', encoding='utf-8').read())
+print(open('2025賣座前10名.json', encoding='utf-8').read()[:400])
 '''),
         md('''
-> 💡 **看懂結果**：評分最低的是高雄巨蛋店與台北西門店，剛好都是人潮會突然爆量的門市（演唱會散場、觀光客）。人多時的出餐速度與服務品質，值得優先改善。
-''')
-    ] + exercises(
-        dict(title='台南成大店的顧客滿意嗎？找出它的評論並計算平均星等',
-             hint='串列生成式的篩選條件寫在 `if` 後面；平均 = 總和 ÷ 筆數，筆數可以用 `len(tainan)`。',
-             starter='''
-tainan = [r for r in reviews if r['門市'] == ___]          # 只留下台南成大店的評論
-tainan_avg = round(sum(r['星等'] for r in tainan) / ___, 2)  # 平均星等，四捨五入到小數 2 位
-print('台南成大店評論數：', len(tainan), '平均星等：', tainan_avg)
-''',
-             check='''
-_t = [r for r in reviews if r['門市'] == '台南成大店']
-check('tainan_avg', round(sum(r['星等'] for r in _t) / len(_t), 2))
-''',
-             solution='''
-tainan = [r for r in reviews if r['門市'] == '台南成大店']
-tainan_avg = round(sum(r['星等'] for r in tainan) / len(tainan), 2)
-print('台南成大店評論數：', len(tainan), '平均星等：', tainan_avg)
+> 💡 **看懂結果**：2025 年前 3 名是日本動畫、國片、美國動畫——三個不同國家的電影輪流稱王。你也可以把年份改成自己出生的那一年看看。
 '''),
-        dict(title='把「中杯價 ≥ 60 元」的高價品項存成 `高價品項.csv`',
-             hint='CSV 讀進來的價格是**文字**，`\'55\' >= 60` 會出錯，要先用 `int()` 轉成數字。',
+    ] + exercises(
+        dict(title='2023 年，臺北市 YouBike 總共被騎了幾次？',
+             hint='任務 2 已經算好 `yearly` 字典了，鍵是**文字**的年份，例如 `yearly[\'2021\']`。',
              starter='''
-with open('高價品項.csv', 'w', newline='', encoding='utf-8') as f:
-    w = csv.writer(f)
-    w.writerow(['品項', '中杯價'])                  # 先寫標題列
-    for m in menu:
-        if ___ >= 60:                              # 文字要先轉成數字才能比大小
-            w.writerow([m['品項'], m['中杯價']])
-print(open('高價品項.csv', encoding='utf-8').read())
+rides_2023 = yearly[___]
+print(f'2023 年：{rides_2023:,} 次')
 ''',
              check='''
-import os
-if os.path.exists('高價品項.csv'):
-    with open('高價品項.csv', encoding='utf-8') as f:
-        high_rows = list(csv.reader(f))
-    check('high_rows', [['品項', '中杯價']] + [[m['品項'], m['中杯價']] for m in menu if int(m['中杯價']) >= 60])
-else:
-    print('⏳ 還沒看到 高價品項.csv，先執行上一格')
+check('rides_2023', sum(r[COUNT] for r in rows if r['西元年'] == '2023'))
 ''',
              solution='''
-with open('高價品項.csv', 'w', newline='', encoding='utf-8') as f:
-    w = csv.writer(f)
-    w.writerow(['品項', '中杯價'])
-    for m in menu:
-        if int(m['中杯價']) >= 60:
-            w.writerow([m['品項'], m['中杯價']])
-print(open('高價品項.csv', encoding='utf-8').read())
+rides_2023 = yearly['2023']
+print(f'2023 年：{rides_2023:,} 次')
+'''),
+        dict(title='國片加油！票房破 1 億元的台灣電影有幾部？',
+             hint='台灣電影的 `Country` 是 `\'中華民國\'`；1 億可以寫成 `1e8` 或 `100_000_000`。用串列生成式把兩個條件用 `and` 接起來。',
+             starter='''
+tw_hits = [m for m in movies if m['Country'] == ___ and m['TotalAmounts'] >= ___]
+print('破億國片：', len(tw_hits), '部')
+for m in sorted(tw_hits, key=lambda m: m['TotalAmounts'], reverse=True)[:5]:
+    print(' ', m['Name'], round(m['TotalAmounts'] / 1e8, 2), '億')
+''',
+             check='''
+check('tw_hits', [m for m in movies if m['Country'] == '中華民國' and m['TotalAmounts'] >= 1e8])
+''',
+             solution='''
+tw_hits = [m for m in movies if m['Country'] == '中華民國' and m['TotalAmounts'] >= 1e8]
+print('破億國片：', len(tw_hits), '部')
+for m in sorted(tw_hits, key=lambda m: m['TotalAmounts'], reverse=True)[:5]:
+    print(' ', m['Name'], round(m['TotalAmounts'] / 1e8, 2), '億')
 '''),
         dict(title='檔案不存在也不要當機：用 `try / except` 印出友善訊息',
              hint='打開不存在的檔案會丟出 `FileNotFoundError`，把它寫在 `except` 後面。執行後應該只看到「找不到檔案，請確認檔名」。',
              starter='''
 try:
-    with open('四月評論.txt', encoding='utf-8') as f:
+    with open('新北市YouBike每月使用量.csv', encoding='utf-8') as f:
         print(f.read())
 except ___:                                        # 要攔下哪一種錯誤？
     print('找不到檔案，請確認檔名')
 ''',
              solution='''
 try:
-    with open('四月評論.txt', encoding='utf-8') as f:
+    with open('新北市YouBike每月使用量.csv', encoding='utf-8') as f:
         print(f.read())
 except FileNotFoundError:
     print('找不到檔案，請確認檔名')
