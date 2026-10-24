@@ -6,12 +6,18 @@
 
 為什麼要存快照：開放資料的網址與內容會變動，範例 Notebook 一律讀快照，
 課堂上每個學生看到的數字都一樣；想看最新資料時，各範例另附「抓最新資料」的程式。
-更新快照後，請重新執行 build_student_materials.py 產生學生素材。
+更新快照後，請照 tools/README.md 的流程重建學生素材與網頁版。
+
+⚠️ 重要提醒：範例 Notebook 裡的「💡 看懂結果」是依照目前快照的數字寫的（例如「斗六一年約 70 天空氣不健康」）。
+換了新資料，數字可能會變。重建後請打開受影響的範例，核對 💡 說明和實際輸出是否一致；
+不一致時，修改 tools/materials/chXX_*.py 裡的說明文字，再重建一次。本程式執行完會列出受影響的章節。
 
 所有資料皆依「政府資料開放授權條款－第1版」使用，出處記錄在 tools/real_data/SOURCES.json。
 """
+import ast
 import io
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -118,3 +124,16 @@ if __name__ == '__main__':
                       'page': f"https://data.gov.tw/dataset/{src['dataset']}", 'license': LICENSE,
                       'fetched': date.today().isoformat()}
     meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding='utf-8')
+
+    # 提醒：哪些章節用到剛剛更新的資料（從各產生器的 SOURCES 宣告找出來）
+    affected = []
+    for gen in sorted((Path(__file__).resolve().parent / 'materials').glob('ch*.py')):
+        m = re.search(r"^SOURCES = (\[.*?\])", gen.read_text(encoding='utf-8'), re.M)
+        if m and any(n in ast.literal_eval(m.group(1)) for n in names):
+            chapter = re.search(r"^CHAPTER = '(.+)'", gen.read_text(encoding='utf-8'), re.M).group(1)
+            affected.append(f'{chapter}（{gen.name}）')
+    print('\n⚠️  資料已更新。範例裡「💡 看懂結果」的數字是依照舊快照寫的，重建後請核對以下章節的說明文字：')
+    for a in affected:
+        print('   -', a)
+    print('   流程：build_student_materials.py → execute_student_notebooks.py --verify → execute_student_notebooks.py'
+          ' → build_student_materials.py --zip-only → build_site.py（詳見 tools/README.md）')
