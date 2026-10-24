@@ -19,7 +19,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(Path(__file__).resolve().parent / 'materials'))
 
-from nbtools import build_zip, save_notebook  # noqa: E402
+from nbtools import build_zip, finalize, save_notebook  # noqa: E402
 
 # 章節資料夾 → (產生器模組, 要一併放進壓縮檔的課程原始資料)
 CHAPTERS = {
@@ -39,7 +39,6 @@ CHAPTERS = {
     '群組資料和群組運算': ('ch11_groupby', ['tips.csv', '各鄉鎮市區人口密度.csv']),
     '直接使用pandas繪制圖表': ('ch12_pandas_plot', ['tips.csv', 'spx.csv']),
     '日期和時間': ('ch13_datetime', ['stock_px_2.csv']),
-    '看懂資料與選對圖表': ('ch15_choose_chart', []),
     '全方面分析': ('ch14_capstone', ['每日各站進出站人數2023.csv', '站點2023年進出分析.ipynb']),
 }
 
@@ -75,7 +74,7 @@ def build(chapter):
     notebook, files, cells = module.build(material_dir)
     if hasattr(module, 'build_lesson'):              # 有些章節也一併產生課堂 Notebook（README.ipynb）
         module.build_lesson(chapter_dir)
-    save_notebook(cells, material_dir / notebook)
+    save_notebook(finalize(cells), material_dir / notebook)
     def exists(f):                                   # 素材在「學生素材」或「課程原始資料」（章節資料夾）中
         if f.startswith('課程原始資料/'):
             return f.split('/', 1)[1] in extras and (chapter_dir / f.split('/', 1)[1]).exists()

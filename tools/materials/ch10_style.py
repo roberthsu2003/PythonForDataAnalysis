@@ -4,7 +4,7 @@ import pandas as pd
 
 from common import STORES, daily_sales, rng
 from ch03_plot import expected_items
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '視覺化表格'
 NOTEBOOK = '範例_茶語時光_會發亮的KPI週報.ipynb'
@@ -56,7 +56,7 @@ kpi = pd.read_csv('門市KPI_2024Q2.csv', index_col='門市')
 kpi['達成率'] = kpi['實際營收'] / kpi['營收目標']                    # 實際 ÷ 目標
 kpi['年成長率'] = kpi['實際營收'] / kpi['去年同期營收'] - 1          # 和去年同期比
 kpi['客單價'] = kpi['實際營收'] / kpi['來客數']
-print(kpi.round(3))                                                  # 素顏的表格：很難一眼看出重點
+display(kpi.round(3))                                                  # 素顏的表格：很難一眼看出重點
 
 styled = kpi.style.format({
     '營收目標': '{:,.0f}', '實際營收': '{:,.0f}', '去年同期營收': '{:,.0f}', '來客數': '{:,}',
@@ -127,28 +127,43 @@ with pd.ExcelWriter('2024Q2_KPI報表.xlsx') as writer:
     heat_style.to_excel(writer, sheet_name='品項季節性')
 print('✅ 已輸出 2024Q2_KPI報表.xlsx（用 Excel 打開就能看到顏色）')
 print('原始資料沒有被改變：實際營收合計 =', f"{kpi['實際營收'].sum():,}")
-'''),
-        md('''
----
-
-## ✍️ 練習題
-
-1. 把「客單價」高於全公司平均的格子標成淡藍底（提示：先算平均，再寫規則）。
-2. 隱藏「去年同期營收」與「營收目標」兩欄（提示：`.hide(subset=[...], axis='columns')`）。
-3. 熱力圖改成 `axis=0`（每個月份各自比較），顏色意義有什麼不同？
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='「客單價」高於全公司平均的格子，標成淡藍底',
+             hint='`styled.map(函式, subset=[\'客單價\'])` 會把每一格的值丟進函式；函式回傳 CSS 字串（例如 `\'background-color:#ddebf7;\'`）就會上色，回傳 `None` 就不變。',
+             starter='''
+avg = kpi['客單價'].___()
+ex1 = styled.map(lambda v: 'background-color:#ddebf7;' if v > ___ else None, subset=['客單價'])
+ex1
+''',
+             check='''
+check('avg', kpi['客單價'].mean())
+''',
+             solution='''
 avg = kpi['客單價'].mean()
 ex1 = styled.map(lambda v: 'background-color:#ddebf7;' if v > avg else None, subset=['客單價'])
-
-# 練習 2
+ex1
+'''),
+        dict(title='給老闆看的版本：隱藏「去年同期營收」與「營收目標」兩欄',
+             hint='`.hide(subset=[欄位, 欄位], axis=\'columns\')`，只是「不顯示」，資料本身還在。',
+             starter='''
+ex2 = styled.hide(subset=[___, ___], axis='columns')
+ex2
+''',
+             solution='''
 ex2 = styled.hide(subset=['去年同期營收', '營收目標'], axis='columns')
-
-# 練習 3：axis=0 → 每個月份（每一欄）各自上色，看的是「這個月誰賣最好」，而不是「這個品項哪個月最好」
+ex2
+'''),
+        dict(title='熱力圖改成 `axis=0`：顏色的意思變成什麼？',
+             hint='`axis=1` 是「每一列（品項）自己比」；`axis=0` 是「每一欄（月份）自己比」——看的是「這個月誰賣最好」。',
+             starter='''
+ex3 = heat.style.background_gradient(cmap='YlOrBr', axis=___).format('{:,}')
+ex3
+''',
+             solution='''
 ex3 = heat.style.background_gradient(cmap='YlOrBr', axis=0).format('{:,}')
 ex3
+# axis=0 → 每個月份（每一欄）各自上色，看的是「這個月誰賣最好」，而不是「這個品項哪個月最好」
 '''),
-    ]
+    )
     return NOTEBOOK, files, cells

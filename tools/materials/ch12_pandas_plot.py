@@ -2,7 +2,7 @@
 import pandas as pd
 
 from common import daily_sales, order_lines
-from nbtools import md, code, setup_cell, font_cell, header
+from nbtools import md, code, setup_cell, font_cell, header, exercises
 
 CHAPTER = '直接使用pandas繪制圖表'
 NOTEBOOK = '範例_茶語時光_一行畫出年度簡報圖.ipynb'
@@ -38,7 +38,7 @@ import matplotlib.pyplot as plt
 
 daily = pd.read_csv('每日營收_2024.csv', parse_dates=['日期'])
 wide = daily.pivot(index='日期', columns='門市', values='營收')        # 日期 × 門市 的寬表
-print(wide.head(3))
+display(wide.head(3))
 
 ax = (wide.rolling(7).mean() / 10000).plot(figsize=(12, 5), title='2024 各門市每日營收（7 日移動平均，萬元）')   # 一行畫 5 條線
 ax.set_ylabel('萬元')
@@ -84,7 +84,7 @@ plt.show()
 orders = pd.read_csv('訂單明細_2024-07.csv', parse_dates=['訂單時間'])
 orders['時段'] = pd.cut(orders['訂單時間'].dt.hour, bins=[9, 13, 17, 23], labels=['午餐前後', '下午茶', '晚上'])
 mix = pd.crosstab(orders['時段'], orders['類別'], values=orders['數量'], aggfunc='sum', normalize='index') * 100   # 每個時段各類別占比
-print(mix.round(1))
+display(mix.round(1))
 
 ax = mix.plot.barh(stacked=True, figsize=(10, 4), colormap='tab20c', title='7 月各時段的飲料類別占比（%）')
 ax.legend(bbox_to_anchor=(1.01, 1), loc='upper left')                  # 圖例放到右邊
@@ -124,34 +124,52 @@ plt.show()
 '''),
         md('''
 > 💡 **看懂結果**：大部分訂單都是 1～2 杯（100 元左右），但有一條長長的「尾巴」——少數大額團購訂單。平均值會被這些大單拉高，所以報告「典型客人花多少」時，**中位數比平均數更貼近事實**。
-
----
-
-## ✍️ 練習題
-
-1. 畫出「台南成大店」每日杯數與最高溫的雙軸圖（提示：`ax2 = ax.twinx()`）。
-2. 用 `crosstab` 畫出各門市的「甜度」百分比堆疊長條圖。
-3. 用 seaborn 的 `histplot` 畫出會員與非會員的訂單金額分布（`hue='會員'`），兩條分布有什麼不同？
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
-tn = daily[daily['門市'] == '台南成大店'].set_index('日期')
+''')
+    ] + exercises(
+        dict(title='台南成大店：杯數和氣溫畫在同一張圖（雙 Y 軸）',
+             hint='`ax2 = ax.twinx()` 會建立一個共用 X 軸、右邊有自己 Y 軸的新座標；第二條線畫在 `ax=ax2` 上。',
+             starter='''
+tn = daily[daily['門市'] == ___].set_index('日期')
 ax = tn['杯數'].plot(figsize=(12, 4), color='#8B5E3C', label='杯數')
-ax2 = ax.twinx()                                                        # 共用 X 軸、右邊另一個 Y 軸
+ax2 = ax.___()                                     # 共用 X 軸、右邊另一個 Y 軸
 tn['最高溫'].plot(ax=ax2, color='orange', alpha=0.6, label='最高溫')
 ax.set_title('台南成大店：每日杯數與最高溫')
 plt.show()
-
-# 練習 2
+''',
+             solution='''
+tn = daily[daily['門市'] == '台南成大店'].set_index('日期')
+ax = tn['杯數'].plot(figsize=(12, 4), color='#8B5E3C', label='杯數')
+ax2 = ax.twinx()
+tn['最高溫'].plot(ax=ax2, color='orange', alpha=0.6, label='最高溫')
+ax.set_title('台南成大店：每日杯數與最高溫')
+plt.show()
+'''),
+        dict(title='各門市的甜度占比，畫成百分比堆疊長條圖',
+             hint='`pd.crosstab(列, 欄, normalize=\'index\')` 先算出占比表；`.plot.barh(stacked=True)` 一行畫出堆疊長條。',
+             starter='''
+sweet = pd.crosstab(orders['門市'], orders[___], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100
+sweet.plot.barh(stacked=___, figsize=(10, 4), colormap='copper', title='各門市甜度占比（%）')
+plt.show()
+''',
+             check='''
+check('sweet', pd.crosstab(orders['門市'], orders['甜度'], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100)
+''',
+             solution='''
 sweet = pd.crosstab(orders['門市'], orders['甜度'], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100
 sweet.plot.barh(stacked=True, figsize=(10, 4), colormap='copper', title='各門市甜度占比（%）')
 plt.show()
-
-# 練習 3
+'''),
+        dict(title='會員 vs. 非會員：訂單金額的分布長得一樣嗎？',
+             hint='`sns.histplot(data=表格, x=欄位, hue=分組欄位)` 會用不同顏色畫出每一組的分布。',
+             starter='''
+sns.histplot(data=per_order, x='金額', hue=___, bins=40, element='step')
+plt.title('會員 vs. 非會員訂單金額分布')
+plt.show()
+''',
+             solution='''
 sns.histplot(data=per_order, x='金額', hue='會員', bins=40, element='step')
 plt.title('會員 vs. 非會員訂單金額分布')
 plt.show()
 '''),
-    ]
+    )
     return NOTEBOOK, files, cells

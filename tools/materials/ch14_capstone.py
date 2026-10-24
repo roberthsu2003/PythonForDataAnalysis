@@ -45,7 +45,7 @@ print('缺值：\\n', df.isnull().sum())
 
 df['日期'] = pd.to_datetime(df['trnOpDate'].astype(str), format='%Y%m%d')
 df['總運量'] = df['gateInComingCnt'] + df['gateOutGoingCnt']
-df['假日'] = df['日期'].dt.dayofweek >= 5                               # 星期六、日
+df['假日'] = df['日期'].dt.day_of_week >= 5                               # 星期六、日
 print('日期範圍：', df['日期'].min().date(), '～', df['日期'].max().date())
 '''),
         md('''

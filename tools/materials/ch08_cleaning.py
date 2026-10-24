@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from common import STORES, names, rng, sweet_probs
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '資料整理和使用前準備'
 NOTEBOOK = '範例_茶語時光_髒亂的會員問卷大掃除.ipynb'
@@ -162,7 +162,7 @@ df['每週購買次數'] = pd.to_numeric(times, errors='coerce')
 sat = pd.to_numeric(df['滿意度'], errors='coerce')
 df['滿意度'] = sat.where(sat.between(1, 5))
 
-print(df[['年齡', '每週購買次數', '滿意度']].describe().round(2))
+display(df[['年齡', '每週購買次數', '滿意度']].describe().round(2))
 print('\\n各欄缺值數：\\n', df[['性別', '年齡', '每週購買次數', '滿意度']].isnull().sum())
 '''),
         md('''
@@ -180,11 +180,11 @@ print('有效 Email：', df['Email'].notnull().sum(), '／', len(df))
 '''),
         code('''
 print('▶ 各門市平均滿意度：')
-print(df.groupby('常去門市')['滿意度'].agg(['count', 'mean']).round(2).sort_values('mean', ascending=False))
+display(df.groupby('常去門市')['滿意度'].agg(['count', 'mean']).round(2).sort_values('mean', ascending=False))
 
 print('\\n▶ 各門市甜度偏好（%）：')
 sweet_order = ['正常糖', '少糖', '半糖', '微糖', '無糖']
-print((pd.crosstab(df['常去門市'], df['甜度'], normalize='index')[sweet_order] * 100).round(0))
+display((pd.crosstab(df['常去門市'], df['甜度'], normalize='index')[sweet_order] * 100).round(0))
 
 df.to_csv('會員問卷_清理後.csv', index=False, encoding='utf-8-sig')
 print('\\n✅ 已存成 會員問卷_清理後.csv，共', len(df), '筆')
@@ -195,27 +195,55 @@ print('\\n✅ 已存成 會員問卷_清理後.csv，共', len(df), '筆')
 > - 回頭想想：如果沒有統一甜度寫法，「全糖」、「10分」、「正常」會被拆成三組，台南的正常糖比例會被嚴重低估。**洗資料不是雜事，它直接決定結論對不對。**
 >
 > 🤖 **換你問 AI**：「請把整理後的問卷依門市計算平均滿意度，並做出門市 × 甜度的百分比交叉表，用白話說明各地區的甜度偏好差異。」
-
----
-
-## ✍️ 練習題
-
-1. 年齡的缺值用「各門市年齡的中位數」補上（提示：`groupby('常去門市')['年齡'].transform('median')`）。
-2. 「建議」欄位中，有幾則提到「甜」？有幾則提到「外送」？
-3. 比較清理前（`raw`）與清理後（`df`）「台南成大店」的筆數，差了多少？為什麼？
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
-df['年齡'] = df['年齡'].fillna(df.groupby('常去門市')['年齡'].transform('median'))
+''')
+    ] + exercises(
+        dict(title='年齡缺值不要隨便補：用「各門市年齡的中位數」補上',
+             hint='`groupby(\'常去門市\')[\'年齡\'].transform(\'median\')` 會回傳和原表一樣長的欄位，每一列都是「自己門市」的中位數，剛好拿來 `fillna`。',
+             starter='''
+store_median = df.groupby(___)['年齡'].transform('median')
+df['年齡'] = df['年齡'].fillna(___)
 print('補值後年齡缺值：', df['年齡'].isnull().sum())
-
-# 練習 2
-print('提到甜：', df['建議'].str.contains('甜').sum(), '則；提到外送：', df['建議'].str.contains('外送').sum(), '則')
-
-# 練習 3
-print('清理前寫成「台南成大店」的筆數：', (raw['常去門市'] == '台南成大店').sum())
-print('清理後台南成大店筆數：', (df['常去門市'] == '台南成大店').sum(), '（各種寫法被統一回來了，但重複填答被刪掉）')
+''',
+             check='''
+check('store_median', df.groupby('常去門市')['年齡'].transform('median'))
+''',
+             solution='''
+store_median = df.groupby('常去門市')['年齡'].transform('median')
+df['年齡'] = df['年齡'].fillna(store_median)
+print('補值後年齡缺值：', df['年齡'].isnull().sum())
 '''),
-    ]
+        dict(title='顧客建議裡，有幾則提到「甜」？幾則提到「外送」？',
+             hint='`df[\'建議\'].str.contains(\'甜\')` 會得到 True/False，`.sum()` 就是 True 的數量。',
+             starter='''
+sweet_n = df['建議'].str.___('甜').sum()
+delivery_n = df['建議'].str.contains(___).sum()
+print('提到甜：', sweet_n, '則；提到外送：', delivery_n, '則')
+''',
+             check='''
+check('sweet_n', df['建議'].str.contains('甜').sum())
+check('delivery_n', df['建議'].str.contains('外送').sum())
+''',
+             solution='''
+sweet_n = df['建議'].str.contains('甜').sum()
+delivery_n = df['建議'].str.contains('外送').sum()
+print('提到甜：', sweet_n, '則；提到外送：', delivery_n, '則')
+'''),
+        dict(title='清理前後，「台南成大店」的筆數差多少？為什麼？',
+             hint='`(表格[\'欄位\'] == 值).sum()` 可以數出符合的筆數。清理後多了「被統一回來的各種寫法」，少了「重複填答」。',
+             starter='''
+before = (raw['常去門市'] == ___).sum()             # 清理前，剛好寫成「台南成大店」的筆數
+after = (df[___] == '台南成大店').sum()              # 清理後
+print('清理前：', before, '清理後：', after)
+''',
+             check='''
+check('before', (raw['常去門市'] == '台南成大店').sum())
+check('after', (df['常去門市'] == '台南成大店').sum())
+''',
+             solution='''
+before = (raw['常去門市'] == '台南成大店').sum()
+after = (df['常去門市'] == '台南成大店').sum()
+print('清理前：', before, '清理後：', after)
+# 各種寫法（台南店、成大店……）被統一回來，筆數變多；但重複填答被刪掉，又會少一些
+'''),
+    )
     return NOTEBOOK, files, cells

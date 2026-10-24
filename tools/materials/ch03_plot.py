@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from common import MENU, STORES, daily_sales, item_weights, rng
-from nbtools import md, code, setup_cell, font_cell, header
+from nbtools import md, code, setup_cell, font_cell, header, exercises
 
 CHAPTER = '繪圖和視覺展示'
 NOTEBOOK = '範例_茶語時光_老闆最愛的五張圖.ipynb'
@@ -209,35 +209,61 @@ plt.tight_layout()
 plt.savefig('2024年度儀表板.png', dpi=200, bbox_inches='tight')        # 存成高解析度圖片
 plt.show()
 print('已存成 2024年度儀表板.png')
-'''),
-        md('''
----
-
-## ✍️ 練習題
-
-1. 只畫「台南成大店」的月營收折線圖，並用 `ax.annotate` 在營收最高的月份標上「全年最高」。
-2. 畫出西門店「最高溫 vs. 總杯數」的散佈圖，觀察天氣對整體生意的影響。
-3. 把圖 2 改成**直立**長條圖（`bar`），由大到小排序，並把 X 軸文字旋轉 45 度。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
-s = monthly['台南成大店']
+''')
+    ] + exercises(
+        dict(title='只畫「台南成大店」的月營收，並在最高的月份標上「全年最高」',
+             hint='`monthly` 的每一欄是一家門市；`s.idxmax()` 會告訴你「最大值在哪一個索引（月份）」。',
+             starter='''
+s = monthly[___]                                   # 取出台南成大店這一欄
 fig, ax = plt.subplots(figsize=(9, 4))
 ax.plot(s.index, s.values, marker='o', color='#8B5E3C')
-best = s.idxmax()                                                      # 營收最高的月份
+best = s.___()                                     # 營收最高的月份
 ax.annotate('全年最高', xy=(best, s[best]), xytext=(best, s[best] + 3),
             ha='center', arrowprops=dict(arrowstyle='->'))
 ax.set_title('台南成大店月營收（萬元）')
 plt.show()
-
-# 練習 2
+''',
+             check='''
+check('best', monthly['台南成大店'].idxmax())
+''',
+             solution='''
+s = monthly['台南成大店']
+fig, ax = plt.subplots(figsize=(9, 4))
+ax.plot(s.index, s.values, marker='o', color='#8B5E3C')
+best = s.idxmax()
+ax.annotate('全年最高', xy=(best, s[best]), xytext=(best, s[best] + 3),
+            ha='center', arrowprops=dict(arrowstyle='->'))
+ax.set_title('台南成大店月營收（萬元）')
+plt.show()
+'''),
+        dict(title='天氣越熱，生意越好嗎？畫出西門店「最高溫 vs. 總杯數」散佈圖',
+             hint='看「兩個數字之間的關係」用散佈圖：`ax.scatter(x, y)`。畫好後問自己：點是不是往右上方走？',
+             starter='''
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.___(daily['最高溫'], daily['總杯數'], alpha=0.5)   # 哪一種圖適合看兩個數字的關係？
+ax.set_xlabel('最高溫'); ax.set_ylabel('總杯數'); ax.set_title('西門店：氣溫 vs. 總杯數')
+plt.show()
+''',
+             solution='''
 fig, ax = plt.subplots(figsize=(8, 4))
 ax.scatter(daily['最高溫'], daily['總杯數'], alpha=0.5)
 ax.set_xlabel('最高溫'); ax.set_ylabel('總杯數'); ax.set_title('西門店：氣溫 vs. 總杯數')
 plt.show()
-
-# 練習 3
+'''),
+        dict(title='把品項銷量改成直立長條圖：由大到小排序、X 軸文字轉 45 度',
+             hint='`sort_values(ascending=False)` 是由大到小；直立長條是 `ax.bar`；旋轉文字用 `ax.tick_params(axis=\'x\', rotation=45)`。',
+             starter='''
+top = items.sort_values(ascending=___)             # 由大到小
+fig, ax = plt.subplots(figsize=(9, 4))
+ax.___(top.index, top.values, color='#C8A27C')     # 直立長條圖
+ax.tick_params(axis='x', rotation=___)
+ax.set_title('品項年銷量')
+plt.show()
+''',
+             check='''
+check('top', items.sort_values(ascending=False), ordered=True)
+''',
+             solution='''
 top = items.sort_values(ascending=False)
 fig, ax = plt.subplots(figsize=(9, 4))
 ax.bar(top.index, top.values, color='#C8A27C')
@@ -245,5 +271,5 @@ ax.tick_params(axis='x', rotation=45)
 ax.set_title('品項年銷量')
 plt.show()
 '''),
-    ]
+    )
     return NOTEBOOK, files, cells

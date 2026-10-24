@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from common import STORES, daily_sales, rng
-from nbtools import md, code, setup_cell, font_cell, header
+from nbtools import md, code, setup_cell, font_cell, header, exercises
 
 CHAPTER = '日期和時間'
 NOTEBOOK = '範例_茶語時光_兩年營收與外送時區.ipynb'
@@ -51,10 +51,10 @@ print('轉換前的型態：', daily['日期'].dtype, daily['日期'].iloc[0])
 daily['日期'] = pd.to_datetime(daily['日期'], format='%Y/%m/%d')       # 指定格式：年/月/日
 print('轉換後的型態：', daily['日期'].dtype)
 
-daily['星期'] = daily['日期'].dt.dayofweek                             # 0 = 星期一 … 6 = 星期日
+daily['星期'] = daily['日期'].dt.day_of_week                             # 0 = 星期一 … 6 = 星期日
 week = daily.pivot_table(index='星期', columns='門市', values='杯數', aggfunc='mean').round(0)
 week.index = ['一', '二', '三', '四', '五', '六', '日']
-print(week)
+display(week)
 '''),
         md('''
 ## 任務 2：每日 → 每月——resample 做月報
@@ -63,7 +63,7 @@ print(week)
 wide = daily.pivot(index='日期', columns='門市', values='營收')         # 日期當索引，才能用 resample
 monthly = wide.resample('ME').sum()                                     # 'ME'＝每月月底彙總（新版 pandas 寫法，舊版是 'M'）
 monthly['全品牌'] = monthly.sum(axis=1)
-print((monthly / 10000).round(1).tail(6))
+display((monthly / 10000).round(1).tail(6))
 
 (monthly['全品牌'] / 10000).plot(figsize=(12, 4), marker='o', title='全品牌每月營收（萬元）')
 plt.show()
@@ -82,7 +82,7 @@ brand = monthly['全品牌']
 growth = pd.DataFrame({'營收(萬)': (brand / 10000).round(1),
                        '月增率%': (brand.pct_change() * 100).round(1),
                        '年增率%': (brand.pct_change(12) * 100).round(1)})
-print(growth.loc['2024'])                                              # 只看 2024 年（日期索引可以直接用年份字串篩選）
+display(growth.loc['2024'])                                              # 只看 2024 年（日期索引可以直接用年份字串篩選）
 print('\\n2024 全年營收年成長：', round((brand['2024'].sum() / brand['2023'].sum() - 1) * 100, 1), '%')
 '''),
         md('''
@@ -121,7 +121,7 @@ print('異常日估計少賺：', f'{loss:,.0f}', '元')
 '''),
         code('''
 delivery = pd.read_csv('外送訂單_UTC_2024-09.csv')
-print(delivery.head(3))
+display(delivery.head(3))
 
 delivery['UTC時間'] = pd.to_datetime(delivery['下單時間_UTC'], utc=True)          # 標記為 UTC 時間
 delivery['台北時間'] = delivery['UTC時間'].dt.tz_convert('Asia/Taipei')           # 轉換成台北時間
@@ -142,30 +142,54 @@ plt.show()
         code('''
 quarter = monthly.drop(columns='全品牌').resample('QE').sum()           # 每季彙總（'QE'＝季底）
 quarter.index = quarter.index.to_period('Q')                            # 2024-03-31 → 2024Q1，報表更好讀
-print((quarter / 10000).round(0))
-'''),
-        md('''
----
-
-## ✍️ 練習題
-
-1. 找出 2024 年營收最高的「週」（提示：`resample('W')`）。
-2. 計算「台南成大店」2024 年每個月的年增率，哪個月成長最多？
-3. 外送訂單轉成台北時間後，平日（星期一～五）與週末的尖峰時段一樣嗎？
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+display((quarter / 10000).round(0))
+''')
+    ] + exercises(
+        dict(title='2024 年營收最高的是哪一週？',
+             hint='`resample(\'W\')` 把每天彙總成每週（週日為一週結束）；`[\'2024\']` 可以只取 2024 年。',
+             starter='''
+weekly = brand_daily.resample(___).sum()
+best_week = weekly['2024'].idxmax()
+print('營收最高的週（週日為一週結束）：', best_week.date(), f"{weekly['2024'].max():,.0f}")
+''',
+             check='''
+check('best_week', brand_daily.resample('W').sum()['2024'].idxmax())
+''',
+             solution='''
 weekly = brand_daily.resample('W').sum()
-print('營收最高的週（週日為一週結束）：', weekly['2024'].idxmax().date(), f"{weekly['2024'].max():,.0f}")
-
-# 練習 2
-tn = monthly['台南成大店'].pct_change(12)['2024'] * 100
-print(tn.round(1)); print('成長最多：', tn.idxmax().strftime('%Y-%m'))
-
-# 練習 3
-delivery['週末'] = delivery['台北時間'].dt.dayofweek >= 5
-print(delivery.groupby('週末')['台北時間'].apply(lambda s: s.dt.hour.value_counts().idxmax()))
+best_week = weekly['2024'].idxmax()
+print('營收最高的週（週日為一週結束）：', best_week.date(), f"{weekly['2024'].max():,.0f}")
 '''),
-    ]
+        dict(title='台南成大店 2024 年每個月的「年增率」，哪個月成長最多？',
+             hint='年增率是「和 12 個月前比」：`pct_change(12)`；結果乘以 100 就是百分比。',
+             starter='''
+tn_growth = monthly['台南成大店'].pct_change(___)['2024'] * 100
+display(tn_growth.round(1))
+print('成長最多：', tn_growth.idxmax().strftime('%Y-%m'))
+''',
+             check='''
+check('tn_growth', monthly['台南成大店'].pct_change(12)['2024'] * 100)
+''',
+             solution='''
+tn_growth = monthly['台南成大店'].pct_change(12)['2024'] * 100
+display(tn_growth.round(1))
+print('成長最多：', tn_growth.idxmax().strftime('%Y-%m'))
+'''),
+        dict(title='外送轉成台北時間後，平日和週末的尖峰時段一樣嗎？',
+             hint='`.dt.day_of_week` 中 0 是星期一、5 和 6 是週末；每一組用 `s.dt.hour.value_counts().idxmax()` 找出最多訂單的小時。',
+             starter='''
+is_weekend = delivery['台北時間'].dt.day_of_week >= ___
+peak = delivery.groupby(is_weekend)['台北時間'].apply(lambda s: s.dt.___.value_counts().idxmax())
+display(peak.rename(index={False: '平日', True: '週末'}))
+''',
+             check='''
+check('peak', delivery.groupby(delivery['台北時間'].dt.day_of_week >= 5)['台北時間']
+                      .apply(lambda s: s.dt.hour.value_counts().idxmax()))
+''',
+             solution='''
+is_weekend = delivery['台北時間'].dt.day_of_week >= 5
+peak = delivery.groupby(is_weekend)['台北時間'].apply(lambda s: s.dt.hour.value_counts().idxmax())
+display(peak.rename(index={False: '平日', True: '週末'}))
+'''),
+    )
     return NOTEBOOK, files, cells

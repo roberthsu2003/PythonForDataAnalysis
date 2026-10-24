@@ -7,3 +7,7 @@ __pycache__/
 群組資料和群組運算/學生素材/訂單明細_2024Q1.csv
 直接使用pandas繪制圖表/學生素材/訂單明細_2024-07.csv
 pandas的檔案存取/學生素材/全年交易紀錄_2024.csv
+
+# 系統與編輯器暫存檔
+.DS_Store
+.ipynb_checkpoints/

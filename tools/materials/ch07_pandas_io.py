@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 
 from common import MENU, PAYMENTS, PAY_P, STORES, daily_sales, names, rng
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = 'pandas的檔案存取'
 NOTEBOOK = '範例_茶語時光_五種難搞的資料檔.ipynb'
@@ -123,7 +123,7 @@ pos = pd.read_csv('POS匯出_信義店_2024-03.csv',
                   skipfooter=1,             # 最後一列「合計」不要
                   engine='python',          # 使用 skipfooter 需要 python 引擎
                   parse_dates=['日期'])      # 日期欄轉成時間型態
-print(pos.dtypes)
+display(pos.dtypes)
 print('\\n缺資料的日子：\\n', pos[pos['營收'].isnull()][['日期', '備註']])
 print('\\n3 月營收合計（不含當機日）：', f"{pos['營收'].sum():,.0f}")
 '''),
@@ -141,10 +141,10 @@ print('工作表：', list(sheets.keys()))
 
 yearly = pd.concat(sheets, names=['門市', '列'])                            # 把 5 張表上下合併，工作表名稱變成「門市」欄
 yearly = yearly.reset_index(level='門市').reset_index(drop=True)
-print(yearly.head())
+display(yearly.head())
 
 summary = yearly.pivot_table(index='月份', columns='門市', values='營收', sort=False)   # 月份 × 門市 的營收總表
-print((summary / 10000).round(1))
+display((summary / 10000).round(1))
 '''),
         md('''
 ## 任務 3：外送平台的巢狀 JSON——攤平成表格
@@ -162,7 +162,7 @@ items = pd.json_normalize(raw['訂單'],
                           record_path='品項',                                  # 要攤開的清單
                           meta=['訂單編號', '下單時間', ['門市', '名稱'], '外送員評分'])   # 一起帶下來的外層欄位
 items['小計'] = items['數量'] * items['單價']
-print(items.head())
+display(items.head())
 
 by_store = items.groupby('門市.名稱')['小計'].sum()
 print('\\n各店外送營收：\\n', by_store)
@@ -180,7 +180,7 @@ print('\\n扣掉 30% 平台抽成，實拿：', f"{by_store.sum() * (1 - raw['�
 import sqlite3
 
 con = sqlite3.connect('會員資料庫.db')                                       # 連線到資料庫檔案
-print(pd.read_sql("SELECT name FROM sqlite_master WHERE type='table'", con))  # 資料庫裡有哪些資料表
+display(pd.read_sql("SELECT name FROM sqlite_master WHERE type='table'", con))  # 資料庫裡有哪些資料表
 
 new_2024 = pd.read_sql("""
     SELECT 常去門市, COUNT(*) AS 新會員數, ROUND(AVG(累積點數), 1) AS 平均點數
@@ -190,13 +190,13 @@ new_2024 = pd.read_sql("""
     ORDER BY 新會員數 DESC
 """, con)                                                                      # 2024 年加入的新會員，依門市統計
 con.close()
-print(new_2024)
+display(new_2024)
 '''),
         md('''
 ## 任務 5：10 萬筆大檔——分批讀取不卡頓
 '''),
         code('''
-print(pd.read_csv('全年交易紀錄_2024.csv', nrows=5))                         # 先偷看前 5 筆
+display(pd.read_csv('全年交易紀錄_2024.csv', nrows=5))                         # 先偷看前 5 筆
 
 total = pd.Series(dtype=float)
 for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['付款方式', '金額'], chunksize=20_000):   # 每次只讀 2 萬筆、2 個欄位
@@ -220,32 +220,63 @@ with pd.ExcelWriter('三月結帳報告.xlsx') as writer:                       
 print('✅ 已輸出 三月結帳報告.xlsx：', list(pd.read_excel('三月結帳報告.xlsx', sheet_name=None).keys()))
 
 items.to_csv('外送品項明細.csv', index=False, encoding='utf-8-sig')            # utf-8-sig：用 Excel 開也不會亂碼
-'''),
-        md('''
----
-
-## ✍️ 練習題
-
-1. 從 `各店月報_2024.xlsx` 只讀取「台南成大店」這一個工作表，找出杯數最多的月份。
-2. 用 SQL 從資料庫撈出「累積點數前 10 名」的會員姓名與常去門市。
-3. 分批讀取交易紀錄，計算「每家門市」的交易筆數。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='只讀「台南成大店」這一個工作表，找出杯數最多的月份',
+             hint='`sheet_name=` 填工作表名稱；這份月報的標題在第 3 列，所以 `header=2`（從 0 開始數）。',
+             starter='''
+tn = pd.read_excel('各店月報_2024.xlsx', sheet_name=___, header=2)
+best_month = tn.loc[tn['杯數'].idxmax(), ___]        # 杯數最多那一列的「月份」
+display(tn)
+print('杯數最多的月份：', best_month)
+''',
+             check='''
+_tn = pd.read_excel('各店月報_2024.xlsx', sheet_name='台南成大店', header=2)
+check('best_month', _tn.loc[_tn['杯數'].idxmax(), '月份'])
+''',
+             solution='''
 tn = pd.read_excel('各店月報_2024.xlsx', sheet_name='台南成大店', header=2)
-print(tn.loc[tn['杯數'].idxmax()])
-
-# 練習 2
-con = sqlite3.connect('會員資料庫.db')
-print(pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 DESC LIMIT 10', con))
-con.close()
-
-# 練習 3
-count = pd.Series(dtype=float)
-for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'], chunksize=20_000):
-    count = count.add(chunk['門市'].value_counts(), fill_value=0)
-print(count.astype(int).sort_values(ascending=False))
+best_month = tn.loc[tn['杯數'].idxmax(), '月份']
+display(tn)
+print('杯數最多的月份：', best_month)
 '''),
-    ]
+        dict(title='用 SQL 撈出「累積點數前 10 名」的會員',
+             hint='SQL 的排序是 `ORDER BY 欄位 DESC`（由大到小），只取前幾筆是 `LIMIT 數字`。',
+             starter='''
+con = sqlite3.connect('會員資料庫.db')
+top10 = pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 ___ LIMIT ___', con)
+con.close()
+display(top10)
+''',
+             check='''
+_con = sqlite3.connect('會員資料庫.db')
+check('top10', pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 DESC LIMIT 10', _con), ordered=True)
+_con.close()
+''',
+             solution='''
+con = sqlite3.connect('會員資料庫.db')
+top10 = pd.read_sql('SELECT 姓名, 常去門市, 累積點數 FROM 會員 ORDER BY 累積點數 DESC LIMIT 10', con)
+con.close()
+display(top10)
+'''),
+        dict(title='檔案太大一次讀不完：分批讀取，算出每家門市的交易筆數',
+             hint='`chunksize=20_000` 會讓 `read_csv` 一次給你 2 萬列；每一批用 `value_counts()` 數完，再用 `add(..., fill_value=0)` 累加起來。',
+             starter='''
+store_count = pd.Series(dtype=float)
+for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'], chunksize=___):
+    store_count = store_count.add(chunk['門市'].___(), fill_value=0)
+store_count = store_count.astype(int).sort_values(ascending=False)
+display(store_count)
+''',
+             check='''
+check('store_count', pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'])['門市'].value_counts())
+''',
+             solution='''
+store_count = pd.Series(dtype=float)
+for chunk in pd.read_csv('全年交易紀錄_2024.csv', usecols=['門市'], chunksize=20_000):
+    store_count = store_count.add(chunk['門市'].value_counts(), fill_value=0)
+store_count = store_count.astype(int).sort_values(ascending=False)
+display(store_count)
+'''),
+    )
     return NOTEBOOK, files, cells

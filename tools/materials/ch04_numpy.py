@@ -1,6 +1,6 @@
 """第 4 章 NumPy：每日杯數矩陣的整批運算、axis、布林篩選、cumsum、reshape。"""
 from common import STORES, daily_sales
-from nbtools import md, code, setup_cell, font_cell, header
+from nbtools import md, code, setup_cell, font_cell, header, exercises
 
 CHAPTER = 'Numpy建立與計算'
 NOTEBOOK = '範例_茶語時光_一年366天的杯數矩陣.ipynb'
@@ -117,30 +117,58 @@ for i, name in enumerate(stores):
 > 💡 **看懂結果**：信義店（商辦區）平日最好、週日最差；西門店（觀光區）剛好相反。**同一個品牌，不同門市的排班策略應該完全不同。**
 >
 > 🤖 **換你問 AI**：「請把一家門市 364 天的杯數 reshape 成 52×7，計算星期一到星期日的平均，並畫成長條圖。」
-
----
-
-## ✍️ 練習題
-
-1. 算出「台南成大店」全年的中位數與平均數，兩者差多少？
-2. 找出「高雄巨蛋店」杯數最高的 3 天（提示：`np.argsort`），對照日期看看是不是演唱會。
-3. 用 `np.where` 把 5 家店每天的杯數標記成「爆量」（≥ 700）或「一般」，數一數每家店有幾天爆量。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='台南成大店全年的「中位數」和「平均數」差多少？',
+             hint='`cups[:, 欄號]` 取出一整欄；中位數是 `np.median()`，平均是 `.mean()`。',
+             starter='''
+tainan = cups[:, stores.index(___)]                # 取出台南成大店那一欄（366 天）
+tainan_median = np.___(tainan)                     # 中位數
+tainan_mean = round(tainan.mean(), 1)
+print('中位數：', tainan_median, '平均：', tainan_mean, '差：', round(tainan_mean - tainan_median, 1))
+''',
+             check='''
+_t = cups[:, stores.index('台南成大店')]
+check('tainan_median', np.median(_t))
+check('tainan_mean', round(_t.mean(), 1))
+''',
+             solution='''
 tainan = cups[:, stores.index('台南成大店')]
-print('台南成大店 中位數：', np.median(tainan), '平均：', round(tainan.mean(), 1))
-
-# 練習 2
+tainan_median = np.median(tainan)
+tainan_mean = round(tainan.mean(), 1)
+print('中位數：', tainan_median, '平均：', tainan_mean, '差：', round(tainan_mean - tainan_median, 1))
+'''),
+        dict(title='高雄巨蛋店杯數最高的 3 天，是不是演唱會？',
+             hint='`np.argsort(陣列)` 回傳「由小到大排序後的位置」，取最後 3 個 `[-3:]` 再反轉 `[::-1]` 就是最大的 3 個。',
+             starter='''
 kh = cups[:, stores.index('高雄巨蛋店')]
-top3 = np.argsort(kh)[-3:][::-1]                          # 由小到大排序後取最後 3 個，再反轉成由大到小
+top3 = np.___(kh)[-3:][::-1]                       # 杯數最高 3 天的位置（由大到小）
 for i in top3:
     print(dates[i], kh[i], '杯')
-
-# 練習 3
-busy = np.where(cups >= 700, '爆量', '一般')
-print(dict(zip(stores, (busy == '爆量').sum(axis=0).tolist())))
+''',
+             check='''
+check('top3', np.argsort(cups[:, stores.index('高雄巨蛋店')])[-3:][::-1])
+''',
+             solution='''
+kh = cups[:, stores.index('高雄巨蛋店')]
+top3 = np.argsort(kh)[-3:][::-1]
+for i in top3:
+    print(dates[i], kh[i], '杯')
 '''),
-    ]
+        dict(title='用 `np.where` 標出「爆量日」（≥ 700 杯），每家店各有幾天？',
+             hint='`np.where(條件, 符合時的值, 不符合時的值)`；`(busy == \'爆量\').sum(axis=0)` 是「直著數」，每家店一個數字。',
+             starter='''
+busy = np.where(cups >= ___, '爆量', '一般')
+busy_days = (busy == '爆量').sum(axis=___)         # 直著數：每家店幾天
+print(dict(zip(stores, busy_days.tolist())))
+''',
+             check='''
+check('busy_days', (cups >= 700).sum(axis=0))
+''',
+             solution='''
+busy = np.where(cups >= 700, '爆量', '一般')
+busy_days = (busy == '爆量').sum(axis=0)
+print(dict(zip(stores, busy_days.tolist())))
+'''),
+    )
     return NOTEBOOK, files, cells

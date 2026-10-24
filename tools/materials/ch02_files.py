@@ -3,7 +3,7 @@ import csv
 import json
 
 from common import MENU, STORES, LARGE_EXTRA, rng
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '檔案存取'
 NOTEBOOK = '範例_茶語時光_顧客評論與菜單檔案.ipynb'
@@ -210,22 +210,45 @@ print(open('門市評分.json', encoding='utf-8').read())
 '''),
         md('''
 > 💡 **看懂結果**：評分最低的是高雄巨蛋店與台北西門店，剛好都是人潮會突然爆量的門市（演唱會散場、觀光客）。人多時的出餐速度與服務品質，值得優先改善。
-
----
-
-## ✍️ 練習題
-
-1. 從 `reviews` 找出「台南成大店」的所有評論，並計算它的平均星等。
-2. 把菜單中「中杯價 ≥ 60 元」的品項，存成新的 `高價品項.csv`（要有標題列）。
-3. 試著打開一個不存在的檔案 `四月評論.txt`，用 `try / except FileNotFoundError` 印出「找不到檔案，請確認檔名」。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='台南成大店的顧客滿意嗎？找出它的評論並計算平均星等',
+             hint='串列生成式的篩選條件寫在 `if` 後面；平均 = 總和 ÷ 筆數，筆數可以用 `len(tainan)`。',
+             starter='''
+tainan = [r for r in reviews if r['門市'] == ___]          # 只留下台南成大店的評論
+tainan_avg = round(sum(r['星等'] for r in tainan) / ___, 2)  # 平均星等，四捨五入到小數 2 位
+print('台南成大店評論數：', len(tainan), '平均星等：', tainan_avg)
+''',
+             check='''
+_t = [r for r in reviews if r['門市'] == '台南成大店']
+check('tainan_avg', round(sum(r['星等'] for r in _t) / len(_t), 2))
+''',
+             solution='''
 tainan = [r for r in reviews if r['門市'] == '台南成大店']
-print('台南成大店評論數：', len(tainan), '平均星等：', round(sum(r['星等'] for r in tainan) / len(tainan), 2))
-
-# 練習 2
+tainan_avg = round(sum(r['星等'] for r in tainan) / len(tainan), 2)
+print('台南成大店評論數：', len(tainan), '平均星等：', tainan_avg)
+'''),
+        dict(title='把「中杯價 ≥ 60 元」的高價品項存成 `高價品項.csv`',
+             hint='CSV 讀進來的價格是**文字**，`\'55\' >= 60` 會出錯，要先用 `int()` 轉成數字。',
+             starter='''
+with open('高價品項.csv', 'w', newline='', encoding='utf-8') as f:
+    w = csv.writer(f)
+    w.writerow(['品項', '中杯價'])                  # 先寫標題列
+    for m in menu:
+        if ___ >= 60:                              # 文字要先轉成數字才能比大小
+            w.writerow([m['品項'], m['中杯價']])
+print(open('高價品項.csv', encoding='utf-8').read())
+''',
+             check='''
+import os
+if os.path.exists('高價品項.csv'):
+    with open('高價品項.csv', encoding='utf-8') as f:
+        high_rows = list(csv.reader(f))
+    check('high_rows', [['品項', '中杯價']] + [[m['品項'], m['中杯價']] for m in menu if int(m['中杯價']) >= 60])
+else:
+    print('⏳ 還沒看到 高價品項.csv，先執行上一格')
+''',
+             solution='''
 with open('高價品項.csv', 'w', newline='', encoding='utf-8') as f:
     w = csv.writer(f)
     w.writerow(['品項', '中杯價'])
@@ -233,13 +256,22 @@ with open('高價品項.csv', 'w', newline='', encoding='utf-8') as f:
         if int(m['中杯價']) >= 60:
             w.writerow([m['品項'], m['中杯價']])
 print(open('高價品項.csv', encoding='utf-8').read())
-
-# 練習 3
+'''),
+        dict(title='檔案不存在也不要當機：用 `try / except` 印出友善訊息',
+             hint='打開不存在的檔案會丟出 `FileNotFoundError`，把它寫在 `except` 後面。執行後應該只看到「找不到檔案，請確認檔名」。',
+             starter='''
+try:
+    with open('四月評論.txt', encoding='utf-8') as f:
+        print(f.read())
+except ___:                                        # 要攔下哪一種錯誤？
+    print('找不到檔案，請確認檔名')
+''',
+             solution='''
 try:
     with open('四月評論.txt', encoding='utf-8') as f:
         print(f.read())
 except FileNotFoundError:
     print('找不到檔案，請確認檔名')
 '''),
-    ]
+    )
     return NOTEBOOK, files, cells

@@ -78,7 +78,7 @@ EVENTS = {
 }
 # 2024 年 6 月每週三「第二杯半價」
 for d in pd.date_range('2024-06-01', '2024-06-30'):
-    if d.dayofweek == 2:
+    if d.day_of_week == 2:
         EVENTS[d.strftime('%Y-%m-%d')] = ('ALL', 1.45, '第二杯半價')
 
 WEEKDAY = {  # 星期一～日的倍數
@@ -126,7 +126,7 @@ def daily_sales(start='2023-01-01', end='2024-12-31'):
     for _, s in STORES.iterrows():
         for i, d in enumerate(days):
             t, rain = w.loc[(d, s['縣市'])]
-            f = WEEKDAY[s['門市代碼']][d.dayofweek]
+            f = WEEKDAY[s['門市代碼']][d.day_of_week]
             f *= 1 + 0.028 * (t - 26)                      # 越熱越好賣
             f *= 0.82 if rain > 20 else 1.0                 # 大雨少人出門
             f *= 1 + 0.10 * (d - pd.Timestamp('2023-01-01')).days / 365   # 品牌成長

@@ -4,7 +4,7 @@ import json
 import numpy as np
 
 from common import MENU, STORES, daily_sales, item_weights, rng
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '初見pandas'
 NOTEBOOK = '範例_茶語時光_新品上市週的第一份報表.ipynb'
@@ -61,7 +61,7 @@ import pandas as pd
 
 menu = pd.read_csv('菜單.csv', dtype={'品項代碼': str})     # 品項代碼當文字讀，才不會把 001 變成 1
 price = pd.Series(menu['中杯價'].values, index=menu['品項'], name='中杯價')   # 名牌＝品項，值＝價格
-print(price)
+display(price)
 print('\\n珍珠奶茶的價格：', price['珍珠奶茶'])               # 用名牌查詢
 print('\\n超過 60 元的品項：\\n', price[price > 60])           # 篩選
 print('\\n全面漲 5% 後：\\n', (price * 1.05).round())         # 整欄一起運算
@@ -74,11 +74,11 @@ print('\\n全面漲 5% 後：\\n', (price * 1.05).round())         # 整欄一�
         code('''
 menu['毛利'] = menu['中杯價'] - menu['成本']                 # 新增欄位：每杯賺多少
 menu['毛利率'] = (menu['毛利'] / menu['中杯價'] * 100).round(1)
-print(menu)
+display(menu)
 
 print('\\n形狀：', menu.shape)                                # (列數, 欄數)
 print('\\n毛利率 > 70% 的品項：')
-print(menu[menu['毛利率'] > 70][['品項', '中杯價', '毛利', '毛利率']])
+display(menu[menu['毛利率'] > 70][['品項', '中杯價', '毛利', '毛利率']])
 '''),
         md('''
 > 💡 **看懂結果**：純茶、果茶的毛利率最高（成本低），鮮奶系列單價高、每杯賺得多但毛利率較低。**促銷要推哪一杯，取決於你要衝「營收」還是衝「利潤率」。**
@@ -100,7 +100,7 @@ print('原始資料第一筆：', records[0])
 report = pd.DataFrame(records)                               # 一個字典 → 一列
 report = report.set_index('日期')                             # 用日期當列名牌
 report['客單價'] = (report['營收'] / report['來客數']).round(1) # 平均每位客人花多少錢
-print(report)
+display(report)
 print('\\n新品週總營收：', report['營收'].sum(), '元')
 print('雨天那天：\\n', report.loc[report['天氣'] == '雨'])
 '''),
@@ -121,7 +121,7 @@ this_week = pd.Series(sales['本週(4/1-4/7)'])                 # 本週：多�
 compare = pd.DataFrame({'上週': last_week, '本週': this_week})  # 依品項名稱自動對齊
 compare['變化'] = compare['本週'] - compare['上週']             # 上週沒有的 → NaN
 compare['變化率%'] = (compare['變化'] / compare['上週'] * 100).round(1)
-print(compare.sort_values('變化'))
+display(compare.sort_values('變化'))
 print('\\n上週沒有資料（新品）：', list(compare[compare['上週'].isnull()].index))
 '''),
         md('''
@@ -137,33 +137,64 @@ print('\\n上週沒有資料（新品）：', list(compare[compare['上週'].isn
         code('''
 stores = pd.read_csv('門市.csv')
 stores['每座位月租金'] = (stores['月租金'] / stores['座位數']).round(0)   # 新增欄位
-print(stores[['門市', '縣市', '座位數', '月租金', '每座位月租金']].sort_values('每座位月租金', ascending=False))
+display(stores[['門市', '縣市', '座位數', '月租金', '每座位月租金']].sort_values('每座位月租金', ascending=False))
 '''),
         md('''
 > 💡 **看懂結果**：台北的門市每個座位的租金是台南的好幾倍——這也是為什麼台北店更重視「外帶」與「翻桌率」。
-
----
-
-## ✍️ 練習題
-
-1. 用 `menu` 找出「類別」是「鮮奶」的所有品項，並算出它們的平均毛利。
-2. 在 `report` 新增一欄「每杯平均價」＝營收 ÷ 杯數，哪一天最高？
-3. 在 `compare` 中，用 `fillna(0)` 把上週的 NaN 補成 0，再重新計算芋頭鮮奶的「變化」。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='鮮奶系列有哪些品項？平均每杯賺多少？',
+             hint='篩選列的寫法是 `表格[表格[\'欄位\'] == 值]`；平均用 `.mean()`。',
+             starter='''
+milk = menu[menu[___] == '鮮奶']                    # 只留下類別是「鮮奶」的品項
+milk_profit = milk['毛利'].___()                     # 平均毛利
+display(milk[['品項', '毛利']])
+print('平均毛利：', milk_profit)
+''',
+             check='''
+check('milk_profit', menu.loc[menu['類別'] == '鮮奶', '毛利'].mean())
+''',
+             solution='''
 milk = menu[menu['類別'] == '鮮奶']
-print(milk[['品項', '毛利']], '\\n平均毛利：', milk['毛利'].mean())
-
-# 練習 2
+milk_profit = milk['毛利'].mean()
+display(milk[['品項', '毛利']])
+print('平均毛利：', milk_profit)
+'''),
+        dict(title='新增「每杯平均價」＝營收 ÷ 杯數，哪一天最高？',
+             hint='兩欄相除會「逐列」計算；`idxmax()` 回傳最大值所在的列名牌（日期）。',
+             starter='''
+report['每杯平均價'] = (report['營收'] / report[___]).round(1)
+best_day = report['每杯平均價'].___()                # 最高的是哪一天？
+display(report[['營收', '杯數', '每杯平均價']])
+print('每杯平均價最高：', best_day)
+''',
+             check='''
+check('best_day', (report['營收'] / report['杯數']).idxmax())
+''',
+             solution='''
 report['每杯平均價'] = (report['營收'] / report['杯數']).round(1)
-print(report['每杯平均價'], '\\n最高：', report['每杯平均價'].idxmax())
-
-# 練習 3
+best_day = report['每杯平均價'].idxmax()
+display(report[['營收', '杯數', '每杯平均價']])
+print('每杯平均價最高：', best_day)
+'''),
+        dict(title='把上週的 NaN 補成 0，重新計算芋頭鮮奶的「變化」',
+             hint='`fillna(0)` 把缺值補 0；補完後「變化」= 本週 − 上週，芋頭鮮奶就不會是 NaN 了。',
+             starter='''
+compare['上週'] = compare['上週'].___(0)
+compare['變化'] = compare['本週'] - compare['上週']
+taro_change = compare.loc['芋頭鮮奶', '變化']
+display(compare)
+print('芋頭鮮奶的變化：', taro_change)
+''',
+             check='''
+check('taro_change', compare.loc['芋頭鮮奶', '本週'] - 0)
+''',
+             solution='''
 compare['上週'] = compare['上週'].fillna(0)
 compare['變化'] = compare['本週'] - compare['上週']
-print(compare.loc['芋頭鮮奶'])
+taro_change = compare.loc['芋頭鮮奶', '變化']
+display(compare)
+print('芋頭鮮奶的變化：', taro_change)
 '''),
-    ]
+    )
     return NOTEBOOK, files, cells

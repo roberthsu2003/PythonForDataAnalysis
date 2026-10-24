@@ -2,7 +2,7 @@
 import pandas as pd
 
 from common import MENU, STORES, LARGE_EXTRA, order_lines, rng
-from nbtools import md, code, setup_cell, header
+from nbtools import md, code, setup_cell, header, exercises
 
 CHAPTER = '數據整理_連接_合併_重塑'
 NOTEBOOK = '範例_茶語時光_三個月訂單合併成季報.ipynb'
@@ -55,7 +55,7 @@ for m in ['01', '02', '03']:
 
 orders = pd.concat(months, ignore_index=True)                          # 上下接起來，重新編列號
 print('各月筆數：', [len(m) for m in months], '→ 合計', len(orders))
-print(orders.head())
+display(orders.head())
 '''),
         md('''
 > 💡 **看懂結果**：沒指定型態時，`001` 被當成數字 `1`，等一下和主檔的 `'001'` 就**配不起來**了。代碼、電話、郵遞區號這類「長得像數字的文字」，讀檔時一定要指定成文字。
@@ -65,14 +65,14 @@ print(orders.head())
 '''),
         code('''
 items = pd.read_csv('品項主檔.csv', dtype={'品項代碼': str})
-print(items)
+display(items)
 
 full = orders.merge(items, on='品項代碼', how='left', validate='many_to_one')   # 多筆訂單對一個品項；validate 幫你檢查主檔沒有重複
 full['單價'] = full['中杯價'] + (full['尺寸'] == '大') * 10                   # 大杯 +10 元
 full['金額'] = full['單價'] * full['數量']
 full['毛利'] = (full['單價'] - full['成本']) * full['數量']
 print('\\n合併前後筆數：', len(orders), '→', len(full), '（how=left 時兩者應該相同）')
-print(full[['訂單編號', '品項代碼', '品項', '尺寸', '數量', '單價', '金額']].head())
+display(full[['訂單編號', '品項代碼', '品項', '尺寸', '數量', '單價', '金額']].head())
 '''),
         md('''
 ## 任務 3：配不到的代碼——找出主檔沒建檔的門市
@@ -82,7 +82,7 @@ print(full[['訂單編號', '品項代碼', '品項', '尺寸', '數量', '單�
         code('''
 stores = pd.read_csv('門市主檔.csv')
 full = full.merge(stores, on='門市代碼', how='left', indicator=True)
-print(full['_merge'].value_counts())
+display(full['_merge'].value_counts())
 
 missing = full[full['_merge'] == 'left_only']
 print('\\n主檔裡找不到的門市代碼：', missing['門市代碼'].unique(),
@@ -104,7 +104,7 @@ full = full.drop(columns='_merge')
         code('''
 report = full.pivot_table(index='門市', columns='月份', values='金額', aggfunc='sum',
                           margins=True, margins_name='合計')[['1月', '2月', '3月', '合計']]   # 加上合計列與合計欄
-print((report / 10000).round(1))
+display((report / 10000).round(1))
 
 growth = (report['3月'] / report['1月'] - 1) * 100
 print('\\n3 月 vs. 1 月成長率 %：\\n', growth.drop('合計').round(1).sort_values(ascending=False))
@@ -132,30 +132,57 @@ print('\\n✅ 已輸出 第一季季報.xlsx')
 > 💡 **看懂結果**：冰沙類從 1 月到 3 月大幅成長（天氣變暖）、熱飲則是衰退——**季節性**非常明顯。進貨與行銷要跟著季節調整。
 >
 > 🤖 **換你問 AI**：「請把類別 × 月份的杯數做成寬表，新增 3 月比 1 月的成長率欄，並說明 stack、unstack、melt 的差別。」
-
----
-
-## ✍️ 練習題
-
-1. 用 `concat` 的 `keys` 參數取代手動新增「月份」欄，比較兩種做法的差異。
-2. 做一張「門市 × 類別」的毛利樞紐分析表，哪家店的鮮奶系列毛利最高？
-3. 把 `report`（不含合計）用 `stack()` 轉成長表，再找出「單月營收最高」的門市與月份。
-'''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
+''')
+    ] + exercises(
+        dict(title='不用手動加「月份」欄：用 `concat` 的 `keys` 參數一次搞定',
+             hint='`keys=[\'1月\', \'2月\', \'3月\']` 會變成外層索引，`names=[\'月份\', \'原列號\']` 幫兩層索引取名字。',
+             starter='''
+alt = pd.concat([pd.read_csv(f'訂單_2024-{m}.csv', dtype={'品項代碼': str}) for m in ['01', '02', '03']],
+                keys=___, names=['月份', '原列號'])
+display(alt.head(3))
+print('總筆數：', len(alt))
+''',
+             check='''
+check('alt', pd.concat([pd.read_csv(f'訂單_2024-{m}.csv', dtype={'品項代碼': str}) for m in ['01', '02', '03']],
+                       keys=['1月', '2月', '3月'], names=['月份', '原列號']))
+''',
+             solution='''
 alt = pd.concat([pd.read_csv(f'訂單_2024-{m}.csv', dtype={'品項代碼': str}) for m in ['01', '02', '03']],
                 keys=['1月', '2月', '3月'], names=['月份', '原列號'])
-print(alt.head(3))
-
-# 練習 2
-profit = full.pivot_table(index='門市', columns='類別', values='毛利', aggfunc='sum')
-print(profit.round(0))
-print('鮮奶系列毛利最高：', profit['鮮奶'].idxmax())
-
-# 練習 3
-s = report.drop(index='合計', columns='合計').stack()
-print('單月營收最高：', s.idxmax(), f'{s.max():,.0f} 元')
+display(alt.head(3))
+print('總筆數：', len(alt))
 '''),
-    ]
+        dict(title='做一張「門市 × 類別」的毛利樞紐分析表，哪家店的鮮奶系列最賺？',
+             hint='`pivot_table(index=列, columns=欄, values=值, aggfunc=\'sum\')`；再對「鮮奶」那一欄用 `idxmax()`。',
+             starter='''
+profit = full.pivot_table(index=___, columns=___, values='毛利', aggfunc='sum')
+milk_best = profit['鮮奶'].idxmax()
+display(profit.round(0))
+print('鮮奶系列毛利最高：', milk_best)
+''',
+             check='''
+check('profit', full.pivot_table(index='門市', columns='類別', values='毛利', aggfunc='sum'))
+''',
+             solution='''
+profit = full.pivot_table(index='門市', columns='類別', values='毛利', aggfunc='sum')
+milk_best = profit['鮮奶'].idxmax()
+display(profit.round(0))
+print('鮮奶系列毛利最高：', milk_best)
+'''),
+        dict(title='寬表轉長表：哪家門市的哪個月，營收最高？',
+             hint='先把「合計」列與「合計」欄拿掉，`stack()` 會把月份搬到列，變成 (門市, 月份) 一列一個數字；再用 `idxmax()`。',
+             starter='''
+s = report.drop(index='合計', columns='合計').___()
+best_cell = s.idxmax()                             # (門市, 月份)
+print('單月營收最高：', best_cell, f'{s.max():,.0f} 元')
+''',
+             check='''
+check('best_cell', report.drop(index='合計', columns='合計').stack().idxmax())
+''',
+             solution='''
+s = report.drop(index='合計', columns='合計').stack()
+best_cell = s.idxmax()
+print('單月營收最高：', best_cell, f'{s.max():,.0f} 元')
+'''),
+    )
     return NOTEBOOK, files, cells

@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 
 from common import STORES, daily_sales, names, rng
-from nbtools import md, code, setup_cell, font_cell, header
+from nbtools import md, code, setup_cell, font_cell, header, exercises
 
 CHAPTER = 'pandas的基礎功能'
 NOTEBOOK = '範例_茶語時光_店員排行榜與天氣分析.ipynb'
@@ -29,7 +29,7 @@ def build(out):
 
     d = daily_sales('2024-01-01', '2024-12-31')
     x = d[d['門市'] == '台北信義店'].copy()
-    x['星期'] = x['日期'].dt.dayofweek.map(dict(enumerate('一二三四五六日'))).radd('星期')
+    x['星期'] = x['日期'].dt.day_of_week.map(dict(enumerate('一二三四五六日'))).radd('星期')
     x['日期'] = x['日期'].dt.strftime('%Y-%m-%d')
     x[['日期', '星期', '最高溫', '降雨量', '杯數', '營收']].to_csv(out / '信義店每日天氣與銷量_2024.csv', index=False,
                                                      encoding='utf-8-sig')
@@ -53,7 +53,7 @@ def build(out):
 import pandas as pd
 
 staff = pd.read_csv('店員業績_2024Q1.csv', index_col='員工編號')   # 員工編號當列名牌
-print(staff.head())
+display(staff.head())
 
 print('\\n▶ loc：E005 的姓名與評分\\n', staff.loc['E005', ['姓名', '顧客評分']])
 print('\\n▶ iloc：前 3 位、前 3 欄\\n', staff.iloc[:3, :3])
@@ -76,7 +76,7 @@ staff['總杯數名次'] = staff['銷售杯數'].rank(ascending=False, method='m
 staff['每日杯數名次'] = staff['每日杯數'].rank(ascending=False, method='min').astype(int)
 
 board = staff.sort_values('每日杯數名次')[['姓名', '門市', '職位', '出勤天數', '銷售杯數', '總杯數名次', '每日杯數', '每日杯數名次']]
-print(board.head(10))
+display(board.head(10))
 '''),
         md('''
 > 💡 **看懂結果**：比較兩種名次——有些兼職人員「總杯數」排名很後面，換成「每日杯數」卻名列前茅。**選錯指標，就會獎勵錯的人。**
@@ -100,8 +100,8 @@ def grade(row):                                               # row 是一位店
     return 'B'
 
 staff['績效等級'] = staff.apply(grade, axis=1)                 # axis=1：對每一列套用
-print(staff['績效等級'].value_counts())                       # 各等級人數
-print(staff[staff['績效等級'] == 'A'][['姓名', '門市', '每日杯數', '顧客評分', '客訴數']])
+display(staff['績效等級'].value_counts())                       # 各等級人數
+display(staff[staff['績效等級'] == 'A'][['姓名', '門市', '每日杯數', '顧客評分', '客訴數']])
 '''),
         md('''
 > 🤖 **換你問 AI**：「請依照以下規則，用 apply 幫每位店員打 A/B/C 等級：（貼上規則），並統計各等級人數。」
@@ -110,7 +110,7 @@ print(staff[staff['績效等級'] == 'A'][['姓名', '門市', '每日杯數', '
 ## 任務 4：describe——一眼看完整體狀況，再找出極端值
 '''),
         code('''
-print(staff[['每日杯數', '加購率%', '顧客評分', '客訴數']].describe().round(2))
+display(staff[['每日杯數', '加購率%', '顧客評分', '客訴數']].describe().round(2))
 print('\\n客訴最多：', staff['客訴數'].idxmax(), staff.loc[staff['客訴數'].idxmax(), '姓名'])
 print('加購率最高：', staff['加購率%'].idxmax(), staff.loc[staff['加購率%'].idxmax(), '姓名'])
 '''),
@@ -121,13 +121,13 @@ print('加購率最高：', staff['加購率%'].idxmax(), staff.loc[staff['加�
 '''),
         code('''
 weather = pd.read_csv('信義店每日天氣與銷量_2024.csv')
-print(weather.head())
+display(weather.head())
 
 print('\\n最高溫 vs 杯數：', round(weather['最高溫'].corr(weather['杯數']), 3))
 print('降雨量 vs 杯數：', round(weather['降雨量'].corr(weather['杯數']), 3))
 
 print('\\n店員各指標的相關係數：')
-print(staff[['每日杯數', '加購率%', '顧客評分', '客訴數']].corr().round(2))
+display(staff[['每日杯數', '加購率%', '顧客評分', '客訴數']].corr().round(2))
 '''),
         code('''
 import matplotlib.pyplot as plt
@@ -142,28 +142,58 @@ plt.show()
 > - ⚠️ 但「相關」不等於「因果」：信義店冬天生意差，除了天冷，也可能是年底商辦區的作息變化。散佈圖中週末的點特別低，就是另一個影響因素（星期幾）。
 >
 > 🤖 **換你問 AI**：「請計算每日最高溫、降雨量與杯數的相關係數，畫散佈圖，並用白話解釋結果，提醒我相關不等於因果。」
-
----
-
-## ✍️ 練習題
-
-1. 找出每家門市「每日杯數」最高的店員（提示：先依門市、每日杯數排序，再用 `drop_duplicates('門市')`）。
-2. 用 `weather` 計算「星期六、日」與「星期一～五」的平均杯數，信義店是平日好還是假日好？
-3. 只看氣溫 30 度以上的日子，最高溫與杯數的相關係數還一樣高嗎？為什麼？
+''')
+    ] + exercises(
+        dict(title='每家門市「每日杯數」最高的店員是誰？',
+             hint='先依「門市」由小到大、「每日杯數」由大到小排序，每家店的第一名就會排在最前面，再用 `drop_duplicates(\'門市\')` 只留每家店的第一筆。',
+             starter='''
+best = (staff.sort_values(['門市', '每日杯數'], ascending=[True, ___])
+             .drop_duplicates(___))
+display(best[['門市', '姓名', '每日杯數']])
+''',
+             check='''
+check('best', staff.sort_values(['門市', '每日杯數'], ascending=[True, False]).drop_duplicates('門市'))
+''',
+             solution='''
+best = (staff.sort_values(['門市', '每日杯數'], ascending=[True, False])
+             .drop_duplicates('門市'))
+display(best[['門市', '姓名', '每日杯數']])
 '''),
-        md('## 🔑 參考解答（先自己試試看！）'),
-        code('''
-# 練習 1
-best = staff.sort_values(['門市', '每日杯數'], ascending=[True, False]).drop_duplicates('門市')
-print(best[['門市', '姓名', '每日杯數']])
-
-# 練習 2
+        dict(title='信義店是平日好，還是假日好？',
+             hint='`isin([...])` 判斷「是不是其中之一」，得到 True/False；`~` 是「相反」，所以 `~weekend` 就是平日。',
+             starter='''
+weekend = weather['星期'].isin([___, ___])
+weekend_avg = weather.loc[weekend, '杯數'].mean()
+weekday_avg = weather.loc[___, '杯數'].mean()        # 平日 = 不是假日
+print('假日平均：', round(weekend_avg), '平日平均：', round(weekday_avg))
+''',
+             check='''
+_w = weather['星期'].isin(['星期六', '星期日'])
+check('weekend_avg', weather.loc[_w, '杯數'].mean())
+check('weekday_avg', weather.loc[~_w, '杯數'].mean())
+''',
+             solution='''
 weekend = weather['星期'].isin(['星期六', '星期日'])
-print('假日平均：', round(weather.loc[weekend, '杯數'].mean()), '平日平均：', round(weather.loc[~weekend, '杯數'].mean()))
-
-# 練習 3
-hot = weather[weather['最高溫'] >= 30]
-print('30 度以上：', round(hot['最高溫'].corr(hot['杯數']), 3), '（範圍變窄，星期幾的影響相對變大，相關係數會下降）')
+weekend_avg = weather.loc[weekend, '杯數'].mean()
+weekday_avg = weather.loc[~weekend, '杯數'].mean()
+print('假日平均：', round(weekend_avg), '平日平均：', round(weekday_avg))
 '''),
-    ]
+        dict(title='只看 30 度以上的日子，氣溫和杯數的相關係數還一樣高嗎？',
+             hint='相關係數：`欄位A.corr(欄位B)`。想一想：範圍變窄之後，「星期幾」的影響會不會變得比氣溫更重要？',
+             starter='''
+hot = weather[weather['最高溫'] >= ___]
+hot_corr = hot['最高溫'].corr(hot[___])
+print('全年：', round(weather['最高溫'].corr(weather['杯數']), 3), '｜30 度以上：', round(hot_corr, 3))
+''',
+             check='''
+_h = weather[weather['最高溫'] >= 30]
+check('hot_corr', _h['最高溫'].corr(_h['杯數']))
+''',
+             solution='''
+hot = weather[weather['最高溫'] >= 30]
+hot_corr = hot['最高溫'].corr(hot['杯數'])
+print('全年：', round(weather['最高溫'].corr(weather['杯數']), 3), '｜30 度以上：', round(hot_corr, 3))
+# 範圍變窄後，氣溫的差異變小，「星期幾」等其他因素的影響相對變大，所以相關係數會下降
+'''),
+    )
     return NOTEBOOK, files, cells
