@@ -19,16 +19,18 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🧹 茶語時光：髒亂的會員問卷大掃除**
+> **🚦 死亡車禍資料大掃除：清理警政署 A1 交通事故**
 >
-> 行銷部用 Google 表單做了會員滿意度問卷，想知道「哪家店滿意度最高？」、「各地區客人喜歡幾分糖？」。但表單是開放填寫的：有人重複送出、性別寫 F 或 male、年齡寫「二十」或 999、門市寫「信義」或「西門町店」、甜度有「全糖」、「10分」、「正常」三種寫法……直接分析一定會錯。你的任務是**先把資料洗乾淨，再回答問題**。
+> 台灣每年有上千人死於車禍。警政署公開了每一件「A1 類」（造成死亡）事故的詳細資料：時間、地點、天氣、車種、年齡、肇事原因……但下載下來你會發現：檔案最後混了說明文字、日期是 `20260101.0`、時間是 `53700.0`、「死亡1;受傷0」擠在同一格，而且**一場車禍會出現好幾列**。今天的任務是：**把它清理乾淨，再回答「死亡車禍最常發生在什麼時候？為什麼會發生？」**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%AB%92%E4%BA%82%E7%9A%84%E6%9C%83%E5%93%A1%E5%95%8F%E5%8D%B7%E5%A4%A7%E6%8E%83%E9%99%A4.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%AB%92%E4%BA%82%E7%9A%84%E6%9C%83%E5%93%A1%E5%95%8F%E5%8D%B7%E5%A4%A7%E6%8E%83%E9%99%A4.ipynb)　｜　[⬇️ 下載本章素材 資料整理和使用前準備_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%AD%BB%E4%BA%A1%E8%BB%8A%E7%A6%8D%E8%B3%87%E6%96%99%E5%A4%A7%E6%8E%83%E9%99%A4_A1%E4%BA%A4%E9%80%9A%E4%BA%8B%E6%95%85.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%AD%BB%E4%BA%A1%E8%BB%8A%E7%A6%8D%E8%B3%87%E6%96%99%E5%A4%A7%E6%8E%83%E9%99%A4_A1%E4%BA%A4%E9%80%9A%E4%BA%8B%E6%95%85.ipynb)　｜　[⬇️ 下載本章素材 資料整理和使用前準備_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99/%E8%B3%87%E6%96%99%E6%95%B4%E7%90%86%E5%92%8C%E4%BD%BF%E7%94%A8%E5%89%8D%E6%BA%96%E5%82%99_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `會員問卷_原始.csv` | 從 Google 表單匯出的 318 份會員問卷，未經任何整理（裡面有很多陷阱！） |
+| `A1類交通事故.csv` | 警政署 A1 類交通事故（**有人在 24 小時內死亡**的車禍）：今年 1 月起，每一列是一位當事者，共 51 個欄位 |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[即時交通事故資料(A1類)](https://data.gov.tw/dataset/12818)（內政部警政署）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

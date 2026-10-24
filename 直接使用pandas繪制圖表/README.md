@@ -18,17 +18,22 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🖼️ 茶語時光：一行程式畫出年度簡報圖**
+> **🖼️ 一行程式，畫出台灣的六個故事**
 >
-> 尾牙前要做年度簡報。上一章你學會用 groupby 算出各種統計，這次老闆要的是「圖」：全年營收走勢、颱風和演唱會的影響、不同時段客人點什麼、會員是不是比較會花錢。好消息是——**表格整理好之後，pandas 一行就能畫圖**。
+> 前面幾章你已經用過 YouBike、電影票房、台電用電、空氣品質、捷運這幾份真實資料。這一章是「**成果發表會**」：每份資料整理好之後，只要在表格後面加上 `.plot()`，一行就能畫出圖；再搭配 **seaborn** 畫出統計圖。你要做出六張可以直接放進簡報的圖，每一張講一個台灣的故事。
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%B9%B4%E5%BA%A6%E7%B0%A1%E5%A0%B1%E5%9C%96.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%B9%B4%E5%BA%A6%E7%B0%A1%E5%A0%B1%E5%9C%96.ipynb)　｜　[⬇️ 下載本章素材 直接使用pandas繪制圖表_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%8F%B0%E7%81%A3%E7%9A%84%E5%85%AD%E5%80%8B%E6%95%85%E4%BA%8B.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%8F%B0%E7%81%A3%E7%9A%84%E5%85%AD%E5%80%8B%E6%95%85%E4%BA%8B.ipynb)　｜　[⬇️ 下載本章素材 直接使用pandas繪制圖表_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `每日營收_2024.csv` | 2024 年每天 × 5 家門市的杯數、營收、最高溫與特殊事件（颱風、演唱會、節日、活動） |
-| `訂單明細_2024-07.csv` | 7 月份的訂單明細（約 4 萬筆） |
+| `臺北市YouBike每月使用量.csv` | 臺北市 YouBike 每月騎乘次數（Big5） |
+| `全國電影票房_2016至今.json` | 文化部全國電影票房（JSON） |
+| `台電各縣市用電統計.csv` | 台電各縣市每月售電量 |
+| `日空氣品質指標_近一年.csv` | 環境部近一年每日 AQI |
+| `臺北捷運各站分時進出量_202603.csv` | 臺北捷運 2026 年 3 月各站每小時進出站人次 |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[YouBike臺北市站位每月使用量](https://data.gov.tw/dataset/135775)（臺北市政府交通局）、[全國電影票房統計數據](https://data.gov.tw/dataset/94224)（文化部）、[台灣電力公司各縣市住宅、服務業及機關用電統計資料](https://data.gov.tw/dataset/29935)（台灣電力股份有限公司）、[日空氣品質指標(AQI)](https://data.gov.tw/dataset/40507)（環境部）、[臺北捷運各站分時進出量統計](https://data.gov.tw/dataset/128506)（臺北大眾捷運股份有限公司）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

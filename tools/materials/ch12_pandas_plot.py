@@ -1,174 +1,194 @@
-"""第 12 章 pandas 直接繪圖：df.plot、事件標註、堆疊百分比長條、seaborn 統計圖、分布圖。"""
-import pandas as pd
-
-from common import daily_sales, order_lines
-from nbtools import md, code, setup_cell, font_cell, header, exercises
+"""第 12 章 pandas 直接繪圖：用真實開放資料一行出圖——折線、長條＋標註、堆疊面積、seaborn 箱型圖、熱力圖、散佈圖。"""
+from nbtools import md, code, setup_cell, font_cell, header, exercises, copy_real
 
 CHAPTER = '直接使用pandas繪制圖表'
-NOTEBOOK = '範例_茶語時光_一行畫出年度簡報圖.ipynb'
+NOTEBOOK = '範例_一行畫出台灣的六個故事.ipynb'
+SOURCES = ['youbike', 'boxoffice', 'power_city', 'aqi', 'mrt']
 
 
 def build(out):
-    d = daily_sales('2024-01-01', '2024-12-31')
-    d['日期'] = d['日期'].dt.strftime('%Y-%m-%d')
-    d[['日期', '門市', '最高溫', '杯數', '營收', '事件']].to_csv(out / '每日營收_2024.csv', index=False, encoding='utf-8-sig')
-
-    o = order_lines('2024-07-01', '2024-07-31', offset=12)
-    o['訂單時間'] = o['訂單時間'].dt.strftime('%Y-%m-%d %H:%M:%S')
-    o.drop(columns=['門市代碼', '品項代碼', '單價']).to_csv(out / '訂單明細_2024-07.csv', index=False, encoding='utf-8-sig')
-
-    files = ['每日營收_2024.csv', '訂單明細_2024-07.csv']
-    desc = [('每日營收_2024.csv', '2024 年每天 × 5 家門市的杯數、營收、最高溫與特殊事件（颱風、演唱會、節日、活動）'),
-            ('訂單明細_2024-07.csv', '7 月份的訂單明細（約 4 萬筆）')]
+    files = [copy_real(out, k) for k in SOURCES]
+    desc = [(files[0], '臺北市 YouBike 每月騎乘次數（Big5）'),
+            (files[1], '文化部全國電影票房（JSON）'),
+            (files[2], '台電各縣市每月售電量'),
+            (files[3], '環境部近一年每日 AQI'),
+            (files[4], '臺北捷運 2026 年 3 月各站每小時進出站人次')]
 
     cells = [
-        header(CHAPTER, NOTEBOOK, '🖼️ 茶語時光：一行程式畫出年度簡報圖',
-               '尾牙前要做年度簡報。上一章你學會用 groupby 算出各種統計，這次老闆要的是「圖」：全年營收走勢、'
-               '颱風和演唱會的影響、不同時段客人點什麼、會員是不是比較會花錢。好消息是——**表格整理好之後，pandas 一行就能畫圖**。', desc),
+        header(CHAPTER, NOTEBOOK, '🖼️ 一行程式，畫出台灣的六個故事',
+               '前面幾章你已經用過 YouBike、電影票房、台電用電、空氣品質、捷運這幾份真實資料。'
+               '這一章是「**成果發表會**」：每份資料整理好之後，只要在表格後面加上 `.plot()`，一行就能畫出圖；'
+               '再搭配 **seaborn** 畫出統計圖。你要做出六張可以直接放進簡報的圖，每一張講一個台灣的故事。',
+               desc, SOURCES),
         setup_cell(CHAPTER, files),
         font_cell(),
         md('''
-## 圖 1：全年營收走勢——pivot 之後一行 `.plot()`
+## 故事 1：YouBike 騎乘量一路往上——`Series.plot()` 折線圖
 
-**白話說明**：把資料整理成「日期 × 門市」的寬表，`.plot()` 會自動把**索引當 X 軸、每一欄畫成一條線**。每日數字太亂，再加上 7 日移動平均讓趨勢更清楚。
+**白話說明**：DataFrame / Series 後面直接接 `.plot()`，**索引自動變成 X 軸、數值變成 Y 軸**。索引是日期時，X 軸就會是時間軸。
 '''),
         code('''
 import pandas as pd
 import matplotlib.pyplot as plt
 
-daily = pd.read_csv('每日營收_2024.csv', parse_dates=['日期'])
-wide = daily.pivot(index='日期', columns='門市', values='營收')        # 日期 × 門市 的寬表
-display(wide.head(3))
+bike = pd.read_csv('臺北市YouBike每月使用量.csv', encoding='cp950')
+bike['月份'] = pd.to_datetime(bike['西元年'].astype(str) + '-' + bike['月份'].astype(str) + '-01')
+rides = bike.set_index('月份')['臺北市YouBike每月使用量（次數）'] / 1e4       # 單位：萬次
 
-ax = (wide.rolling(7).mean() / 10000).plot(figsize=(12, 5), title='2024 各門市每日營收（7 日移動平均，萬元）')   # 一行畫 5 條線
-ax.set_ylabel('萬元')
+ax = rides.plot(figsize=(11, 4), color='#F39C12', linewidth=2.5, title='臺北市 YouBike 每月騎乘次數（萬次）')
+ax.set_xlabel('')
 plt.show()
 '''),
         md('''
-## 圖 2：把颱風、演唱會標在圖上——讓圖會說故事
+## 故事 2：疫情讓電影院少了一半的觀眾——長條圖＋標註
+
+**白話說明**：`plot.bar()` 畫長條；`ax.annotate` 在圖上加說明文字和箭頭，**讓讀者一眼看到重點**。
 '''),
         code('''
-total = daily.groupby('日期')['營收'].sum() / 10000                     # 全品牌每日營收（萬元）
-events = daily[daily['事件'].notna()].groupby('日期')['事件'].first()    # 有特殊事件的日子
+import json
 
-ax = total.plot(figsize=(14, 5), color='gray', alpha=0.7, title='2024 全品牌每日營收與重要事件（萬元）')
-ax.set_ylim(0, total.max() * 1.45)                                     # 上方留空間放標註文字
+with open('全國電影票房_2016至今.json', encoding='utf-8-sig') as f:
+    movies = pd.DataFrame(json.load(f)['List'])
+movies = movies[movies['TotalAmounts'] > 0]
+movies['年'] = movies['ReleaseDate'].str[:4].astype(int)
 
-last_seen, k = {}, 0
-for date, name in events.items():
-    if name not in ('凱米颱風', '康芮颱風', '巨蛋演唱會', '情人節', '七夕', '第二杯半價', '芋頭鮮奶上市', '跨年'):
-        continue
-    if name in last_seen and (date - last_seen[name]).days < 30:      # 一個月內的同一事件只標第一次
-        continue
-    last_seen[name] = date
-    y = total[date]
-    if '颱風' in name:                                                  # 颱風：紅色，文字放在下方
-        ax.annotate(name, xy=(date, y), xytext=(date, 0.8), ha='center', fontsize=9, color='red',
-                    arrowprops=dict(arrowstyle='->', color='red'))
-    else:                                                               # 好事件：綠色，文字高低交錯避免重疊
-        k += 1
-        ax.annotate(name, xy=(date, y), xytext=(date, total.max() * (1.12 if k % 2 else 1.3)),
-                    ha='right' if date.month == 12 and date.day > 25 else 'center',   # 年底的標籤靠右，避免超出圖框
-                    fontsize=9, color='green', arrowprops=dict(arrowstyle='->', color='green'))
+by_year = movies[movies['年'].between(2016, 2025)].groupby('年')['TotalAmounts'].sum() / 1e8   # 億元
+colors = ['#C0392B' if y in (2020, 2021) else '#7F8C8D' for y in by_year.index]
+ax = by_year.plot.bar(figsize=(10, 4.5), color=colors, title='全台電影票房（依上映年份，億元）', rot=0)
+ax.annotate('疫情：電影院\\n關閉、限制座位', xy=(4.5, 55), xytext=(6.5, 95), ha='center',
+            arrowprops=dict(arrowstyle='->', color='#C0392B'), color='#C0392B')
+ax.set_xlabel('')
 plt.show()
 '''),
         md('''
-> 💡 **看懂結果**：凱米、康芮颱風那幾天營收直接腰斬；情人節、七夕、跨年、巨蛋演唱會則是明顯的高峰。6 月每週三的「第二杯半價」讓週三變成一週最好的一天。**把事件標上去，老闆一看就懂「為什麼那天特別高或特別低」。**
->
-> 🤖 **換你問 AI**：「請畫出全品牌每日營收折線圖，並在『事件』欄位有值的日期加上箭頭標註，颱風用紅色、節日活動用綠色。」
+> 💡 **看懂結果**：2017～2019 年每年約 100 億，2020、2021 年掉到 50 億左右——**少了一半**；2025 年才回到快 90 億。
 '''),
         md('''
-## 圖 3：不同時段，客人點什麼？——百分比堆疊長條圖
+## 故事 3：台灣的電都去哪了？——堆疊面積圖
+
+**白話說明**：`plot.area()` 畫**堆疊面積圖**：每一層是一種用電類別，整體高度是總用電，適合看「總量與組成一起變化」。
 '''),
         code('''
-orders = pd.read_csv('訂單明細_2024-07.csv', parse_dates=['訂單時間'])
-orders['時段'] = pd.cut(orders['訂單時間'].dt.hour, bins=[9, 13, 17, 23], labels=['午餐前後', '下午茶', '晚上'])
-mix = pd.crosstab(orders['時段'], orders['類別'], values=orders['數量'], aggfunc='sum', normalize='index') * 100   # 每個時段各類別占比
-display(mix.round(1))
+power = pd.read_csv('台電各縣市用電統計.csv', thousands=',', usecols=range(5)).dropna(subset=['年月'])
+power['年'] = (power['年月'] // 100 + 1911).astype(int)
+mix = (power[power['年'].between(2016, 2025)]
+       .pivot_table(index='年', columns='用電性質', values='售電量(度)', aggfunc='sum') / 1e8)   # 億度
+mix = mix[['工業', '住宅', '服務業', '農林漁牧']]
 
-ax = mix.plot.barh(stacked=True, figsize=(10, 4), colormap='tab20c', title='7 月各時段的飲料類別占比（%）')
-ax.legend(bbox_to_anchor=(1.01, 1), loc='upper left')                  # 圖例放到右邊
+ax = mix.plot.area(figsize=(10, 4.5), colormap='tab20c', alpha=0.9, title='全台售電量組成（億度）')
+ax.legend(loc='upper left', ncol=4)
 plt.show()
 '''),
         md('''
-> 💡 **看懂結果**：午餐前後鮮奶系列最受歡迎（很多人拿它當正餐），下午茶時段奶茶比例上升，晚上則是清爽的果茶、純茶比較多。**看板與推播訊息可以依時段換主打。**
+> 💡 **看懂結果**：最下面的**工業**是最大的一層，2016 到 2022 年成長了將近兩成（半導體等產業擴廠），近幾年持平；**住宅**用電則是穩定地慢慢增加（十年多了約 15%），服務業幾乎沒變。
 '''),
         md('''
-## 圖 4：會員真的比較會花錢嗎？——seaborn 統計長條圖
+## 故事 4：冬天的空氣比較差——seaborn 箱型圖
 
-**白話說明**：seaborn 畫平均值長條圖時，會自動加上**誤差線（信賴區間）**，告訴你這個平均有多可靠。
+**白話說明**：**箱型圖**一次畫出「中位數（中間那條線）、大部分資料的範圍（箱子）、極端值（點）」，最適合比較好幾組資料的**分布**。seaborn 只要指定 `x`、`y`。
 '''),
         code('''
 import seaborn as sns
 
-per_order = orders.groupby(['訂單編號', '門市', '會員'], as_index=False)['金額'].sum()   # 先算每筆訂單金額
-ax = sns.barplot(data=per_order, x='門市', y='金額', hue='會員', errorbar=('ci', 95))
-ax.set_title('各門市客單價：會員(Y) vs. 非會員(N)')
+aqi = pd.read_csv('日空氣品質指標_近一年.csv', parse_dates=['monitordate'])
+aqi['月'] = aqi['monitordate'].dt.month
+
+plt.figure(figsize=(11, 4.5))
+sns.boxplot(data=aqi, x='月', y='aqi', color='#AED6F1', fliersize=1.5)
+plt.axhline(100, color='#E67E22', linestyle='--', label='100：對敏感族群不健康')
+plt.title('全台各測站每日 AQI 的分布（依月份）'); plt.legend()
 plt.show()
 '''),
         md('''
-> 💡 **看懂結果**：每家店的會員客單價都比較高，而且誤差線沒有重疊——差異是穩定的，不是碰巧。
+> 💡 **看懂結果**：7 月的箱子又低又扁——**幾乎全台都是好空氣**；1～4 月、11 月的箱子高、上面的點（極端值）多，**冬春季要特別注意**。
 '''),
         md('''
-## 圖 5：訂單金額的分布——直方圖與盒鬚圖
+## 故事 5：一週七天的捷運人潮——seaborn 熱力圖
+
+**白話說明**：先整理成「星期 × 時段」的表（平均每天進站人次），`sns.heatmap` 一行畫出熱力圖：越亮的格子越擠。
 '''),
         code('''
-fig, axes = plt.subplots(1, 2, figsize=(14, 4))
-per_order['金額'].plot.hist(bins=40, ax=axes[0], color='#C8A27C', title='每筆訂單金額分布')
-per_order.boxplot(column='金額', by='門市', ax=axes[1], grid=False)      # 盒鬚圖：中間的線是中位數，點是極端值
-axes[1].set_title('各門市訂單金額（盒鬚圖）')
-fig.suptitle('')
-plt.tight_layout()
-plt.savefig('訂單金額分布.png', dpi=200, bbox_inches='tight')           # 存成簡報用的圖檔
+mrt = pd.read_csv('臺北捷運各站分時進出量_202603.csv', parse_dates=['日期'])
+mrt['星期'] = mrt['日期'].dt.day_of_week
+per_day = mrt.groupby(['日期', '星期', '時段'], as_index=False)['進站人次'].sum()
+table = per_day.pivot_table(index='星期', columns='時段', values='進站人次', aggfunc='mean') / 1e4   # 萬人次
+table.index = ['一', '二', '三', '四', '五', '六', '日']
+
+plt.figure(figsize=(13, 4))
+sns.heatmap(table, cmap='magma', cbar_kws={'label': '萬人次'})
+plt.title('臺北捷運：星期 × 時段的平均進站人次'); plt.ylabel('星期')
 plt.show()
 '''),
         md('''
-> 💡 **看懂結果**：大部分訂單都是 1～2 杯（100 元左右），但有一條長長的「尾巴」——少數大額團購訂單。平均值會被這些大單拉高，所以報告「典型客人花多少」時，**中位數比平均數更貼近事實**。
-''')
-    ] + exercises(
-        dict(title='台南成大店：杯數和氣溫畫在同一張圖（雙 Y 軸）',
-             hint='`ax2 = ax.twinx()` 會建立一個共用 X 軸、右邊有自己 Y 軸的新座標；第二條線畫在 `ax=ax2` 上。',
-             starter='''
-tn = daily[daily['門市'] == ___].set_index('日期')
-ax = tn['杯數'].plot(figsize=(12, 4), color='#8B5E3C', label='杯數')
-ax2 = ax.___()                                     # 共用 X 軸、右邊另一個 Y 軸
-tn['最高溫'].plot(ax=ax2, color='orange', alpha=0.6, label='最高溫')
-ax.set_title('台南成大店：每日杯數與最高溫')
-plt.show()
-''',
-             solution='''
-tn = daily[daily['門市'] == '台南成大店'].set_index('日期')
-ax = tn['杯數'].plot(figsize=(12, 4), color='#8B5E3C', label='杯數')
-ax2 = ax.twinx()
-tn['最高溫'].plot(ax=ax2, color='orange', alpha=0.6, label='最高溫')
-ax.set_title('台南成大店：每日杯數與最高溫')
+> 💡 **看懂結果**：平日的早上 8 點、晚上 6 點是兩條**亮線**——通勤尖峰；週末的亮區往中午、下午移，而且比較分散。**一張圖就是整座城市的作息表。**
+'''),
+        md('''
+## 故事 6：美國片、日本片、國片——seaborn 散佈圖
+
+**白話說明**：`sns.scatterplot` 用 `hue` 依類別上不同顏色。票房差距太大（從幾百元到 9 億），所以 Y 軸用**對數刻度**（`plt.yscale('log')`），小片和大片才能放在同一張圖裡。
+'''),
+        code('''
+top3 = movies[movies['Country'].isin(['美國', '日本', '中華民國']) & (movies['年'] >= 2016)]
+
+plt.figure(figsize=(9, 5))
+sns.scatterplot(data=top3, x='TheaterCount', y='TotalAmounts', hue='Country', alpha=0.5, s=20,
+                palette={'美國': '#2E86C1', '日本': '#C0392B', '中華民國': '#27AE60'})
+plt.yscale('log')
+plt.xlabel('上映戲院數'); plt.ylabel('票房（元，對數刻度）'); plt.title('上映戲院數 vs. 票房')
 plt.show()
 '''),
-        dict(title='各門市的甜度占比，畫成百分比堆疊長條圖',
-             hint='`pd.crosstab(列, 欄, normalize=\'index\')` 先算出占比表；`.plot.barh(stacked=True)` 一行畫出堆疊長條。',
+        md('''
+> 💡 **看懂結果**：三個國家都是「戲院越多、票房越高」的右上斜分布。藍色（美國片）集中在右上角——好萊塢大片一上映就是 100 家戲院；綠色（國片）大多在左下，但也有幾部衝上右上角。
+'''),
+    ] + exercises(
+        dict(title='YouBike 每年總騎乘次數，畫成長條圖',
+             hint='`rides.resample(\'YE\').sum()` 依年加總，再 `.plot.bar()`。索引是日期，可以用 `.index.year` 改成只顯示年份。',
              starter='''
-sweet = pd.crosstab(orders['門市'], orders[___], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100
-sweet.plot.barh(stacked=___, figsize=(10, 4), colormap='copper', title='各門市甜度占比（%）')
+by_year_bike = rides.resample(___).sum()
+by_year_bike.index = by_year_bike.index.year
+by_year_bike.plot.___(figsize=(8, 4), color='#F39C12', rot=0, title='臺北市 YouBike 每年騎乘次數（萬次）')
 plt.show()
 ''',
              check='''
-check('sweet', pd.crosstab(orders['門市'], orders['甜度'], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100)
+_r = rides.resample('YE').sum()
+_r.index = _r.index.year
+check('by_year_bike', _r)
 ''',
              solution='''
-sweet = pd.crosstab(orders['門市'], orders['甜度'], normalize='index')[['正常糖', '少糖', '半糖', '微糖', '無糖']] * 100
-sweet.plot.barh(stacked=True, figsize=(10, 4), colormap='copper', title='各門市甜度占比（%）')
+by_year_bike = rides.resample('YE').sum()
+by_year_bike.index = by_year_bike.index.year
+by_year_bike.plot.bar(figsize=(8, 4), color='#F39C12', rot=0, title='臺北市 YouBike 每年騎乘次數（萬次）')
 plt.show()
 '''),
-        dict(title='會員 vs. 非會員：訂單金額的分布長得一樣嗎？',
-             hint='`sns.histplot(data=表格, x=欄位, hue=分組欄位)` 會用不同顏色畫出每一組的分布。',
+        dict(title='比較三個測站的 AQI 分布：花蓮、中山、斗六',
+             hint='先用 `isin([...])` 篩出三個測站，再 `sns.boxplot(data=..., x=\'sitename\', y=\'aqi\')`。',
              starter='''
-sns.histplot(data=per_order, x='金額', hue=___, bins=40, element='step')
-plt.title('會員 vs. 非會員訂單金額分布')
+three = aqi[aqi['sitename'].isin([___, ___, ___])]
+plt.figure(figsize=(7, 4))
+sns.boxplot(data=three, x=___, y='aqi', order=['花蓮', '中山', '斗六'])
+plt.title('三個測站的 AQI 分布')
 plt.show()
 ''',
              solution='''
-sns.histplot(data=per_order, x='金額', hue='會員', bins=40, element='step')
-plt.title('會員 vs. 非會員訂單金額分布')
+three = aqi[aqi['sitename'].isin(['花蓮', '中山', '斗六'])]
+plt.figure(figsize=(7, 4))
+sns.boxplot(data=three, x='sitename', y='aqi', order=['花蓮', '中山', '斗六'])
+plt.title('三個測站的 AQI 分布')
+plt.show()
+'''),
+        dict(title='每年上映的國片有幾部？畫成折線圖',
+             hint='篩出 `Country == \'中華民國\'` 且 2016～2025 年，用 `groupby(\'年\').size()` 或 `[\'年\'].value_counts().sort_index()` 數每年幾部，再 `.plot()`。',
+             starter='''
+tw_count = movies[(movies['Country'] == ___) & movies['年'].between(2016, 2025)].groupby('年').size()
+tw_count.plot(marker='o', figsize=(8, 4), title='每年上映的國片數量')
+plt.show()
+''',
+             check='''
+check('tw_count', movies[(movies['Country'] == '中華民國') & movies['年'].between(2016, 2025)].groupby('年').size())
+''',
+             solution='''
+tw_count = movies[(movies['Country'] == '中華民國') & movies['年'].between(2016, 2025)].groupby('年').size()
+tw_count.plot(marker='o', figsize=(8, 4), title='每年上映的國片數量')
 plt.show()
 '''),
     )

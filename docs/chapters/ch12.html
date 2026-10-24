@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <a class="brand" href="../index.html"><span class="brand-icon">📊</span><span>Python 資料分析</span></a>
     <nav class="topnav">
       <a href="../index.html">課程首頁</a>
       <a href="../chart-selection/index.html">圖表思維實驗室</a>
@@ -32,7 +32,7 @@
   <main class="chapter">
     <p class="crumb"><a href="../index.html">課程首頁</a> › 第 12 章</p>
     <h1 class="chapter-title">📊 🎨 視覺化表格：讓數字自己「亮起來」，報表重點一眼就看到</h1>
-    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🎨 做一份「會發亮」的 KPI 報表</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%9C%83%E8%AE%8A%E8%89%B2%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E9%80%B1%E5%A0%B1_Styler.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🎨 做一張會變色的空氣品質週報</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
     <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
     <article class="md"><blockquote class="alert alert-important">
 <p class="alert-title">📌 重點</p>
@@ -53,9 +53,9 @@
 <h2 id="學生素材下載">📦 學生素材下載</h2>
 <blockquote class="alert alert-tip">
 <p class="alert-title">💡 提示</p>
-<p><strong>🎨 茶語時光：做一份「會發亮」的 KPI 報表</strong></p>
-<p>每季的營運會議，區經理都要盯著一張密密麻麻的數字表找問題。老闆說：「能不能讓沒達標的自動變紅、表現最好的自動亮起來？我要一眼就看到重點。」你決定用 pandas 的 Styler 幫表格「化妝」，最後匯出成帶顏色的 Excel。</p>
-<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 視覺化表格_學生素材.zip</a></p>
+<p><strong>🎨 做一張會變色的空氣品質週報</strong></p>
+<p>你看過環境部的空氣品質地圖嗎？綠色代表良好、黃色普通、橘色開始對敏感族群不健康……同樣的數字，<strong>上了顏色</strong>，一眼就知道哪裡要小心。學校要你做一份「本週空氣品質報表」貼在公布欄，今天就用 pandas 的 <strong>Styler</strong>，把一堆數字變成一張<strong>跟官方一樣會變色</strong>的表格，最後匯出成 Excel。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%9C%83%E8%AE%8A%E8%89%B2%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E9%80%B1%E5%A0%B1_Styler.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%9C%83%E8%AE%8A%E8%89%B2%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E9%80%B1%E5%A0%B1_Styler.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 視覺化表格_學生素材.zip</a></p>
 </blockquote>
 <div class="table-wrap"><table>
 <thead>
@@ -66,15 +66,12 @@
 </thead>
 <tbody>
 <tr>
-<td><code>門市KPI_2024Q2.csv</code></td>
-<td>第二季各門市的營收目標、實際營收、去年同期、來客數、評分、客訴、新會員</td>
-</tr>
-<tr>
-<td><code>品項月銷量_2024.csv</code></td>
-<td>10 個品項 × 12 個月的杯數</td>
+<td><code>日空氣品質指標_近一年.csv</code></td>
+<td>環境部近一年、全台 80 多個測站的每日 AQI 與 PM2.5 等副指標</td>
 </tr>
 </tbody>
 </table></div>
+<p><strong>📡 資料來源</strong>（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：<a href="https://data.gov.tw/dataset/40507" target="_blank" rel="noopener">日空氣品質指標(AQI)</a>（環境部）</p>
 <p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
 <hr />
 <h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
@@ -270,7 +267,7 @@ styled
 </div>
 <footer class="site-footer">
   <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
-  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜範例資料來自政府資料開放平台，依「政府資料開放授權條款－第1版」使用。</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="../assets/site.js"></script>

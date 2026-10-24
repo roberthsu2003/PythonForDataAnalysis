@@ -18,16 +18,17 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🎨 茶語時光：做一份「會發亮」的 KPI 報表**
+> **🎨 做一張會變色的空氣品質週報**
 >
-> 每季的營運會議，區經理都要盯著一張密密麻麻的數字表找問題。老闆說：「能不能讓沒達標的自動變紅、表現最好的自動亮起來？我要一眼就看到重點。」你決定用 pandas 的 Styler 幫表格「化妝」，最後匯出成帶顏色的 Excel。
+> 你看過環境部的空氣品質地圖嗎？綠色代表良好、黃色普通、橘色開始對敏感族群不健康……同樣的數字，**上了顏色**，一眼就知道哪裡要小心。學校要你做一份「本週空氣品質報表」貼在公布欄，今天就用 pandas 的 **Styler**，把一堆數字變成一張**跟官方一樣會變色**的表格，最後匯出成 Excel。
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%9C%83%E7%99%BC%E4%BA%AE%E7%9A%84KPI%E9%80%B1%E5%A0%B1.ipynb)　｜　[⬇️ 下載本章素材 視覺化表格_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%9C%83%E8%AE%8A%E8%89%B2%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E9%80%B1%E5%A0%B1_Styler.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%9C%83%E8%AE%8A%E8%89%B2%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E9%80%B1%E5%A0%B1_Styler.ipynb)　｜　[⬇️ 下載本章素材 視覺化表格_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC/%E8%A6%96%E8%A6%BA%E5%8C%96%E8%A1%A8%E6%A0%BC_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `門市KPI_2024Q2.csv` | 第二季各門市的營收目標、實際營收、去年同期、來客數、評分、客訴、新會員 |
-| `品項月銷量_2024.csv` | 10 個品項 × 12 個月的杯數 |
+| `日空氣品質指標_近一年.csv` | 環境部近一年、全台 80 多個測站的每日 AQI 與 PM2.5 等副指標 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[日空氣品質指標(AQI)](https://data.gov.tw/dataset/40507)（環境部）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

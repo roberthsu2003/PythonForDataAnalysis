@@ -4,7 +4,7 @@
     python tools/build_site.py
 
 會產生：
-    docs/index.html            課程首頁（茶語時光故事、3 步驟開始、各階段章節卡片）
+    docs/index.html            課程首頁（真實資料故事、3 步驟開始、各階段章節卡片）
     docs/chapters/chNN.html    每一章的網頁版（內容來自該章 README.md）
     docs/assets/site.css、site.js
 
@@ -137,7 +137,7 @@ def page(title, desc, body, depth, active=None):
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="{prefix}index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <a class="brand" href="{prefix}index.html"><span class="brand-icon">📊</span><span>Python 資料分析</span></a>
     <nav class="topnav">
       <a href="{prefix}index.html"{' class="on"' if active == 'home' else ''}>課程首頁</a>
       <a href="{prefix}chart-selection/index.html">圖表思維實驗室</a>
@@ -148,7 +148,7 @@ def page(title, desc, body, depth, active=None):
 {body}
 <footer class="site-footer">
   <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
-  <p><a href="{REPO}" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+  <p><a href="{REPO}" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜範例資料來自政府資料開放平台，依「政府資料開放授權條款－第1版」使用。</p>
 </footer>
 <script src="{HLJS}/highlight.min.js"></script>
 <script src="{prefix}assets/site.js"></script>
@@ -167,7 +167,7 @@ def build_index(stages, intro):
     intro = re.sub(r'^!\[.*\n+# .*\n+.*\n', '', intro)          # 圖片、標題與第一段（已放在網頁上方的大標題區）
     intro = re.sub(r'^> 🌐.*\n', '', intro, flags=re.M)                  # 「網頁版」連結在網頁上不需要
     intro_html, _ = render_markdown(intro, ROOT, pages)
-    intro_html = intro_html.replace('點下方表格「🧋 本章任務」的連結', '點下方章節卡片的「▶ 在 Colab 開始任務」')
+    intro_html = intro_html.replace('點下方表格「🎯 本章任務」的連結', '點下方章節卡片的「▶ 在 Colab 開始任務」')
     total = sum(1 for s in stages for c in s['chapters'] if c['mission_url'])
     sections = []
     for s in stages:
@@ -195,7 +195,7 @@ def build_index(stages, intro):
     body = f'''
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-badge">🧋 跟著「茶語時光」一起學資料分析</p>
+    <p class="hero-badge">📡 用台灣的真實開放資料學資料分析</p>
     <h1>Python 資料分析</h1>
     <p class="hero-sub">用 NumPy、pandas、Matplotlib 把原始資料變成能做決策的報表與圖表。<br>{total} 個情境任務、每章都有自動批改的練習，打開 Colab 就能開始。</p>
     <div class="hero-actions">
@@ -221,8 +221,8 @@ def build_index(stages, intro):
     </div>
   </section>
 </main>'''
-    (DOCS / 'index.html').write_text(page('Python 資料分析｜茶語時光互動教材',
-                                          'Python 資料分析課程網頁版：跟著虛構手搖飲品牌「茶語時光」學 NumPy、pandas 與 Matplotlib。',
+    (DOCS / 'index.html').write_text(page('Python 資料分析｜用真實開放資料學',
+                                          'Python 資料分析課程網頁版：用 YouBike、電費、空氣品質、捷運、電影票房等政府開放資料學 NumPy、pandas 與 Matplotlib。',
                                           body, 0, 'home'), encoding='utf-8')
 
 

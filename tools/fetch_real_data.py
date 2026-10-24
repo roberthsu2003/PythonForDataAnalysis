@@ -41,6 +41,12 @@ SOURCES = {
                       url='https://boxofficetw.tfai.org.tw/OpenData/statistic/since2016'),
     'a1': dict(file='A1類交通事故.csv', dataset=12818, title='即時交通事故資料(A1類)', publisher='內政部警政署',
                url='https://opdadm.moi.gov.tw/api/v1/no-auth/resource/api/dataset/02D40248-7CAA-4354-82EA-E27AB8DCAB39/resource/67214307-AD41-4FE7-A04F-D8051A0301DB/download'),
+    'population_112': dict(file='各鄉鎮市區人口密度_112年.json', dataset=8410, title='各鄉鎮市區人口密度（民國 112 年底）', publisher='內政部',
+                           url='https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/112'),
+    'population_113': dict(file='各鄉鎮市區人口密度_113年.json', dataset=8410, title='各鄉鎮市區人口密度（民國 113 年底）', publisher='內政部',
+                           url='https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/113'),
+    'population_114': dict(file='各鄉鎮市區人口密度_114年.json', dataset=8410, title='各鄉鎮市區人口密度（民國 114 年底）', publisher='內政部',
+                           url='https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/114'),
     'mrt': dict(file=f'臺北捷運各站分時進出量_{MRT_MONTH}.csv', dataset=128506, title='臺北捷運各站分時進出量統計', publisher='臺北大眾捷運股份有限公司',
                 url='http://tcgmetro.blob.core.windows.net/stationod/' + quote(f'臺北捷運每日分時各站OD流量統計資料_{MRT_MONTH}.csv')),
 }

@@ -124,7 +124,7 @@ def header(chapter, notebook, title, story, files_desc, sources=None):
         note = (sources_table(sources) + '\n\n> ✅ 這些都是**真實的政府開放資料**，依「政府資料開放授權條款－第1版」使用。'
                 '課堂上統一使用上表日期的快照，所以每個人跑出來的數字都一樣。')
     else:
-        note = '> ⚠️ 「茶語時光」是課程虛構的品牌，資料為模擬資料；節日與颱風假的日期參考台灣實際情況，方便你對照生活經驗。'
+        note = '> ✅ 本章使用真實的政府開放資料。'
     return md(f'''
 {badge}
 
@@ -262,7 +262,7 @@ def finalize(cells):
 | --- | --- |
 {plan}
 
-**怎麼用這本 Notebook**：從上到下按 `Shift + Enter` 一格一格執行。每個任務都會先講「老闆想知道什麼」，再給程式，最後用 💡 **看懂結果** 告訴你這個數字代表什麼。
+**怎麼用這本 Notebook**：從上到下按 `Shift + Enter` 一格一格執行。每個任務都會先講「你想知道什麼」，再給程式，最後用 💡 **看懂結果** 告訴你這個數字代表什麼。
 ''')
     done = '\n'.join(f'- ✅ {label}：{t}' for label, t in titles)
     finale = md(f'''
@@ -273,7 +273,7 @@ def finalize(cells):
 {done}
 
 > 🎯 **帶走一句話**：程式只是工具，真正有價值的是你從資料裡找到的那句「所以我們應該……」。
-> 把上面每個 💡 **看懂結果** 用自己的話寫成一句建議，就是一份可以交給老闆的報告。
+> 把上面每個 💡 **看懂結果** 用自己的話寫成一句建議，就是一份可以拿去報告的分析。
 ''')
     first_code = next((i for i, c in enumerate(cells) if c.cell_type == 'code'), 1)
     return cells[:first_code] + [roadmap] + cells[first_code:] + [finale]

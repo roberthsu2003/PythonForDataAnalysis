@@ -15,7 +15,7 @@
 <body>
 <header class="topbar">
   <div class="topbar-inner">
-    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <a class="brand" href="../index.html"><span class="brand-icon">📊</span><span>Python 資料分析</span></a>
     <nav class="topnav">
       <a href="../index.html">課程首頁</a>
       <a href="../chart-selection/index.html">圖表思維實驗室</a>
@@ -32,7 +32,7 @@
   <main class="chapter">
     <p class="crumb"><a href="../index.html">課程首頁</a> › 第 13 章</p>
     <h1 class="chapter-title">📊 🖼️ 直接使用 pandas 繪製圖表：表格算完一行出圖，再用 seaborn 讓統計圖更有說服力</h1>
-    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%B9%B4%E5%BA%A6%E7%B0%A1%E5%A0%B1%E5%9C%96.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🖼️ 一行程式畫出年度簡報圖</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%8F%B0%E7%81%A3%E7%9A%84%E5%85%AD%E5%80%8B%E6%95%85%E4%BA%8B.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🖼️ 一行程式，畫出台灣的六個故事</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
     <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
     <article class="md"><blockquote class="alert alert-important">
 <p class="alert-title">📌 重點</p>
@@ -53,9 +53,9 @@
 <h2 id="學生素材下載">📦 學生素材下載</h2>
 <blockquote class="alert alert-tip">
 <p class="alert-title">💡 提示</p>
-<p><strong>🖼️ 茶語時光：一行程式畫出年度簡報圖</strong></p>
-<p>尾牙前要做年度簡報。上一章你學會用 groupby 算出各種統計，這次老闆要的是「圖」：全年營收走勢、颱風和演唱會的影響、不同時段客人點什麼、會員是不是比較會花錢。好消息是——<strong>表格整理好之後，pandas 一行就能畫圖</strong>。</p>
-<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%B9%B4%E5%BA%A6%E7%B0%A1%E5%A0%B1%E5%9C%96.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%B9%B4%E5%BA%A6%E7%B0%A1%E5%A0%B1%E5%9C%96.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 直接使用pandas繪制圖表_學生素材.zip</a></p>
+<p><strong>🖼️ 一行程式，畫出台灣的六個故事</strong></p>
+<p>前面幾章你已經用過 YouBike、電影票房、台電用電、空氣品質、捷運這幾份真實資料。這一章是「<strong>成果發表會</strong>」：每份資料整理好之後，只要在表格後面加上 <code>.plot()</code>，一行就能畫出圖；再搭配 <strong>seaborn</strong> 畫出統計圖。你要做出六張可以直接放進簡報的圖，每一張講一個台灣的故事。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%8F%B0%E7%81%A3%E7%9A%84%E5%85%AD%E5%80%8B%E6%95%85%E4%BA%8B.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%B8%80%E8%A1%8C%E7%95%AB%E5%87%BA%E5%8F%B0%E7%81%A3%E7%9A%84%E5%85%AD%E5%80%8B%E6%95%85%E4%BA%8B.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8/%E7%9B%B4%E6%8E%A5%E4%BD%BF%E7%94%A8pandas%E7%B9%AA%E5%88%B6%E5%9C%96%E8%A1%A8_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 直接使用pandas繪制圖表_學生素材.zip</a></p>
 </blockquote>
 <div class="table-wrap"><table>
 <thead>
@@ -66,12 +66,24 @@
 </thead>
 <tbody>
 <tr>
-<td><code>每日營收_2024.csv</code></td>
-<td>2024 年每天 × 5 家門市的杯數、營收、最高溫與特殊事件（颱風、演唱會、節日、活動）</td>
+<td><code>臺北市YouBike每月使用量.csv</code></td>
+<td>臺北市 YouBike 每月騎乘次數（Big5）</td>
 </tr>
 <tr>
-<td><code>訂單明細_2024-07.csv</code></td>
-<td>7 月份的訂單明細（約 4 萬筆）</td>
+<td><code>全國電影票房_2016至今.json</code></td>
+<td>文化部全國電影票房（JSON）</td>
+</tr>
+<tr>
+<td><code>台電各縣市用電統計.csv</code></td>
+<td>台電各縣市每月售電量</td>
+</tr>
+<tr>
+<td><code>日空氣品質指標_近一年.csv</code></td>
+<td>環境部近一年每日 AQI</td>
+</tr>
+<tr>
+<td><code>臺北捷運各站分時進出量_202603.csv</code></td>
+<td>臺北捷運 2026 年 3 月各站每小時進出站人次</td>
 </tr>
 <tr>
 <td><code>課程原始資料/</code></td>
@@ -79,6 +91,7 @@
 </tr>
 </tbody>
 </table></div>
+<p><strong>📡 資料來源</strong>（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：<a href="https://data.gov.tw/dataset/135775" target="_blank" rel="noopener">YouBike臺北市站位每月使用量</a>（臺北市政府交通局）、<a href="https://data.gov.tw/dataset/94224" target="_blank" rel="noopener">全國電影票房統計數據</a>（文化部）、<a href="https://data.gov.tw/dataset/29935" target="_blank" rel="noopener">台灣電力公司各縣市住宅、服務業及機關用電統計資料</a>（台灣電力股份有限公司）、<a href="https://data.gov.tw/dataset/40507" target="_blank" rel="noopener">日空氣品質指標(AQI)</a>（環境部）、<a href="https://data.gov.tw/dataset/128506" target="_blank" rel="noopener">臺北捷運各站分時進出量統計</a>（臺北大眾捷運股份有限公司）</p>
 <p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
 <hr />
 <h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
@@ -293,7 +306,7 @@ plt.show()
 </div>
 <footer class="site-footer">
   <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
-  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜範例資料來自政府資料開放平台，依「政府資料開放授權條款－第1版」使用。</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 <script src="../assets/site.js"></script>

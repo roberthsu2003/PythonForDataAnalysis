@@ -18,17 +18,20 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **📅 茶語時光：兩年營收趨勢與外送時區之謎**
+> **📅 電費漲了多少？空汙哪天最嚴重？用時間序列看懂變化**
 >
-> 品牌成立滿兩年，董事會想看：「今年比去年成長多少？哪個月最好？颱風到底讓我們少賺多少？」同時，外送部門抱怨：「平台報表說我們凌晨 4 點最忙，這怎麼可能？」你要用 pandas 的時間工具，一次解開這些問題。
+> 「最近電費好像變貴了？」「這幾天空氣好差！」——這些感覺都跟**時間**有關。今天你手上有三份帶著時間的真實資料：八年的電費、一年的空氣品質、一個月的捷運人潮。你要學會把各種奇怪的日期格式（像民國年 `10701`）變成 pandas 看得懂的時間，再用 **resample、年增率、移動平均** 回答：**電費到底漲了多少？哪幾天的空汙特別嚴重？**
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%85%A9%E5%B9%B4%E7%87%9F%E6%94%B6%E8%88%87%E5%A4%96%E9%80%81%E6%99%82%E5%8D%80.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%85%A9%E5%B9%B4%E7%87%9F%E6%94%B6%E8%88%87%E5%A4%96%E9%80%81%E6%99%82%E5%8D%80.ipynb)　｜　[⬇️ 下載本章素材 日期和時間_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E9%9B%BB%E8%B2%BB%E6%BC%B2%E4%BA%86%E5%A4%9A%E5%B0%91_%E7%A9%BA%E6%B1%99%E5%93%AA%E5%A4%A9%E6%9C%80%E5%9A%B4%E9%87%8D_%E6%99%82%E9%96%93%E5%BA%8F%E5%88%97.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E9%9B%BB%E8%B2%BB%E6%BC%B2%E4%BA%86%E5%A4%9A%E5%B0%91_%E7%A9%BA%E6%B1%99%E5%93%AA%E5%A4%A9%E6%9C%80%E5%9A%B4%E9%87%8D_%E6%99%82%E9%96%93%E5%BA%8F%E5%88%97.ipynb)　｜　[⬇️ 下載本章素材 日期和時間_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `每日營收_2023-2024.csv` | 2023～2024 兩年、5 家門市的每日杯數與營收（日期格式是「2024/1/5」的文字） |
-| `外送訂單_UTC_2024-09.csv` | 9 月外送平台訂單，時間以 UTC（世界標準時間）儲存 |
+| `台電住宅每戶平均用電與電費.csv` | 台電住宅每戶每月平均用電與電費（日期是**民國年月** `10701`） |
+| `日空氣品質指標_近一年.csv` | 環境部近一年、全台 80 多個測站的每日 AQI |
+| `臺北捷運各站分時進出量_202603.csv` | 臺北捷運 2026 年 3 月各站每小時進出站人次 |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[台灣電力公司住宅用戶每月平均用電度數及電費](https://data.gov.tw/dataset/17062)（台灣電力股份有限公司）、[日空氣品質指標(AQI)](https://data.gov.tw/dataset/40507)（環境部）、[臺北捷運各站分時進出量統計](https://data.gov.tw/dataset/128506)（臺北大眾捷運股份有限公司）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

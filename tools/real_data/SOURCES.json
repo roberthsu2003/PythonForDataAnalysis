@@ -70,5 +70,32 @@
     "page": "https://data.gov.tw/dataset/29935",
     "license": "政府資料開放授權條款－第1版",
     "fetched": "2026-10-24"
+  },
+  "population_112": {
+    "file": "各鄉鎮市區人口密度_112年.json",
+    "title": "各鄉鎮市區人口密度（民國 112 年底）",
+    "publisher": "內政部",
+    "url": "https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/112",
+    "page": "https://data.gov.tw/dataset/8410",
+    "license": "政府資料開放授權條款－第1版",
+    "fetched": "2026-10-24"
+  },
+  "population_113": {
+    "file": "各鄉鎮市區人口密度_113年.json",
+    "title": "各鄉鎮市區人口密度（民國 113 年底）",
+    "publisher": "內政部",
+    "url": "https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/113",
+    "page": "https://data.gov.tw/dataset/8410",
+    "license": "政府資料開放授權條款－第1版",
+    "fetched": "2026-10-24"
+  },
+  "population_114": {
+    "file": "各鄉鎮市區人口密度_114年.json",
+    "title": "各鄉鎮市區人口密度（民國 114 年底）",
+    "publisher": "內政部",
+    "url": "https://www.ris.gov.tw/rs-opendata/api/v1/datastore/ODRP048/114",
+    "page": "https://data.gov.tw/dataset/8410",
+    "license": "政府資料開放授權條款－第1版",
+    "fetched": "2026-10-24"
   }
 }

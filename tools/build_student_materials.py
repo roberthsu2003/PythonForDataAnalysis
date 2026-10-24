@@ -62,7 +62,7 @@ def readme_text(chapter, notebook, extras):
         lines += ['本章資料為政府資料開放平台的真實資料，依「政府資料開放授權條款－第1版」使用：']
         lines += [f"  - {m['title']}（{m['publisher']}，{m['fetched']} 下載）{m['page']}" for m in sources_meta(sources)]
     else:
-        lines += ['「茶語時光」是課程虛構的手搖飲品牌，範例資料為模擬資料；', '節日與颱風假的日期參考台灣實際情況。']
+        lines += ['本章資料為政府資料開放平台的真實資料。']
     if extras:
         lines += ['', '【課程原始資料】', '「課程原始資料」資料夾內是本章課堂 Notebook 使用的原始檔案：']
         lines += [f'  - {p}' for p in extras]
@@ -106,7 +106,7 @@ def update_root_readme(chapter_dir):
     """把根目錄 README 學習路徑表格中，這一章的「本章任務」連結換成最新的範例 Notebook。"""
     h = LAST_HEADER
     title = h['title']
-    title = title.replace('茶語時光：', '') if '茶語時光：' in title else re.split(r'(?<=？)|：', title)[0]   # 取到第一個問號或冒號
+    title = re.split(r'(?<=？)|：', title.replace('期末實戰：', ''))[0]   # 取到第一個問號或冒號，當作簡短的任務名稱
     readme = ROOT / 'README.md'
     lines = readme.read_text(encoding='utf-8').split('\n')
     for i, line in enumerate(lines):

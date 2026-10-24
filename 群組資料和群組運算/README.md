@@ -18,16 +18,18 @@
 ## 📦 學生素材下載
 
 > [!TIP]
-> **🧩 茶語時光：台南人真的愛全糖嗎？**
+> **🚇 捷運哪一站最擠？誰住這裡、誰在這裡上班？**
 >
-> 公司內部流傳很多「都市傳說」：台南人特別愛全糖、逢甲店晚上才是戰場、會員比較會花錢……新來的行銷總監說：「別再用猜的，拿數據來！」你手上有第一季 12 萬筆訂單明細，只要學會一招 **groupby（分組 → 計算 → 合併）**，就能一一驗證。
+> 每天早上擠捷運的你，有沒有想過：**哪一站最多人？大家都從哪裡出發、去哪裡上班？假日大家又去哪裡玩？**臺北捷運公開了每一站、每一小時的進出站人次——一個月就有 8 萬列。只要學會一招 **groupby（分組 → 計算 → 合併）**，就能從這堆數字裡看出整座城市的作息。
 >
-> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%8F%B0%E5%8D%97%E4%BA%BA%E7%9C%9F%E7%9A%84%E6%84%9B%E5%85%A8%E7%B3%96%E5%97%8E.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%8F%B0%E5%8D%97%E4%BA%BA%E7%9C%9F%E7%9A%84%E6%84%9B%E5%85%A8%E7%B3%96%E5%97%8E.ipynb)　｜　[⬇️ 下載本章素材 群組資料和群組運算_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
+> [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%8D%B7%E9%81%8B%E5%93%AA%E4%B8%80%E7%AB%99%E6%9C%80%E6%93%A0_%E8%AA%B0%E4%BD%8F%E9%80%99%E8%A3%A1%E8%AA%B0%E5%9C%A8%E9%80%99%E4%B8%8A%E7%8F%AD.ipynb) [開啟範例 Notebook](./%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E6%8D%B7%E9%81%8B%E5%93%AA%E4%B8%80%E7%AB%99%E6%9C%80%E6%93%A0_%E8%AA%B0%E4%BD%8F%E9%80%99%E8%A3%A1%E8%AA%B0%E5%9C%A8%E9%80%99%E4%B8%8A%E7%8F%AD.ipynb)　｜　[⬇️ 下載本章素材 群組資料和群組運算_學生素材.zip](https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip)
 
 | 素材檔案 | 內容 |
 | --- | --- |
-| `訂單明細_2024Q1.csv` | 第一季約 12 萬筆訂單明細：時間、門市、品項、甜度、冰塊、數量、金額、是否會員、付款方式 |
+| `臺北捷運各站分時進出量_202603.csv` | 臺北捷運 2026 年 3 月，每一站、每一天、每一小時的進站與出站人次（約 8 萬列；由臺北捷運公司的起訖站資料彙總） |
 | `課程原始資料/` | 本章課堂 Notebook 使用的原始資料檔 |
+
+**📡 資料來源**（政府資料開放平台，依「政府資料開放授權條款－第1版」使用）：[臺北捷運各站分時進出量統計](https://data.gov.tw/dataset/128506)（臺北大眾捷運股份有限公司）
 
 **使用方式**：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。
 

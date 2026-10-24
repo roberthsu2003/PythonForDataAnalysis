@@ -1,168 +1,161 @@
-"""第 10 章 視覺化表格：Styler 格式化、條件標色、熱力圖、資料條、匯出 Excel。"""
-import numpy as np
-import pandas as pd
-
-from common import STORES, daily_sales, expected_items, rng
-from nbtools import md, code, setup_cell, header, exercises
+"""第 10 章 視覺化表格：用環境部真實 AQI 做「會變色的空品表」——Styler 格式化、官方等級色、熱力圖、資料條、匯出 Excel。"""
+from nbtools import md, code, setup_cell, header, exercises, copy_real
 
 CHAPTER = '視覺化表格'
-NOTEBOOK = '範例_茶語時光_會發亮的KPI週報.ipynb'
+NOTEBOOK = '範例_會變色的空氣品質週報_Styler.ipynb'
+SOURCES = ['aqi']
 
 
 def build(out):
-    r = rng(100)
-    d = daily_sales('2023-01-01', '2024-12-31')
-    q2 = d[(d['日期'] >= '2024-04-01') & (d['日期'] <= '2024-06-30')]
-    q2_last = d[(d['日期'] >= '2023-04-01') & (d['日期'] <= '2023-06-30')]
-    kpi = q2.groupby('門市').agg(實際營收=('營收', 'sum'), 杯數=('杯數', 'sum'))
-    kpi['去年同期營收'] = q2_last.groupby('門市')['營收'].sum()
-    achieve = {'台北信義店': 0.97, '台北西門店': 0.91, '台中逢甲店': 1.02, '台南成大店': 1.08, '高雄巨蛋店': 0.98}   # 設定的達成率
-    kpi['營收目標'] = ((kpi['實際營收'] / pd.Series(achieve) / 10000).round() * 10000).astype(int)
-    kpi['來客數'] = (kpi['杯數'] / r.uniform(1.45, 1.6, len(kpi))).round().astype(int)
-    kpi = kpi.reindex(STORES['門市'])                                  # 先依門市固定順序排好，再填入下面的清單
-    kpi['Google評分'] = [4.5, 3.7, 4.2, 4.6, np.nan]                 # 信義、西門、逢甲、台南、高雄（高雄店 Google 頁面申請中）
-    kpi['客訴數'] = [3, 14, 6, 2, 9]
-    kpi['新會員數'] = r.integers(80, 260, len(kpi))
-    kpi = kpi.reset_index()
-    kpi[['門市', '營收目標', '實際營收', '去年同期營收', '來客數', 'Google評分', '客訴數', '新會員數']] \
-        .to_csv(out / '門市KPI_2024Q2.csv', index=False, encoding='utf-8-sig')
-
-    y = d[d['日期'].dt.year == 2024]
-    items = expected_items(y)
-    heat = items.drop(columns=['門市', '日期']).groupby(items['日期'].dt.month).sum().T
-    heat.columns = [f'{m}月' for m in heat.columns]
-    heat.index.name = '品項'
-    heat.to_csv(out / '品項月銷量_2024.csv', encoding='utf-8-sig')
-
-    files = ['門市KPI_2024Q2.csv', '品項月銷量_2024.csv']
-    desc = [('門市KPI_2024Q2.csv', '第二季各門市的營收目標、實際營收、去年同期、來客數、評分、客訴、新會員'),
-            ('品項月銷量_2024.csv', '10 個品項 × 12 個月的杯數')]
+    files = [copy_real(out, 'aqi')]
+    desc = [(files[0], '環境部近一年、全台 80 多個測站的每日 AQI 與 PM2.5 等副指標')]
 
     cells = [
-        header(CHAPTER, NOTEBOOK, '🎨 茶語時光：做一份「會發亮」的 KPI 報表',
-               '每季的營運會議，區經理都要盯著一張密密麻麻的數字表找問題。老闆說：「能不能讓沒達標的自動變紅、'
-               '表現最好的自動亮起來？我要一眼就看到重點。」你決定用 pandas 的 Styler 幫表格「化妝」，最後匯出成帶顏色的 Excel。', desc),
+        header(CHAPTER, NOTEBOOK, '🎨 做一張會變色的空氣品質週報',
+               '你看過環境部的空氣品質地圖嗎？綠色代表良好、黃色普通、橘色開始對敏感族群不健康……'
+               '同樣的數字，**上了顏色**，一眼就知道哪裡要小心。學校要你做一份「本週空氣品質報表」貼在公布欄，'
+               '今天就用 pandas 的 **Styler**，把一堆數字變成一張**跟官方一樣會變色**的表格，最後匯出成 Excel。',
+               desc, SOURCES),
         setup_cell(CHAPTER, files),
         md('''
-## 任務 1：先算出關鍵指標，再幫數字「換衣服」
+## 任務 1：先做出「素顏」的週報
 
-**白話說明**：Styler 只改「外觀」，不改資料。千分位、百分比、小數位數，都用 `format` 設定。
+**白話說明**：挑 12 個測站、最近 7 天，用 `pivot` 排成「測站 × 日期」的表。數字都對，但很難一眼看出重點。
 '''),
         code('''
 import pandas as pd
 
-kpi = pd.read_csv('門市KPI_2024Q2.csv', index_col='門市')
-kpi['達成率'] = kpi['實際營收'] / kpi['營收目標']                    # 實際 ÷ 目標
-kpi['年成長率'] = kpi['實際營收'] / kpi['去年同期營收'] - 1          # 和去年同期比
-kpi['客單價'] = kpi['實際營收'] / kpi['來客數']
-display(kpi.round(3))                                                  # 素顏的表格：很難一眼看出重點
+aqi = pd.read_csv('日空氣品質指標_近一年.csv', parse_dates=['monitordate'])
+sites = ['基隆', '中山', '板橋', '桃園', '新竹', '忠明', '斗六', '臺南', '小港', '屏東', '花蓮', '金門']
+last7 = aqi[aqi['monitordate'] > aqi['monitordate'].max() - pd.Timedelta(days=7)]     # 最近 7 天
 
-styled = kpi.style.format({
-    '營收目標': '{:,.0f}', '實際營收': '{:,.0f}', '去年同期營收': '{:,.0f}', '來客數': '{:,}',
-    '達成率': '{:.1%}', '年成長率': '{:+.1%}', '客單價': '{:.0f}', 'Google評分': '{:.1f}',
-}, na_rep='尚無資料').set_caption('2024 第二季門市 KPI')
+week = last7[last7['sitename'].isin(sites)].pivot(index='sitename', columns='monitordate', values='aqi')
+week = week.reindex(sites)                                            # 依我們指定的順序（北 → 南 → 東 → 離島）
+week.columns = week.columns.strftime('%m/%d')
+week.index.name = '測站'
+week
+'''),
+        md('''
+## 任務 2：套上官方的 AQI 顏色
+
+**白話說明**：`style.map(函式)` 會把**每一格**的值丟進函式，函式回傳一段 CSS（例如 `'background-color: #00e400'`），那一格就會變色。顏色用的是環境部公告的 AQI 等級色。
+'''),
+        code('''
+def aqi_color(v):
+    """依環境部 AQI 等級回傳背景色（文字顏色也一起調整，深色底用白字）。"""
+    if pd.isna(v):
+        return 'background-color: #eeeeee; color: #999999'
+    levels = [(50, '#00e400', 'black'), (100, '#ffff00', 'black'), (150, '#ff7e00', 'black'),
+              (200, '#ff0000', 'white'), (300, '#8f3f97', 'white')]
+    for upper, bg, fg in levels:
+        if v <= upper:
+            return f'background-color: {bg}; color: {fg}'
+    return 'background-color: #7e0023; color: white'
+
+styled = (week.style
+          .map(aqi_color)                                             # 每一格依 AQI 上色
+          .format('{:.0f}', na_rep='—')                               # 整數顯示；沒資料顯示「—」
+          .set_caption('本週空氣品質 AQI（綠＝良好、黃＝普通、橘＝敏感族群不健康、紅＝不健康）'))
 styled
 '''),
         md('''
-## 任務 2：內建螢光筆——最好、最差、缺資料
-'''),
-        code('''
-styled2 = (styled
-           .highlight_max(subset=['達成率', '年成長率', 'Google評分', '新會員數'], props='background-color:#c6efce; font-weight:bold;')  # 每欄最好：綠底
-           .highlight_min(subset=['達成率', '年成長率', 'Google評分'], props='background-color:#ffc7ce;')                               # 每欄最差：紅底
-           .highlight_null(color='#ffeb9c'))                                                                                          # 缺資料：黃底
-styled2
+> 💡 **看懂結果**：一上色，馬上看出**中南部（斗六、小港、屏東、臺南）黃色、橘色最多**，花蓮、中山大多是綠色；北部偶爾也會冒出一天橘色——那通常是一陣外來的污染。一眼就看出哪裡、哪天要小心。這就是為什麼官方要規定一套顏色——**顏色本身就是資訊**。
 '''),
         md('''
-## 任務 3：自訂規則——沒達標變紅、客訴太多變紅字
+## 任務 3：年度成績單——格式化、資料條、標出最好與最差
 
-**公司的規則**：達成率 < 95% 紅底白字；≥ 105% 綠底；客訴 ≥ 10 件紅色粗體。
+**白話說明**：
+- `format` 設定顯示格式：`'{:.1f}'` 小數一位、`'{:.0%}'` 百分比。
+- `bar` 在格子裡畫**資料條**，長短代表大小。
+- `highlight_max` / `highlight_min` 標出每一欄的最大、最小值。
 '''),
         code('''
-def rate_color(v):                                                    # 一次處理一格「達成率」
-    if v < 0.95:
-        return 'background-color:#c00000; color:white; font-weight:bold;'
-    if v >= 1.05:
-        return 'background-color:#00b050; color:white;'
-    return None
+year = aqi[aqi['sitename'].isin(sites)].groupby('sitename').agg(
+    平均AQI=('aqi', 'mean'),
+    最差AQI=('aqi', 'max'),
+    良好天數比例=('aqi', lambda s: (s <= 50).mean()),
+    不健康天數=('aqi', lambda s: (s > 100).sum()),
+).reindex(sites)
+year.index.name = '測站'
 
-def complaint_color(v):
-    return 'color:#c00000; font-weight:bold;' if v >= 10 else None
-
-styled3 = (styled
-           .map(rate_color, subset=['達成率'])                         # 套用到「達成率」欄（舊版 pandas 寫作 applymap）
-           .map(complaint_color, subset=['客訴數'])
-           .bar(subset=['年成長率'], align=0, color=['#ff9999', '#99cc99'], vmin=-0.2, vmax=0.3))   # 成長率資料條：負紅正綠，0 對齊
-styled3
+report = (year.style
+          .format({'平均AQI': '{:.1f}', '最差AQI': '{:.0f}', '良好天數比例': '{:.0%}', '不健康天數': '{:.0f} 天'})
+          .bar(subset=['不健康天數'], color='#ff7e00', vmin=0)                     # 資料條
+          .highlight_max(subset=['平均AQI'], color='#ffcccc')                     # 平均最差：淡紅
+          .highlight_min(subset=['平均AQI'], color='#ccffcc')                     # 平均最好：淡綠
+          .set_caption('近一年各測站空氣品質成績單'))
+report
 '''),
         md('''
-> 💡 **看懂結果**：西門店**達成率最低、客訴最多、評分也最低**——三個警訊同時亮起，下季要優先改善；台南成大店則是全面亮綠燈。
-> 有了顏色，區經理不用一格一格看數字，**三秒鐘就找到問題門市**。
->
-> 🤖 **換你問 AI**：「請用 pandas Styler 格式化這份 KPI 表：達成率顯示百分比，低於 95% 紅底白字、高於 105% 綠底；客訴 ≥ 10 紅字；成長率用資料條呈現。」
+> 💡 **看懂結果**：資料條讓「不健康天數」的差距一目了然：斗六、金門的橘色長條，是花蓮的好幾十倍。**花蓮一整年有八成以上的天數是「良好」**，斗六、金門只有兩成多。
 '''),
         md('''
-## 任務 4：熱力圖——一眼看出每個品項的旺季
+## 任務 4：熱力圖——一年 12 個月，哪裡、什麼時候最糟？
 
-**白話說明**：`background_gradient` 讓數字越大顏色越深，一張表就能看出「季節性」。`axis=1` 代表**每個品項自己比較**（每一列各自上色）。
+**白話說明**：`background_gradient` 依數值大小自動上漸層色，就是「熱力圖」。`axis=None` 代表**整張表一起比較**。
 '''),
         code('''
-heat = pd.read_csv('品項月銷量_2024.csv', index_col='品項')
+aqi['月份'] = aqi['monitordate'].dt.strftime('%Y-%m')
+heat = aqi[aqi['sitename'].isin(sites)].pivot_table(index='sitename', columns='月份', values='aqi', aggfunc='mean').reindex(sites)
+heat.index.name = '測站'
+
 heat_style = (heat.style
-              .background_gradient(cmap='YlOrBr', axis=1)              # 每一列（每個品項）各自由淺到深
-              .format('{:,}')
-              .set_caption('2024 各品項每月杯數（顏色越深＝該品項的旺季）'))
+              .background_gradient(cmap='YlOrRd', axis=None)                     # 整張表一起比：越紅越差
+              .format('{:.0f}')
+              .set_caption('各測站每月平均 AQI 熱力圖'))
 heat_style
 '''),
         md('''
-> 💡 **看懂結果**：芒果冰沙的深色集中在 6～9 月，熱可可只有 1～2 月、12 月有顏色；芋頭鮮奶 1～3 月是空白（還沒上市）。**採購與行銷檔期就照著這張表排。**
+> 💡 **看懂結果**：熱力圖同時告訴你兩件事——**橫著看**：每個測站都是冬春紅、夏天黃；**直著看**：中南部和金門的紅色最深。一張表抵十張折線圖。
 '''),
         md('''
-## 任務 5：匯出成「帶顏色」的 Excel，直接寄給區經理
+## 任務 5：匯出成 Excel，貼到公布欄
+
+**白話說明**：Styler 可以直接 `to_excel`，**顏色和格式會一起帶過去**（需要 openpyxl 套件）。
 '''),
         code('''
-with pd.ExcelWriter('2024Q2_KPI報表.xlsx') as writer:
-    styled3.to_excel(writer, sheet_name='門市KPI')                      # 顏色、粗體會一起保留
-    heat_style.to_excel(writer, sheet_name='品項季節性')
-print('✅ 已輸出 2024Q2_KPI報表.xlsx（用 Excel 打開就能看到顏色）')
-print('原始資料沒有被改變：實際營收合計 =', f"{kpi['實際營收'].sum():,}")
-''')
+with pd.ExcelWriter('空氣品質週報.xlsx') as writer:
+    styled.to_excel(writer, sheet_name='本週AQI')
+    report.to_excel(writer, sheet_name='年度成績單')
+    heat_style.to_excel(writer, sheet_name='月份熱力圖')
+print('已匯出 空氣品質週報.xlsx（用 Excel 打開，顏色都還在）')
+'''),
     ] + exercises(
-        dict(title='「客單價」高於全公司平均的格子，標成淡藍底',
-             hint='`styled.map(函式, subset=[\'客單價\'])` 會把每一格的值丟進函式；函式回傳 CSS 字串（例如 `\'background-color:#ddebf7;\'`）就會上色，回傳 `None` 就不變。',
+        dict(title='在成績單上，把「平均 AQI」超過全部測站平均的格子改成粗體紅字',
+             hint='先算出 `year[\'平均AQI\'].mean()`。`report.map(函式, subset=[\'平均AQI\'])` 的函式要回傳 CSS，例如 `\'color: red; font-weight: bold\'`，不符合時回傳 `None`。',
              starter='''
-avg = kpi['客單價'].___()
-ex1 = styled.map(lambda v: 'background-color:#ddebf7;' if v > ___ else None, subset=['客單價'])
+avg = year['平均AQI'].___()
+ex1 = report.map(lambda v: 'color: red; font-weight: bold' if v > ___ else None, subset=['平均AQI'])
 ex1
 ''',
              check='''
-check('avg', kpi['客單價'].mean())
+check('avg', year['平均AQI'].mean())
 ''',
              solution='''
-avg = kpi['客單價'].mean()
-ex1 = styled.map(lambda v: 'background-color:#ddebf7;' if v > avg else None, subset=['客單價'])
+avg = year['平均AQI'].mean()
+ex1 = report.map(lambda v: 'color: red; font-weight: bold' if v > avg else None, subset=['平均AQI'])
 ex1
 '''),
-        dict(title='給老闆看的版本：隱藏「去年同期營收」與「營收目標」兩欄',
-             hint='`.hide(subset=[欄位, 欄位], axis=\'columns\')`，只是「不顯示」，資料本身還在。',
+        dict(title='公布欄版本：隱藏「最差AQI」欄位',
+             hint='`.hide(subset=[欄位], axis=\'columns\')` 只是「不顯示」，資料本身還在。',
              starter='''
-ex2 = styled.hide(subset=[___, ___], axis='columns')
+ex2 = report.hide(subset=[___], axis='columns')
 ex2
 ''',
              solution='''
-ex2 = styled.hide(subset=['去年同期營收', '營收目標'], axis='columns')
+ex2 = report.hide(subset=['最差AQI'], axis='columns')
 ex2
 '''),
-        dict(title='熱力圖改成 `axis=0`：顏色的意思變成什麼？',
-             hint='`axis=1` 是「每一列（品項）自己比」；`axis=0` 是「每一欄（月份）自己比」——看的是「這個月誰賣最好」。',
+        dict(title='熱力圖改成 `axis=1`：顏色的意思變成什麼？',
+             hint='`axis=None` 是整張表一起比；`axis=1` 是「每一列（每個測站）自己比」——看的是「這個測站哪個月最糟」，就算是空氣很好的花蓮，也會有自己的紅色月份。',
              starter='''
-ex3 = heat.style.background_gradient(cmap='YlOrBr', axis=___).format('{:,}')
+ex3 = heat.style.background_gradient(cmap='YlOrRd', axis=___).format('{:.0f}')
 ex3
 ''',
              solution='''
-ex3 = heat.style.background_gradient(cmap='YlOrBr', axis=0).format('{:,}')
+ex3 = heat.style.background_gradient(cmap='YlOrRd', axis=1).format('{:.0f}')
 ex3
-# axis=0 → 每個月份（每一欄）各自上色，看的是「這個月誰賣最好」，而不是「這個品項哪個月最好」
+# axis=1 → 每個測站各自上色：看的是「對這個測站來說，哪個月最糟」，而不是「哪個測站最糟」
 '''),
     )
     return NOTEBOOK, files, cells
