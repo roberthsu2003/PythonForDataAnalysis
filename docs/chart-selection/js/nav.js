@@ -1,5 +1,5 @@
 /**
- * 【看懂資料與選對圖表】章節專用導航模組
+ * 【圖表思維互動實驗室】專用導航模組
  */
 (function() {
   const navItems = [
@@ -9,7 +9,7 @@
     { title: "📐 圖表名稱與坐標軸", url: "./chart-vocabulary.html" },
     { title: "📊 資料條件挑圖指南", url: "./chart-matrix.html" },
     { title: "⚡ 欄位組合速查", url: "./field-combinations.html" },
-    { title: "🤖 下一章：實戰範例", url: "../ai-examples/index.html" }
+    { title: "🏠 課程首頁", url: "../index.html" }
   ];
 
   function renderNavbar() {
