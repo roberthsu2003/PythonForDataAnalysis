@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 14 章 全方面分析｜Python 資料分析</title>
+<meta name="description" content="用台鐵 2023 年進出站資料走完一次完整分析流程">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html" class="on" aria-current="page"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 14 章</p>
+    <h1 class="chapter-title">📊 🚆 全方面分析：用台鐵 2023 年 8.6 萬筆進出站資料，走完一次完整的資料分析流程</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🚆 台鐵 2023——誰是通勤站？誰是觀光站？</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：把前面所學串成一條完整的分析流水線——<strong>提出問題 → 載入 → 探索 → 清理 → 轉換 → 分析 → 視覺化 → 結論與建議</strong>，並理解每個環節的決策都會影響最後的結論。</li>
+<li><strong>AI 協作能力</strong>：學會「分階段」指揮 AI 做整份分析，並在每個階段<strong>驗收 AI 的產出</strong>——特別是清理資料時的假設是否合理。</li>
+<li><strong>商業決策產出</strong>：能回答「2023 年運量趨勢如何？」、「星期幾最擁擠？」、「哪些車站運量最高？」，並產出可以交給主管的分析摘要與後續建議。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E7%AB%99%E9%BB%9E2023%E5%B9%B4%E9%80%B2%E5%87%BA%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E7%AB%99%E9%BB%9E2023%E5%B9%B4%E9%80%B2%E5%87%BA%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener">開啟 站點2023年進出分析.ipynb</a></p>
+<p>📂 <strong>資料檔</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E6%AF%8F%E6%97%A5%E5%90%84%E7%AB%99%E9%80%B2%E5%87%BA%E7%AB%99%E4%BA%BA%E6%95%B82023.csv" target="_blank" rel="noopener">每日各站進出站人數2023.csv</a>（86,609 筆，241 個車站，2023/1/1～2023/12/31；Notebook 會自動從 GitHub 下載，並自動設定 Colab 中文字型）</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🚆 期末實戰：台鐵 2023——誰是通勤站？誰是觀光站？</strong></p>
+<p>這次不是茶語時光，而是<strong>真實的政府開放資料</strong>：台鐵 2023 年 241 個車站、每天的進出站人數。你是交通部委託的分析師，要回答四個問題：①哪些車站是「上班族通勤站」、哪些是「假日觀光站」？②春節期間，哪些車站人潮暴增、哪些變成空城？③哪幾天全台運量最低，發生了什麼事？④寫一份給長官的三點摘要。這是一個完整的分析流程，每一步都附上「指揮 AI」的範本，請試著自己完成，再對照參考程式。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E6%9C%9F%E6%9C%AB%E5%AF%A6%E6%88%B0_%E5%8F%B0%E9%90%B52023%E9%80%9A%E5%8B%A4%E7%AB%99%E8%88%87%E8%A7%80%E5%85%89%E7%AB%99.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 全方面分析_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>課程原始資料/每日各站進出站人數2023.csv</code></td>
+<td>台鐵 2023 年每日各站進出站人數（真實資料，86,609 筆）</td>
+</tr>
+<tr>
+<td><code>台鐵車站資訊.csv</code></td>
+<td>車站代碼與站名、地址對照表</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>完整的資料分析就像「做一道大菜」</strong>：先決定菜色（提出問題）→ 買菜（載入資料）→ 檢查食材（探索）→ 洗菜去爛葉（清理）→ 切菜醃肉（轉換、建立新欄位）→ 烹調（分析）→ 擺盤（視覺化）→ 上菜並說明（結論與建議）。少了任何一步，菜都不會好吃。</li>
+<li><strong>AI 就像「手腳很快的助理廚師」</strong>：它可以在幾秒內完成每一步，但<strong>它不知道你的商業脈絡</strong>。例如「臺北車站人特別多」是事實，不是錯誤；如果助理把它當成「異常」修掉，整道菜就走味了。</li>
+<li><strong>你的角色是「主廚」</strong>：決定每一步要做什麼、檢查每一步的成果，並對最後的結論負責。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>分析階段</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>常見的坑</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>提出問題</td>
+<td>決定今天要做什麼菜</td>
+<td>沒有問題就開始亂算</td>
+<td>先寫下 3～4 個要回答的商業問題</td>
+</tr>
+<tr>
+<td>載入資料</td>
+<td>買菜</td>
+<td>編碼錯誤、檔案路徑錯</td>
+<td>請 AI 自動嘗試 UTF-8 / Big5</td>
+</tr>
+<tr>
+<td>探索資料</td>
+<td>檢查食材</td>
+<td>沒看分布就直接分析</td>
+<td>要求 AI 報告型態、缺值、描述統計、分布圖</td>
+</tr>
+<tr>
+<td>清理資料</td>
+<td>洗菜去爛葉</td>
+<td><strong>把真實的大數字當成異常值刪掉</strong></td>
+<td>判斷「極端值是錯誤，還是真實現象」</td>
+</tr>
+<tr>
+<td>轉換資料</td>
+<td>切菜醃肉</td>
+<td>日期沒轉型、代碼沒對應名稱</td>
+<td>指定要新增的欄位與公式</td>
+</tr>
+<tr>
+<td>分析</td>
+<td>烹調</td>
+<td>平均值被少數大站拉高</td>
+<td>同時看平均數與中位數</td>
+</tr>
+<tr>
+<td>視覺化</td>
+<td>擺盤</td>
+<td>中文變方塊、圖表沒有標題</td>
+<td>指定圖表類型與標題</td>
+</tr>
+<tr>
+<td>結論與建議</td>
+<td>上菜並說明</td>
+<td>把「相關」說成「因果」</td>
+<td>用白話寫出發現與下一步</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%9C%96%E8%A7%A3/%E5%8F%B0%E9%90%B5%E8%B3%87%E6%96%99%E8%BD%89%E6%8F%9B.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/%E5%9C%96%E8%A7%A3/%E5%8F%B0%E9%90%B5%E8%B3%87%E6%96%99%E8%BD%89%E6%8F%9B.svg" alt="台鐵資料：原始欄位轉換成分析用欄位" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。請<strong>依序執行</strong>以下四段（後面幾段會沿用第一段建立的 <code>df</code>）。</p>
+</blockquote>
+<h3 id="核心技巧-1-載入與探索-先做-資料健康檢查">🔹 核心技巧 1：載入與探索——先做「資料健康檢查」</h3>
+<p><strong>商業意義</strong>：在下任何結論之前，先確認資料「有多少筆、涵蓋哪段時間、有沒有缺值、數字分布長什麼樣子」，避免建立在錯誤資料上的決策。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+url = ('https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/'
+       '%E5%85%A8%E6%96%B9%E9%9D%A2%E5%88%86%E6%9E%90/'
+       '%E6%AF%8F%E6%97%A5%E5%90%84%E7%AB%99%E9%80%B2%E5%87%BA%E7%AB%99%E4%BA%BA%E6%95%B82023.csv')
+df = pd.read_csv(url)                    # 直接從 GitHub 讀取 2023 年每日各站進出站人數
+
+print(df.shape)                          # (86609, 4)：8.6 萬筆、4 個欄位
+print(df.dtypes)                         # 注意：日期 trnOpDate 與車站代碼 staCode 都被讀成整數
+print(df.isnull().sum())                 # 每欄缺值數量（本資料為 0）
+print(df['staCode'].nunique(), '個車站')  # 241 個車站
+print(df[['gateInComingCnt', 'gateOutGoingCnt']].describe())  # 平均約 2,600 人，但最大值高達 9 萬多 → 分布非常不平均
+</code></pre>
+<h3 id="核心技巧-2-轉換-建立日期-總運量-淨流量-星期欄位">🔹 核心技巧 2：轉換——建立日期、總運量、淨流量、星期欄位</h3>
+<p><strong>商業意義</strong>：原始資料只有「進站、出站」，分析需要的指標（總運量、淨流量）與時間維度（星期、月份）要自己建立，這一步決定了後面能回答哪些問題。</p>
+<pre><code class="language-python"># 接續核心技巧 1 的 df
+df['日期'] = pd.to_datetime(df['trnOpDate'], format='%Y%m%d')   # 整數 20230101 → 真正的日期（指定格式最安全）
+df['總運量'] = df['gateInComingCnt'] + df['gateOutGoingCnt']      # 總運量 = 進站 + 出站
+df['淨流量'] = df['gateInComingCnt'] - df['gateOutGoingCnt']      # 淨流量 = 進站 − 出站（正數＝出發多於抵達）
+weekday_map = {0: '星期一', 1: '星期二', 2: '星期三', 3: '星期四', 4: '星期五', 5: '星期六', 6: '星期日'}
+df['星期'] = df['日期'].dt.dayofweek.map(weekday_map)              # 0～6 對應成中文星期
+df['月份'] = df['日期'].dt.month                                   # 取出月份
+
+by_weekday = df.groupby('星期')['總運量'].mean().reindex(list(weekday_map.values()))  # 各星期平均，依星期一～日排序
+print(by_weekday.round(0))               # 可以看出星期五最高
+</code></pre>
+<h3 id="核心技巧-3-趨勢分析-每日全網運量與-7-日移動平均">🔹 核心技巧 3：趨勢分析——每日全網運量與 7 日移動平均</h3>
+<p><strong>商業意義</strong>：每天的運量受假日、天氣影響起伏很大；7 日移動平均剛好涵蓋一整週，能濾掉「週間 vs. 週末」的週期，看出全年真正的趨勢。</p>
+<pre><code class="language-python"># 接續核心技巧 2 的 df
+import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+daily_total = df.groupby('日期')['總運量'].sum()          # 每天全台鐵的總運量（所有車站加總）
+fig, ax = plt.subplots(figsize=(12, 4))
+daily_total.plot(ax=ax, alpha=0.3, label='Daily total')               # 每日總運量（淡色）
+daily_total.rolling(7).mean().plot(ax=ax, label='7-day moving average')  # 7 日移動平均（趨勢線）
+ax.set_title('2023 TRA daily ridership')
+ax.legend()
+plt.show()
+
+print(daily_total.resample('ME').mean().round(0))         # 每月的平均日運量，比較淡旺季
+</code></pre>
+<h3 id="核心技巧-4-高運量車站-合併站名-並比較-清理前-vs-清理後">🔹 核心技巧 4：高運量車站——合併站名，並比較「清理前 vs. 清理後」</h3>
+<p><strong>商業意義</strong>：「代碼 1000」對主管沒有意義，「臺北」才有。合併站名之後，再檢查清理極端值的方法是否把真實的大站「誤傷」。</p>
+<pre><code class="language-python"># 接續核心技巧 2 的 df
+import numpy as np                       # 匯入 NumPy
+
+station_url = ('https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/'
+               '%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/'
+               '%E5%8F%B0%E9%90%B5%E8%BB%8A%E7%AB%99%E8%B3%87%E8%A8%8A.csv')
+stations = pd.read_csv(station_url, usecols=['stationCode', 'stationName'])   # 台鐵車站代碼與站名對照表
+
+top_raw = df.groupby('staCode')['總運量'].mean().nlargest(5).reset_index()  # 清理前：平均總運量前 5 名
+top_raw = top_raw.merge(stations, left_on='staCode', right_on='stationCode', how='left')  # 補上站名
+print(top_raw[['staCode', 'stationName', '總運量']].round(0))     # 臺北約 11.8 萬，遠高於其他站
+
+capped = df.copy()                       # 對照組：模擬「用全體第 99 百分位數截斷極端值」的錯誤清理方式
+for col in ['gateInComingCnt', 'gateOutGoingCnt']:
+    capped[col] = np.clip(capped[col], None, capped[col].quantile(0.99))    # 超過 99% 分位數的值一律壓到上限
+capped['總運量'] = capped['gateInComingCnt'] + capped['gateOutGoingCnt']
+print(capped.groupby('staCode')['總運量'].mean().nlargest(5).round(0))   # 臺北被壓到約 5.5 萬，臺中（3300）掉出前 5
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>完整分析建議<strong>分階段</strong>請 AI 執行，每一階段驗收後再進入下一階段：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（分階段完整分析）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：台鐵 2023 年每日各站進出站人數 CSV，欄位為 trnOpDate（YYYYMMDD 整數）、staCode（車站代碼）、gateInComingCnt（進站）、gateOutGoingCnt（出站）]</strong>，我想回答以下問題：
+<strong>[1. 全年運量趨勢？ 2. 星期幾、哪個月最擁擠？ 3. 運量最高的 5 個車站是哪些（要顯示站名）？ 4. 總運量與淨流量有沒有關係？]</strong></p>
+<p>請依照「<strong>載入 → 探索 → 清理 → 轉換 → 分析 → 視覺化 → 結論</strong>」的順序進行，每個階段：</p>
+<ol>
+<li>使用 <strong>pandas / matplotlib / seaborn</strong> 處理，並先說明這個階段的目標。</li>
+<li>詳細解釋處理邏輯與計算公式；<strong>清理極端值之前，先列出被判定為極端值的資料屬於哪些車站，並說明它們是『錯誤資料』還是『真實的大站』</strong>，由我決定是否處理。</li>
+<li>產出繁體中文說明的完整程式碼，圖表要設定繁體中文字型，最後用條列式寫出主要發現與後續分析建議，並標註潛在的資料陷阱。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只看特定車站</td>
+<td>「請只分析臺北、桃園、中壢三站，比較它們每月的平均總運量與淨流量，畫成折線圖。」</td>
+</tr>
+<tr>
+<td>連假效應</td>
+<td>「請標出 2023 年的國定連假，比較連假前一天、連假期間與一般日的平均運量。」</td>
+</tr>
+<tr>
+<td>通勤型 vs. 觀光型車站</td>
+<td>「請計算每站『平日平均 ÷ 週末平均』，比值高的視為通勤站、低的視為觀光站，各列出前 10 名。」</td>
+</tr>
+<tr>
+<td>產出主管摘要</td>
+<td>「請把分析結果整理成 5 點以內的主管摘要，每點包含一個數字證據與一句建議。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：AI 給出「前 5 名車站」時，請它同時列出<strong>清理前與清理後</strong>的排名。如果兩者差很多，代表清理步驟改變了結論，必須回頭檢查清理的假設。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 Notebook 早期版本用「全部車站一起計算的第 99 百分位數」截斷極端值。實際驗證後發現，<strong>臺北車站的日均總運量從約 11.8 萬被壓到約 5.5 萬，臺中站也因此掉出前 5 名</strong>——因為大站的「極端值」其實是每天的常態。修正後的 Notebook 改以「各車站自己的」IQR <strong>只標記、不截斷</strong>，結果發現被標記的日子集中在少數日期：7/27、9/3、10/5 是全面性的低運量（推測與颱風有關），1/26、4/3、12/29、12/31 則是連假前後的高運量——都是真實的人流變化，而不是錯誤資料。極端值不一定是錯誤，<strong>大小差異懸殊的群體應該分組判斷</strong>。這正是「AI 很快，但主廚要驗收」的最佳例子。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能說出完整資料分析的 8 個階段，以及每個階段要做什麼。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會在分析前先寫下要回答的商業問題。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能請 AI 做資料健康檢查（筆數、型態、缺值、描述統計、分布）。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能請 AI 建立衍生欄位（總運量、淨流量、星期、月份），並說明公式。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我理解「極端值不一定是錯誤」，清理前要先確認它們是什麼。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會把代碼對應成名稱（merge），讓結果對讀者有意義。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會比較「清理前 vs. 清理後」的結論是否一致。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製分階段 Prompt 範本，套用到自己的資料上。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch13.html"><small>← 上一章</small>第 13 章　直接使用pandas繪制圖表</a><a class="pager-next" href="ch15.html"><small>下一章 →</small>第 15 章　資料分析範例</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

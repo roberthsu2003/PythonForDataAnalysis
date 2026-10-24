@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 2 章 檔案存取｜Python 資料分析</title>
+<meta name="description" content="讀取 CSV 與 JSON，認識 UTF-8 編碼與中文亂碼">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html" class="on" aria-current="page"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 2 章</p>
+    <h1 class="chapter-title">📊 📂 檔案存取：讓程式讀懂 CSV 與 JSON，把散落的資料檔變成可分析的素材</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🧋 用 Python 讀懂顧客評論與菜單檔案</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：資料分析的第一步永遠是「把檔案打開、讀進來」。你要認得最常見的兩種資料檔：表格型的 <strong>CSV</strong> 與階層型的 <strong>JSON</strong>，並知道「編碼（UTF-8）」為什麼會讓中文變亂碼。</li>
+<li><strong>AI 協作能力</strong>：學會向 AI 描述「檔案長什麼樣子」（第一列是不是標題、用什麼符號分隔、資料藏在 JSON 的哪一層），讓 AI 一次寫出正確的讀檔程式。</li>
+<li><strong>商業決策產出</strong>：能把政府開放資料、股票成交資訊、學生成績等原始檔，整理成「一列一筆」的乾淨清單，為後續統計與圖表打好基礎。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>延伸範例</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%80%8B%E8%82%A1%E6%97%A5%E6%88%90%E4%BA%A4%E8%B3%87%E8%A8%8A.ipynb" target="_blank" rel="noopener">個股日成交資訊.ipynb</a>（CSV 轉成不同格式的清單）｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/csvRead.ipynb" target="_blank" rel="noopener">csvRead.ipynb</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/jsonReader.ipynb" target="_blank" rel="noopener">jsonReader.ipynb</a>（新北市食品工廠清冊）</p>
+<p>🧰 <strong>專案範例</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%BB%BA%E7%AB%8B2%E7%B6%ADlist_%E5%84%B2%E5%AD%98%E7%82%BAcsv%E6%AA%94" target="_blank" rel="noopener">建立學生成績並存成 CSV</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%BB%BA%E7%AB%8B2%E7%B6%ADlist_%E5%84%B2%E5%AD%98%E7%82%BAcsv%E6%88%96xlsx%E6%AA%94" target="_blank" rel="noopener">可選擇存成 CSV 或 Excel</a></p>
+<p>⚠️ 在 Colab 開啟時只會載入 Notebook 本身，若要讀取本資料夾的 <code>.csv</code>、<code>.json</code> 檔，請先上傳到 Colab 左側的「檔案」區。</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🧋 茶語時光：用 Python 讀懂顧客評論與菜單檔案</strong></p>
+<p>你是「茶語時光」總部新來的資料小幫手。店長丟給你一堆檔案：一份顧客評論文字檔、一份菜單 CSV、一份門市資訊 JSON，還有一份從舊電腦匯出、打開全是亂碼的會員名單。今天的任務是：<strong>不用 Excel，用 Python 把這些檔案讀懂、整理好、再存成店長要的檔案。</strong></p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E9%A1%A7%E5%AE%A2%E8%A9%95%E8%AB%96%E8%88%87%E8%8F%9C%E5%96%AE%E6%AA%94%E6%A1%88.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 檔案存取_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>菜單.csv</code></td>
+<td>10 個品項的價格與成本</td>
+</tr>
+<tr>
+<td><code>門市資訊.json</code></td>
+<td>5 家門市的營業時間、外送、熱銷品項（巢狀 JSON）</td>
+</tr>
+<tr>
+<td><code>顧客評論.txt</code></td>
+<td>3 月份 120 則顧客評論</td>
+</tr>
+<tr>
+<td><code>舊系統會員_big5.csv</code></td>
+<td>舊 POS 系統匯出的會員檔（Big5 編碼，會亂碼！）</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>開檔就像「借閱圖書館的書」</strong>：先 <code>open()</code>（借書）、讀完或寫完之後一定要 <code>close()</code>（還書）。沒還書，別人（其他程式）就借不到，寫到一半的內容也可能沒存進去。用 <code>with</code> 寫法就像「自動還書機」，離開區塊就自動歸還。</li>
+<li><strong>CSV 就像「純文字版的 Excel」</strong>：每一列一筆資料、欄位之間用逗號隔開。它沒有顏色、沒有公式，而且<strong>所有內容都是文字</strong>——連數字 <code>87</code> 讀進來也是字串 <code>'87'</code>。</li>
+<li><strong>JSON 就像「一層一層的資料夾」</strong>：外層資料夾裡有子資料夾，子資料夾裡才是真正的檔案。政府開放資料、網站 API 幾乎都用 JSON，你要知道真正的資料「藏在哪一層」。</li>
+<li><strong>編碼（UTF-8）就像「翻譯字典」</strong>：存檔用 A 字典、讀檔用 B 字典，中文就會變成亂碼。原則很簡單：<strong>存和讀都指定 <code>encoding='utf-8'</code></strong>。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>open()</code> / <code>with</code></td>
+<td>借書與自動還書機</td>
+<td>忘了關檔，資料寫不完整</td>
+<td>要求 AI「一律用 with 開檔」</td>
+</tr>
+<tr>
+<td>讀寫模式 <code>r</code> / <code>w</code> / <code>a</code></td>
+<td>只看不改／整本重寫／在最後加頁</td>
+<td>誤用 <code>w</code> 把舊資料整個蓋掉</td>
+<td>說清楚「覆蓋」還是「附加」</td>
+</tr>
+<tr>
+<td>CSV</td>
+<td>純文字版 Excel 表格</td>
+<td>數字都是字串，計算時報錯</td>
+<td>提醒 AI「把數字欄位轉成數值」</td>
+</tr>
+<tr>
+<td>JSON</td>
+<td>一層一層的資料夾</td>
+<td>搞不清楚資料在第幾層</td>
+<td>貼一小段 JSON 給 AI 看結構</td>
+</tr>
+<tr>
+<td>編碼 UTF-8</td>
+<td>讀寫要用同一本翻譯字典</td>
+<td>中文變亂碼，不知從何查起</td>
+<td>指定「UTF-8 讀寫」，亂碼時請 AI 試 <code>utf-8-sig</code> 或 <code>big5</code></td>
+</tr>
+<tr>
+<td>例外處理 <code>try/except</code></td>
+<td>借書時發現書不見，要有備案</td>
+<td>程式一遇到缺檔就整個當掉</td>
+<td>要求 AI「找不到檔案時給清楚提示」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① CSV：純文字 → 二維清單（一列一筆）</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/csv%E8%BD%89%E4%BA%8C%E7%B6%AD%E6%B8%85%E5%96%AE.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/csv%E8%BD%89%E4%BA%8C%E7%B6%AD%E6%B8%85%E5%96%AE.svg" alt="CSV 純文字讀成二維清單" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② JSON：一層一層的資料夾 → 取出真正的資料清單</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/json%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/json%E5%B7%A2%E7%8B%80%E7%B5%90%E6%A7%8B.svg" alt="JSON 一層一層取出資料" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。以下程式碼會自己產生範例檔，在 Colab 直接執行即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-用-with-安全地寫入與讀取文字檔">🔹 核心技巧 1：用 <code>with</code> 安全地寫入與讀取文字檔</h3>
+<p><strong>商業意義</strong>：會議紀錄、系統日誌、問卷文字回覆都是文字檔。用 <code>with</code> 開檔，就不用擔心忘記關檔造成資料遺失。</p>
+<pre><code class="language-python">text = '''python與中文
+1. 我們來試試看中文儲存能力。
+2. 犇這個字必須是 utf-8 編碼才存得下來。'''   # 準備要寫入的多行文字
+
+# 'w' = 寫入模式（檔案已存在會被整個覆蓋）；encoding 指定 UTF-8 避免中文亂碼
+with open('data.txt', 'w', encoding='utf-8') as file:
+    file.write(text)                          # 把文字寫進檔案；離開 with 區塊會自動關檔
+
+# 'r' = 讀取模式；同樣要用 UTF-8 讀，才不會出現亂碼
+with open('data.txt', 'r', encoding='utf-8') as file:
+    for line in file:                         # 一次讀一行，適合大型檔案
+        print(line.strip())                   # strip() 去掉每行頭尾的空白與換行符號
+</code></pre>
+<h3 id="核心技巧-2-寫入與讀取-csv-表格">🔹 核心技巧 2：寫入與讀取 CSV 表格</h3>
+<p><strong>商業意義</strong>：CSV 是各系統（ERP、POS、資料庫、Excel）之間交換資料的「共通語言」，會讀寫 CSV，就能接收幾乎所有系統匯出的報表。</p>
+<pre><code class="language-python">import csv                                    # 匯入 Python 內建的 CSV 工具
+
+# 寫入：newline='' 可避免 Windows 上每列之間多出空白列
+with open('students.csv', 'w', newline='', encoding='utf-8') as file:
+    writer = csv.writer(file)                 # 建立「CSV 寫手」
+    writer.writerow(['編號', '國文', '英文', '數學'])   # 第一列：欄位標題
+    writer.writerow(['01', 87, 90, 56])       # 第二列：第 1 位學生
+    writer.writerow(['02', 98, 56, 78])       # 第三列：第 2 位學生
+
+# 讀取：DictReader 會自動把第一列當成欄位名稱
+with open('students.csv', 'r', encoding='utf-8') as file:
+    for row in csv.DictReader(file):          # 每一列變成一個「欄位名稱 → 值」的字典
+        total = int(row['國文']) + int(row['英文']) + int(row['數學'])  # ⚠️ 讀進來是文字，要先 int() 轉成數字
+        print(row['編號'], '總分：', total)    # 結果：01 總分：233、02 總分：232
+</code></pre>
+<h3 id="核心技巧-3-python-資料-json-檔">🔹 核心技巧 3：Python 資料 ↔ JSON 檔</h3>
+<p><strong>商業意義</strong>：網站 API、政府開放資料、App 設定檔幾乎都是 JSON。會存取 JSON，就能把網路上的即時資料接進你的分析流程。</p>
+<pre><code class="language-python">import json                                   # 匯入 Python 內建的 JSON 工具
+
+students = [{'姓名': 'stu1', '國文': 58, '英文': 61},   # 清單裡放字典：一位學生一筆
+            {'姓名': 'stu2', '國文': 82, '英文': 62}]
+
+# 存檔：ensure_ascii=False 讓中文以原字儲存，不會變成 姓 這種代碼
+with open('students.json', 'w', encoding='utf-8') as file:
+    json.dump(students, file, ensure_ascii=False)
+
+# 讀檔：json.load() 把 JSON 檔還原成 Python 的清單與字典
+with open('students.json', 'r', encoding='utf-8') as file:
+    data = json.load(file)
+print(data[1]['姓名'], data[1]['國文'])      # 取第 2 筆的姓名與國文成績：stu2 82
+</code></pre>
+<h3 id="核心技巧-4-例外處理-找不到檔案時不要整個當掉">🔹 核心技巧 4：例外處理——找不到檔案時不要整個當掉</h3>
+<p><strong>商業意義</strong>：自動化報表每天要讀的檔案，可能因為上游還沒產出而不存在。加上例外處理，程式會給出清楚的錯誤訊息，而不是一堆看不懂的紅字。</p>
+<pre><code class="language-python">try:                                          # 「試試看」執行下面的程式
+    with open('不存在的報表.csv', 'r', encoding='utf-8') as f:
+        print(f.read())
+except FileNotFoundError:                     # 如果發生「找不到檔案」
+    print('找不到檔案，請確認檔名或先上傳檔案')   # 給使用者看得懂的提示
+except PermissionError:                       # 如果發生「沒有權限」
+    print('你沒有權限存取這個檔案')
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：從政府開放資料平台下載的新北市公共自行車 JSON 檔]</strong>，我想了解 <strong>[例如：新店區每個站點的名稱、地址與目前可借車輛數]</strong>。</p>
+<p>以下是檔案的前幾行內容：<strong>[貼上 CSV 前 5 列，或 JSON 的前 20 行]</strong></p>
+<p>請你：</p>
+<ol>
+<li>使用 Python 內建的 <strong><code>csv</code> / <code>json</code> 模組</strong>，並一律用 <code>with</code> 與 <code>encoding='utf-8'</code> 開檔。</li>
+<li>詳細解釋每一步的處理邏輯，特別說明資料藏在 JSON 的哪一層、CSV 的哪一欄。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：亂碼、數字帶有千分位逗號、缺少欄位、找不到檔案）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>只要報表中的某幾欄</td>
+<td>「這是證交所的個股日成交資訊 CSV，第一列是標題，請只取出證券代號、名稱、收盤價、漲跌價差四欄，存成新的 CSV。」</td>
+</tr>
+<tr>
+<td>從 JSON 撈出特定資料</td>
+<td>「這是 JSON 的前 20 行，請告訴我資料清單在哪一層，並列出所有『新店區』的站名與地址。」</td>
+</tr>
+<tr>
+<td>中文變亂碼</td>
+<td>「我用 UTF-8 讀這個 CSV 出現亂碼，請幫我判斷可能的編碼（utf-8-sig、big5、cp950），並寫出能自動嘗試的讀檔程式。」</td>
+</tr>
+<tr>
+<td>定期下載資料存檔</td>
+<td>「請寫一段程式，下載這個 API 的 JSON，取出縣市與天氣描述，存成 UTF-8 的 CSV，下載失敗時要顯示提示。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：拿到結果後，用 Excel 或記事本打開輸出的檔案，確認「中文正常顯示」、「筆數和原始資料一致」、「第一列是標題」。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章的 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%80%8B%E8%82%A1%E6%97%A5%E6%88%90%E4%BA%A4%E8%B3%87%E8%A8%8A.ipynb" target="_blank" rel="noopener">個股日成交資訊</a> 中，成交股數寫成 <code>'46,790,503'</code>——<strong>帶有千分位逗號的文字</strong>，不能直接拿來加總。記得請 AI「先去掉逗號再轉成數字」。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong>讀取模式 <code>r</code></strong>、<strong>覆蓋寫入 <code>w</code></strong> 與 <strong>附加寫入 <code>a</code></strong> 的差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道為什麼要用 <code>with</code> 開檔，以及沒關檔可能造成的問題。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能分辨 <strong>CSV（表格）</strong> 與 <strong>JSON（一層一層的資料夾）</strong> 的結構差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道 CSV 讀進來的內容都是文字，計算前要先轉成數字。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 遇到中文亂碼時，我知道要從「編碼」下手請 AI 協助。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>csv.reader</code>、<code>csv.DictReader</code>、<code>json.load</code>、<code>json.dump</code> 的用途。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本，貼上檔案前幾行，並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><span></span><a class="pager-next" href="ch03.html"><small>下一章 →</small>第 3 章　繪圖和視覺展示</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

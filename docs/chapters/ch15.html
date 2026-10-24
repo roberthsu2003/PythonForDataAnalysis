@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 15 章 資料分析範例｜Python 資料分析</title>
+<meta name="description" content="政府開放資料、股票、網路紀錄等延伸範例">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html" class="on" aria-current="page"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 15 章</p>
+    <h1 class="chapter-title">資料分析範例</h1>
+    <div class="chapter-actions"><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#政府與公共資料">政府與公共資料</a></li><li class="toc-l2"><a href="#網路紀錄與公開資料集">網路紀錄與公開資料集</a></li><li class="toc-l2"><a href="#股票與加密貨幣">股票與加密貨幣</a></li><li class="toc-l2"><a href="#pandas-資料整理">pandas 資料整理</a></li></ul></details>
+    <article class="md"><p>本資料夾收錄使用 Python 進行資料分析的完整範例，內容涵蓋資料取得、清理、合併、分組統計、資料重塑、時間序列與視覺化。主要使用 pandas、NumPy、Matplotlib、Seaborn 及 pandas-datareader。</p>
+<p>點選範例名稱即可查看程式與分析流程。部分範例需要網路連線或搭配 <code>datasets</code>、<code>examples</code> 目錄中的資料檔案。</p>
+<h2 id="政府與公共資料">政府與公共資料</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>範例</th>
+<th>簡短說明</th>
+<th>分析重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E5%85%A8%E7%90%83Covid19-%E6%9C%80%E6%96%B0%E7%B5%B1%E8%A8%88%E8%A1%A8/main.py" target="_blank" rel="noopener">全球 COVID-19 最新統計表</a></td>
+<td>建立 COVID-19 最新統計資料的查詢介面，並將結果儲存成 Excel。</td>
+<td>網路資料、圖形介面、Excel 匯出</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E8%BE%B2%E6%A5%AD%E9%AB%94%E9%A9%97%E6%88%B6%E5%A4%96%E6%95%99%E8%82%B2%E4%BC%91%E9%96%92%E8%BE%B2%E5%A0%B4.ipynb" target="_blank" rel="noopener">農業體驗戶外教育休閒農場</a></td>
+<td>統計各縣市的戶外教育休閒農場數量，並比較地區分布。</td>
+<td>CSV 下載、類別統計、長條圖</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E4%BA%A4%E9%80%9A%E6%B5%81%E9%87%8F.ipynb" target="_blank" rel="noopener">週末交通流量</a></td>
+<td>整理週六與週日車流量，找出單日流量達 20 萬以上的路線。</td>
+<td>資料清理、分組加總、門檻篩選</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E6%8C%87%E6%A8%99.ipynb" target="_blank" rel="noopener">空氣品質指標（AQI）</a></td>
+<td>整理各監測站的 AQI 與 PM2.5，建立空氣品質分級並統計各狀況的站點數。</td>
+<td>API、資料分級、分組統計</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%81%AB%E8%BB%8A%E7%AB%99%E9%80%B2%E5%87%BA%E7%AB%99%E7%B8%BD%E4%BA%BA%E6%95%B8.ipynb" target="_blank" rel="noopener">火車站進出站總人數</a></td>
+<td>合併車站與進出站資料，找出進站及出站人數都超過 500 萬的車站。</td>
+<td>資料合併、彙總、條件過濾</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B8%BD%E7%B5%B1.ipynb" target="_blank" rel="noopener">第 14 任總統選舉</a></td>
+<td>分析候選人的全國及各縣市得票數、得票率與地區勝負結果。</td>
+<td>Excel、比例分析、地區比較</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="covid-19-統計表畫面">COVID-19 統計表畫面</h3>
+<p><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/images/pic1.png" alt="全球 COVID-19 最新統計表畫面" /></p>
+<h2 id="網路紀錄與公開資料集">網路紀錄與公開資料集</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>範例</th>
+<th>簡短說明</th>
+<th>分析重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Data%20from%20bitly-2.ipynb" target="_blank" rel="noopener">Bitly 瀏覽器與作業系統分析</a></td>
+<td>統計常見瀏覽器識別資訊，並比較各時區的 Windows 與非 Windows 使用情形。</td>
+<td>JSON、字串處理、分組比較</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E7%9A%84%E7%AD%86%E6%95%B8.ipynb" target="_blank" rel="noopener">各時區紀錄數量</a></td>
+<td>清理 Bitly 紀錄中的缺失時區，找出紀錄數最高的前 10 個地區。</td>
+<td>缺失值、次數排名、圖表比較</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E7%B5%B1%E8%A8%88%E5%90%84%E5%8D%80%E5%9F%9F%E4%BD%BF%E7%94%A8windows%E4%BD%9C%E6%A5%AD%E7%B3%BB%E7%B5%B1%E6%95%B8%E9%87%8F.ipynb" target="_blank" rel="noopener">各時區 Windows 使用比例</a></td>
+<td>將使用者分類為 Windows 與非 Windows，比較各時區的數量及比例。</td>
+<td>條件分類、交叉統計、比例標準化</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/MovieLens1MDataset.ipynb" target="_blank" rel="noopener">MovieLens 電影評分</a></td>
+<td>合併使用者、電影與評分資料，分析男女評分差異及熱門電影偏好。</td>
+<td>多表合併、樞紐分析、群體比較</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E5%B9%BD%E6%B5%AE%E5%A0%B1%E5%91%8A.ipynb" target="_blank" rel="noopener">美國幽浮目擊報告</a></td>
+<td>統計美國各州的幽浮目擊次數，並進一步分析阿拉斯加各城市的分布。</td>
+<td>MultiIndex、階層分組、地區統計</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="股票與加密貨幣">股票與加密貨幣</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>範例</th>
+<th>簡短說明</th>
+<th>分析重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/pandas_datareader%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener">台灣塑化類股分析</a></td>
+<td>比較台塑、南亞、台聚及華夏的股價、成交量與每日變化比例。</td>
+<td>金融資料、差分、時間序列</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/pandas_datareader%E8%82%A1%E7%A5%A8%E5%88%86%E6%9E%90_%E4%BD%BF%E7%94%A8rolling.ipynb" target="_blank" rel="noopener">股票價格與移動平均</a></td>
+<td>比較多檔股票價格，利用 100 日移動平均觀察長期趨勢。</td>
+<td><code>rolling()</code>、趨勢平滑、折線圖</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E8%82%A1%E7%A5%A8%E6%BC%B2%E8%B7%8C%E6%AF%94%E7%8E%87%E5%92%8C%E7%9B%B8%E9%97%9C%E4%BF%82%E6%95%B8%E8%88%87%E5%85%B1%E8%AE%8A%E7%95%B0%E6%95%B8.ipynb" target="_blank" rel="noopener">美股漲跌比例、相關係數與共變異數</a></td>
+<td>分析多檔美股的報酬率、漲跌比例及股票之間的共同變動程度。</td>
+<td>報酬率、相關係數、共變異數</td>
+</tr>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/%E6%94%B6%E9%9B%86%E6%AF%94%E7%89%B9%E5%B9%A3%E8%B3%87%E6%96%99/README.ipynb" target="_blank" rel="noopener">加密貨幣網頁資料擷取</a></td>
+<td>擷取加密貨幣排行榜，清理價格與漲跌幅，取得 Bitcoin 的主要市場指標。</td>
+<td>網頁表格、字串清理、型別轉換</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="pandas-資料整理">pandas 資料整理</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>範例</th>
+<th>簡短說明</th>
+<th>分析重點</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E8%B3%87%E6%96%99%E5%88%86%E6%9E%90%E7%AF%84%E4%BE%8B/Hierarchical%20Indexing.ipynb" target="_blank" rel="noopener">階層式索引與城市人口</a></td>
+<td>使用城市與年份建立階層式索引，比較總人口及未滿 18 歲人口。</td>
+<td>MultiIndex、<code>stack()</code>、<code>unstack()</code></td>
+</tr>
+</tbody>
+</table></div>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch14.html"><small>← 上一章</small>第 14 章　全方面分析</a><a class="pager-next" href="../index.html"><small>完成！</small>回到課程首頁</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

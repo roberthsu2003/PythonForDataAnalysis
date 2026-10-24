@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 6 章 pandas的基礎功能｜Python 資料分析</title>
+<meta name="description" content="選取、排序、排名、批次加工與描述統計">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html" class="on" aria-current="page"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 6 章</p>
+    <h1 class="chapter-title">📊 🛠️ pandas 的基礎功能：選取、排序、排名與統計，一張表回答老闆的十個問題</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🏆 店員排行榜與天氣分析</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：掌握表格的「取資料（loc / iloc / 條件篩選）」、「整理資料（reindex / drop）」、「排名次（sort / rank）」、「批次加工（apply / map）」與「看全貌（describe / corr）」五大基本功。</li>
+<li><strong>AI 協作能力</strong>：學會用「哪些列 × 哪些欄 × 什麼條件」的句型下指令，並能請 AI 用相關係數判斷兩個指標是否一起變動。</li>
+<li><strong>商業決策產出</strong>：能產出排行榜、找出不及格或異常的對象、計算每科最高最低分，並判斷「廣告費越多，業績是否越好」。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/Homework1.ipynb" target="_blank" rel="noopener">Homework1</a>（人口密度表清理）｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/Homework2.ipynb" target="_blank" rel="noopener">Homework2</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/Homework3.ipynb" target="_blank" rel="noopener">Homework3</a>（COVID-19 資料搜尋）</p>
+<p>🤖 <strong>AI 賦能練習</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%90%84%E9%84%89%E9%8E%AE%E5%B8%82%E5%8D%80%E4%BA%BA%E5%8F%A3%E5%AF%86%E5%BA%A6.md" target="_blank" rel="noopener">人口密度資料清洗（tkinter）</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/covid-19.md" target="_blank" rel="noopener">COVID-19 資料清洗（tkinter）</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework.md" target="_blank" rel="noopener">練習 1</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework1.md" target="_blank" rel="noopener">練習 2</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework2.md" target="_blank" rel="noopener">練習 3</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework3.md" target="_blank" rel="noopener">AI 賦能說明 1</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework4.md" target="_blank" rel="noopener">練習 4</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/homework5.md" target="_blank" rel="noopener">AI 賦能說明 2</a></p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🏆 茶語時光：店員排行榜與天氣分析</strong></p>
+<p>第一季結束，人資要發績效獎金，請你做一份「店員排行榜」並幫每個人打績效等級；營運長則想知道：「天氣真的會影響生意嗎？要不要看氣象預報排班？」</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%BA%97%E5%93%A1%E6%8E%92%E8%A1%8C%E6%A6%9C%E8%88%87%E5%A4%A9%E6%B0%A3%E5%88%86%E6%9E%90.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 pandas的基礎功能_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>店員業績_2024Q1.csv</code></td>
+<td>25 位店員第一季的出勤、銷售杯數、加購率、顧客評分、客訴數</td>
+</tr>
+<tr>
+<td><code>信義店每日天氣與銷量_2024.csv</code></td>
+<td>信義店 2024 年每天的氣溫、降雨量、杯數、營收</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong><code>loc</code> 與 <code>iloc</code> 就像「找座位」的兩種方式</strong>：<code>loc</code> 是「按名牌找人」（找『台北』那一列），<code>iloc</code> 是「按座位號碼找人」（找第 0 列）。</li>
+<li><strong>條件篩選就像 Excel 的「篩選」按鈕</strong>：只留下「新增確診數 ≥ 10000」或「國家 = 台灣」的列。</li>
+<li><strong><code>sort_values</code> 與 <code>rank</code> 就像「成績排行榜」</strong>：一個是把整張表照分數重新排好，一個是幫每個人標上「第幾名」。</li>
+<li><strong><code>apply</code> 就像「影印機的批次處理」</strong>：寫好一個規則（例如「數一數有幾科不及格」），一次套用到每一列或每一欄。</li>
+<li><strong>相關係數（corr）就像「默契指數」</strong>：介於 -1 到 1 之間，越接近 1 代表兩件事「一起漲、一起跌」，接近 0 代表沒什麼關係。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>loc</code> / <code>iloc</code></td>
+<td>按名牌找人 vs. 按座位號找人</td>
+<td>兩者混用，取錯資料</td>
+<td>說「取出台北、台中兩列的 one、two 欄」</td>
+</tr>
+<tr>
+<td>條件篩選 / <code>query</code></td>
+<td>Excel 篩選按鈕</td>
+<td>多條件 <code>&amp;</code>、`</td>
+<td>` 括號寫錯</td>
+</tr>
+<tr>
+<td><code>reindex</code> / <code>drop</code></td>
+<td>重排座位表／請人離席</td>
+<td>新增索引出現 NaN 不知原因</td>
+<td>說「保留哪些、刪除哪些列或欄」</td>
+</tr>
+<tr>
+<td><code>sort_values</code> / <code>rank</code></td>
+<td>排行榜與名次</td>
+<td>同分時名次怎麼算搞不清</td>
+<td>指定「由高到低、同分怎麼排」</td>
+</tr>
+<tr>
+<td><code>apply</code> / <code>map</code></td>
+<td>影印機批次處理</td>
+<td><code>axis</code> 方向搞錯</td>
+<td>說「對每一位學生」或「對每一科」</td>
+</tr>
+<tr>
+<td><code>describe</code> / <code>corr</code></td>
+<td>健康檢查報告／默契指數</td>
+<td>統計名詞看不懂</td>
+<td>請 AI 用白話解讀每個數字</td>
+</tr>
+<tr>
+<td>資料對齊與 <code>fill_value</code></td>
+<td>兩張名單合併時補空格</td>
+<td>結果滿滿 NaN</td>
+<td>要求「對不上的補 0」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① <code>loc</code> vs. <code>iloc</code>：同一張表、兩種取法</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/loc%E8%88%87iloc.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/loc%E8%88%87iloc.svg" alt="loc 按名牌、iloc 按位置取資料" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② 成績單：新增總分 → 排名 → 依名次排序</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/%E6%8E%92%E5%90%8D%E6%8E%92%E5%BA%8F.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/%E5%9C%96%E8%A7%A3/%E6%8E%92%E5%90%8D%E6%8E%92%E5%BA%8F.svg" alt="成績單：新增總分、排名，再依名次排序" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-用-loc-iloc-與條件篩選取出想要的資料">🔹 核心技巧 1：用 loc / iloc 與條件篩選取出想要的資料</h3>
+<p><strong>商業意義</strong>：從上萬筆資料中，精準取出「某些對象 × 某些指標」，或「符合條件的紀錄」，是回答任何商業問題的第一步。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+df = pd.DataFrame({                      # 模擬疫情資料：一列是一天一個國家
+    '國家': ['台灣', '台灣', '台灣', '日本', '日本'],
+    '日期': ['2022-05-13', '2022-05-14', '2022-05-15', '2022-02-03', '2022-02-04'],
+    '新增確診數': [85000, 128954, 70000, 104345, 98000],
+})
+
+print(df.loc[1, ['國家', '新增確診數']])  # loc：取「列名牌 1」的國家與確診數兩欄
+print(df.iloc[0:2, 0:2])                 # iloc：取第 0～1 列、第 0～1 欄（依位置，不含結尾）
+
+tw = df[df['國家'] == '台灣']            # 條件篩選：只留下台灣的資料
+print(tw[tw['新增確診數'] &gt;= 80000])     # 再篩選：台灣且單日新增 ≥ 8 萬的日子
+print(df.query(&quot;國家 == '日本' and 新增確診數 &gt; 100000&quot;))  # query：用接近白話的語法寫多重條件
+</code></pre>
+<h3 id="核心技巧-2-總分-排名與排序-做一份排行榜">🔹 核心技巧 2：總分、排名與排序——做一份排行榜</h3>
+<p><strong>商業意義</strong>：業務業績排名、門市營收排名、學生成績排名都是同一個套路：先加總、再排名、最後依名次排序。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+scores = pd.DataFrame({'國文': [89, 77, 95, 60],      # 4 位學生 × 3 科成績
+                       '英文': [93, 93, 88, 55],
+                       '數學': [94, 58, 97, 70]},
+                      index=[1, 2, 3, 4])
+scores.index.name = '學號'               # 列名牌的標題
+
+scores['總分'] = scores.sum(axis=1)      # axis=1：每位學生橫著加總
+scores['排名'] = scores['總分'].rank(method='first', ascending=False)  # 總分由高到低排名；同分時先出現的排前面
+print(scores.sort_values(by='排名'))     # 依名次由 1 開始排序，產生排行榜
+</code></pre>
+<h3 id="核心技巧-3-apply-批次套用自訂規則">🔹 核心技巧 3：apply 批次套用自訂規則</h3>
+<p><strong>商業意義</strong>：把「你的業務規則」寫一次，就能套用到每一列或每一欄，例如「數一數每位學生有幾科不及格」或「每一科的最高、最低、中位數」。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+scores = pd.DataFrame({'國文': [89, 77, 55, 60],
+                       '英文': [93, 45, 88, 55],
+                       '數學': [94, 58, 97, 50]},
+                      index=[1, 2, 3, 4])
+
+def count_fail(row):                     # 自訂規則：傳進來的是「一位學生的所有成績」
+    return (row &lt; 60).sum()              # 小於 60 的會是 True，加總 True 的數量＝不及格科目數
+
+scores['不及格科數'] = scores.apply(count_fail, axis=1)   # axis=1：對每一列（每位學生）套用
+print(scores)
+
+def summary(col):                        # 自訂規則：傳進來的是「一整科的成績」
+    return pd.Series([col.min(), col.max(), col.median()], index=['最低分', '最高分', '中位數'])
+
+print(scores[['國文', '英文', '數學']].apply(summary))   # 預設 axis=0：對每一欄（每一科）套用
+</code></pre>
+<h3 id="核心技巧-4-describe-看全貌-corr-看兩個指標的關係">🔹 核心技巧 4：describe 看全貌、corr 看兩個指標的關係</h3>
+<p><strong>商業意義</strong>：老闆問「廣告費加碼，業績真的會變好嗎？」——用相關係數就能給出有根據的答案。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+data = {'年廣告費投入': [12.5, 15.3, 23.2, 26.4, 33.5, 34.4, 39.4, 45.2, 55.4, 60.9],
+        '月均銷售額':   [21.2, 23.9, 32.9, 34.1, 42.5, 43.2, 49.0, 52.8, 59.4, 63.5]}
+df = pd.DataFrame(data, index=range(2011, 2021))      # 10 年的廣告費與銷售額（索引是年份）
+
+print(df.describe())                     # 一次看筆數、平均、標準差、最小、四分位數、最大值
+r = df['年廣告費投入'].corr(df['月均銷售額'])          # 計算相關係數
+print('相關係數：', round(r, 4))         # 結果約 0.9942 → 高度正相關（|r| ≥ 0.7）
+</code></pre>
+<blockquote>
+<p>💡 <strong>相關係數判讀</strong>：<code>|r| &lt; 0.4</code> 低度相關；<code>0.4 ≤ |r| &lt; 0.7</code> 中度相關；<code>|r| ≥ 0.7</code> 高度相關。⚠️ 但「相關」不等於「因果」——冰淇淋銷量和溺水人數都在夏天上升，不代表吃冰淇淋會溺水。</p>
+</blockquote>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：全球 COVID-19 每日資料，欄位有洲名、國家、日期、總確診數、新增確診數、總人口數]</strong>，我想了解 <strong>[例如：台灣單日新增確診數最多的是哪一天，以及台灣與日本的高峰比較]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 loc / 條件篩選 / sort_values / rank / apply / describe</strong> 進行處理。</li>
+<li>詳細解釋每一步的處理邏輯與計算公式，特別說明篩選條件與 axis 方向。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：用 99999 代表缺值、標題列重複出現、檔尾有說明文字、數字是文字型態）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>做排行榜</td>
+<td>「請計算每位業務的季度總業績，新增名次欄（同分取先出現者），並依名次排序列出前 10 名。」</td>
+</tr>
+<tr>
+<td>找出需關注的人</td>
+<td>「請用 apply 計算每位學生不及格的科目數，列出有 2 科以上不及格的學生。」</td>
+</tr>
+<tr>
+<td>兩個指標有沒有關係</td>
+<td>「請計算廣告費與銷售額的相關係數與共變異數，畫散佈圖，並用白話解釋結果代表什麼。」</td>
+</tr>
+<tr>
+<td>股票連動性</td>
+<td>「請下載台積電、聯電、聯發科、鴻海一年的調整後收盤價，計算彼此的相關係數矩陣，並指出哪兩檔走勢最像。」</td>
+</tr>
+<tr>
+<td>清理政府報表</td>
+<td>「這份人口密度 CSV 有兩列標題、檔尾有說明文字，請清理成一列一區的乾淨表格，並重設索引。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：排名結果請抽查第 1 名與最後 1 名的總分是否正確；篩選結果請檢查「筆數」是否合理（例如台灣的資料不應出現日本）。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E5%9F%BA%E7%A4%8E%E5%8A%9F%E8%83%BD/Homework3.ipynb" target="_blank" rel="noopener">Homework3</a> 的 COVID-19 資料中，「解封指數」用 <code>99999</code> 代表「沒有資料」。如果直接算平均，結果會被嚴重灌水！記得請 AI「先檢查是否有用特殊數字代表缺值」。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong><code>loc</code>（按名牌）</strong> 與 <strong><code>iloc</code>（按位置）</strong> 的差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能用白話描述多重篩選條件，請 AI 寫成 <code>df[...]</code> 或 <code>query()</code>。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能分辨 <strong><code>sort_values</code>（重新排列）</strong> 與 <strong><code>rank</code>（標上名次）</strong> 的差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>apply(..., axis=1)</code> 是「對每一列」、預設是「對每一欄」。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 <code>describe()</code> 的統計摘要，並用相關係數判斷兩個指標的關係強弱。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道「相關」不等於「因果」。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch05.html"><small>← 上一章</small>第 5 章　初見pandas</a><a class="pager-next" href="ch07.html"><small>下一章 →</small>第 7 章　pandas的檔案存取</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

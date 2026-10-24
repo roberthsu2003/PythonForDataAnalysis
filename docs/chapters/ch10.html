@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 10 章 數據整理：連接、合併和重塑｜Python 資料分析</title>
+<meta name="description" content="merge、concat、stack／pivot，把表格拼成報表">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html" class="on" aria-current="page"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 10 章</p>
+    <h1 class="chapter-title">📊 🔗 數據整理：連接、合併與重塑——把散落各處的表格拼成一張決策報表</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%89%E5%80%8B%E6%9C%88%E8%A8%82%E5%96%AE%E5%90%88%E4%BD%B5%E6%88%90%E5%AD%A3%E5%A0%B1.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🔗 把三個月的訂單合併成第一季季報</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：理解三種「拼表格」的方式——<strong>merge（依共同欄位配對，像 Excel 的 VLOOKUP）</strong>、<strong>concat（上下或左右直接黏起來）</strong>、<strong>stack / unstack / pivot（把長表變寬表、寬表變長表）</strong>，以及支撐這一切的「多層索引」。</li>
+<li><strong>AI 協作能力</strong>：學會告訴 AI「兩張表用哪個欄位配對」、「配不到的要保留還是丟掉」、「最後想要什麼樣的報表版面（列放什麼、欄放什麼）」。</li>
+<li><strong>商業決策產出</strong>：能把台鐵「每日進出站人數」與「車站基本資料」合併，產出各站各月的進出站統計表；或把觀光景點月報整理成「縣市 × 年份」的比較表。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：
+<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework1.ipynb" target="_blank" rel="noopener">homework1：觀光景點遊客數依縣市、年份加總</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework2.ipynb" target="_blank" rel="noopener">homework2：台鐵進出站人數 merge 車站名稱並重塑</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework3.ipynb" target="_blank" rel="noopener">homework3：天氣資料左右 concat</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework4.ipynb" target="_blank" rel="noopener">homework4：挑選行政區上下 concat</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework5.ipynb" target="_blank" rel="noopener">homework5：觀光資料 stack / unstack 多種版面</a></p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🔗 茶語時光：把三個月的訂單合併成第一季季報</strong></p>
+<p>POS 系統每個月匯出一個訂單檔，而且為了省空間，檔案裡只有「門市代碼」和「品項代碼」，沒有名稱、也沒有價格。老闆要一份第一季季報：「每家店每個月賣了多少錢？哪一類飲料成長最多？」你需要把 3 個月份的檔案<strong>接起來</strong>，再和品項主檔、門市主檔<strong>配對</strong>，最後<strong>轉成老闆看得懂的報表版面</strong>。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%89%E5%80%8B%E6%9C%88%E8%A8%82%E5%96%AE%E5%90%88%E4%BD%B5%E6%88%90%E5%AD%A3%E5%A0%B1.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%89%E5%80%8B%E6%9C%88%E8%A8%82%E5%96%AE%E5%90%88%E4%BD%B5%E6%88%90%E5%AD%A3%E5%A0%B1.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 數據整理_連接_合併_重塑_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>訂單_2024-01.csv ～ 訂單_2024-03.csv</code></td>
+<td>第一季三個月的訂單明細（只有代碼，沒有名稱和價格）</td>
+</tr>
+<tr>
+<td><code>品項主檔.csv</code></td>
+<td>品項代碼 → 品項名稱、類別、價格、成本</td>
+</tr>
+<tr>
+<td><code>門市主檔.csv</code></td>
+<td>門市代碼 → 門市名稱、縣市</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>merge 就像「按學號對照兩份名單」</strong>：一份是成績單（只有學號），一份是學生名冊（學號 + 姓名）。用「學號」配對，就能在成績單上補上姓名——這就是 Excel 的 <strong>VLOOKUP</strong>。</li>
+<li><strong>concat 就像「釘書機」</strong>：把 1 月報表和 2 月報表「上下」釘在一起（加列），或把溫度表和經緯度表「左右」釘在一起（加欄）。</li>
+<li><strong>stack / unstack 就像「把表格轉 90 度」</strong>：長表（一列一筆紀錄，適合電腦處理）與寬表（一列一個對象、欄位是月份，適合人看）之間互相轉換，等同 Excel 的 <strong>樞紐分析表</strong>。</li>
+<li><strong>多層索引就像「地址」</strong>：只說「中山路 100 號」不夠，要說「台北市 → 中山區 → 中山路 100 號」。年別 + 縣市別兩層名牌，才能唯一定位一列。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>merge</code></td>
+<td>按學號對照兩份名單（VLOOKUP）</td>
+<td>配對欄位型態不同，全部配不到</td>
+<td>說清楚「用哪欄配對、配不到怎麼辦」</td>
+</tr>
+<tr>
+<td><code>how='left'/'inner'/'outer'</code></td>
+<td>保留誰的名單</td>
+<td>資料筆數莫名變多或變少</td>
+<td>指定「以哪張表為主」</td>
+</tr>
+<tr>
+<td><code>concat</code></td>
+<td>釘書機：上下或左右釘</td>
+<td>欄名不一致產生大量 NaN</td>
+<td>說「上下接（加列）」或「左右接（加欄）」</td>
+</tr>
+<tr>
+<td>多層索引 <code>set_index</code></td>
+<td>多層地址</td>
+<td>取資料時層級搞混</td>
+<td>說「以年別、縣市別為索引」</td>
+</tr>
+<tr>
+<td><code>stack</code> / <code>unstack</code></td>
+<td>表格轉 90 度</td>
+<td>索引重複就無法轉換</td>
+<td>描述「列放什麼、欄放什麼」</td>
+</tr>
+<tr>
+<td><code>pivot_table</code></td>
+<td>Excel 樞紐分析表</td>
+<td>參數 index / columns / values 難記</td>
+<td>直接說出想要的報表版面</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① merge：用「車站代碼」把兩張表配對起來</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/merge%E9%85%8D%E5%B0%8D.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/merge%E9%85%8D%E5%B0%8D.svg" alt="merge：用車站代碼把兩張表配對起來" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② stack / unstack：長表 ↔ 寬表</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/%E9%95%B7%E8%A1%A8%E5%AF%AC%E8%A1%A8.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/%E5%9C%96%E8%A7%A3/%E9%95%B7%E8%A1%A8%E5%AF%AC%E8%A1%A8.svg" alt="stack / unstack：長表與寬表互換" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<blockquote>
+<p>💡 <strong>記憶口訣</strong>：<code>unstack</code> 是把「列的某一層名牌」<strong>搬到欄位上</strong>（變寬）；<code>stack</code> 是把「欄位」<strong>搬回列上</strong>（變長）。⚠️ 名牌組合不能重複，所以通常要<strong>先 groupby 加總</strong>再 unstack。</p>
+</blockquote>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-merge-依共同欄位配對-vlookup">🔹 核心技巧 1：merge——依共同欄位配對（VLOOKUP）</h3>
+<p><strong>商業意義</strong>：交易紀錄通常只有「代碼」（車站代碼、商品編號、客戶 ID），要搭配主檔才看得懂名稱、類別、地區，merge 是報表製作最常用的動作。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+traffic = pd.DataFrame({'乘車日': ['20220101'] * 3 + ['20220102'] * 3,   # 每日各站進出站人數
+                        '車站代碼': ['0900', '0910', '9999'] * 2,          # 9999 是主檔裡沒有的代碼
+                        '進站人數': [8645, 996, 50, 7012, 1043, 40]})
+stations = pd.DataFrame({'車站代碼': ['0900', '0910', '0920'],             # 車站基本資料（主檔）
+                         '中文站名': ['基隆', '三坑', '八堵']})
+
+left = pd.merge(traffic, stations, on='車站代碼', how='left')    # 以左表為主：配不到的站名填 NaN
+print(left)
+inner = pd.merge(traffic, stations, on='車站代碼', how='inner')  # 只保留兩邊都有的代碼
+print(len(traffic), '→', len(inner), '筆')                      # 6 → 4 筆：9999 被排除
+</code></pre>
+<h3 id="核心技巧-2-concat-上下或左右黏在一起">🔹 核心技巧 2：concat——上下或左右黏在一起</h3>
+<p><strong>商業意義</strong>：每個月一份報表、每個分店一份檔案時，用 concat 把它們「疊」成一張總表；或把來源不同但對象相同的資料「並排」。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+jan = pd.DataFrame({'車站': ['七堵', '三坑'], '進站人數': [149018, 35238]})   # 1 月統計
+feb = pd.DataFrame({'車站': ['七堵', '三坑'], '進站人數': [126258, 31190]})   # 2 月統計
+
+stacked = pd.concat([jan, feb], keys=['1月', '2月'])   # axis=0（預設）：上下接，用 keys 標記來源
+print(stacked)                           # 外層索引是月份、內層是原本的列號
+
+temp = pd.DataFrame({'攝氏': [15.8, 16.5]}, index=['Taipei', 'Taichung'])         # 溫度表
+geo = pd.DataFrame({'緯度': [25.05, 24.15], '經度': [121.53, 120.68]},
+                   index=['Taipei', 'Taichung'])                                    # 經緯度表
+print(pd.concat([temp, geo], axis=1))    # axis=1：左右接，依城市名牌對齊
+</code></pre>
+<h3 id="核心技巧-3-多層索引-groupby-加總">🔹 核心技巧 3：多層索引＋ groupby 加總</h3>
+<p><strong>商業意義</strong>：觀光景點資料是「年 × 縣市 × 景點 × 月」的細項，先以「年別、縣市別」兩層分組加總，就能回答「每年每個縣市總共來了多少遊客」。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+tour = pd.DataFrame({'年別':   [2012, 2012, 2012, 2013, 2013],
+                     '縣市別': ['南投縣', '南投縣', '嘉義市', '南投縣', '嘉義市'],
+                     '觀光遊憩區': ['日月潭', '清境農場', '蘭潭', '日月潭', '蘭潭'],
+                     '1月': [900000, 599117, 91527, 700000, 88000],
+                     '2月': [1000000, 746048, 95000, 800000, 90000]})
+
+by_city_year = tour.groupby(['年別', '縣市別'])[['1月', '2月']].sum()   # 以兩層名牌分組，再加總每月遊客
+print(by_city_year)                      # 索引是（年別, 縣市別）兩層
+print(by_city_year.loc[2012])            # 只看 2012 年的各縣市
+</code></pre>
+<h3 id="核心技巧-4-stack-unstack-pivot_table-換報表版面">🔹 核心技巧 4：stack / unstack / pivot_table——換報表版面</h3>
+<p><strong>商業意義</strong>：同一份數據，主管想看「縣市為列、年份為欄」，分析師想看「年份為列、縣市為欄」，不必重新整理資料，轉個方向就好。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+wide = pd.DataFrame({'1月': [1499117, 91527, 1028371], '2月': [1746048, 95000, 1100000]},
+                    index=pd.MultiIndex.from_tuples([(2012, '南投縣'), (2012, '嘉義市'), (2013, '南投縣')],
+                                                    names=['年別', '縣市別']))   # 寬表：月份在欄位上
+
+long = wide.stack()                      # stack：把月份從欄位搬到列上 → 變成長表（一列一個數字）
+long.index.names = ['年別', '縣市別', '月份']   # 幫三層名牌取名
+print(long)
+
+print(long.unstack('年別'))              # unstack：把「年別」搬到欄位上 → 縣市 × 月份為列、年份為欄
+
+flat = long.reset_index(name='遊客數')   # 把多層索引攤平成一般欄位
+print(flat.pivot_table(index='縣市別', columns='年別', values='遊客數', aggfunc='sum'))  # 樞紐分析表：縣市 × 年份的總遊客數
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有兩份資料：<strong>[例如：A 表＝台鐵每日各站進出站人數（乘車日、車站代碼、進站人數、出站人數）；B 表＝車站基本資料（車站代碼、中文站名）]</strong>，我想了解 <strong>[例如：每個車站 1 月與 2 月的進出站總人數，做成『車站為列、月份 × 進出站為欄』的報表]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 merge / concat / groupby / stack / unstack / pivot_table</strong> 進行處理，並說明用哪個欄位配對、採用哪種 <code>how</code>。</li>
+<li>詳細解釋每一步的處理邏輯，並在合併前後印出筆數，確認沒有多出或遺失資料。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：配對欄位型態不同、代碼前面的 0 被吃掉、主檔有重複代碼造成筆數暴增、unstack 時索引重複）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>交易明細補上名稱</td>
+<td>「請用商品編號把銷售明細與商品主檔 merge，以銷售明細為主，列出主檔中找不到的商品編號。」</td>
+</tr>
+<tr>
+<td>合併 12 個月的檔案</td>
+<td>「資料夾裡有 12 個月的 CSV，欄位相同，請全部讀進來上下 concat，並新增一欄標示月份。」</td>
+</tr>
+<tr>
+<td>做樞紐分析表</td>
+<td>「請做一張樞紐分析表：列是縣市、欄是年份、值是遊客數總和，並計算每個縣市的年成長率。」</td>
+</tr>
+<tr>
+<td>長表轉寬表</td>
+<td>「這份資料一列是『日期、車站、進站人數』，請轉成『車站為列、日期為欄』的寬表並存成 Excel。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：merge 之後請 AI 比對「合併前筆數」與「合併後筆數」。<code>how='left'</code> 時兩者應該相同；如果變多了，代表右表的配對欄位有重複值。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%95%B8%E6%93%9A%E6%95%B4%E7%90%86_%E9%80%A3%E6%8E%A5_%E5%90%88%E4%BD%B5_%E9%87%8D%E5%A1%91/homework2.ipynb" target="_blank" rel="noopener">homework2</a> 的台鐵車站代碼是 <code>'0900'</code>、<code>'0910'</code> 這種<strong>開頭有 0 的文字</strong>。如果讀檔時被自動轉成數字 <code>900</code>，就會和另一張表的 <code>'0900'</code> 配不起來，整欄站名都變成 NaN。記得請 AI「把代碼欄位當成文字讀取」。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong>merge（依欄位配對）</strong> 與 <strong>concat（直接黏合）</strong> 的差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能說出 <code>how='left'</code>、<code>'inner'</code>、<code>'outer'</code> 分別保留哪些資料。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道 <code>concat</code> 的 <code>axis=0</code> 是上下接、<code>axis=1</code> 是左右接。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我理解多層索引就像多層地址，能看懂 <code>set_index(['年別','縣市別'])</code> 的意思。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能分辨 <strong>長表</strong> 與 <strong>寬表</strong>，知道 <code>stack</code> / <code>unstack</code> / <code>pivot_table</code> 是在轉換報表版面。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會在合併前後檢查筆數，並留意代碼欄位的型態。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch09.html"><small>← 上一章</small>第 9 章　群組資料和群組運算</a><a class="pager-next" href="ch11.html"><small>下一章 →</small>第 11 章　日期和時間</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 9 章 群組資料和群組運算｜Python 資料分析</title>
+<meta name="description" content="groupby「分組 → 計算 → 合併」與樞紐分析表">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html" class="on" aria-current="page"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 9 章</p>
+    <h1 class="chapter-title">📊 🧩 群組資料和群組運算：「分組 → 計算 → 合併」，一招回答所有「各○○的△△是多少」</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%8F%B0%E5%8D%97%E4%BA%BA%E7%9C%9F%E7%9A%84%E6%84%9B%E5%85%A8%E7%B3%96%E5%97%8E.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🧩 台南人真的愛全糖嗎？</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：掌握 groupby 的 <strong>Split-Apply-Combine（分組 → 計算 → 合併）</strong> 三步驟，以及 <code>agg</code> 一次算多種統計、<code>pd.cut</code> 把數字切成區間、<code>pivot_table</code> 做樞紐分析表。</li>
+<li><strong>AI 協作能力</strong>：學會用「<strong>依 ___ 分組，計算 ___ 的 ___</strong>」這個萬用句型指揮 AI，例如「依區域分組，計算車位數與故障數的總和」。</li>
+<li><strong>商業決策產出</strong>：能回答「各區 YouBike 故障率哪裡最高？」、「週末與平日、吸菸與非吸菸顧客的小費比例有差嗎？」、「各縣市總人口與面積」這類分組比較問題。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/Homework1.ipynb" target="_blank" rel="noopener">Homework1：各縣市人口與面積統計</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/Homework2.ipynb" target="_blank" rel="noopener">Homework2：tips 小費資料多重統計</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/homework3.ipynb" target="_blank" rel="noopener">homework3：新北市 YouBike 各區故障率</a></p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🧩 茶語時光：台南人真的愛全糖嗎？</strong></p>
+<p>公司內部流傳很多「都市傳說」：台南人特別愛全糖、逢甲店晚上才是戰場、會員比較會花錢……新來的行銷總監說：「別再用猜的，拿數據來！」你手上有第一季 12 萬筆訂單明細，只要學會一招 <strong>groupby（分組 → 計算 → 合併）</strong>，就能一一驗證。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%8F%B0%E5%8D%97%E4%BA%BA%E7%9C%9F%E7%9A%84%E6%84%9B%E5%85%A8%E7%B3%96%E5%97%8E.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%8F%B0%E5%8D%97%E4%BA%BA%E7%9C%9F%E7%9A%84%E6%84%9B%E5%85%A8%E7%B3%96%E5%97%8E.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 群組資料和群組運算_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>訂單明細_2024Q1.csv</code></td>
+<td>第一季約 12 萬筆訂單明細：時間、門市、品項、甜度、冰塊、數量、金額、是否會員、付款方式</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>groupby 就像「班級分組報告」</strong>：老師把全校學生<strong>依班級分組（Split）</strong>，每組各自<strong>算平均分數（Apply）</strong>，最後把各班結果<strong>整理成一張表（Combine）</strong>。</li>
+<li><strong>在 Excel 裡</strong>，這相當於「排序 → 小計」或「樞紐分析表」；在 pandas 裡，只要一行 <code>df.groupby('班級')['分數'].mean()</code>。</li>
+<li><strong><code>agg</code> 就像「一次點多道菜」</strong>：同一組資料，一次算出平均、最大、最小、筆數，不用分開寫好幾次。</li>
+<li><strong><code>pd.cut</code> 就像「把年齡分成年齡層」</strong>：0～17 歲、18～34 歲、35～54 歲……把連續的數字切成幾個區間，再分組比較。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>groupby</code></td>
+<td>依班級分組</td>
+<td>用迴圈逐組計算，又慢又長</td>
+<td>說「依 ___ 分組」</td>
+</tr>
+<tr>
+<td><code>sum</code> / <code>mean</code> / <code>count</code></td>
+<td>每組算總和、平均、人數</td>
+<td><code>count</code> 不計缺值，數字對不上</td>
+<td>說「計算 ___ 的 ___」</td>
+</tr>
+<tr>
+<td>多欄分組</td>
+<td>依「年級 + 班級」分組</td>
+<td>多層索引看不懂</td>
+<td>說「依日期和是否吸菸兩個欄位分組」</td>
+</tr>
+<tr>
+<td><code>agg</code></td>
+<td>一次點多道菜</td>
+<td>自訂欄名的寫法複雜</td>
+<td>列出要的統計量與中文欄名</td>
+</tr>
+<tr>
+<td><code>pd.cut</code> / <code>qcut</code></td>
+<td>把年齡切成年齡層</td>
+<td>區間邊界包含與否搞不清</td>
+<td>說「切成 4 個等寬區間」或「依人數四等分」</td>
+</tr>
+<tr>
+<td><code>pivot_table</code></td>
+<td>Excel 樞紐分析表</td>
+<td>參數多、margins 小計設定</td>
+<td>描述「列、欄、值、計算方式」</td>
+</tr>
+<tr>
+<td>分組後新增比率</td>
+<td>各區故障率 = 故障 ÷ 總數</td>
+<td>先除後加、還是先加後除算錯</td>
+<td>要求「先加總，再計算比率」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>Split → Apply → Combine：依「區域」統計 YouBike 車位與故障數</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%9C%96%E8%A7%A3/%E5%88%86%E7%B5%84%E8%A8%88%E7%AE%97%E5%90%88%E4%BD%B5.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/%E5%9C%96%E8%A7%A3/%E5%88%86%E7%B5%84%E8%A8%88%E7%AE%97%E5%90%88%E4%BD%B5.svg" alt="Split → Apply → Combine：依區域統計車位與故障數" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<blockquote>
+<p>💡 <strong>記憶口訣</strong>：比率類指標（故障率、達成率、小費比例）要 <strong>「先分組加總，再相除」</strong>，不能把每站的比率直接平均——大站和小站的權重不同。</p>
+</blockquote>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-基本分組統計-split-apply-combine">🔹 核心技巧 1：基本分組統計（Split-Apply-Combine）</h3>
+<p><strong>商業意義</strong>：「各區有多少車位？」、「各門市營收多少？」、「各部門平均薪資？」——所有「各○○的△△」問題，都是一行 groupby。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+bikes = pd.DataFrame({'站名': ['大鵬華城', '裕隆公園', '汐止火車站', '汐止區公所', '板橋車站'],
+                      '區域': ['新店區', '新店區', '汐止區', '汐止區', '板橋區'],
+                      '數量': [38, 40, 56, 46, 80],
+                      '可借': [13, 20, 30, 20, 50],
+                      '可還': [25, 18, 22, 24, 28]})
+
+bikes['故障'] = bikes['數量'] - (bikes['可借'] + bikes['可還'])   # 故障數 = 總車位 − 可借 − 可還
+
+result = bikes.groupby('區域')[['數量', '故障']].sum()   # 依「區域」分組，加總數量與故障
+result['故障率'] = result['故障'] / result['數量']        # 先加總、再相除，得到各區故障率
+print(result.sort_values('故障率', ascending=False))     # 依故障率由高到低排序，找出最需維修的區域
+</code></pre>
+<h3 id="核心技巧-2-多欄分組-agg-一次算多種統計">🔹 核心技巧 2：多欄分組＋ agg 一次算多種統計</h3>
+<p><strong>商業意義</strong>：同時比較「星期幾 × 是否吸菸」的顧客，平均給多少小費、最多給多少、有幾筆——用 agg 一次產出完整的比較表。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+url = ('https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/'
+       '%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/tips.csv')
+tips = pd.read_csv(url)                  # 直接從 GitHub 讀取本章的 tips 小費資料集（244 筆餐廳帳單）
+tips.columns = ['帳單金額', '小費', '吸菸者', '星期', '時段', '人數']   # 欄名改成中文
+tips['小費比例'] = tips['小費'] / tips['帳單金額']                     # 新增指標：小費佔帳單的比例
+
+grouped = tips.groupby(['星期', '吸菸者'])          # 兩個欄位一起分組：星期 × 是否吸菸
+summary = grouped['小費比例'].agg([('筆數', 'count'),   # agg 傳入 (中文欄名, 統計方法) 的清單
+                                  ('平均', 'mean'),
+                                  ('最大值', 'max')])
+print(summary.round(3))                  # 四捨五入到小數 3 位
+</code></pre>
+<h3 id="核心技巧-3-pd-cut-把數字切成區間再分組">🔹 核心技巧 3：pd.cut 把數字切成區間再分組</h3>
+<p><strong>商業意義</strong>：把客戶依消費金額分成「小額、中額、大額」，或把人口依規模分級，再比較每一級的特徵——這就是「客群分級」的基礎。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+orders = pd.DataFrame({'訂單金額': [120, 850, 2300, 450, 5200, 90, 1500, 3100],
+                       '是否回購': [0, 1, 1, 0, 1, 0, 1, 1]})   # 1 = 有回購，0 = 沒回購
+
+orders['金額級距'] = pd.cut(orders['訂單金額'],
+                          bins=[0, 500, 2000, 10000],           # 自訂切點：0～500、500～2000、2000～10000
+                          labels=['小額', '中額', '大額'])      # 每個區間的名稱
+print(orders.groupby('金額級距', observed=True)['是否回購'].agg(['count', 'mean']))  # 各級距的筆數與回購率
+</code></pre>
+<h3 id="核心技巧-4-pivot_table-樞紐分析表-含小計">🔹 核心技巧 4：pivot_table 樞紐分析表（含小計）</h3>
+<p><strong>商業意義</strong>：這就是 Excel 樞紐分析表的程式版。列放「時段」、欄放「是否吸菸」、值放「平均小費比例」，再加上「全部」小計，一張表看完所有交叉比較。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+url = ('https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/'
+       '%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/tips.csv')
+tips = pd.read_csv(url)                  # 讀取 tips 資料集
+tips['tip_pct'] = tips['tip'] / tips['total_bill']   # 小費比例
+
+table = pd.pivot_table(tips,
+                       index=['time', 'day'],        # 列：時段（午餐/晚餐）× 星期
+                       columns='smoker',             # 欄：是否吸菸
+                       values='tip_pct',             # 值：小費比例
+                       aggfunc='mean',               # 計算方式：平均
+                       margins=True,                 # 加上「All」小計列與小計欄
+                       observed=True)                # 只顯示實際出現過的組合
+print(table.round(3))
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：新北市公共自行車即時資料，欄位有站名、區域、總車位、可借、可還]</strong>，我想了解 <strong>[例如：各區的總車位、可借、可還、故障數與故障率，找出故障率最高的 5 個區]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 groupby / agg / pivot_table</strong> 進行處理，句型是「依 ___ 分組，計算 ___ 的 ___」。</li>
+<li>詳細解釋每一步的處理邏輯與計算公式，特別說明比率類指標是「先加總再相除」。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：數字欄是文字型態、分組欄位有空白或錯字造成多出一組、缺值不被 count 計入、比率被直接平均）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>各門市業績</td>
+<td>「請依門市與月份分組，計算營收總和、訂單數、平均客單價，並標出每月營收最高的門市。」</td>
+</tr>
+<tr>
+<td>客群分級</td>
+<td>「請用 pd.cut 把會員依年消費額分成 4 級，比較各級的人數、平均年齡與回購率。」</td>
+</tr>
+<tr>
+<td>樞紐分析表</td>
+<td>「請做樞紐分析表：列是地區、欄是產品類別、值是銷售額總和，並加上總計列與總計欄。」</td>
+</tr>
+<tr>
+<td>各縣市彙總</td>
+<td>「區域別欄位是『新北市板橋區』這種格式，請取前三個字當縣市，再依縣市加總人口與面積，找出人口最多與最少的縣市。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：分組後請 AI 把各組的「筆數」或「總和」加起來，確認等於原始資料的總筆數或總和——對得上，才代表沒有資料在分組時遺失。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%BE%A4%E7%B5%84%E8%B3%87%E6%96%99%E5%92%8C%E7%BE%A4%E7%B5%84%E9%81%8B%E7%AE%97/Homework1.ipynb" target="_blank" rel="noopener">Homework1</a> 用「區域別的前三個字」當縣市，例如「新北市板橋區」→「新北市」。但遇到「東沙群島」、「南沙群島」這種名稱就會切錯，而且它們的人口數是「…」，必須先清理再分組，否則加總會出錯。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能用「分組 → 計算 → 合併」解釋 groupby 在做什麼。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能用「依 ___ 分組，計算 ___ 的 ___」句型描述分析需求。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>groupby</code>、<code>agg</code>、<code>pd.cut</code>、<code>pivot_table</code> 的用途。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道比率類指標要「先加總再相除」，不能直接平均各組比率。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能請 AI 用 <code>pd.cut</code> 把連續數字分成級距再比較。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會檢查分組後的總筆數、總和是否與原始資料一致。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch08.html"><small>← 上一章</small>第 8 章　資料整理和使用前準備</a><a class="pager-next" href="ch10.html"><small>下一章 →</small>第 10 章　數據整理：連接、合併和重塑</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

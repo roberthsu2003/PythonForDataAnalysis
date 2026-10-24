@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 5 章 初見pandas｜Python 資料分析</title>
+<meta name="description" content="Series 與 DataFrame，把資料變成「會說話的 Excel 表」">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html" class="on" aria-current="page"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 5 章</p>
+    <h1 class="chapter-title">📊 🐼 初見 pandas：把資料變成「會說話的 Excel 表」，分析從這裡起飛</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🐼 新品上市週的第一份 pandas 報表</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E5%88%9D%E8%A6%8Bpandas" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：認識 pandas 兩大主角——<strong>Series（一欄有標籤的資料）</strong> 與 <strong>DataFrame（一整張有欄名、有列號的表格）</strong>，並理解「索引（index）」就是每一列的名牌。</li>
+<li><strong>AI 協作能力</strong>：學會用「欄位名稱」與「列的條件」跟 AI 溝通，例如「新增總分欄」、「只看汐止區的資料」，讓 AI 精準產出表格操作程式。</li>
+<li><strong>商業決策產出</strong>：能把 CSV / JSON 原始資料轉成表格，快速算出每人總分、各區合計，並找出缺漏資料（NaN）。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>🔍 <strong>觀念對照</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/lesson12_4.ipynb" target="_blank" rel="noopener">NumPy 與 pandas 的差異範例 lesson12_4.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework1.ipynb" target="_blank" rel="noopener">homework1</a>（工廠清冊轉 Series）｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework2.ipynb" target="_blank" rel="noopener">homework2</a>（工廠清冊轉 DataFrame）｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework3.ipynb" target="_blank" rel="noopener">homework3</a>（人口密度表）｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework4.ipynb" target="_blank" rel="noopener">homework4</a>（公共自行車 JSON）</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🐼 茶語時光：新品上市週的第一份 pandas 報表</strong></p>
+<p>2024 年 4 月 1 日，新品「芋頭鮮奶」上市！行銷部想知道：新品賣得怎樣？有沒有搶走其他飲料的生意？每杯賺多少？你第一次用 pandas，把菜單、門市資料與兩週的銷量做成表格來回答。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E6%96%B0%E5%93%81%E4%B8%8A%E5%B8%82%E9%80%B1%E7%9A%84%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%A0%B1%E8%A1%A8.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%88%9D%E8%A6%8Bpandas_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 初見pandas_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>菜單.csv</code></td>
+<td>10 個品項的價格與成本</td>
+</tr>
+<tr>
+<td><code>門市.csv</code></td>
+<td>5 家門市的基本資料</td>
+</tr>
+<tr>
+<td><code>兩週品項銷量.json</code></td>
+<td>芋頭鮮奶上市前一週與上市當週，全品牌各品項杯數</td>
+</tr>
+<tr>
+<td><code>信義店日報_新品週.json</code></td>
+<td>信義店新品週每天的杯數、營收、來客數</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>NumPy 陣列像「蛋盒」</strong>：只能放同一種東西、格子只有編號。<strong>pandas DataFrame 像「Excel 工作表」</strong>：每一欄可以放不同型態（姓名是文字、分數是數字、是否及格是 True/False），而且欄有欄名、列有列名。</li>
+<li><strong>Series 就像「Excel 的一欄」</strong>：左邊是名牌（index），右邊是數值。例如「台北 → 35000、桃園 → 71000」。</li>
+<li><strong>DataFrame 就像「很多欄排在一起」</strong>：每一欄都是一個 Series，共用同一組列名牌。</li>
+<li><strong>索引對齊就像「按名牌配對」</strong>：兩個 Series 相加時，pandas 會先找「名牌一樣」的配對再相加，而不是按位置。名牌對不上的，就給你一個空值 <code>NaN</code>（Not a Number，代表「這格沒有資料」）。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Series</td>
+<td>Excel 的一欄，左邊有名牌</td>
+<td>分不清 index 和 values</td>
+<td>說「以縣市為索引、人口為值」</td>
+</tr>
+<tr>
+<td>DataFrame</td>
+<td>整張 Excel 工作表</td>
+<td>用 list / dict 組表格容易對錯欄</td>
+<td>說清楚「欄位有哪些、一列代表什麼」</td>
+</tr>
+<tr>
+<td>索引 index</td>
+<td>每一列的名牌（學號、統編）</td>
+<td>索引重複或排序錯亂</td>
+<td>指定「用哪一欄當索引」</td>
+</tr>
+<tr>
+<td><code>loc</code> 取列</td>
+<td>按名牌找人</td>
+<td><code>loc</code> / <code>iloc</code> / <code>[]</code> 搞混</td>
+<td>說「取出學號 1 的資料」</td>
+</tr>
+<tr>
+<td>新增 / 刪除欄位</td>
+<td>在 Excel 插入或刪除一欄</td>
+<td>欄位長度不一致就報錯</td>
+<td>說「新增總分欄＝五科加總」</td>
+</tr>
+<tr>
+<td><code>NaN</code> 缺值</td>
+<td>表格中的空白格</td>
+<td>沒發現缺值，平均算錯</td>
+<td>要求 AI「先列出有缺值的欄位」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① Series：一欄有名牌的資料</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/Series%E7%B5%90%E6%A7%8B.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/Series%E7%B5%90%E6%A7%8B.svg" alt="Series：一欄有名牌的資料" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② DataFrame：從 Python 字典變成表格，再加上新欄位</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E5%AD%97%E5%85%B8%E8%AE%8ADataFrame.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E5%AD%97%E5%85%B8%E8%AE%8ADataFrame.svg" alt="Python 字典轉成 DataFrame 並新增欄位" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>③ 索引對齊：按名牌配對，對不上就是 NaN</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E7%B4%A2%E5%BC%95%E5%B0%8D%E9%BD%8A.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E5%88%9D%E8%A6%8Bpandas/%E5%9C%96%E8%A7%A3/%E7%B4%A2%E5%BC%95%E5%B0%8D%E9%BD%8A.svg" alt="兩個 Series 依名牌配對相加，配不到就是 NaN" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-series-有名牌的一欄資料">🔹 核心技巧 1：Series——有名牌的一欄資料</h3>
+<p><strong>商業意義</strong>：各縣市人口、各產品銷量、各科成績這類「名稱 → 數值」的資料，用 Series 存放，可以直接用名稱查詢與篩選。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas，習慣簡稱 pd
+
+# 用字典建立 Series：key 變成名牌（index），value 變成值
+pop = pd.Series({'台北': 35000, '桃園': 71000, '台中': 16000, '高雄': 5000})
+pop.name = '縣市人口'                    # 幫這欄資料取個名字
+pop.index.name = '縣市'                  # 幫名牌取個名字
+
+print(pop['桃園'])                       # 用名牌查詢：71000
+print(pop[pop &gt; 20000])                  # 篩選人口超過 2 萬的縣市：台北、桃園
+print(pop * 1.05)                        # 整欄一起運算：每個縣市都乘以 1.05（假設成長 5%）
+</code></pre>
+<h3 id="核心技巧-2-建立-dataframe-成績單-並新增-總分-平均-欄">🔹 核心技巧 2：建立 DataFrame 成績單，並新增「總分」、「平均」欄</h3>
+<p><strong>商業意義</strong>：這是所有報表的原型——「一列一個對象（學生、員工、門市），一欄一個指標」。加上總分與平均欄，就能排名與比較。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+data = {                                 # 用字典準備資料：每個 key 是一個欄位
+    '國文': [85, 72, 90],
+    '英文': [78, 88, 65],
+    '數學': [92, 60, 80],
+}
+scores = pd.DataFrame(data, index=['小明', '小華', '小美'])  # 指定每一列的名牌是學生姓名
+scores.index.name = '姓名'               # 列名牌的標題
+
+scores['總分'] = scores.sum(axis=1)      # 新增「總分」欄：axis=1 代表每一列（每位學生）橫著加
+scores['平均'] = scores[['國文', '英文', '數學']].mean(axis=1).round(1)  # 只用三科算平均，取到小數 1 位
+print(scores)                            # 印出整張成績單
+
+print(scores.loc['小華'])                # 用 loc 依名牌取出「小華」那一列
+print(scores['數學'].mean())             # 取出「數學」這一欄並算全班平均：77.33...
+</code></pre>
+<h3 id="核心技巧-3-條件篩選與欄位改名-以自行車站點為例">🔹 核心技巧 3：條件篩選與欄位改名（以自行車站點為例）</h3>
+<p><strong>商業意義</strong>：從上百個站點中「只看某一區」，並把英文代碼欄位改成看得懂的中文，是整理政府開放資料最常見的第一步。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+# 模擬「新北市公共自行車」JSON 中的 records 資料（一筆一個站點）
+records = [
+    {'sno': '1001', 'sarea': '新店區', 'sna': '大鵬華城',   'tot': '38', 'sbi': '22'},
+    {'sno': '1002', 'sarea': '汐止區', 'sna': '汐止火車站', 'tot': '56', 'sbi': '2'},
+    {'sno': '1003', 'sarea': '汐止區', 'sna': '汐止區公所', 'tot': '46', 'sbi': '18'},
+]
+df = pd.DataFrame(records)               # 一行把「清單裡放字典」轉成表格
+df.columns = ['編號', '區域', '站名', '全部數量', '可借']   # 把英文代碼欄名改成中文
+
+xizhi = df[df['區域'] == '汐止區']        # 篩選：只留下「區域」等於汐止區的列
+print(xizhi)
+
+total = xizhi['全部數量'].astype(int).sum()   # ⚠️ 原始資料是文字，要先 astype(int) 轉成整數才能加總
+print('汐止區可停車總數：', total)       # 結果：102
+</code></pre>
+<h3 id="核心技巧-4-索引自動對齊與缺值-nan">🔹 核心技巧 4：索引自動對齊與缺值 NaN</h3>
+<p><strong>商業意義</strong>：合併兩份名單時（例如今年與去年的各縣市業績），pandas 會「按名稱配對」而不是按順序，避免張冠李戴；配不上的地方會出現 NaN，提醒你資料有缺。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+this_year = pd.Series({'台北': 350, '桃園': 710, '高雄': 50})   # 今年業績
+last_year = pd.Series({'高雄': 40, '台北': 300, '花蓮': 20})    # 去年業績（順序不同、縣市也不完全一樣）
+
+growth = this_year - last_year           # 依「縣市名稱」配對相減，而不是依位置
+print(growth)                            # 台北 50、高雄 10；桃園與花蓮配不到 → NaN
+print(growth.isnull())                   # 檢查哪些是缺值（True 代表缺）
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：新北市食品工廠清冊 CSV，欄位有工廠名稱、登記編號、地址、統編、經緯度]</strong>，我想了解 <strong>[例如：以統一編號為索引排序，並找出統編介於 01000070～01001000 的工廠]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 Series / DataFrame</strong> 進行處理，並說明「一列代表什麼、索引是哪一欄」。</li>
+<li>詳細解釋每一步的處理邏輯，包括欄位改名、篩選條件、型態轉換。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：數字被存成文字、索引重複、缺值 NaN、檔案最後幾列是說明文字而非資料）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>做一份成績單</td>
+<td>「請建立 50 位學生 × 5 科的 DataFrame，學號為索引，新增總分與平均欄，並找出平均最高的 5 位。」</td>
+</tr>
+<tr>
+<td>原始資料轉表格</td>
+<td>「這是一份 JSON，資料在 <code>result → records</code> 裡，請轉成 DataFrame，並把英文欄位改成中文。」</td>
+</tr>
+<tr>
+<td>只看某一區</td>
+<td>「請篩選出『汐止區』的所有站點，並計算全部車位、可借、可還的總數。」</td>
+</tr>
+<tr>
+<td>比較兩年資料</td>
+<td>「我有今年和去年各縣市的業績 Series，請計算成長量，並列出哪些縣市只出現在其中一年。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：請 AI 印出 <code>df.shape</code>（幾列幾欄）、<code>df.head()</code>（前 5 列）與 <code>df.dtypes</code>（每欄型態），確認筆數正確、欄名正確、數字欄真的是數字。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework3.ipynb" target="_blank" rel="noopener">homework3</a> 的人口密度 CSV，檔案最後幾列是「資料來源說明」而不是數據；<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E5%88%9D%E8%A6%8Bpandas/homework4.ipynb" target="_blank" rel="noopener">homework4</a> 的自行車 JSON 中，車位數量全部是文字。兩者都必須先清理，才能正確統計。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong>Series（一欄）</strong> 與 <strong>DataFrame（整張表）</strong> 的差異。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道 <strong>index（列名牌）</strong> 與 <strong>columns（欄名）</strong> 分別是什麼。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>pd.DataFrame()</code>、<code>loc</code>、<code>df['欄名']</code>、<code>astype()</code>、<code>sum(axis=1)</code> 的用途。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我理解兩個 Series 運算時會「按名牌配對」，配不上的會變成 NaN。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會請 AI 用 <code>shape</code>、<code>head()</code>、<code>dtypes</code> 幫我檢查資料。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch04.html"><small>← 上一章</small>第 4 章　Numpy建立與計算</a><a class="pager-next" href="ch06.html"><small>下一章 →</small>第 6 章　pandas的基礎功能</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

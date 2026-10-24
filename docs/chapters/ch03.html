@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 3 章 繪圖和視覺展示｜Python 資料分析</title>
+<meta name="description" content="Matplotlib 的畫布結構，折線、長條、直方、圓餅圖">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html" class="on" aria-current="page"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 3 章</p>
+    <h1 class="chapter-title">📊 📈 繪圖和視覺展示：一張好圖勝過千行數字，用 Matplotlib 讓老闆秒懂</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：📈 做出老闆最愛的五張圖</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：認識圖表的「畫布（Figure）→ 畫框（Axes）→ 元素（線條、標題、座標軸）」三層結構，並知道 <strong>折線圖、長條圖、直方圖、圓餅圖</strong> 各自適合回答什麼問題。</li>
+<li><strong>AI 協作能力</strong>：學會用「圖表類型 + X 軸 + Y 軸 + 標題 + 顏色/標註」五個要素，向 AI 精準描述你要的圖，並能要求 AI 修改細節。</li>
+<li><strong>商業決策產出</strong>：能把營收、成績、市占率等數字轉成一眼就看懂的圖表，看出趨勢、比較高低、掌握比例。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/visualization.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/visualization.ipynb" target="_blank" rel="noopener">開啟 visualization.ipynb</a></p>
+<p>📝 <strong>課堂練習</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B7%B4%E7%BF%922.md" target="_blank" rel="noopener">subplot 多圖練習</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B7%B4%E7%BF%923.md" target="_blank" rel="noopener">圓餅圖練習</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B7%B4%E7%BF%924.md" target="_blank" rel="noopener">AI 賦能練習</a></p>
+<p>🤖 <strong>AI 賦能專案</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/sin_cos.md" target="_blank" rel="noopener">sin / cos 互動繪圖程式</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/sin_cos_streamlit.md" target="_blank" rel="noopener">Streamlit 網頁版</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/student.py" target="_blank" rel="noopener">學生分數分析 student.py</a>（搭配 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E8%80%83%E8%A9%A6%E5%88%86%E6%95%B8_3%E5%B9%B46%E7%8F%AD.csv" target="_blank" rel="noopener">考試分數_3年6班.csv</a>）</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>📈 茶語時光：做出老闆最愛的五張圖</strong></p>
+<p>年終檢討會議就在明天，老闆說：「我不要看密密麻麻的表格，給我幾張圖，一眼就知道今年哪家店最好、什麼最好賣、客人是誰、天氣對生意有沒有影響。」你決定用 Matplotlib 做出五張圖，再組成一頁儀表板。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E8%80%81%E9%97%86%E6%9C%80%E6%84%9B%E7%9A%84%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 繪圖和視覺展示_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>門市月營收_2024.csv</code></td>
+<td>5 家門市 2024 年每月營收（萬元）</td>
+</tr>
+<tr>
+<td><code>品項年銷量_2024.csv</code></td>
+<td>10 個品項全年銷量</td>
+</tr>
+<tr>
+<td><code>西門店每日氣溫與銷量_2024.csv</code></td>
+<td>西門店每天的最高溫與芒果冰沙、熱可可杯數</td>
+</tr>
+<tr>
+<td><code>會員年齡.csv</code></td>
+<td>700 位會員的年齡</td>
+</tr>
+<tr>
+<td><code>甜度偏好_2024.csv</code></td>
+<td>一年來各甜度的杯數（抽樣）</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>Matplotlib 就像「畫室」</strong>：<code>Figure</code> 是整張<strong>畫布</strong>，<code>Axes</code> 是畫布上的<strong>畫框</strong>（一張畫布可以掛好幾個畫框），線條、標題、座標軸則是畫框裡的<strong>顏料與標籤</strong>。</li>
+<li><strong>選圖表就像「選交通工具」</strong>：去的地方不同，工具就不同。
+<ul>
+<li>想看「<strong>隨時間的變化</strong>」→ 折線圖（像看心電圖）</li>
+<li>想「<strong>比較各類別大小</strong>」→ 長條圖（像比身高）</li>
+<li>想看「<strong>分數集中在哪個區間</strong>」→ 直方圖（像看班上成績分布）</li>
+<li>想看「<strong>各部分佔整體多少</strong>」→ 圓餅圖（像切披薩）</li>
+</ul>
+</li>
+<li><strong>在 Excel 裡</strong>，你要點選資料、插入圖表、再一個一個調格式；用 Matplotlib，只要「描述清楚」，AI 就能一次產出，而且同樣格式可以套用到 100 份報表。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Figure / Axes</td>
+<td>畫布與畫框</td>
+<td>搞不清楚 <code>plt</code> 和 <code>ax</code> 寫法差在哪</td>
+<td>說「一張圖」或「並排 2 張圖」即可</td>
+</tr>
+<tr>
+<td>折線圖 <code>plot</code></td>
+<td>心電圖：看起伏與趨勢</td>
+<td>線條樣式代碼 <code>'r--o'</code> 難記</td>
+<td>說「紅色虛線、加圓點」</td>
+</tr>
+<tr>
+<td>長條圖 <code>bar</code> / <code>barh</code></td>
+<td>比身高：誰高誰低</td>
+<td>群組長條要算位移寬度</td>
+<td>說「三個系列並排比較、標上數值」</td>
+</tr>
+<tr>
+<td>直方圖 <code>hist</code></td>
+<td>成績分布：多數人落在哪</td>
+<td><code>bins</code> 數量不知怎麼設</td>
+<td>說「分成 10 個區間」</td>
+</tr>
+<tr>
+<td>圓餅圖 <code>pie</code></td>
+<td>切披薩：各佔幾成</td>
+<td>百分比格式、突出區塊參數多</td>
+<td>說「顯示百分比、把最大塊拉出來」</td>
+</tr>
+<tr>
+<td>子圖 <code>subplot</code></td>
+<td>一面牆掛多幅畫</td>
+<td>列、欄、位置編號容易搞混</td>
+<td>說「上下兩張」或「2×2 四張」</td>
+</tr>
+<tr>
+<td>中文字型</td>
+<td>畫室缺了中文顏料</td>
+<td>中文變成方塊 □□□</td>
+<td>要求 AI「設定繁體中文字型」或改用英文標籤</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① 一張圖表的組成（Figure → Axes → 元素）</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E5%9C%96%E8%A1%A8%E7%B5%84%E6%88%90%E5%85%83%E7%B4%A0.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E5%9C%96%E8%A1%A8%E7%B5%84%E6%88%90%E5%85%83%E7%B4%A0.svg" alt="Matplotlib 圖表的組成：Figure、Axes 與元素" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② 從數字到圖表：資料怎麼對應到座標軸</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E6%95%B8%E5%AD%97%E5%B0%8D%E6%87%89%E5%BA%A7%E6%A8%99%E8%BB%B8.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%9C%96%E8%A7%A3/%E6%95%B8%E5%AD%97%E5%B0%8D%E6%87%89%E5%BA%A7%E6%A8%99%E8%BB%B8.svg" alt="兩串數字畫成折線圖" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<blockquote>
+<p>💡 <strong>記憶口訣</strong>：X 軸放「分類或時間」，Y 軸放「要比較的數字」。兩串資料的<strong>筆數必須一樣多</strong>，否則畫不出來。</p>
+</blockquote>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。範例標籤使用英文，避免 Colab 缺少中文字型時顯示成方塊。</p>
+</blockquote>
+<h3 id="核心技巧-1-標準畫圖四步驟-折線圖">🔹 核心技巧 1：標準畫圖四步驟（折線圖）</h3>
+<p><strong>商業意義</strong>：觀察「每日溫度」、「每月營收」這類隨時間變化的數據，最適合用折線圖看出趨勢與異常高低點。</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt          # 匯入繪圖套件，簡稱 plt
+
+days = [1, 2, 3, 4, 5, 6, 7]             # X 軸：一週的第幾天
+store_a = [12, 22, 25, 20, 18, 30, 28]   # Y 軸：A 店每日營收（萬元）
+store_b = [15, 14, 18, 22, 25, 24, 27]   # Y 軸：B 店每日營收（萬元）
+
+fig = plt.figure(figsize=(8, 4))         # 步驟 1：建立畫布，寬 8 吋、高 4 吋
+ax = fig.add_subplot(1, 1, 1)            # 步驟 2：在畫布上放 1 個畫框（1 列 1 欄的第 1 個）
+ax.plot(days, store_a, 'r-o', label='Store A')   # 步驟 3：畫紅色實線＋圓點，命名為 Store A
+ax.plot(days, store_b, 'g--', label='Store B')   #          畫綠色虛線，命名為 Store B
+ax.set_title('Daily Revenue')            # 加上圖表標題
+ax.set_xlabel('Day')                     # X 軸名稱
+ax.set_ylabel('Revenue (10k)')           # Y 軸名稱
+ax.grid(axis='y')                        # 只加水平格線，方便對照數值
+ax.legend()                              # 顯示圖例，分辨兩條線
+plt.show()                               # 步驟 4：顯示圖表
+</code></pre>
+<h3 id="核心技巧-2-長條圖-數值標註">🔹 核心技巧 2：長條圖＋數值標註</h3>
+<p><strong>商業意義</strong>：比較各產品、各門市、各業務的業績高低，長條圖最直觀；在長條上標出數字，簡報時聽眾不用再去對座標軸。</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+fruits = ['apple', 'banana', 'orange', 'tomato', 'guava']   # X 軸：產品類別
+sales = [5000, 7000, 3000, 4000, 6000]                       # Y 軸：銷售額
+
+fig, ax = plt.subplots(figsize=(8, 4))   # 一次建立畫布與畫框的簡便寫法
+ax.bar(fruits, sales, color='steelblue') # 畫長條圖，指定顏色
+for i, v in enumerate(sales):            # 逐一取出「第幾根長條」與「它的數值」
+    ax.annotate(str(v), (i, v + 100), ha='center')  # 在長條上方 100 的位置寫數字，水平置中
+ax.set_title('Fruit Sales')              # 圖表標題
+ax.set_ylim(0, 8000)                     # Y 軸範圍設 0～8000，留空間放數字
+plt.show()                               # 顯示圖表
+</code></pre>
+<h3 id="核心技巧-3-一張畫布放多張圖-subplot-直方圖">🔹 核心技巧 3：一張畫布放多張圖（subplot）＋ 直方圖</h3>
+<p><strong>商業意義</strong>：簡報時常需要「並排比較」，例如左邊放成績分布、右邊放各科平均；一張圖就能說完一個故事。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy 產生範例資料
+import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+scores = np.random.randint(40, 101, size=50)    # 隨機產生 50 位學生的分數（40～100 分）
+subjects = ['chinese', 'english', 'math']       # 三個科目
+averages = [78, 72, 81]                         # 三科平均
+
+fig = plt.figure(figsize=(10, 4))        # 建立一張寬一點的畫布
+ax1 = fig.add_subplot(1, 2, 1)           # 1 列 2 欄的第 1 個位置（左邊）
+ax1.hist(scores, bins=6, color='orange', edgecolor='black')  # 直方圖：把分數切成 6 個區間，數每區有幾人
+ax1.set_title('Score Distribution')      # 左圖標題
+
+ax2 = fig.add_subplot(1, 2, 2)           # 1 列 2 欄的第 2 個位置（右邊）
+ax2.barh(subjects, averages, color='teal')       # 水平長條圖：比較各科平均
+ax2.set_title('Average by Subject')      # 右圖標題
+plt.tight_layout()                       # 自動調整間距，避免兩張圖的文字重疊
+plt.show()                               # 顯示圖表
+</code></pre>
+<h3 id="核心技巧-4-圓餅圖顯示市占比例">🔹 核心技巧 4：圓餅圖顯示市占比例</h3>
+<p><strong>商業意義</strong>：回答「各品牌佔了市場幾成？」這類「部分佔整體」的問題。注意：類別超過 5～6 個時，圓餅圖會變得難讀，改用長條圖更好。</p>
+<pre><code class="language-python">import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+brands = ['Nokia', 'Samsung', 'Apple', 'Lumia']  # 品牌名稱
+share = [20, 30, 45, 10]                          # 各品牌銷量
+
+fig, ax = plt.subplots(figsize=(5, 5))   # 建立正方形畫布，圓餅才不會變橢圓
+ax.pie(share,                            # 要畫的數值
+       labels=brands,                    # 每一塊的名稱
+       autopct='%1.1f%%',                # 自動計算並顯示百分比（小數 1 位）
+       explode=[0, 0, 0.1, 0],           # 把第 3 塊（Apple）往外拉出，強調重點
+       startangle=90)                    # 從 12 點鐘方向開始畫
+ax.set_title('Market Share')             # 圖表標題
+plt.show()                               # 顯示圖表
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：3 年 6 班學生的語文、數學、英語、物理、化學成績 CSV]</strong>，我想了解 <strong>[例如：每位學生的強弱科目，以及全班各科的分數分布]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>Matplotlib</strong> 繪製 <strong>[圖表類型：折線圖／長條圖／直方圖／圓餅圖]</strong>，X 軸是 <strong>[ ]</strong>、Y 軸是 <strong>[ ]</strong>，標題是 <strong>[ ]</strong>。</li>
+<li>詳細解釋為什麼選這種圖表，以及每一步的繪圖邏輯（畫布、畫框、座標軸、圖例）。</li>
+<li>產出繁體中文說明的完整程式碼，<strong>正確設定繁體中文字型</strong>（使用 <code>mplfonts</code>：<code>%pip install -q mplfonts</code> 後，用 <code>font_manager.fontManager.addfont()</code> 註冊 mplfonts 內附字型，再執行 <code>use_font(&quot;Noto Sans CJK SC&quot;)</code>；不要用 <code>mplfonts init</code>），並標註潛在的陷阱（例如：X 與 Y 筆數不一致、中文變方塊、類別太多導致標籤重疊）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>兩家店的業績走勢</td>
+<td>「請用折線圖比較 A、B 兩店 30 天營收，A 用紅色實線、B 用藍色虛線，加上圖例與水平格線。」</td>
+</tr>
+<tr>
+<td>多年度產品比較</td>
+<td>「請畫群組長條圖，X 軸是 5 種產品，每種產品並排顯示 2023、2024、2025 三年的銷售額，長條上標註數字。」</td>
+</tr>
+<tr>
+<td>一頁看完全部</td>
+<td>「請用 2×2 的子圖，分別畫出營收趨勢、產品占比圓餅圖、客單價直方圖、各區業績長條圖。」</td>
+</tr>
+<tr>
+<td>做成互動工具</td>
+<td>「請用 numpy + matplotlib 做一個可用滑桿調整振幅與頻率的 sin/cos 波形圖，並改寫成 Streamlit 網頁版。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：拿到圖表後，檢查四件事——<strong>標題說得出重點嗎？座標軸有名稱與單位嗎？圖例分得出每條線嗎？中文有沒有變成方塊？</strong></p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong>Figure（畫布）</strong> 與 <strong>Axes（畫框）</strong> 的差異，知道一張畫布可以放多張圖。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能根據問題選對圖表：趨勢用折線圖、比較用長條圖、分布用直方圖、比例用圓餅圖。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>plot</code>、<code>bar</code>、<code>hist</code>、<code>pie</code>、<code>subplot</code>、<code>legend</code> 的用途。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道 X 軸和 Y 軸的資料筆數必須一樣多。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 遇到中文變方塊時，我知道要請 AI 設定中文字型。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能用「圖表類型 + X 軸 + Y 軸 + 標題 + 顏色/標註」五要素描述我要的圖。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch02.html"><small>← 上一章</small>第 2 章　檔案存取</a><a class="pager-next" href="ch04.html"><small>下一章 →</small>第 4 章　Numpy建立與計算</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 7 章 pandas的檔案存取｜Python 資料分析</title>
+<meta name="description" content="一行讀寫 CSV、Excel、JSON、API 與資料庫">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html" class="on" aria-current="page"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 7 章</p>
+    <h1 class="chapter-title">📊 📥 pandas 的檔案存取：一行讀進 CSV、Excel、JSON、資料庫，一行存成老闆要的格式</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：📥 搞定五種難搞的資料檔</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：pandas 提供一整組 <code>read_xxx()</code> 與 <code>to_xxx()</code> 工具，CSV、Excel、JSON、網路 API、SQLite 資料庫都能「一行讀進來、一行存出去」，而且讀檔時就能順便跳過雜訊、指定欄位、標記缺值。</li>
+<li><strong>AI 協作能力</strong>：學會向 AI 描述「檔案的毛病」（沒有標題列、前幾行是註解、缺值寫成 NA 或 NULL、檔案太大），讓 AI 選對讀檔參數，一次讀乾淨。</li>
+<li><strong>商業決策產出</strong>：能把政府開放資料（空氣品質、氣象觀測）下載下來、篩出關鍵資訊，並輸出成 Excel 或資料庫，交給同事或系統使用。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/download%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E9%96%8B%E6%94%BE%E5%B9%B3%E5%8F%B0_%E7%A9%BA%E6%B0%A3%E5%93%81%E8%B3%AA%E6%8C%87%E6%A8%99_csv%E4%B8%8B%E8%BC%89%E5%84%B2%E5%AD%98.ipynb" target="_blank" rel="noopener">homework1：下載空氣品質指標 AQI 並存成 CSV</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/download%E6%94%BF%E5%BA%9C%E8%B3%87%E6%96%99%E5%B9%B3%E5%8F%B0%E8%A7%A3%E6%B1%BA%E6%96%B9%E6%A1%88_json.ipynb" target="_blank" rel="noopener">homework2：下載氣象觀測 JSON 並存入 SQLite</a></p>
+<p>⚠️ 在 Colab 開啟時只會載入 Notebook 本身，若要讀取本資料夾的 <code>ex1.csv</code>、<code>總統.xls</code> 等檔案，請先上傳到 Colab 左側的「檔案」區。</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>📥 茶語時光：搞定五種難搞的資料檔</strong></p>
+<p>月初結帳日，各部門丟來五種格式的檔案：POS 系統匯出的「髒」CSV、每家店一個工作表的 Excel、外送平台的巢狀 JSON、IT 部門的會員資料庫，還有一個 10 萬筆、用 Excel 打開會卡住的交易檔。你要用 pandas 一一讀進來，最後整理成一份多工作表的 Excel 交給主管。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%BA%94%E7%A8%AE%E9%9B%A3%E6%90%9E%E7%9A%84%E8%B3%87%E6%96%99%E6%AA%94.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 pandas的檔案存取_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POS匯出_信義店_2024-03.csv</code></td>
+<td>POS 匯出的日報：有註解行、千分位逗號、<code>--</code> 缺值、最後一列是合計</td>
+</tr>
+<tr>
+<td><code>各店月報_2024.xlsx</code></td>
+<td>5 個工作表（每店一張），前兩列是標題</td>
+</tr>
+<tr>
+<td><code>外送平台訂單_2024-03.json</code></td>
+<td>外送平台的巢狀 JSON：一筆訂單裡有多個品項</td>
+</tr>
+<tr>
+<td><code>會員資料庫.db</code></td>
+<td>SQLite 資料庫，內有「會員」資料表（800 位）</td>
+</tr>
+<tr>
+<td><code>全年交易紀錄_2024.csv</code></td>
+<td>10 萬筆交易紀錄（用來練習分批讀取）</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>前面「檔案存取」一章用 <code>csv</code> / <code>json</code> 模組讀檔，就像「手工拆包裹」</strong>：要自己一層一層打開、一筆一筆整理。<strong>pandas 的 <code>read_csv()</code> 就像「自動拆箱機」</strong>：丟進去，出來就是帶有欄名的表格，仍須檢查型態、缺值與異常資料。</li>
+<li><strong>讀檔參數就像「給拆箱機的指示單」</strong>：「前 3 行是廣告傳單，跳過」（<code>skiprows</code>）、「這箱沒有標籤，標籤我給你」（<code>names</code>）、「寫著 NA 的格子當成空的」（<code>na_values</code>）、「只要這四樣東西」（<code>usecols</code>）。</li>
+<li><strong><code>chunksize</code> 就像「分批搬家」</strong>：100 萬筆的大檔案一次搬不動，就每次搬 1000 筆，邊搬邊統計。</li>
+<li><strong>SQLite 就像「放在單一檔案裡的小型倉庫」</strong>：不需要架設伺服器，一個 <code>.sqlite</code> 檔就是一個資料庫，適合存放每天累積的觀測資料。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>read_csv</code> / <code>read_excel</code> / <code>read_json</code></td>
+<td>自動拆箱機</td>
+<td>每種格式要記不同寫法</td>
+<td>說「這是 Excel，讀第幾個工作表」</td>
+</tr>
+<tr>
+<td><code>header</code> / <code>names</code> / <code>index_col</code></td>
+<td>決定哪一行是標籤</td>
+<td>沒標題列時資料被當成欄名</td>
+<td>說「沒有標題列，欄名是…」</td>
+</tr>
+<tr>
+<td><code>skiprows</code> / <code>usecols</code> / <code>nrows</code></td>
+<td>跳過廣告、只拿需要的</td>
+<td>雜訊列讓整張表格錯位</td>
+<td>貼前 10 行給 AI 判斷要跳過哪些</td>
+</tr>
+<tr>
+<td><code>na_values</code></td>
+<td>把「NA」「NULL」「-」當空格</td>
+<td>缺值被當成文字，統計失準</td>
+<td>告訴 AI 原始檔用什麼代表缺值</td>
+</tr>
+<tr>
+<td><code>chunksize</code></td>
+<td>分批搬家</td>
+<td>大檔案讀到記憶體爆掉</td>
+<td>說「檔案很大，請分批處理」</td>
+</tr>
+<tr>
+<td><code>to_csv</code> / <code>to_excel</code> / <code>to_json</code></td>
+<td>打包出貨</td>
+<td>輸出多了一欄索引、中文亂碼</td>
+<td>要求「不要輸出索引、用 UTF-8」</td>
+</tr>
+<tr>
+<td><code>to_sql</code> / <code>read_sql</code></td>
+<td>存進倉庫／從倉庫取貨</td>
+<td>SQL 語法與連線設定繁瑣</td>
+<td>說「存進 SQLite 的某某資料表」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① 有雜訊的 CSV → 用參數讀成乾淨表格</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B7%B3%E9%81%8E%E9%9B%9C%E8%A8%8A%E8%AE%80CSV.svg" alt="有雜訊的 CSV 用參數讀成乾淨表格" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② 資料的進出口：pandas 是中間的轉運站</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%9C%96%E8%A7%A3/%E8%B3%87%E6%96%99%E9%80%B2%E5%87%BA%E5%8F%A3.svg" alt="pandas 是資料的轉運站：read_xxx 讀進、to_xxx 輸出" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。以下程式碼會自己產生範例檔，在 Colab 直接執行即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-讀取-不乾淨-的-csv-跳過雜訊-指定缺值">🔹 核心技巧 1：讀取「不乾淨」的 CSV——跳過雜訊、指定缺值</h3>
+<p><strong>商業意義</strong>：各系統匯出的報表常常夾帶說明文字、用奇怪符號表示缺值。讀檔時一次處理好，後面的統計才不會出錯。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+raw = &quot;&quot;&quot;# 本報表由系統自動產生
+門市,一月,二月,三月
+台北店,120,NA,150
+台中店,90,95,-
+高雄店,80,85,88
+# 資料來源：營業部&quot;&quot;&quot;                     # 模擬一份有註解、有缺值的報表
+with open('sales.csv', 'w', encoding='utf-8') as f:
+    f.write(raw)                         # 先把範例存成檔案
+
+df = pd.read_csv('sales.csv',
+                 comment='#',            # 以 # 開頭的行都是註解，直接略過
+                 na_values=['NA', '-'],  # 把 'NA' 和 '-' 都視為缺值（NaN）
+                 index_col='門市')       # 用「門市」這一欄當作列名牌
+print(df)                                # 乾淨的 3 × 3 表格，缺值顯示為 NaN
+print(df.isnull().sum())                 # 每個月有幾格缺值：二月 1、三月 1
+</code></pre>
+<h3 id="核心技巧-2-只讀需要的欄位與筆數-大檔案分批處理">🔹 核心技巧 2：只讀需要的欄位與筆數，大檔案分批處理</h3>
+<p><strong>商業意義</strong>：證交所、交易紀錄這類動輒數十萬筆的檔案，先「只讀需要的欄」、「先看前幾筆」，必要時「分批統計」，電腦才不會卡住。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+import numpy as np                       # 用來產生範例資料
+
+big = pd.DataFrame({'訂單編號': range(10000),                         # 模擬 1 萬筆訂單
+                    '地區': np.random.choice(['北', '中', '南'], 10000),
+                    '金額': np.random.randint(100, 5000, 10000),
+                    '備註': 'x'})
+big.to_csv('orders.csv', index=False)    # 存成 CSV，不輸出索引
+
+print(pd.read_csv('orders.csv', usecols=['地區', '金額'], nrows=5))   # 只讀 2 欄、前 5 筆，快速預覽
+
+total = pd.Series(dtype=float)           # 準備一個空的累計容器
+for chunk in pd.read_csv('orders.csv', chunksize=2000):   # 每次只讀 2000 筆
+    total = total.add(chunk.groupby('地區')['金額'].sum(), fill_value=0)  # 各地區金額逐批累加
+print(total)                             # 北、中、南三區的總金額
+</code></pre>
+<h3 id="核心技巧-3-輸出成-excel-csv-json">🔹 核心技巧 3：輸出成 Excel、CSV、JSON</h3>
+<p><strong>商業意義</strong>：分析完的結果要交給不同的人——主管要 Excel、系統要 JSON、其他分析師要 CSV。一份 DataFrame，一行就能輸出成各種格式。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+aqi = pd.DataFrame({'測站': ['新店', '大寮', '林園', '三重'],     # 模擬空氣品質資料
+                    'AQI': [19, 96, 96, 24],
+                    'PM2.5': [4, 34, 34, 7]})
+
+worst = aqi[aqi['AQI'] == aqi['AQI'].max()]   # 篩選出 AQI 最高（空氣最差）的測站
+print(worst)                             # 大寮、林園並列最差
+
+aqi.to_csv('aqi.csv', index=False, encoding='utf-8-sig')  # utf-8-sig：用 Excel 直接開 CSV 也不會亂碼
+aqi.to_excel('aqi.xlsx', index=False, sheet_name='AQI')   # 存成 Excel，指定工作表名稱（需安裝 openpyxl，Colab 已內建）
+print(aqi.to_json(orient='records', force_ascii=False))   # 轉成「一筆一個物件」的 JSON，中文不轉碼
+</code></pre>
+<h3 id="核心技巧-4-存進-sqlite-資料庫-再用-sql-取出">🔹 核心技巧 4：存進 SQLite 資料庫，再用 SQL 取出</h3>
+<p><strong>商業意義</strong>：每天下載的氣象或銷售資料，存進資料庫就能長期累積，之後用一句查詢語法撈出需要的部分。</p>
+<pre><code class="language-python">import sqlite3                           # Python 內建的 SQLite 資料庫工具
+import pandas as pd                      # 匯入 pandas
+
+weather = pd.DataFrame({'縣市': ['新北市', '南投縣', '臺南市'],   # 模擬氣象觀測資料
+                        '區域': ['烏來區', '仁愛鄉', '安平區'],
+                        '溫度': [18.6, 6.2, 24.5]})
+
+con = sqlite3.connect('weather.sqlite')  # 連線到資料庫檔案（不存在會自動建立）
+weather.to_sql('氣象觀測資料', con, if_exists='replace', index=False)  # 寫入資料表；已存在就整個取代
+
+cold = pd.read_sql('SELECT * FROM 氣象觀測資料 WHERE 溫度 &lt; 20', con)  # 用 SQL 撈出溫度低於 20 度的地區
+print(cold)                              # 烏來區 18.6、仁愛鄉 6.2
+con.close()                              # 用完記得關閉連線
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：環保署空氣品質指標 CSV／中選會總統選舉 Excel／氣象局觀測 JSON]</strong>，我想了解 <strong>[例如：AQI 最好與最差的測站，並把結果存成 Excel 給主管]</strong>。</p>
+<p>以下是檔案的前 10 行：<strong>[貼上內容]</strong></p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 <code>read_csv</code> / <code>read_excel</code> / <code>read_json</code></strong>，並說明需要哪些參數（例如 <code>skiprows</code>、<code>header</code>、<code>na_values</code>、<code>usecols</code>、<code>sheet_name</code>）。</li>
+<li>詳細解釋每一步的處理邏輯，以及為什麼要這樣設定參數。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：標題列不在第一行、合併儲存格、缺值寫成 NA 或 -、檔案過大、輸出 CSV 用 Excel 開啟變亂碼）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>下載政府開放資料</td>
+<td>「請用 requests 下載這個 AQI 的 CSV 網址並存檔，再用 pandas 讀取，只保留測站、AQI、PM2.5、發布時間四欄。」</td>
+</tr>
+<tr>
+<td>讀取格式複雜的 Excel</td>
+<td>「這份選舉 Excel 前 2 列是標題說明、有合併儲存格，請讀取『中央』工作表並整理成一縣市一列的表格。」</td>
+</tr>
+<tr>
+<td>處理超大檔案</td>
+<td>「這個 CSV 有 500 萬筆，請分批讀取，每批 10 萬筆，統計每個商品類別的總銷售額。」</td>
+</tr>
+<tr>
+<td>建立每日資料庫</td>
+<td>「請把每次下載的氣象 JSON 轉成 DataFrame，附加（append）到 SQLite 的『氣象觀測資料』表，避免重複寫入同一時間的資料。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：讀檔後請 AI 立刻印出 <code>df.shape</code>、<code>df.head()</code>、<code>df.dtypes</code>、<code>df.isnull().sum()</code>，確認「筆數、欄名、型態、缺值」四件事都正確，再往下分析。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/pandas%E7%9A%84%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/README.ipynb" target="_blank" rel="noopener">README.ipynb</a> 讀取的 <code>總統.xls</code>，前兩列是標題與合併儲存格，直接讀會得到一堆 <code>Unnamed: 1</code>、<code>Unnamed: 2</code> 欄位。這時就要請 AI 調整 <code>header</code> 或 <code>skiprows</code>。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道 CSV、Excel、JSON、SQLite 分別用哪個 <code>read_xxx()</code> 讀取、哪個 <code>to_xxx()</code> 輸出。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能說出 <code>header</code>、<code>names</code>、<code>skiprows</code>、<code>usecols</code>、<code>nrows</code>、<code>na_values</code> 各自解決什麼問題。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道大檔案可以用 <code>chunksize</code> 分批處理。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道輸出 CSV 給 Excel 使用時，用 <code>utf-8-sig</code> 可避免中文亂碼。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成程式中 <code>to_sql</code>、<code>read_sql</code> 的用途。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會在讀檔後檢查 <code>shape</code>、<code>head()</code>、<code>dtypes</code>、缺值數量。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本，貼上檔案前幾行，並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch06.html"><small>← 上一章</small>第 6 章　pandas的基礎功能</a><a class="pager-next" href="ch08.html"><small>下一章 →</small>第 8 章　資料整理和使用前準備</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

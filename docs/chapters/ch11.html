@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 11 章 日期和時間｜Python 資料分析</title>
+<meta name="description" content="時間索引、resample、shift、rolling 與時區">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html" class="on" aria-current="page"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 11 章</p>
+    <h1 class="chapter-title">📊 📅 日期和時間：讓資料「懂得時間」，看出每月趨勢、成長率與長期走勢</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%85%A9%E5%B9%B4%E7%87%9F%E6%94%B6%E8%88%87%E5%A4%96%E9%80%81%E6%99%82%E5%8D%80.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：📅 兩年營收趨勢與外送時區之謎</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：把文字日期轉成真正的「時間型態」，並以時間當索引，就能「按年月取資料」、「把每日資料彙總成每月（resample）」、「和上期比較（shift）」、「算移動平均看長期趨勢（rolling）」，還能處理時區與季度。</li>
+<li><strong>AI 協作能力</strong>：學會用「時間頻率」的語言指揮 AI——「每日 → 每月加總」、「和上個月比的成長率」、「60 日移動平均」、「轉成台北時間」，並提醒 AI 使用新版 pandas 的頻率代碼。</li>
+<li><strong>商業決策產出</strong>：能把每日營收整理成月報、計算月增率（MoM）、用移動平均過濾股價雜訊、判斷長期趨勢方向。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📈 <strong>範例資料</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/stock_px_2.csv" target="_blank" rel="noopener">stock_px_2.csv</a>（2003 年起 AAPL、MSFT、XOM 與 S&amp;P 500 的每日收盤價）</p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>📅 茶語時光：兩年營收趨勢與外送時區之謎</strong></p>
+<p>品牌成立滿兩年，董事會想看：「今年比去年成長多少？哪個月最好？颱風到底讓我們少賺多少？」同時，外送部門抱怨：「平台報表說我們凌晨 4 點最忙，這怎麼可能？」你要用 pandas 的時間工具，一次解開這些問題。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%85%A9%E5%B9%B4%E7%87%9F%E6%94%B6%E8%88%87%E5%A4%96%E9%80%81%E6%99%82%E5%8D%80.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E5%85%A9%E5%B9%B4%E7%87%9F%E6%94%B6%E8%88%87%E5%A4%96%E9%80%81%E6%99%82%E5%8D%80.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 日期和時間_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>每日營收_2023-2024.csv</code></td>
+<td>2023～2024 兩年、5 家門市的每日杯數與營收（日期格式是「2024/1/5」的文字）</td>
+</tr>
+<tr>
+<td><code>外送訂單_UTC_2024-09.csv</code></td>
+<td>9 月外送平台訂單，時間以 UTC（世界標準時間）儲存</td>
+</tr>
+<tr>
+<td><code>課程原始資料/</code></td>
+<td>本章課堂 Notebook 使用的原始資料檔</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>文字日期 vs. 時間型態，就像「寫在紙上的日期」vs.「行事曆上的日期」</strong>：紙上的 <code>'2021-01-05'</code> 只是字，電腦不知道它是星期幾、下個月是哪天；轉成時間型態後，就像放進行事曆，可以算天數、找月底、按月分組。</li>
+<li><strong>以時間為索引，就像「日記本」</strong>：翻到「2021 年 3 月」就能直接看到那個月的所有紀錄（<code>ts['2021-03']</code>）。</li>
+<li><strong>resample 就像「把日記整理成月報」</strong>：每天的流水帳（高頻率）加總成每月一筆（低頻率）叫 <strong>降頻</strong>；反過來把每月資料展開成每天（需要補值）叫 <strong>升頻</strong>。</li>
+<li><strong>shift 就像「把上個月的成績單擺在旁邊對照」</strong>：資料往下挪一格，就能和上一期相減或相除，算出成長率。</li>
+<li><strong>rolling 移動平均就像「看最近 N 天的平均體重」</strong>：單日數字起伏很大，但「最近 60 天平均」能濾掉雜訊，看出真正的趨勢。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pd.to_datetime</code></td>
+<td>紙上日期 → 行事曆日期</td>
+<td>日期格式五花八門（7/6/2011、民國年）</td>
+<td>告訴 AI「原始日期長什麼樣子」</td>
+</tr>
+<tr>
+<td>時間索引與切片</td>
+<td>日記本按年月翻頁</td>
+<td>日期是文字時無法用範圍篩選</td>
+<td>說「取出 2021 年第一季」</td>
+</tr>
+<tr>
+<td><code>date_range</code> / 頻率代碼</td>
+<td>自動產生行事曆</td>
+<td>頻率代碼難記且新舊版不同</td>
+<td>說「每週三」、「每月最後一個工作日」</td>
+</tr>
+<tr>
+<td><code>resample</code></td>
+<td>日記 → 月報（降頻）／月報 → 日記（升頻）</td>
+<td>區間包含左邊還右邊搞不清</td>
+<td>說「每日加總成每月」、「缺的日子沿用前一天」</td>
+</tr>
+<tr>
+<td><code>shift</code> / <code>pct_change</code></td>
+<td>和上期成績單對照</td>
+<td>自己寫迴圈算成長率易出錯</td>
+<td>說「計算月增率」</td>
+</tr>
+<tr>
+<td><code>rolling</code></td>
+<td>最近 N 天平均體重</td>
+<td>前 N−1 天沒有值的原因不懂</td>
+<td>說「60 日移動平均，資料不足 10 天就不算」</td>
+</tr>
+<tr>
+<td><code>tz_localize</code> / <code>tz_convert</code></td>
+<td>標上時區／換算成當地時間</td>
+<td>跨國資料時間差 8 小時</td>
+<td>說「原始是 UTC，轉成台北時間」</td>
+</tr>
+<tr>
+<td><code>Period</code> 時期</td>
+<td>「2023 年第 1 季」這種一整段時間</td>
+<td>會計年度與季度換算</td>
+<td>說「以 3 月為年度結束的季度」</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① 時間序列：時間當索引</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%9C%96%E8%A7%A3/%E6%99%82%E9%96%93%E7%95%B6%E7%B4%A2%E5%BC%95.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%9C%96%E8%A7%A3/%E6%99%82%E9%96%93%E7%95%B6%E7%B4%A2%E5%BC%95.svg" alt="文字日期轉成時間索引" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② resample 降頻 / shift 成長率 / rolling 移動平均</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%9C%96%E8%A7%A3/%E9%99%8D%E9%A0%BB%E8%88%87%E6%9C%88%E5%A2%9E%E7%8E%87.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/%E5%9C%96%E8%A7%A3/%E9%99%8D%E9%A0%BB%E8%88%87%E6%9C%88%E5%A2%9E%E7%8E%87.svg" alt="resample 降頻、shift 計算月增率、rolling 移動平均" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。程式碼使用新版 pandas 頻率代碼（<code>'ME'</code> 月底、<code>'YE'</code> 年底），Colab 可直接執行。</p>
+</blockquote>
+<h3 id="核心技巧-1-文字轉日期-取出年-月-星期">🔹 核心技巧 1：文字轉日期，取出年、月、星期</h3>
+<p><strong>商業意義</strong>：訂單日期轉成時間型態後，才能回答「週末業績比平日好嗎？」、「哪個月是旺季？」這類問題。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+orders = pd.DataFrame({'訂單日期': ['2021-01-02', '2021-01-05', '2021-02-13', '2021-03-20'],
+                       '金額': [1200, 800, 1500, 2000]})
+
+orders['訂單日期'] = pd.to_datetime(orders['訂單日期'])   # 把文字轉成真正的時間型態
+orders['月份'] = orders['訂單日期'].dt.month             # .dt 取出時間的各部分：月份
+orders['星期'] = orders['訂單日期'].dt.day_name()        # 星期幾（英文名稱）
+orders['是否週末'] = orders['訂單日期'].dt.dayofweek &gt;= 5  # 0=星期一 … 5=星期六、6=星期日
+print(orders)
+
+days = pd.Timestamp('2021-03-20') - pd.Timestamp('2021-01-02')   # 兩個日期相減 → 一段時間
+print('相隔天數：', days.days)            # 77 天
+</code></pre>
+<h3 id="核心技巧-2-時間索引-按年月取資料-每日彙總成每月">🔹 核心技巧 2：時間索引——按年月取資料、每日彙總成每月</h3>
+<p><strong>商業意義</strong>：每天一筆的營收、來客數，老闆通常只想看「每月總計」或「每週平均」；用時間索引加 resample，一行搞定月報。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy
+import pandas as pd                      # 匯入 pandas
+
+np.random.seed(0)                        # 固定亂數
+days = pd.date_range('2021-01-01', '2021-06-30', freq='D')        # 產生每天的日期（共 181 天）
+daily = pd.Series(np.random.randint(80, 120, len(days)), index=days)   # 每日營收，日期當索引
+
+print(daily['2021-03'].head())           # 直接用「年-月」字串取出 3 月的資料
+print(daily['2021-04-01':'2021-04-07'])  # 用日期範圍切出 4 月第一週
+
+monthly = daily.resample('ME').sum()     # 降頻：每日 → 每月加總（'ME' = 月底，新版 pandas 寫法）
+print(monthly)
+print(daily.resample('W').mean().head()) # 每週平均（以週日為一週結束）
+</code></pre>
+<h3 id="核心技巧-3-shift-計算月增率-mom">🔹 核心技巧 3：shift 計算月增率（MoM）</h3>
+<p><strong>商業意義</strong>：「這個月比上個月成長了多少？」是每份月報必備的指標。shift 把上期數字挪到同一列，相除就能得到成長率。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+
+monthly = pd.Series([310, 336, 372, 350, 401, 420],
+                    index=pd.date_range('2021-01-31', periods=6, freq='ME'))   # 6 個月的月營收
+
+report = pd.DataFrame({'營收': monthly,
+                       '上月營收': monthly.shift(1)})   # shift(1)：資料往下挪一格 → 每列旁邊就是上個月
+report['月增率'] = report['營收'] / report['上月營收'] - 1   # 月增率 = 本月 ÷ 上月 − 1
+report['月增率(內建)'] = monthly.pct_change()             # pandas 內建的一行寫法，結果相同
+print(report.round(3))                   # 第一個月沒有上月可比 → NaN
+</code></pre>
+<h3 id="核心技巧-4-rolling-移動平均-濾掉雜訊看長期趨勢">🔹 核心技巧 4：rolling 移動平均——濾掉雜訊看長期趨勢</h3>
+<p><strong>商業意義</strong>：股價、日營收每天上下震盪，移動平均線能看出「整體是向上還是向下」，也是技術分析中最基本的工具。</p>
+<pre><code class="language-python">import pandas as pd                      # 匯入 pandas
+import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+url = ('https://raw.githubusercontent.com/roberthsu2003/PythonForDataAnalysis/master/'
+       '%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/stock_px_2.csv')
+px = pd.read_csv(url, parse_dates=True, index_col=0)   # 讀取股價：第一欄日期轉成時間並當索引
+aapl = px['AAPL'].resample('B').ffill()  # 統一成「工作日」頻率，沒交易的日子沿用前一天收盤價
+
+fig, ax = plt.subplots(figsize=(10, 4))
+aapl.plot(ax=ax, alpha=0.4, label='Daily close')              # 原始每日收盤價（較淡）
+aapl.rolling(100).mean().plot(ax=ax, label='100-day MA')       # 100 日移動平均：前 99 天資料不足 → NaN
+aapl.rolling(250, min_periods=10).mean().plot(ax=ax, label='250-day MA')  # 250 日均線，至少 10 天資料就開始計算
+ax.set_title('AAPL close price &amp; moving averages')
+ax.legend()
+plt.show()
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：門市每日營收 CSV，日期欄格式是 2021/1/5，另有門市、營收欄位]</strong>，我想了解 <strong>[例如：每月營收、月增率，以及 30 日移動平均的趨勢]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>pandas 的 <code>to_datetime</code>、時間索引、<code>resample</code>、<code>shift</code> / <code>pct_change</code>、<code>rolling</code></strong> 進行處理，並使用<strong>新版 pandas 的頻率代碼</strong>（月底用 <code>'ME'</code>、年底用 <code>'YE'</code>、小時用 <code>'h'</code>、分鐘用 <code>'min'</code>）。</li>
+<li>詳細解釋每一步的處理邏輯與計算公式（例如月增率 = 本月 ÷ 上月 − 1），並說明 NaN 出現的原因。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如：日期格式不一致、民國年、日月順序顛倒、時區差 8 小時、某些日子沒有資料、日期重複）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>做月報與季報</td>
+<td>「請把每日營收彙總成每月總和與每季平均，並計算月增率與年增率（YoY）。」</td>
+</tr>
+<tr>
+<td>週末效應</td>
+<td>「請新增『星期幾』欄位，比較週一到週日的平均營收，畫成長條圖。」</td>
+</tr>
+<tr>
+<td>看長期趨勢</td>
+<td>「請畫出股價收盤價，並疊上 20 日、60 日、240 日移動平均線，用白話說明目前趨勢。」</td>
+</tr>
+<tr>
+<td>補齊缺漏日期</td>
+<td>「資料有些日子沒有紀錄，請補齊成每天一筆，缺的日子營收補 0，庫存沿用前一天。」</td>
+</tr>
+<tr>
+<td>跨國時間</td>
+<td>「這份網站流量紀錄的時間是 UTC，請轉成台北時間後，再統計每小時的流量。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：請 AI 印出 <code>df.index.min()</code>、<code>df.index.max()</code> 與 <code>df.index.is_unique</code>，確認資料的起訖日期正確、沒有重複的日期；resample 後檢查「月份數量」是否符合預期。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：網路上和 AI 常給出 <code>resample('M')</code>、<code>freq='A-DEC'</code>、<code>freq='4H'</code>、<code>'90T'</code> 這類舊寫法，在<strong>新版 pandas 會直接報錯</strong>（例如：<code>'M' is no longer supported for offsets. Please use 'ME' instead.</code>）。本章 <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%97%A5%E6%9C%9F%E5%92%8C%E6%99%82%E9%96%93/README.ipynb" target="_blank" rel="noopener">README.ipynb</a> 已全部改為新寫法（<code>'ME'</code>、<code>'BME'</code>、<code>'Y-DEC'</code>、<code>'h'</code>、<code>'min'</code>）。請 AI 寫程式時，記得指定「使用新版 pandas 的頻率代碼」。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我理解文字日期必須先用 <code>pd.to_datetime</code> 轉成時間型態，才能做時間運算。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能請 AI 用時間索引「按年、按月、按日期範圍」取出資料。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能分辨 <strong>降頻</strong>（每日 → 每月，要加總或平均）與 <strong>升頻</strong>（每月 → 每日，要補值）。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能說明 <code>shift</code> 如何用來計算月增率，以及第一期為什麼是 NaN。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我理解 <code>rolling</code> 移動平均的意義，以及前 N−1 筆為什麼沒有值。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我知道新版 pandas 的頻率代碼（<code>'ME'</code>、<code>'YE'</code>、<code>'h'</code>、<code>'min'</code>）和舊版不同。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本並替換成自己的業務問題。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch10.html"><small>← 上一章</small>第 10 章　數據整理：連接、合併和重塑</a><a class="pager-next" href="ch12.html"><small>下一章 →</small>第 12 章　視覺化表格</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

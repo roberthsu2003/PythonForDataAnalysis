@@ -4,6 +4,8 @@
 
 用 **NumPy、pandas、Matplotlib** 把原始資料變成能做決策的報表與圖表。每一章都搭配 AI 協作的方法：學會怎麼向 AI 描述需求，也學會怎麼驗收 AI 的產出。
 
+> 🌐 **網頁版**：[roberthsu2003.github.io/PythonForDataAnalysis](https://roberthsu2003.github.io/PythonForDataAnalysis/)（手機、平板也好讀，內容與這裡同步）
+
 > [!TIP]
 > **🧋 這門課有一個貫穿全場的主角：「茶語時光」**
 >

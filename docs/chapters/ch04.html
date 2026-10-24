@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>第 4 章 Numpy建立與計算｜Python 資料分析</title>
+<meta name="description" content="用陣列整批計算總和、平均、最高最低與累計">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">🧋</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="sidebar" id="sidebar">
+    <button class="side-toggle" type="button" aria-expanded="false" aria-controls="side-list">📚 全部章節</button>
+    <div class="side-list" id="side-list"><p class="side-stage">🧱 階段一｜基礎工具</p><ul><li><a href="ch02.html" data-page="ch02.html"><span class="side-no">2</span>檔案存取</a></li><li><a href="ch03.html" data-page="ch03.html"><span class="side-no">3</span>繪圖和視覺展示</a></li><li><a href="ch04.html" data-page="ch04.html" class="on" aria-current="page"><span class="side-no">4</span>Numpy建立與計算</a></li></ul><p class="side-stage">🐼 階段二｜pandas 入門</p><ul><li><a href="ch05.html" data-page="ch05.html"><span class="side-no">5</span>初見pandas</a></li><li><a href="ch06.html" data-page="ch06.html"><span class="side-no">6</span>pandas的基礎功能</a></li><li><a href="ch07.html" data-page="ch07.html"><span class="side-no">7</span>pandas的檔案存取</a></li></ul><p class="side-stage">🧹 階段三｜整理資料</p><ul><li><a href="ch08.html" data-page="ch08.html"><span class="side-no">8</span>資料整理和使用前準備</a></li><li><a href="ch09.html" data-page="ch09.html"><span class="side-no">9</span>群組資料和群組運算</a></li><li><a href="ch10.html" data-page="ch10.html"><span class="side-no">10</span>數據整理：連接、合併和重塑</a></li></ul><p class="side-stage">📈 階段四｜分析與呈現</p><ul><li><a href="ch11.html" data-page="ch11.html"><span class="side-no">11</span>日期和時間</a></li><li><a href="ch12.html" data-page="ch12.html"><span class="side-no">12</span>視覺化表格</a></li><li><a href="ch13.html" data-page="ch13.html"><span class="side-no">13</span>直接使用pandas繪制圖表</a></li></ul><p class="side-stage">🚀 階段五｜綜合實戰</p><ul><li><a href="ch14.html" data-page="ch14.html"><span class="side-no">14</span>全方面分析</a></li><li><a href="ch15.html" data-page="ch15.html"><span class="side-no">15</span>資料分析範例</a></li></ul></div>
+  </aside>
+  <main class="chapter">
+    <p class="crumb"><a href="../index.html">課程首頁</a> › 第 4 章</p>
+    <h1 class="chapter-title">📊 🧮 NumPy 建立與計算：一次算完整張報表，告別一格一格拉公式</h1>
+    <div class="chapter-actions"><a class="btn btn-primary" href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb" target="_blank" rel="noopener">▶ 在 Colab 開始任務：🧮 一年 366 天的杯數矩陣</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip">⬇️ 下載本章素材</a><a class="btn btn-ghost" href="https://github.com/roberthsu2003/PythonForDataAnalysis/tree/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97" target="_blank" rel="noopener">📂 在 GitHub 看原始檔</a></div>
+    <details class="toc" open><summary>📑 本章目錄</summary><ul><li class="toc-l2"><a href="#學生素材下載">📦 學生素材下載</a></li><li class="toc-l2"><a href="#1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</a></li><li class="toc-l2"><a href="#2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</a></li><li class="toc-l2"><a href="#3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</a></li><li class="toc-l2"><a href="#4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</a></li><li class="toc-l2"><a href="#5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</a></li></ul></details>
+    <article class="md"><blockquote class="alert alert-important">
+<p class="alert-title">📌 重點</p>
+<p><strong>本章節學習核心</strong>：</p>
+<ol>
+<li><strong>核心觀念</strong>：把一堆數字裝進「同規格的整齊表格（陣列）」，就能整批一起加減乘除、一起統計，不必一筆一筆算。</li>
+<li><strong>AI 協作能力</strong>：學會用「列（每一筆資料）」與「欄（每一個項目）」的語言，精準告訴 AI 要「橫著算」還是「直著算」。</li>
+<li><strong>商業決策產出</strong>：能從營收、成績、人口等數字中，快速看出總和、平均、最高最低、累計趨勢，並挑出需要關注的對象。</li>
+</ol>
+</blockquote>
+<hr />
+<blockquote>
+<p>🚀 <strong>完整互動教學 Notebook</strong>：
+<a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/README.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/README.ipynb" target="_blank" rel="noopener">開啟 README.ipynb</a></p>
+<p>📝 <strong>課後練習解答</strong>：<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/homework1.ipynb" target="_blank" rel="noopener">開啟 homework1.ipynb</a></p>
+</blockquote>
+<hr />
+<h2 id="學生素材下載">📦 學生素材下載</h2>
+<blockquote class="alert alert-tip">
+<p class="alert-title">💡 提示</p>
+<p><strong>🧮 茶語時光：一年 366 天的杯數矩陣</strong></p>
+<p>總部拿到一張大表：2024 年每一天、每一家門市賣了幾杯。這是 366 列 × 5 欄、共 1,830 個數字。用 Excel 一格一格拉公式太累，你決定把它裝進 NumPy 陣列，一次算完老闆想知道的所有數字。</p>
+<p><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb" target="_blank" rel="noopener"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" /></a> <a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E8%8C%B6%E8%AA%9E%E6%99%82%E5%85%89_%E4%B8%80%E5%B9%B4366%E5%A4%A9%E7%9A%84%E6%9D%AF%E6%95%B8%E7%9F%A9%E9%99%A3.ipynb" target="_blank" rel="noopener">開啟範例 Notebook</a>　｜　<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">⬇️ 下載本章素材 Numpy建立與計算_學生素材.zip</a></p>
+</blockquote>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>素材檔案</th>
+<th>內容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>每日杯數_2024.csv</code></td>
+<td>2024 年 366 天 × 5 家門市的每日杯數</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>使用方式</strong>：下載壓縮檔並解壓縮後，用 Jupyter 或 VS Code 開啟範例 Notebook，從上到下依序執行即可；若直接在 Colab 開啟，第一格程式會自動下載本章素材。範例開頭有「🗺️ 今日任務地圖」，最後的練習區每題都附「半成品程式 → ✅ 自動檢查 → 🔑 折疊解答」，寫完馬上知道自己對不對。</p>
+<hr />
+<h2 id="1-為什麼需要這個觀念-生活化比喻">💡 1. 為什麼需要這個觀念？（生活化比喻）</h2>
+<ul>
+<li><strong>一般的 Python 清單（list）就像「購物袋」</strong>：什麼都能丟進去（數字、文字混在一起），但要算總價時，你得一件一件拿出來看標籤、再加總。</li>
+<li><strong>NumPy 陣列（array）就像「蛋盒」</strong>：每一格大小一樣、只放同一種東西。因為規格統一，你可以「整盒一起秤重」、「整盒一起漲價 10%」，一個動作就搞定。</li>
+<li><strong>在 Excel 裡</strong>，你要把 A 欄加 B 欄，得寫好公式再往下拉到第 50 列；在 NumPy 裡，你只要說「A 欄 + B 欄」，50 列（甚至 100 萬列）瞬間同時算完。這就叫做 <strong>向量化運算</strong>。</li>
+<li>Notebook 裡實測：同樣把 100 萬個數字乘以 2，NumPy 比一般清單快上數十倍。資料越大，差距越明顯。</li>
+</ul>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th><strong>核心概念</strong></th>
+<th><strong>生活化直觀比喻</strong></th>
+<th><strong>傳統工程師痛苦點</strong></th>
+<th><strong>AI 時代你的角色</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>陣列（ndarray）</td>
+<td>蛋盒：每格同規格、只放同類東西</td>
+<td>要記 <code>np.array()</code>、<code>dtype</code> 等語法</td>
+<td>告訴 AI「把這些數字轉成 NumPy 陣列」</td>
+</tr>
+<tr>
+<td>向量化運算</td>
+<td>Excel 整欄一次套公式，不用往下拉</td>
+<td>習慣寫 for 迴圈，又慢又容易寫錯</td>
+<td>要求 AI「不要用迴圈，整批計算」</td>
+</tr>
+<tr>
+<td>形狀（shape）與重排（reshape）</td>
+<td>12 顆蛋可以排成 2×6 或 3×4 的盒子</td>
+<td>形狀對不上就報錯，看不懂錯誤訊息</td>
+<td>說清楚「幾列、幾欄、每列代表什麼」</td>
+</tr>
+<tr>
+<td>軸（axis）</td>
+<td>「橫著加」算每人總分 vs.「直著加」算每科總分</td>
+<td>axis=0 / axis=1 常常搞反</td>
+<td>用白話說「每位學生」或「每個科目」，並驗收結果筆數</td>
+</tr>
+<tr>
+<td>布林篩選 / <code>np.where</code></td>
+<td>用螢光筆把「不及格」的格子標出來</td>
+<td>條件寫錯，篩出空資料也沒發現</td>
+<td>下達清楚條件，並抽查幾筆確認</td>
+</tr>
+<tr>
+<td>累計（cumsum）</td>
+<td>存錢筒：每天存的錢一路累加</td>
+<td>自己寫累加邏輯容易少算一天</td>
+<td>要求 AI 畫出累計曲線，判讀趨勢</td>
+</tr>
+</tbody>
+</table></div>
+<hr />
+<h2 id="2-資料長什麼樣子-直觀結構圖解">📐 2. 資料長什麼樣子？（直觀結構圖解）</h2>
+<p><strong>① 從「一條清單」重新排成「一張表格」（reshape）</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/reshape%E9%87%8D%E6%8E%92.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/reshape%E9%87%8D%E6%8E%92.svg" alt="reshape：一維陣列重排成 3 列 × 4 欄" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<p><strong>② 統計時最重要的「軸（axis）」觀念：橫著算還是直著算？</strong></p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/axis%E6%96%B9%E5%90%91.svg" target="_blank" rel="noopener"><img src="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%9C%96%E8%A7%A3/axis%E6%96%B9%E5%90%91.svg" alt="axis=0 直著算、axis=1 橫著算" /></a><br><sub>🔍 點圖可開啟原尺寸大圖（向量圖，可再用瀏覽器放大）</sub></p>
+<blockquote>
+<p>💡 <strong>記憶口訣</strong>：<code>axis=1</code> 是「每一列（每個人）算一個答案」；<code>axis=0</code> 是「每一欄（每個項目）算一個答案」。不確定時，看結果有幾個數字就知道了！</p>
+</blockquote>
+<hr />
+<h2 id="3-核心精華操作-複製貼上即可驗證">💻 3. 核心精華操作（複製貼上即可驗證）</h2>
+<blockquote>
+<p>學生不需要自己寫，但只要讀懂關鍵邏輯即可。</p>
+</blockquote>
+<h3 id="核心技巧-1-整批運算-不用迴圈">🔹 核心技巧 1：整批運算（不用迴圈）</h3>
+<p><strong>商業意義</strong>：兩份名單（例如上半年與下半年業績、國文與英文成績）要逐筆相加時，一行就搞定，資料量再大也不怕。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy 套件，並取個簡短的暱稱 np
+
+chinese = [80, 60, 92, 75]               # 一般的 Python 清單：4 位學生的國文成績
+english = [90, 75, 68, 88]               # 一般的 Python 清單：同樣 4 位學生的英文成績
+
+print(chinese + english)                 # ⚠️ 清單相加只會「接在一起」：[80, 60, 92, 75, 90, 75, 68, 88]
+
+nd_chinese = np.array(chinese)           # 把清單轉成 NumPy 陣列（裝進蛋盒）
+nd_english = np.array(english)           # 英文成績也轉成陣列
+
+total = nd_chinese + nd_english          # ✅ 陣列相加是「對應位置逐一相加」
+print(total)                             # 結果：[170 135 160 163]，每位學生的兩科總分
+print(total * 1.1)                       # 整批調整：每個人的總分都乘以 1.1（例如加權）
+</code></pre>
+<h3 id="核心技巧-2-用-axis-做-每人-與-每科-統計">🔹 核心技巧 2：用 axis 做「每人」與「每科」統計</h3>
+<p><strong>商業意義</strong>：同一張表可以回答兩種問題——「哪個人表現最好？」（橫著算）與「哪個項目最弱？」（直著算）。換成「分店 × 月份」的營收表也一樣適用。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy
+
+# 建立 3 位學生 × 3 科的成績表（列 = 學生，欄 = 科目：國文、英文、數學）
+scores = np.array([[80, 90, 70],         # 小明
+                   [60, 75, 95],         # 小華
+                   [88, 62, 79]])        # 小美
+
+print(scores.shape)                      # 查看形狀：(3, 3) 代表 3 列 3 欄
+print(scores.sum(axis=1))                # axis=1 橫著加 → 每位學生總分：[240 230 229]
+print(scores.mean(axis=0))               # axis=0 直著平均 → 每一科的平均：約 [76. 75.67 81.33]
+print(scores.max())                      # 不指定 axis → 整張表的最高分：95
+print(np.median(scores))                 # 整張表的中位數：79.0（比平均更不受極端值影響）
+</code></pre>
+<h3 id="核心技巧-3-條件篩選與標記-布林索引-np-where">🔹 核心技巧 3：條件篩選與標記（布林索引 + <code>np.where</code>）</h3>
+<p><strong>商業意義</strong>：快速找出「不及格的學生」、「低於目標的門市」，並自動貼上標籤，等同於 Excel 的「篩選」加上 <code>IF()</code> 公式。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy
+
+sales = np.array([5200, 3100, 7800, 2900, 6100])   # 5 家門市本月營收（單位：千元）
+
+is_low = sales &lt; 4000                    # 逐一判斷是否低於 4000，得到 True / False 的「螢光筆標記」
+print(is_low)                            # 結果：[False  True False  True False]
+print(sales[is_low])                     # 只取出被標記的門市營收：[3100 2900]
+
+# np.where(條件, 符合時的值, 不符合時的值) ── 就像 Excel 的 IF()
+label = np.where(sales &lt; 4000, '需輔導', '達標')
+print(label)                             # 結果：['達標' '需輔導' '達標' '需輔導' '達標']
+</code></pre>
+<h3 id="核心技巧-4-累計營收趨勢-cumsum-畫成折線圖">🔹 核心技巧 4：累計營收趨勢（cumsum）＋ 畫成折線圖</h3>
+<p><strong>商業意義</strong>：老闆最常問「這個月到今天為止累積賺了多少？」。<code>cumsum()</code> 一行算出每天的累計值，畫成圖就能看出業績是穩定成長還是突然停滯。</p>
+<pre><code class="language-python">import numpy as np                       # 匯入 NumPy
+import matplotlib.pyplot as plt          # 匯入繪圖套件
+
+week_income = np.array([456, 896, 278, 832, 940, 1265, 689])  # 一週 7 天的每日收入
+
+cum_income = week_income.cumsum()        # 累計加總：每天 = 前面所有天數的總和
+print(cum_income)                        # 結果：[ 456 1352 1630 2462 3402 4667 5356]
+
+plt.plot(range(1, 8), cum_income, 'r-o') # 以第 1～7 天為 X 軸、累計收入為 Y 軸，畫紅色折線
+plt.title('Weekly Cumulative Income')    # 圖表標題（用英文可避免中文字型顯示成方塊）
+plt.xlabel('Day')                        # X 軸名稱
+plt.ylabel('Income')                     # Y 軸名稱
+plt.show()                               # 顯示圖表
+</code></pre>
+<hr />
+<h2 id="4-指揮-ai-的專屬指令手冊-prompt-實戰專區">🤖 4. 指揮 AI 的專屬指令手冊（Prompt 實戰專區）</h2>
+<p>當你在實務工作遇到此類資料時，直接複製以下 Prompt 讓 AI 替你分析：</p>
+<blockquote>
+<p><strong>📋 AI 指揮範本（通用版）</strong>：</p>
+<p>「你現在是我的資深 Python 資料分析師。我有一份 <strong>[例如：5 家分店 × 30 天的每日營收數字]</strong>，我想了解 <strong>[例如：每家分店的總營收、平均日營收，以及哪幾天營收低於 3000 元]</strong>。</p>
+<p>請你：</p>
+<ol>
+<li>使用 <strong>NumPy 陣列</strong> 進行處理，不要用 for 迴圈逐筆計算。</li>
+<li>詳細解釋每一步的處理邏輯與計算公式，特別說明使用的是 <code>axis=0</code> 還是 <code>axis=1</code>，以及它代表「每家分店」還是「每一天」。</li>
+<li>產出繁體中文說明的完整程式碼，並標註潛在的資料異常陷阱（例如缺值、數字被存成文字、輸入時少了逗號）。」</li>
+</ol>
+</blockquote>
+<p><strong>🎯 情境延伸範本</strong>（依需求替換）：</p>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>你想問的商業問題</th>
+<th>直接對 AI 說</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>每位員工的季度總業績</td>
+<td>「這是 10 位員工 × 4 季的業績表，<strong>每一列是一位員工</strong>，請用 NumPy 算出每人全年總業績並由高到低排序。」</td>
+</tr>
+<tr>
+<td>業績是否穩定成長</td>
+<td>「請把這 30 天的營收用 <code>cumsum()</code> 算出累計值，畫成折線圖，並用白話說明趨勢有無停滯。」</td>
+</tr>
+<tr>
+<td>自動標記警示名單</td>
+<td>「請用 <code>np.where</code> 把平均分數低於 60 的學生標記為『需補救』，其他標記為『正常』。」</td>
+</tr>
+<tr>
+<td>資料想換個排列方式</td>
+<td>「我有 12 個月的數字排成一長串，請 reshape 成 4 季 × 3 個月的表格，並解釋每列每欄代表什麼。」</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>⚠️ <strong>驗收小撇步</strong>：AI 給你結果後，請自己抽查 1～2 筆（例如手算第一位學生的總分），並確認「結果的筆數」符合預期——要算「每位員工」，結果的數字個數就應該等於員工人數。</p>
+</blockquote>
+<blockquote>
+<p>🕵️ <strong>真實陷阱案例</strong>：本章的課後練習資料中有一筆寫成 <code>8409.8406</code>——原本應是 <code>8409, 8406</code> 兩個月份，卻因為<strong>少打一個逗號</strong>，變成一個帶小數的數字，17 個月的資料只剩 16 筆！這正是你要請 AI「標註資料異常」的原因。</p>
+</blockquote>
+<hr />
+<h2 id="5-本章檢查清單-自我驗收">🎯 5. 本章檢查清單（自我驗收）</h2>
+<ul class="contains-task-list">
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能理解 <strong>Python 清單（購物袋）</strong> 與 <strong>NumPy 陣列（蛋盒）</strong> 的差異，知道為什麼陣列可以整批計算。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 <code>shape</code> 的意思，例如 <code>(3, 4)</code> 代表 3 列 4 欄。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能分辨 <code>axis=0</code>（直著算，每個項目一個答案）與 <code>axis=1</code>（橫著算，每一筆資料一個答案）。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能看懂 AI 生成結果中 <code>sum</code>、<code>mean</code>、<code>median</code>、<code>max</code>、<code>min</code>、<code>cumsum</code> 分別代表的意義。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能用白話描述篩選條件，請 AI 用布林篩選或 <code>np.where</code> 幫我標記資料。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我能複製 Prompt 範本，並替換成自己的業務問題（營收、成績、人口、庫存……）。</li>
+<li class="task-list-item"><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> 我會在拿到 AI 結果後，抽查幾筆數字並確認結果筆數是否合理。</li>
+</ul>
+</article>
+    <nav class="pager"><a class="pager-prev" href="ch03.html"><small>← 上一章</small>第 3 章　繪圖和視覺展示</a><a class="pager-next" href="ch05.html"><small>下一章 →</small>第 5 章　初見pandas</a></nav>
+  </main>
+</div>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜「茶語時光」為課程虛構品牌，範例資料為模擬資料。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
