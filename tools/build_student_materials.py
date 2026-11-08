@@ -111,6 +111,8 @@ def update_root_readme(chapter_dir):
     lines = readme.read_text(encoding='utf-8').split('\n')
     for i, line in enumerate(lines):
         if f'](./{chapter_dir.name}/README.md)' in line and line.startswith('| '):
+            if quote('第一階段_辦公室Excel實戰') in line or '第一階段_辦公室Excel實戰' in line:
+                continue  # 第一階段的主線任務由辦公室教材維護。
             cells = line.split(' | ')
             cells[-1] = f"[{title}]({colab_url(chapter_dir.name, h['notebook'])}) |"
             lines[i] = ' | '.join(cells)

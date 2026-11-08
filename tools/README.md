@@ -26,6 +26,18 @@
 
 ## 資料夾說明
 
+### 第一階段辦公室 Excel 教材
+
+此系列為固定的教學模擬資料，與政府資料快照分開維護：
+
+1. `python tools/build_office_materials.py`：產生 12 份案例說明、參考 Notebook 與 `/tmp/office-materials.json`。
+2. 在可解析 `@oai/artifact-tool` 的 Node 環境執行 `node tools/build_office_workbooks.mjs /tmp/office-materials.json`：產生 12 份 Excel，預覽留在 `/tmp/office-excel-previews/`。
+3. `python tools/check_office_materials.py`：核對交付 Excel 原始值，執行 Notebook 與驗收斷言（需要 `openpyxl numpy matplotlib`）。
+4. `python tools/build_office_materials.py --zip-only`：打包教材。
+5. `python tools/build_site.py`：同步首頁、章節與 `docs/office/` 案例網頁。
+
+請修改產生器，不要直接修改此系列的 Markdown、Notebook 或 Excel。
+
 | 路徑 | 內容 |
 | --- | --- |
 | `real_data/` | 政府開放資料快照與 `SOURCES.json`（資料集名稱、提供機關、網址、授權、下載日期） |
@@ -37,4 +49,4 @@
 
 `pandas`、`numpy`、`matplotlib`、`seaborn`、`mplfonts`、`openpyxl`、`xlrd`、`nbformat`、`nbclient`、`ipykernel`、`markdown-it-py`、`mdit-py-plugins`
 
-所有資料皆依「政府資料開放授權條款－第1版」使用。
+政府開放資料依「政府資料開放授權條款－第1版」使用；辦公室 Excel 案例另採固定的教學模擬資料。

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>README｜辦公室 Excel 實戰</title>
+<meta name="description" content="第一階段辦公室 Excel 教材、AI 提問與驗收答案">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">📊</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+<main class="chapter"><p class="crumb"><a href="../index.html">課程首頁</a> › 第一階段</p><article class="md"><h1>第一階段：AI 協作辦公室 Excel 實戰</h1>
+<p>從看懂一張 Excel 開始，逐步學會把需求說清楚、請 AI 產生 Python、核對計算，最後交出清單或圖表。
+這 12 例全部使用辦公室常見的 Excel 檔，涵蓋行政、人資、財務、業務、倉管、採購、客服與行銷。
+資料是<strong>教學模擬資料</strong>，可重建，適合直接用 Excel 開啟與手算驗收。</p>
+<p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/%E8%BE%A6%E5%85%AC%E5%AE%A4Excel_%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90.zip" target="_blank" rel="noopener">下載全部教材（12 份 Excel＋案例說明＋Notebook）</a>｜<a href="../index.html">回到課程首頁</a></p>
+<h2 id="由淺至深的學習順序">由淺至深的學習順序</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>層級</th>
+<th>案例</th>
+<th>先備能力</th>
+<th>本次新增的能力</th>
+<th>過關標準</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 讀懂單一表格</td>
+<td>01～03</td>
+<td>Python 變數、list、dict、for 與 if 的基本概念</td>
+<td>讀取 xlsx、看欄位、篩選、加總</td>
+<td>能說出每列意義，手算核對筆數與總額</td>
+</tr>
+<tr>
+<td>2 產生工作清單</td>
+<td>04～06</td>
+<td>完成層級 1</td>
+<td>乘法、排序、多條件、CSV 輸出</td>
+<td>說清楚金額與門檻規則，產出清單與原表一致</td>
+</tr>
+<tr>
+<td>3 整批統計</td>
+<td>07～09</td>
+<td>完成層級 2</td>
+<td>NumPy、axis、缺值、平均、分類統計</td>
+<td>分清楚每列每欄及平均數的分母</td>
+</tr>
+<tr>
+<td>4 呈現與核對</td>
+<td>10～12</td>
+<td>完成層級 3</td>
+<td>Matplotlib、比率、依單號核對多工作表</td>
+<td>圖表有標題與單位，跨表不漏單、不重複加總</td>
+</tr>
+</tbody>
+</table></div>
+<p>建議先依 01→12 完成，再換成自己部門的同類表格。每次只新增一項主要觀念。
+原課程章節可依「檔案存取 → NumPy → 繪圖」搭配閱讀；跨表核對先用字典理解，後續 pandas 章節再學 merge 與 groupby。</p>
+<h2 id="12-個部門案例">12 個部門案例</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>順序</th>
+<th>難度</th>
+<th>部門</th>
+<th>學習重點與操作說明</th>
+<th>素材</th>
+<th>線上執行</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>01</td>
+<td>1</td>
+<td>行政</td>
+<td><a href="01_行政_文具領用.html">讀懂工作表與欄位</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/01_%E8%A1%8C%E6%94%BF_%E6%96%87%E5%85%B7%E9%A0%98%E7%94%A8.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/01_%E8%A1%8C%E6%94%BF_%E6%96%87%E5%85%B7%E9%A0%98%E7%94%A8.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>02</td>
+<td>1</td>
+<td>人資</td>
+<td><a href="02_人資_教育訓練名單.html">文字條件篩選與計數</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/02_%E4%BA%BA%E8%B3%87_%E6%95%99%E8%82%B2%E8%A8%93%E7%B7%B4%E5%90%8D%E5%96%AE.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/02_%E4%BA%BA%E8%B3%87_%E6%95%99%E8%82%B2%E8%A8%93%E7%B7%B4%E5%90%8D%E5%96%AE.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>03</td>
+<td>1</td>
+<td>財務</td>
+<td><a href="03_財務_費用明細.html">數值加總與條件加總</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/03_%E8%B2%A1%E5%8B%99_%E8%B2%BB%E7%94%A8%E6%98%8E%E7%B4%B0.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/03_%E8%B2%A1%E5%8B%99_%E8%B2%BB%E7%94%A8%E6%98%8E%E7%B4%B0.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>04</td>
+<td>2</td>
+<td>業務</td>
+<td><a href="04_業務_訂單金額.html">新增計算結果與排序</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/04_%E6%A5%AD%E5%8B%99_%E8%A8%82%E5%96%AE%E9%87%91%E9%A1%8D.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/04_%E6%A5%AD%E5%8B%99_%E8%A8%82%E5%96%AE%E9%87%91%E9%A1%8D.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>05</td>
+<td>2</td>
+<td>倉管</td>
+<td><a href="05_倉管_庫存補貨.html">多條件判斷與差額</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/05_%E5%80%89%E7%AE%A1_%E5%BA%AB%E5%AD%98%E8%A3%9C%E8%B2%A8.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/05_%E5%80%89%E7%AE%A1_%E5%BA%AB%E5%AD%98%E8%A3%9C%E8%B2%A8.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>06</td>
+<td>2</td>
+<td>採購</td>
+<td><a href="06_採購_供應商報價.html">同條件比較與最低值</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/06_%E6%8E%A1%E8%B3%BC_%E4%BE%9B%E6%87%89%E5%95%86%E5%A0%B1%E5%83%B9.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/06_%E6%8E%A1%E8%B3%BC_%E4%BE%9B%E6%87%89%E5%95%86%E5%A0%B1%E5%83%B9.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>07</td>
+<td>3</td>
+<td>行政</td>
+<td><a href="07_行政_部門月費用.html">NumPy 二維陣列與 axis</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/07_%E8%A1%8C%E6%94%BF_%E9%83%A8%E9%96%80%E6%9C%88%E8%B2%BB%E7%94%A8.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/07_%E8%A1%8C%E6%94%BF_%E9%83%A8%E9%96%80%E6%9C%88%E8%B2%BB%E7%94%A8.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>08</td>
+<td>3</td>
+<td>人資</td>
+<td><a href="08_人資_訓練滿意度.html">缺值與平均數</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/08_%E4%BA%BA%E8%B3%87_%E8%A8%93%E7%B7%B4%E6%BB%BF%E6%84%8F%E5%BA%A6.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/08_%E4%BA%BA%E8%B3%87_%E8%A8%93%E7%B7%B4%E6%BB%BF%E6%84%8F%E5%BA%A6.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>09</td>
+<td>3</td>
+<td>客服</td>
+<td><a href="09_客服_案件處理統計.html">分類統計與平均的分母</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/09_%E5%AE%A2%E6%9C%8D_%E6%A1%88%E4%BB%B6%E8%99%95%E7%90%86%E7%B5%B1%E8%A8%88.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/09_%E5%AE%A2%E6%9C%8D_%E6%A1%88%E4%BB%B6%E8%99%95%E7%90%86%E7%B5%B1%E8%A8%88.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>10</td>
+<td>4</td>
+<td>業務</td>
+<td><a href="10_業務_月營收趨勢.html">折線圖與月增率</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/10_%E6%A5%AD%E5%8B%99_%E6%9C%88%E7%87%9F%E6%94%B6%E8%B6%A8%E5%8B%A2.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/10_%E6%A5%AD%E5%8B%99_%E6%9C%88%E7%87%9F%E6%94%B6%E8%B6%A8%E5%8B%A2.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>11</td>
+<td>4</td>
+<td>行銷</td>
+<td><a href="11_行銷_活動成效.html">比率與長條圖</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/11_%E8%A1%8C%E9%8A%B7_%E6%B4%BB%E5%8B%95%E6%88%90%E6%95%88.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/11_%E8%A1%8C%E9%8A%B7_%E6%B4%BB%E5%8B%95%E6%88%90%E6%95%88.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+<tr>
+<td>12</td>
+<td>4</td>
+<td>採購／倉管／財務</td>
+<td><a href="12_跨部門_請購驗收核對.html">跨工作表核對與明細報表</a></td>
+<td><a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/12_%E8%B7%A8%E9%83%A8%E9%96%80_%E8%AB%8B%E8%B3%BC%E9%A9%97%E6%94%B6%E6%A0%B8%E5%B0%8D.xlsx" target="_blank" rel="noopener">Excel</a></td>
+<td><a href="https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/12_%E8%B7%A8%E9%83%A8%E9%96%80_%E8%AB%8B%E8%B3%BC%E9%A9%97%E6%94%B6%E6%A0%B8%E5%B0%8D.ipynb" target="_blank" rel="noopener">Colab</a></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="每一例怎麼上課">每一例怎麼上課</h2>
+<ol>
+<li><strong>先看 Excel</strong>：工作表叫什麼？每列代表什麼？金額、件數、分鐘的單位是什麼？</li>
+<li><strong>說清楚任務</strong>：先做案例中的第一個步驟，使用附上的 AI 提問逐步要求程式。</li>
+<li><strong>執行與核對</strong>：在 Colab 上傳本例 Excel；本機則把 Notebook 與 Excel 放在同一個工作目錄。卡住時再看參考 Notebook。</li>
+<li><strong>驗收與說明</strong>：對照每例的固定答案，再抽兩筆手算。輸出 CSV 用 UTF-8 BOM，方便 Excel 開啟；圖表存成 PNG。</li>
+<li><strong>換一個條件</strong>：改部門、門檻或一筆數值，先預測結果，再重跑。不要只用「沒有報錯」判斷成功。</li>
+</ol>
+<p>參考 Notebook 已含完整解法與斷言檢查；不會自動下載資料，請先下載並上傳對應 Excel。
+所有結果寫到 <code>output/案例名稱/</code>，重跑會覆蓋同名輸出，來源 Excel 不變。這一階段以讀 Excel、輸出 CSV 與 PNG 為主，格式化 Excel 報表留到後續章節。</p>
+<h2 id="ai-提問的五個必要資訊">AI 提問的五個必要資訊</h2>
+<div class="table-wrap"><table>
+<thead>
+<tr>
+<th>要說清楚的資訊</th>
+<th>辦公室例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>來源與工作表</td>
+<td>讀取 <code>05_倉管_庫存補貨.xlsx</code> 的「資料」工作表</td>
+</tr>
+<tr>
+<td>每列代表什麼</td>
+<td>每列一個商品；商品編號是文字</td>
+</tr>
+<tr>
+<td>計算規則</td>
+<td>可用量＝現有庫存＋已訂未到；低於安全庫存才補貨</td>
+</tr>
+<tr>
+<td>例外處理</td>
+<td>等於門檻不補貨；缺值先列出，不自行當成 0</td>
+</tr>
+<tr>
+<td>交付與驗收</td>
+<td>輸出補貨清單，人工核對 P001 與 P004 的補貨量</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="完成後再進階">完成後再進階</h2>
+<p>完成 01～06，再練習把多個月份檔案批次讀入；完成 07～12，再進入 <a href="../chapters/ch05.html">pandas 入門</a>。
+樞紐分析、多檔合併、資料清理與自動產出格式化 Excel 報表，安排在後續階段。</p>
+</article></main>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜辦公室案例為教學模擬資料；政府開放資料依「政府資料開放授權條款－第1版」使用。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>

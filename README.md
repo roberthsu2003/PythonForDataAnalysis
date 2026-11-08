@@ -7,13 +7,15 @@
 > 🌐 **網頁版**：[roberthsu2003.github.io/PythonForDataAnalysis](https://roberthsu2003.github.io/PythonForDataAnalysis/)（手機、平板也好讀，內容與這裡同步）
 
 > [!TIP]
-> **📡 這門課的每一個範例，都是台灣的真實資料**
+> **📊 第一階段使用辦公室 Excel 模擬案例，後續章節搭配台灣真實資料**
 >
-> 全部來自[政府資料開放平台](https://data.gov.tw)：你騎的 YouBike、家裡的電費單、每天呼吸的空氣、擠的捷運、看過的電影、走過的路口。
-> 每一章都用一個你真的會好奇的問題開場：**夏天電費為什麼暴增？哪一站最擠？台灣人最愛看哪部電影？死亡車禍最常發生在什麼時候？**
+> 第一階段從行政、人資、財務、業務等部門常見的 Excel 開始，先用小表格練習與手算驗收。後續真實資料來自[政府資料開放平台](https://data.gov.tw)：你騎的 YouBike、家裡的電費單、每天呼吸的空氣、擠的捷運、看過的電影、走過的路口。
+> 開放資料章節用你真的會好奇的問題開場：**夏天電費為什麼暴增？哪一站最擠？台灣人最愛看哪部電影？死亡車禍最常發生在什麼時候？**
 > 真實資料也很「髒」——亂碼、民國年、「台北」和「臺北」對不上——學會處理它們，你就具備了真正的資料分析能力。
 
 ## 🚀 第一次上課：3 步驟開始
+
+**第一階段辦公室 Excel 案例**：先[下載教材](./第一階段_辦公室Excel實戰/辦公室Excel_學生素材.zip)，從案例 01 開始；在 Colab 上傳對應 Excel，再依操作步驟執行與核對答案。以下自動下載與填空流程適用於原有的政府開放資料 Notebook。
 
 | 步驟 | 做什麼 | 說明 |
 | :---: | --- | --- |
@@ -23,7 +25,7 @@
 
 > 💻 想在自己電腦上跑？到各章 README 下載 `學生素材.zip`，解壓縮後用 Jupyter 或 VS Code 開啟即可（需要 Python 3.11 以上與 `requirements.txt` 裡的套件）。
 
-### 📒 每本範例 Notebook 都長這樣
+### 📒 政府開放資料範例 Notebook 的結構
 
 ```text
 🎯 情境故事 → 🗺️ 今日任務地圖 → 任務 1、2、3…… → ✍️ 練習區 → 🏆 完成清單
@@ -38,12 +40,17 @@
 
 ### 🧱 階段一｜基礎工具
 
+**優先從 [AI 協作辦公室 Excel 實戰：12 個由淺至深的案例](./第一階段_辦公室Excel實戰/README.md) 開始。**
+依序完成「讀懂單一表格（01～03）→ 計算與工作清單（04～06）→ NumPy 整批統計（07～09）→ 圖表與跨表核對（10～12）」。
+涵蓋行政、人資、財務、業務、倉管、採購、客服與行銷；每例附 Excel、AI 提問、操作說明、驗收答案與參考 Notebook。
+[下載整套教材](./第一階段_辦公室Excel實戰/辦公室Excel_學生素材.zip)。下方章節作為觀念補充，完成案例後再銜接 pandas。
+
 | 章 | 主題 | 你會學到 | 🎯 本章任務（點了直接開 Colab） |
 | :---: | :--- | :--- | :--- |
 | 1 | [Python](https://github.com/roberthsu2003/python) | Python 基礎語法（另一個 repo） | — |
-| 2 | [檔案存取](./檔案存取/README.md) | 讀取 CSV 與 JSON，認識 UTF-8 編碼與中文亂碼 | [🚲 YouBike 與電影票房](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E6%AA%94%E6%A1%88%E5%AD%98%E5%8F%96/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_YouBike%E8%88%87%E9%9B%BB%E5%BD%B1%E7%A5%A8%E6%88%BF_%E8%AE%80%E6%87%82%E6%94%BF%E5%BA%9C%E9%96%8B%E6%94%BE%E8%B3%87%E6%96%99.ipynb) |
-| 3 | [繪圖和視覺展示](./繪圖和視覺展示/README.md) | Matplotlib 的畫布結構，折線、長條、直方、圓餅圖 | [⚡ 夏天電費為什麼暴增？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%B9%AA%E5%9C%96%E5%92%8C%E8%A6%96%E8%A6%BA%E5%B1%95%E7%A4%BA/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E5%A4%8F%E5%A4%A9%E9%9B%BB%E8%B2%BB%E7%82%BA%E4%BB%80%E9%BA%BC%E6%9A%B4%E5%A2%9E_%E5%8F%B0%E9%9B%BB%E7%94%A8%E9%9B%BB%E4%BA%94%E5%BC%B5%E5%9C%96.ipynb) |
-| 4 | [Numpy建立與計算](./Numpy建立與計算/README.md) | 用陣列整批計算總和、平均、最高最低與累計 | [🌫️ 你家附近的空氣好嗎？](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/Numpy%E5%BB%BA%E7%AB%8B%E8%88%87%E8%A8%88%E7%AE%97/%E5%AD%B8%E7%94%9F%E7%B4%A0%E6%9D%90/%E7%AF%84%E4%BE%8B_%E4%BD%A0%E5%AE%B6%E9%99%84%E8%BF%91%E7%9A%84%E7%A9%BA%E6%B0%A3%E5%A5%BD%E5%97%8E_365%E5%A4%A9AQI%E7%9F%A9%E9%99%A3.ipynb) |
+| 2 | [檔案存取](./檔案存取/README.md) | 讀取 CSV 與 JSON，認識 UTF-8 編碼與中文亂碼 | [01_行政_文具領用](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/01_%E8%A1%8C%E6%94%BF_%E6%96%87%E5%85%B7%E9%A0%98%E7%94%A8.ipynb) |
+| 3 | [繪圖和視覺展示](./繪圖和視覺展示/README.md) | Matplotlib 的畫布結構，折線、長條、直方、圓餅圖 | [10_業務_月營收趨勢](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/10_%E6%A5%AD%E5%8B%99_%E6%9C%88%E7%87%9F%E6%94%B6%E8%B6%A8%E5%8B%A2.ipynb) |
+| 4 | [Numpy建立與計算](./Numpy建立與計算/README.md) | 用陣列整批計算總和、平均、最高最低與累計 | [07_行政_部門月費用](https://colab.research.google.com/github/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/07_%E8%A1%8C%E6%94%BF_%E9%83%A8%E9%96%80%E6%9C%88%E8%B2%BB%E7%94%A8.ipynb) |
 
 ### 🐼 階段二｜pandas 入門
 

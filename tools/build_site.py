@@ -23,6 +23,7 @@ from mdit_py_plugins.tasklists import tasklists_plugin
 
 ROOT = Path(__file__).resolve().parent.parent
 DOCS = ROOT / 'docs'
+OFFICE = ROOT / '第一階段_辦公室Excel實戰'
 REPO = 'https://github.com/roberthsu2003/PythonForDataAnalysis'
 BLOB = f'{REPO}/blob/master/'
 TREE = f'{REPO}/tree/master/'
@@ -148,7 +149,7 @@ def page(title, desc, body, depth, active=None):
 {body}
 <footer class="site-footer">
   <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
-  <p><a href="{REPO}" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜範例資料來自政府資料開放平台，依「政府資料開放授權條款－第1版」使用。</p>
+  <p><a href="{REPO}" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜辦公室案例為教學模擬資料；政府開放資料依「政府資料開放授權條款－第1版」使用。</p>
 </footer>
 <script src="{HLJS}/highlight.min.js"></script>
 <script src="{prefix}assets/site.js"></script>
@@ -164,6 +165,7 @@ def zip_url(ch):
 
 def build_index(stages, intro):
     pages = {f"{c['folder']}/README.md": f"chapters/{c['page']}" for s in stages for c in s['chapters'] if c['folder']}
+    pages.update(office_pages('office/'))
     intro = re.sub(r'^!\[.*\n+# .*\n+.*\n', '', intro)          # 圖片、標題與第一段（已放在網頁上方的大標題區）
     intro = re.sub(r'^> 🌐.*\n', '', intro, flags=re.M)                  # 「網頁版」連結在網頁上不需要
     intro_html, _ = render_markdown(intro, ROOT, pages)
@@ -189,13 +191,14 @@ def build_index(stages, intro):
         sections.append(f'''
   <section class="stage">
     <h2 class="stage-title"><span class="stage-icon">{s["icon"]}</span>{s["label"]}<span class="stage-sep">｜</span>{html.escape(s["name"])}</h2>
+{'<p><a class="btn btn-primary" href="office/index.html">辦公室 Excel 實戰：12 個由淺至深的案例</a></p><p>讀懂表格 → 計算清單 → NumPy 統計 → 圖表與跨表核對；附 Excel、AI 提問與驗收答案。</p>' if s['label'] == '階段一' else ''}
     <div class="cards">{"".join(cards)}
     </div>
   </section>''')
     body = f'''
 <section class="hero">
   <div class="hero-inner">
-    <p class="hero-badge">📡 用台灣的真實開放資料學資料分析</p>
+    <p class="hero-badge">辦公室 Excel 實戰與台灣開放資料</p>
     <h1>Python 資料分析</h1>
     <p class="hero-sub">用 NumPy、pandas、Matplotlib 把原始資料變成能做決策的報表與圖表。<br>{total} 個情境任務、每章都有自動批改的練習，打開 Colab 就能開始。</p>
     <div class="hero-actions">
@@ -221,14 +224,15 @@ def build_index(stages, intro):
     </div>
   </section>
 </main>'''
-    (DOCS / 'index.html').write_text(page('Python 資料分析｜用真實開放資料學',
-                                          'Python 資料分析課程網頁版：用 YouBike、電費、空氣品質、捷運、電影票房等政府開放資料學 NumPy、pandas 與 Matplotlib。',
+    (DOCS / 'index.html').write_text(page('Python 資料分析｜辦公室 Excel 與開放資料實戰',
+                                          '第一階段從 12 個辦公室 Excel 案例開始，再用台灣政府開放資料學 NumPy、pandas 與 Matplotlib。',
                                           body, 0, 'home'), encoding='utf-8')
 
 
 def build_chapters(stages):
     chapters = [c for s in stages for c in s['chapters'] if c['folder']]
     pages = {f"{c['folder']}/README.md": c['page'] for c in chapters}
+    pages.update(office_pages('../office/'))
     out = DOCS / 'chapters'
     out.mkdir(exist_ok=True)
     for old in out.glob('*.html'):
@@ -281,6 +285,24 @@ def build_chapters(stages):
                 f'data-page="{c["page"]}"', f'data-page="{c["page"]}" class="on" aria-current="page"'),
             encoding='utf-8')
     return chapters
+
+
+def office_pages(prefix):
+    return {p.relative_to(ROOT).as_posix(): prefix + ('index.html' if p.stem == 'README' else p.stem + '.html')
+            for p in OFFICE.glob('*.md')}
+
+
+def build_office(stages):
+    out = DOCS / 'office'
+    out.mkdir(exist_ok=True)
+    pages = office_pages('')
+    pages.update({f"{c['folder']}/README.md": f"../chapters/{c['page']}"
+                  for s in stages for c in s['chapters'] if c['folder']})
+    for source in sorted(OFFICE.glob('*.md')):
+        content, _ = render_markdown(source.read_text(encoding='utf-8'), OFFICE, pages)
+        body = f'<main class="chapter"><p class="crumb"><a href="../index.html">課程首頁</a> › 第一階段</p><article class="md">{content}</article></main>'
+        name = 'index.html' if source.stem == 'README' else source.stem + '.html'
+        (out / name).write_text(page(source.stem + '｜辦公室 Excel 實戰', '第一階段辦公室 Excel 教材、AI 提問與驗收答案', body, 1), encoding='utf-8')
 
 
 CSS = r'''
@@ -487,5 +509,6 @@ if __name__ == '__main__':
     (DOCS / 'assets' / 'site.js').write_text(JS.lstrip(), encoding='utf-8')
     build_index(stages, intro)
     chapters = build_chapters(stages)
+    build_office(stages)
     (DOCS / '.nojekyll').write_text('', encoding='utf-8')
     print(f'✅ 網頁版已產生：首頁 + {len(chapters)} 個章節頁（docs/）')

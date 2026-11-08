@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10_業務_月營收趨勢｜辦公室 Excel 實戰</title>
+<meta name="description" content="第一階段辦公室 Excel 教材、AI 提問與驗收答案">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../index.html"><span class="brand-icon">📊</span><span>Python 資料分析</span></a>
+    <nav class="topnav">
+      <a href="../index.html">課程首頁</a>
+      <a href="../chart-selection/index.html">圖表思維實驗室</a>
+      <a class="nav-gh" href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">GitHub ↗</a>
+    </nav>
+  </div>
+</header>
+<main class="chapter"><p class="crumb"><a href="../index.html">課程首頁</a> › 第一階段</p><article class="md"><h1>10_業務_月營收趨勢：折線圖與月增率</h1>
+<p><a href="index.html">回到第一階段案例總覽</a></p>
+<p>難度 4/4｜部門：業務｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/raw/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/10_%E6%A5%AD%E5%8B%99_%E6%9C%88%E7%87%9F%E6%94%B6%E8%B6%A8%E5%8B%A2.xlsx" target="_blank" rel="noopener">下載 Excel</a>｜<a href="https://github.com/roberthsu2003/PythonForDataAnalysis/blob/master/%E7%AC%AC%E4%B8%80%E9%9A%8E%E6%AE%B5_%E8%BE%A6%E5%85%AC%E5%AE%A4Excel%E5%AF%A6%E6%88%B0/10_%E6%A5%AD%E5%8B%99_%E6%9C%88%E7%87%9F%E6%94%B6%E8%B6%A8%E5%8B%A2.ipynb" target="_blank" rel="noopener">參考 Notebook</a></p>
+<h2 id="情境與資料">情境與資料</h2>
+<p>主管交給你一份 Excel，希望你完成下面的任務，並能說明結果如何算出來。
+本例為固定的教學模擬資料，姓名、單號與金額不對應真實公司。</p>
+<ul>
+<li><code>資料</code>：6 筆；欄位：月份、營收_元。</li>
+</ul>
+<p><strong>計算規則</strong>：月增率＝（本月－上月）÷ 上月；上月若為 0，應標示無法計算；先排序再比較。</p>
+<h2 id="跟著做">跟著做</h2>
+<ol>
+<li>依月份排序，確認沒有缺月或重複月份。</li>
+<li>畫折線圖，標示月份、金額單位與標題。</li>
+<li>算 2～6 月月增率，第一個月保留空白。</li>
+</ol>
+<p>先在 Excel 人工找出兩筆資料核對，再把下列需求交給 AI。一次完成一個步驟，確認結果後再繼續。</p>
+<h2 id="可複製的-ai-提問">可複製的 AI 提問</h2>
+<pre><code class="language-text">我在業務部門工作，是 Python 初學者。請讀取 10_業務_月營收趨勢.xlsx。
+依月份排序，確認沒有缺月或重複月份。
+畫折線圖，標示月份、金額單位與標題。
+算 2～6 月月增率，第一個月保留空白。
+資料規則：月增率＝（本月－上月）÷ 上月；上月若為 0，應標示無法計算；先排序再比較。
+請使用 openpyxl 讀檔，搭配 Matplotlib 畫圖。先列出你理解的欄位與處理步驟，再給可在 Colab 執行的程式，每個步驟附中文說明。
+輸出放到 output/，保留來源 Excel；缺值與分母為 0 時請明確處理。
+</code></pre>
+<h2 id="驗收答案">驗收答案</h2>
+<p>半年營收 800,000 元；3 月月增率 −25%；6 月較 5 月增加 12.5%。</p>
+<p>請向 AI 追問：「請用原始資料的兩筆紀錄，逐步解釋你的計算；如果資料新增一列，哪些部分需要修改？」
+數字相符後，再用一句話寫出可採取的行動，以及本例資料無法回答的問題。</p>
+<h2 id="參考程式">參考程式</h2>
+<p>本機需安裝 <code>openpyxl numpy matplotlib</code>。在 Colab 先執行 <code>!pip -q install openpyxl numpy matplotlib</code>，再上傳本例 Excel。
+圖表使用英文標題避免環境缺少中文字型，圖中的代碼可回查來源表。</p>
+<pre><code class="language-python">from pathlib import Path
+import csv
+from openpyxl import load_workbook
+
+# 本機：把 Notebook 與 Excel 放在同一資料夾。Colab：先上傳本例 Excel。
+SOURCE = Path('10_業務_月營收趨勢.xlsx')
+if not SOURCE.exists():
+    try:
+        from google.colab import files
+    except ImportError:
+        raise FileNotFoundError(f'請將 {SOURCE.name} 放到目前工作目錄：{Path.cwd()}')
+    files.upload()
+if not SOURCE.exists():
+    raise FileNotFoundError(f'尚未找到 {SOURCE.name}，請確認上傳檔名')
+OUT = Path('output') / '10_業務_月營收趨勢'
+OUT.mkdir(parents=True, exist_ok=True)
+
+def read_rows(sheet):
+    data = sheet.iter_rows(values_only=True)
+    headers = next(data)
+    return [dict(zip(headers, row)) for row in data if any(v is not None for v in row)]
+
+def save_csv(name, records):
+    if not records:
+        print('沒有符合條件的資料，未輸出 CSV')
+        return
+    with (OUT / name).open('w', newline='', encoding='utf-8-sig') as f:
+        writer = csv.DictWriter(f, fieldnames=list(records[0]))
+        writer.writeheader()
+        writer.writerows(records)
+
+# 來源檔只有原始值，沒有需要重算的 Excel 公式。
+wb = load_workbook(SOURCE, read_only=True, data_only=True)
+print('工作表：', wb.sheetnames)
+rows = read_rows(wb['資料'])
+print('第一筆：', rows[0])
+
+import matplotlib.pyplot as plt
+result = sorted(rows, key=lambda r: r['月份'])
+assert [r['月份'] for r in result] == [f'2025-{m:02d}' for m in range(1,7)]
+amounts = [r['營收_元'] for r in result]
+growth = [None] + [(b-a)/a if a != 0 else None for a,b in zip(amounts,amounts[1:])]
+print('月增率：', growth)
+fig, ax = plt.subplots()
+ax.plot([r['月份'] for r in result], amounts, marker='o')
+ax.set(title='Monthly revenue', xlabel='Month', ylabel='Revenue (TWD)')
+fig.tight_layout()
+fig.savefig(OUT / '月營收.png', dpi=150)
+plt.close(fig)
+assert sum(amounts) == 800000 and growth[2] == -0.25
+
+wb.close()
+</code></pre>
+</article></main>
+<footer class="site-footer">
+  <p>網頁版由 <code>tools/build_site.py</code> 從 GitHub 上的 README 自動產生，內容與 repo 同步。</p>
+  <p><a href="https://github.com/roberthsu2003/PythonForDataAnalysis" target="_blank" rel="noopener">roberthsu2003 / PythonForDataAnalysis</a>｜辦公室案例為教學模擬資料；政府開放資料依「政府資料開放授權條款－第1版」使用。</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<script src="../assets/site.js"></script>
+</body>
+</html>
